@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>hexo博客进阶 | 不务正业的程序员</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="部署Hexo到Gitlab Hexo + GtHub：起初想要把这个博客放到Github上，但是由于Github不让百度爬取。 Hexo + Coding.net：后来又尝试了 coding.net，在使用coding.net的过程中遇到了一些坑。 普通会员不能自定义域名 -&amp;gt; 申请成为白银会员（使用腾讯云授权） 微信等方式登录腾讯云后，授权失败（不知原因） -&amp;gt; 使用腾讯云直接登录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo博客进阶">
+<meta property="og:url" content="http://www.iosprogrammer.tech/deploy-hexo-to-gitlab/index.html">
+<meta property="og:site_name" content="不务正业的程序员">
+<meta property="og:description" content="部署Hexo到Gitlab Hexo + GtHub：起初想要把这个博客放到Github上，但是由于Github不让百度爬取。 Hexo + Coding.net：后来又尝试了 coding.net，在使用coding.net的过程中遇到了一些坑。 普通会员不能自定义域名 -&amp;gt; 申请成为白银会员（使用腾讯云授权） 微信等方式登录腾讯云后，授权失败（不知原因） -&amp;gt; 使用腾讯云直接登录">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/deploy-hexo-to-gitlab-CI:CD.png">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/deploy-hexo-to-gitlab/pages.png">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/deploy-hexo-to-gitlab/domain.png">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/deploy-hexo-to-gitlab/DNS.png">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/deploy-hexo-to-gitlab/dns-result.png">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/deploy-hexo-to-gitlab/success.png">
+<meta property="og:updated_time" content="2020-07-09T05:24:30.476Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo博客进阶">
+<meta name="twitter:description" content="部署Hexo到Gitlab Hexo + GtHub：起初想要把这个博客放到Github上，但是由于Github不让百度爬取。 Hexo + Coding.net：后来又尝试了 coding.net，在使用coding.net的过程中遇到了一些坑。 普通会员不能自定义域名 -&amp;gt; 申请成为白银会员（使用腾讯云授权） 微信等方式登录腾讯云后，授权失败（不知原因） -&amp;gt; 使用腾讯云直接登录">
+<meta name="twitter:image" content="http://image.iosprogrammer.hongbility.com/deploy-hexo-to-gitlab-CI:CD.png">
+  
+    <link rel="alternate" href="/atom.xml" title="不务正业的程序员" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">不务正业的程序员</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">爱编程的大头（公众号同名）</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.iosprogrammer.tech"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-deploy-hexo-to-gitlab" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/deploy-hexo-to-gitlab/" class="article-date">
+  <time datetime="2018-05-11T09:36:01.000Z" itemprop="datePublished">2018-05-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/其他/">其他</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hexo博客进阶
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="部署Hexo到Gitlab"><a href="#部署Hexo到Gitlab" class="headerlink" title="部署Hexo到Gitlab"></a>部署Hexo到Gitlab</h1><ul>
+<li>Hexo + GtHub：起初想要把这个博客放到Github上，但是由于Github不让百度爬取。</li>
+<li>Hexo + Coding.net：后来又尝试了 coding.net，在使用coding.net的过程中遇到了一些坑。<ul>
+<li>普通会员不能自定义域名 -&gt; 申请成为白银会员（使用腾讯云授权）</li>
+<li>微信等方式登录腾讯云后，授权失败（不知原因） -&gt; 使用腾讯云直接登录 -&gt; 授权成功，成为白银会员，可以自定义域名</li>
+<li>首次打开会显示5s的coding.net广告，后跳转到博客，据说这样的话无法被百度收录 -&gt; 充值199/年 成为黄金会员（我没有充）</li>
+</ul>
+</li>
+</ul>
+<h3 id="Hexo-Gitlab"><a href="#Hexo-Gitlab" class="headerlink" title="Hexo + Gitlab"></a>Hexo + Gitlab</h3><ol>
+<li>在原来的博客根目录中新建一个<code>.gitlab-ci.yml</code>：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">before_script:</span><br><span class="line">  - apt-get update -qq &amp;&amp; apt-get install -y -qq pandoc</span><br><span class="line">image: node:9.8.0</span><br><span class="line">pages:</span><br><span class="line">  cache:</span><br><span class="line">    paths:</span><br><span class="line">    - node_modules/</span><br><span class="line">  script:</span><br><span class="line">  - npm install hexo-cli -g</span><br><span class="line">  - npm install</span><br><span class="line">  - hexo deploy</span><br><span class="line">  artifacts:</span><br><span class="line">    paths:</span><br><span class="line">    - public</span><br><span class="line">  only:</span><br><span class="line">  - master</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>这里需要注意，<strong>image: node:9.8.0</strong> node的版本 <strong><em>不是2.2.0</em></strong>，9.8.0这个版本是我当前安装的版本，其他的版本我没有试过。</p>
+</blockquote>
+<ol>
+<li><p>在博客的根目录的配置文件<code>_config.yml</code>中，把deploy下推送到github的相关内容删掉。这是因为在gitlab的自动部署过程中会执行推送github的操作，为了不用配置用户名和密码相关配置，建议删除。</p>
+</li>
+<li><p>在gitlab中新建仓库，过程省略。</p>
+</li>
+<li><p>把博客内容push到上一步新建的仓库中，过程省略。</p>
+</li>
+<li><p>查看gitlab中项目的CI/CD -&gt; Piplines，这时候应该处于Padding状态，等几分钟，状态变成了Success。<br><img src="http://image.iosprogrammer.hongbility.com/deploy-hexo-to-gitlab-CI:CD.png" alt></p>
+</li>
+<li><p>查看Setting -&gt; Pages可以看到gitlab给我们分配的链接，访问链接可以看到我们的博客。</p>
+</li>
+</ol>
+<p>部署到gitlab成功 🎉🎉🎉</p>
+<h3 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a>自定义域名</h3><p>Setting -&gt; Pages页面中可以通过NewDomain来自定义域名<br><img src="http://image.iosprogrammer.hongbility.com/deploy-hexo-to-gitlab/pages.png" alt="pages"><br>如果你的域名不支持HTTPS请不要勾选<code>Force domain with SSL...</code>点击<code>New domain</code>可以添加指定域名，添加域名后会看到如下页面：<br><img src="http://image.iosprogrammer.hongbility.com/deploy-hexo-to-gitlab/domain.png" alt="domain"><br>上图中绿色的<code>verified</code>是因为我已经验证完成了，如果没有验证完成应该是黄色的。验证过程为分别在云服务商处添加CNAME和TXT域名解析，因为我使用的是阿里云服务器，下面贴出来阿里云上的解析结果：<br><img src="http://image.iosprogrammer.hongbility.com/deploy-hexo-to-gitlab/DNS.png" alt="DNS"><br>其中TXT解析的内容就是<code>Verifycation status</code>的内容。<br>CNAME和TXT解析设置完成后需要等几分钟才会生效，生效后可以在本地电脑的终端中查看结果，正确的结果如下：<br><img src="http://image.iosprogrammer.hongbility.com/deploy-hexo-to-gitlab/dns-result.png" alt="dns-result"></p>
+<p>自定义域名成功 🎉🎉🎉</p>
+<h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p><img src="http://image.iosprogrammer.hongbility.com/deploy-hexo-to-gitlab/success.png" alt="success"></p>
+<h1 id="hexo中插入数学公式"><a href="#hexo中插入数学公式" class="headerlink" title="hexo中插入数学公式"></a>hexo中插入数学公式</h1><blockquote>
+<p>原生hexo并不支持数学公式，需要安装插件<a href="https://www.mathjax.org/" target="_blank" rel="noopener">mathJax</a>。<a href="https://www.mathjax.org/" target="_blank" rel="noopener">mathJax</a>是一款运行于浏览器中的开源数学符号渲染引擎，使用 mathJax 可以方便的在浏览器中嵌入数学公式。mathJax 使用网络字体产生高质量的排版，因此可适应各种分辨率，它的显示是基于文本的而非图片，因此显示效果更好。这些公式可以被搜索引擎使用，因此公式里的符号一样可以被搜索引擎检索到。</p>
+</blockquote>
+<h2 id="安装与配置"><a href="#安装与配置" class="headerlink" title="安装与配置"></a>安装与配置</h2><ol>
+<li><code>$ npm install hexo-math --save</code><br>在站点配置文件 _config.yml 中添加：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">math:</span><br><span class="line">  engine: &apos;mathjax&apos; # or &apos;katex&apos;</span><br><span class="line">  mathjax:</span><br><span class="line">    # src: custom_mathjax_source</span><br><span class="line">    config:</span><br><span class="line">      # MathJax config</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在 next 主题配置文件中 themes/next-theme/_config.yml 中将 mathJax 设为 true:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># MathJax Support</span><br><span class="line">mathjax:</span><br><span class="line">  enable: true</span><br><span class="line">  per_page: false</span><br><span class="line">  cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MM</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>公式插入格式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$数学公式$ 行内 不独占一行</span><br><span class="line">$$数学公式$$ 行间 独占一行</span><br></pre></td></tr></table></figure></p>
+<p>例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$f(x)=ax+b$</span><br></pre></td></tr></table></figure></p>
+<p>显示效果为：f(x)=ax+b<br>如果是行间则使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$f(x)=ax+b$$</span><br></pre></td></tr></table></figure></p>
+<p>显示效果为：<br>$$f(x)=ax+b$$</p>
+<h3 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h3><h4 id="上标与下标"><a href="#上标与下标" class="headerlink" title="上标与下标"></a>上标与下标</h4><p>使用 ^ 表示上标，使用 _ 表示下标，如果上下标的内容多于一个字符，可以使用大括号括起来：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$f(x) = a_1x^n + a_2x^&#123;n-1&#125; + a_3x^&#123;n-2&#125;$$</span><br></pre></td></tr></table></figure></p>
+<p>显示效果为：<br>$$f(x) = a_1x^n + a_2x^{n-1} + a_3x^{n-2}$$<br>如果左右两边都有上下标可以使用 \sideset 语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$\sideset&#123;^n_k&#125;&#123;^x_y&#125;a$$</span><br></pre></td></tr></table></figure></p>
+<p>显示效果为：<br>$$\sideset{^n_k}{^x_y}a$$</p>
+<h4 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h4><p>在 markdown 语法中，\, $, {, }, _都是有特殊含义的，所以需要加\转义。小括号与方括号可以使用原始的() [] 大括号需要转义\也可以使用\lbrace和 \rbrace<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\&#123;x*y\&#125;</span><br><span class="line">\lbrace x*y \rbrace</span><br></pre></td></tr></table></figure></p>
+<p>显示效果为：{x*y}<br>原始符号不会随着公式大小自动缩放，需要使用 \left 和 \right 来实现自动缩放：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$\left \lbrace \sum_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125; \right \rbrace$$</span><br></pre></td></tr></table></figure></p>
+<p>效果：$$\left \lbrace \sum_{i=0}^n i^3 = \frac{(n^2+n)(n+6)}{9} \right \rbrace$$<br>不使用\left 和 \right的效果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ \lbrace \sum_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125;  \rbrace$$</span><br></pre></td></tr></table></figure></p>
+<p>$$ \lbrace \sum_{i=0}^n i^3 = \frac{(n^2+n)(n+6)}{9}  \rbrace$$</p>
+<h4 id="分数与开方"><a href="#分数与开方" class="headerlink" title="分数与开方"></a>分数与开方</h4><p>可以使用\frac 或者 \over 实现分数的显示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$\frac xy$</span><br><span class="line">$ x+3 \over y+5 $</span><br></pre></td></tr></table></figure></p>
+<p>分别显示为：$\frac xy$和$ x+3 \over y+5 $<br>开方使用\sqrt:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ \sqrt&#123;x^5&#125; $</span><br><span class="line">$ \sqrt[3]&#123;\frac xy&#125; $</span><br></pre></td></tr></table></figure></p>
+<p>分别显示为：$ \sqrt{x^5} $和$ \sqrt[3]{\frac xy} $</p>
+<h4 id="求和与积分"><a href="#求和与积分" class="headerlink" title="求和与积分"></a>求和与积分</h4><p>求和使用\sum,可加上下标，积分使用\int可加上下限，双重积分用\iint:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ \sum_&#123;i=0&#125;^n $</span><br><span class="line">$ \int_1^\infty $</span><br><span class="line">$ \iint_1^\infty $</span><br></pre></td></tr></table></figure></p>
+<p>分别显示为：$ \sum_{i=0}^n $和$ \int_1^\infty $以及$ \iint_1^\infty $</p>
+<h4 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h4><p>极限使用\lim:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ \lim_&#123;x \to 0&#125; $</span><br></pre></td></tr></table></figure></p>
+<p>显示为：$ \lim_{x \to 0} $</p>
+<h4 id="表格和矩阵"><a href="#表格和矩阵" class="headerlink" title="表格和矩阵"></a>表格和矩阵</h4><p>表格样式lcr表示居中，|加入一条竖线，\hline表示行间横线，列之间用&amp;分隔，行之间用\分隔<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$\begin&#123;array&#125;&#123;c|lcr&#125;</span><br><span class="line">n &amp; \text&#123;Left&#125; &amp; \text&#123;Center&#125; &amp; \text&#123;Right&#125; \\\\</span><br><span class="line">\hline</span><br><span class="line">1 &amp; 1.97 &amp; 5 &amp; 12 \\\\</span><br><span class="line">2 &amp; -11 &amp; 19 &amp; -80 \\\\</span><br><span class="line">3 &amp; 70 &amp; 209 &amp; 1+i \\\\</span><br><span class="line">\end&#123;array&#125;$$</span><br></pre></td></tr></table></figure></p>
+<p>显示效果为：<br>$$\begin{array}{c|lcr}<br>n &amp; \text{Left} &amp; \text{Center} &amp; \text{Right} \\<br>\hline<br>1 &amp; 1.97 &amp; 5 &amp; 12 \\<br>2 &amp; -11 &amp; 19 &amp; -80 \\<br>3 &amp; 70 &amp; 209 &amp; 1+i \\<br>\end{array}$$<br>表格的插入也可以使用以下方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">名称|说明</span><br><span class="line">---|---|---</span><br><span class="line">temperature|  室内温度</span><br><span class="line">set temperature|  设定温度</span><br><span class="line">height|  室内高度</span><br></pre></td></tr></table></figure></p>
+<p>显示效果为：<br>名称|说明<br>—|—|—<br>temperature|  室内温度<br>set temperature|  设定温度<br>height|  室内高度<br>矩阵显示和表格很相似<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$$\left[</span><br><span class="line">\begin&#123;matrix&#125;</span><br><span class="line">V_A \\\\</span><br><span class="line">V_B \\\\</span><br><span class="line">V_C \\\\</span><br><span class="line">\end&#123;matrix&#125;</span><br><span class="line">\right] =</span><br><span class="line">\left[</span><br><span class="line">\begin&#123;matrix&#125;</span><br><span class="line">1 &amp; 0 &amp; L \\\\</span><br><span class="line">-cosψ &amp; sinψ &amp; L \\\\</span><br><span class="line">-cosψ &amp; -sinψ &amp; L</span><br><span class="line">\end&#123;matrix&#125;</span><br><span class="line">\right]</span><br><span class="line">\left[</span><br><span class="line">\begin&#123;matrix&#125;</span><br><span class="line">V_x \\\\</span><br><span class="line">V_y \\\\</span><br><span class="line">W \\\\</span><br><span class="line">\end&#123;matrix&#125;</span><br><span class="line">\right] $$</span><br></pre></td></tr></table></figure></p>
+<p>显示效果为：<br>$$\left[<br>\begin{matrix}<br>V_A \\<br>V_B \\<br>V_C \\<br>\end{matrix}<br>\right] =<br>\left[<br>\begin{matrix}<br>1 &amp; 0 &amp; L \\<br>-cosψ &amp; sinψ &amp; L \\<br>-cosψ &amp; -sinψ &amp; L<br>\end{matrix}<br>\right]<br>\left[<br>\begin{matrix}<br>V_x \\<br>V_y \\<br>W \\<br>\end{matrix}<br>\right] $$</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="https://www.youtube.com/watch?v=TWqh9MtT4Bg" target="_blank" rel="noopener">gitlab官方youtube视频</a><br><a href="http://stevenshi.me/2017/06/26/hexo-insert-formula/" target="_blank" rel="noopener">Steven Shi的博客</a></p>
+<p>👍👍👍</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.iosprogrammer.tech/deploy-hexo-to-gitlab/" data-id="ckcezpvju000skcs64dfxomcl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Submit-Domain-To-Baidu/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          把域名提交到百度资源平台
+        
+      </div>
+    </a>
+  
+  
+    <a href="/iOS-Pull-Live-Stream/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">iOS直播APP的开发——拉流</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Apple开发文档/">Apple开发文档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/日期Date和时间Time/">日期Date和时间Time</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/react-native/">react-native</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/直播/">直播</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/读书/《Effective-Objective-C-2-0》/">《Effective Objective-C 2.0》</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/数据结构与算法分析/">数据结构与算法分析</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/DSAA-1-1/">引论</a>
+          </li>
+        
+          <li>
+            <a href="/Read-Effective-Objective-C-2-0-2/">读《Effective Objective-C 2.0》（二）</a>
+          </li>
+        
+          <li>
+            <a href="/Read-Effective-Objective-C-2-0-1/">读《Effective Objective-C 2.0》（一）</a>
+          </li>
+        
+          <li>
+            <a href="/Programming-With-ObjC/">OC编程基础</a>
+          </li>
+        
+          <li>
+            <a href="/KVC-KVO/">KVC/KVO 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 施治昂<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

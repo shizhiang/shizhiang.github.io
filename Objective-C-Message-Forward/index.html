@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Objective-C 消息转发 | 不务正业的程序员</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一些概念静态绑定：在编译期就能决定运行时所应调用的函数。代表语言：C、C++等动态绑定：所要调用的函数直到运行期才能确定。代表语言：OC、swift等消息传递：对象正常解读消息，传递过去消息转发：对象无法解读消息，之后进行消息转发 消息处理流程 OC中调用方法[a method]后都是在执行id objc_msgSend(id receiver, SEL op, ...) id objc_msgS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Objective-C 消息转发">
+<meta property="og:url" content="http://www.iosprogrammer.tech/Objective-C-Message-Forward/index.html">
+<meta property="og:site_name" content="不务正业的程序员">
+<meta property="og:description" content="一些概念静态绑定：在编译期就能决定运行时所应调用的函数。代表语言：C、C++等动态绑定：所要调用的函数直到运行期才能确定。代表语言：OC、swift等消息传递：对象正常解读消息，传递过去消息转发：对象无法解读消息，之后进行消息转发 消息处理流程 OC中调用方法[a method]后都是在执行id objc_msgSend(id receiver, SEL op, ...) id objc_msgS">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/424855-83a396fca4f6c206.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2020-07-09T05:24:30.474Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Objective-C 消息转发">
+<meta name="twitter:description" content="一些概念静态绑定：在编译期就能决定运行时所应调用的函数。代表语言：C、C++等动态绑定：所要调用的函数直到运行期才能确定。代表语言：OC、swift等消息传递：对象正常解读消息，传递过去消息转发：对象无法解读消息，之后进行消息转发 消息处理流程 OC中调用方法[a method]后都是在执行id objc_msgSend(id receiver, SEL op, ...) id objc_msgS">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/424855-83a396fca4f6c206.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternate" href="/atom.xml" title="不务正业的程序员" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">不务正业的程序员</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">爱编程的大头（公众号同名）</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.iosprogrammer.tech"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Objective-C-Message-Forward" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Objective-C-Message-Forward/" class="article-date">
+  <time datetime="2018-09-19T14:08:34.000Z" itemprop="datePublished">2018-09-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>►<a class="article-category-link" href="/categories/iOS/Apple开发文档/">Apple开发文档</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Objective-C 消息转发
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h4><p><strong>静态绑定</strong>：在编译期就能决定运行时所应调用的函数。代表语言：C、C++等<br><strong>动态绑定</strong>：所要调用的函数直到运行期才能确定。代表语言：OC、swift等<br><strong>消息传递</strong>：对象正常解读消息，传递过去<br><strong>消息转发</strong>：对象无法解读消息，之后进行消息转发</p>
+<h4 id="消息处理流程"><a href="#消息处理流程" class="headerlink" title="消息处理流程"></a>消息处理流程</h4><ol>
+<li>OC中调用方法<code>[a method]</code>后都是在执行<code>id objc_msgSend(id receiver, SEL op, ...)</code><blockquote>
+<p><code>id objc_msgSend(id self, SEL op, ...)</code>是一个参数个数可变的函数，第一参数代表接受者，第二个参数代表选择子（OC函数名），之后的参数就是消息中传入的参数。</p>
+</blockquote>
+</li>
+<li>当消息发送给对象时，消息函数跟随对象的isa指针找到类结构，并尝试在cache中搜索类中是否有对应的<code>SEL</code>，如果找到在cache中找到了则直接调用，这种情况下消息发送的耗时和函数调用相差无几</li>
+<li>若cache中搜索失败，则到该类对应的<code>dispatch table</code>中搜寻方法，如果能找到这个跟选择子名称相同的方法，就跳转到其实现代码，往下执行。</li>
+<li>该类的<code>dispatch table</code>中没有找到则继续沿着类层级向上寻找直到NSObject，找到后则进行方法调用并缓存。</li>
+<li>如果最终还是找不到，那就进入消息转发的流程去进行处理。</li>
+</ol>
+<h4 id="消息转发流程"><a href="#消息转发流程" class="headerlink" title="消息转发流程"></a>消息转发流程</h4><p><img src="https://upload-images.jianshu.io/upload_images/424855-83a396fca4f6c206.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="msg_forward.png"></p>
+<ol>
+<li>调用resolveInstanceMethod：征询接受者（所属的类）是否可以添加方法以处理未知的选择子？(此过程称为动态方法解析）若有，转发结束。若没有，走第二步。</li>
+<li>调用forwardingTargetForSelector：询问接受者是否有其他对象能处理此消息。若有，转发结束，一切如常。若没有，走第三步。</li>
+<li>调用forwardInvocation：运行期系统将消息封装到NSInvocation对象中，再给接受者一次机会。</li>
+<li>以上三步还不行，就抛出异常：unrecognized selector sent to instance xxxx</li>
+</ol>
+<h4 id="消息转发实例"><a href="#消息转发实例" class="headerlink" title="消息转发实例"></a>消息转发实例</h4><ol>
+<li><p>在ViewController的头文件中声明一个方法，但是不要在ViewController.m中实现</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ViewController.h</span><br><span class="line"></span><br><span class="line">#import &lt;UIKit/UIKit.h&gt;</span><br><span class="line"></span><br><span class="line">@interface ViewController : UIViewController</span><br><span class="line"></span><br><span class="line">- (void)testForwardMethod;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在AppDelegate中调用ViewController的<code>testForwardMethod</code>方法</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AppDelegate.m</span><br><span class="line"></span><br><span class="line">[[[ViewController alloc] init] testForwardMethod];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这时候编译没有问题，但是运行会出现<code>-[ViewController testForwardMethod]: unrecognized selector sent to instance 0x10581bfe0</code></p>
+</li>
+<li><p>在ViewController.m中增加消息转发的方法</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ViewController.m</span><br><span class="line"></span><br><span class="line">- (id)forwardingTargetForSelector:(SEL)aSelector</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;ViewController forwardingTargetForSelector&quot;);</span><br><span class="line">    return [[TestView alloc] init];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 如果有方法的实现，所有消息转发的过程都不会进行</span><br><span class="line">//- (void)testForwardMethod</span><br><span class="line">//&#123;</span><br><span class="line">//    NSLog(@&quot;ViewController testForwardMethod&quot;);</span><br><span class="line">//&#125;</span><br><span class="line"></span><br><span class="line">TestView.m</span><br><span class="line"></span><br><span class="line">- (void)testForwardMethod</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;TestView testForwardMethod&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>(id)forwardingTargetForSelector:(SEL)aSelector; 把aSelector转发给其他类对象。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>在ViewController.m中增加两个消息转发的方法</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">ViewController.m</span><br><span class="line">  </span><br><span class="line">- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;ViewController methodSignatureForSelector&quot;);</span><br><span class="line">    if (aSelector == @selector(testForwardMethod))</span><br><span class="line">    &#123;</span><br><span class="line">        NSLog(@&quot;ViewController methodSignatureForSelector equal&quot;);</span><br><span class="line">        return [NSMethodSignature signatureWithObjCTypes:&quot;v@:&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">    return [super methodSignatureForSelector:aSelector];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-  (void)forwardInvocation:(NSInvocation *)anInvocation</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;ViewController forwardInvocation:&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li><code>- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector</code>返回一NSMethodSignature对象，该对象包含给定选择器标识的方法的描述。在方法转发过程中如果需要使<code>NSInvocation</code>则就需要使用这个方法<br>2.<code>signatureWithObjCTypes:</code>是用C字符串来创建<code>NSMethodSignature</code>对象，详细的描述以看<a href="https://blog.csdn.net/bigtiger1648/article/details/51084957" target="_blank" rel="noopener">这篇文章</a></li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<h4 id="避开动态绑定"><a href="#避开动态绑定" class="headerlink" title="避开动态绑定"></a>避开动态绑定</h4><p>要想不使用OC的动态绑定，唯一的方案是获取到方法地址直接调用。 <strong>这种方案仅适用于 对一个方法重复多次调用，并且对性能敏感 的情况 </strong></p>
+<ol>
+<li>通过<code>NSObject</code>的<code>methodForSelector</code>获取到方法实现的地址</li>
+<li><p>使用指针直接调用方法<br>下面是以<code>setFilled:</code>方法为例</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void (*setter)(id, SEL, BOOL);</span><br><span class="line">int i;</span><br><span class="line"></span><br><span class="line">setter = (void (*)(id, SEL, BOOL))[target</span><br><span class="line">    methodForSelector:@selector(setFilled:)];</span><br><span class="line">for ( i = 0 ; i &lt; 1000 ; i++ )</span><br><span class="line">    setter(targetList[i], @selector(setFilled:), YES);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>methodForSelector</code>不是Objective-C的特性，而是由Cocoa runtime system提供</p>
+</blockquote>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.iosprogrammer.tech/Objective-C-Message-Forward/" data-id="ckcezpvjm000kkcs682t9u127" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/iOS-Memory-Management/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS内存管理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/learn-react-native-with-me-call-native/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">跟我一起学习React Native之调用原生模块</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Apple开发文档/">Apple开发文档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/日期Date和时间Time/">日期Date和时间Time</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/react-native/">react-native</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/直播/">直播</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/读书/《Effective-Objective-C-2-0》/">《Effective Objective-C 2.0》</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/数据结构与算法分析/">数据结构与算法分析</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/DSAA-1-1/">引论</a>
+          </li>
+        
+          <li>
+            <a href="/Read-Effective-Objective-C-2-0-2/">读《Effective Objective-C 2.0》（二）</a>
+          </li>
+        
+          <li>
+            <a href="/Read-Effective-Objective-C-2-0-1/">读《Effective Objective-C 2.0》（一）</a>
+          </li>
+        
+          <li>
+            <a href="/Programming-With-ObjC/">OC编程基础</a>
+          </li>
+        
+          <li>
+            <a href="/KVC-KVO/">KVC/KVO 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 施治昂<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>跟我一起学习React Native之环境搭建 | 不务正业的程序员</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇文章是“跟我一起学react-native”系列文章的第一篇。这系列文章会持续更新。想要跟我一起学习React Native的朋友可以关注我的微信公众号iOS进阶指南，或者订阅我的个人博客。 背景最近想要做一款新闻类的App，主要特点是把新闻事件按照时间线整理出来方便跟踪事情的发展。 作为一个雷（xia）厉（bi）风（dao）行（gu）的程序员肯定说干就干。 俗话说不想火的应用不是好App，想">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跟我一起学习React Native之环境搭建">
+<meta property="og:url" content="http://www.iosprogrammer.tech/learn-react-native-with-me-construction/index.html">
+<meta property="og:site_name" content="不务正业的程序员">
+<meta property="og:description" content="这篇文章是“跟我一起学react-native”系列文章的第一篇。这系列文章会持续更新。想要跟我一起学习React Native的朋友可以关注我的微信公众号iOS进阶指南，或者订阅我的个人博客。 背景最近想要做一款新闻类的App，主要特点是把新闻事件按照时间线整理出来方便跟踪事情的发展。 作为一个雷（xia）厉（bi）风（dao）行（gu）的程序员肯定说干就干。 俗话说不想火的应用不是好App，想">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/react-native/new-project-screenshot.png">
+<meta property="og:updated_time" content="2020-07-09T05:24:30.477Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="跟我一起学习React Native之环境搭建">
+<meta name="twitter:description" content="这篇文章是“跟我一起学react-native”系列文章的第一篇。这系列文章会持续更新。想要跟我一起学习React Native的朋友可以关注我的微信公众号iOS进阶指南，或者订阅我的个人博客。 背景最近想要做一款新闻类的App，主要特点是把新闻事件按照时间线整理出来方便跟踪事情的发展。 作为一个雷（xia）厉（bi）风（dao）行（gu）的程序员肯定说干就干。 俗话说不想火的应用不是好App，想">
+<meta name="twitter:image" content="http://image.iosprogrammer.hongbility.com/react-native/new-project-screenshot.png">
+  
+    <link rel="alternate" href="/atom.xml" title="不务正业的程序员" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">不务正业的程序员</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">爱编程的大头（公众号同名）</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.iosprogrammer.tech"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-learn-react-native-with-me-construction" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/learn-react-native-with-me-construction/" class="article-date">
+  <time datetime="2018-06-11T03:40:03.000Z" itemprop="datePublished">2018-06-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/react-native/">react-native</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      跟我一起学习React Native之环境搭建
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章是“<a href="http://www.iosprogrammer.tech/categories/react-native/">跟我一起学react-native</a>”系列文章的第一篇。这系列文章会持续更新。想要跟我一起学习React Native的朋友可以关注我的微信公众号<strong>iOS进阶指南</strong>，或者订阅<a href="http://www.iosprogrammer.tech">我的个人博客</a>。</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近想要做一款新闻类的App，主要特点是把新闻事件按照时间线整理出来方便跟踪事情的发展。</p>
+<p>作为一个雷（xia）厉（bi）风（dao）行（gu）的程序员肯定说干就干。</p>
+<p>俗话说不想火的应用不是好App，想要更多的用户肯定不能只局限于一个平台，那就要让这个应用同时登陆安卓和iOS两个平台。但是我作为一个万年iOSer，现在从头开始学安卓恐怕有点不赶趟了。</p>
+<p>根据当前敌我态势和恶劣的环境，跨平台开发成为了最优选择。</p>
+<p>那怎么样达到跨平台开发的目的呢？根据百度爸爸的指导和以往的所见所闻，就要在阿里的weex和Facebook的react-native中二选一了。</p>
+<p>从这篇文章的标题来看，大家肯定知道要选rn，其实最开始我选的是weex，奈何经过三四天的奋战和四处求教，我实在是没有搞定环境，在这里不得不说weex的官方文档真的可以称为简陋，当然我可能是因为我前几天手贱把Mac的系统升级到了Mojave。</p>
+<p>在不得不放弃weex以后，只能🙏RN能给点面子。多亏上天眷顾，环境稍微折腾了一下就搞定了。</p>
+<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ol>
+<li><p>安装Node和Watchman</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br><span class="line">brew install watchman</span><br></pre></td></tr></table></figure>
+<p> 其中，node需要是8或者更新的版本。Watchman是Facebook用来监视文件系统更改的工具，RN强烈建议使用。</p>
+</li>
+<li><p>安装React Native command line interface.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g react-native-cli</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">react-native init rn-test</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行项目</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd rn-test</span><br><span class="line">react-native run-ios</span><br></pre></td></tr></table></figure>
+<p> 项目默认会在iPhone 6的模拟器上运行。<br><br> <img src="http://image.iosprogrammer.hongbility.com/react-native/new-project-screenshot.png" alt="iPhone 6 Screenshot"><br><br> 至此，环境搭建完成，这个过程中如遇到问题可以参考<a href="http://www.iosprogrammer.tech/learn-react-native-with-me-questions">遇到的问题和解决方案</a></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.iosprogrammer.tech/learn-react-native-with-me-construction/" data-id="ckcezpvjx000xkcs60f0kuy8p" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/learn-react-native-with-me-questions/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          跟我一起学习React Native之遇到的问题和解决方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/WebSocket-And-SocketRocket-Source-Analysis/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">WebSocket简介和SocketRocket源码分析</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Apple开发文档/">Apple开发文档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/日期Date和时间Time/">日期Date和时间Time</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/react-native/">react-native</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/直播/">直播</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/读书/《Effective-Objective-C-2-0》/">《Effective Objective-C 2.0》</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/数据结构与算法分析/">数据结构与算法分析</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/DSAA-1-1/">引论</a>
+          </li>
+        
+          <li>
+            <a href="/Read-Effective-Objective-C-2-0-2/">读《Effective Objective-C 2.0》（二）</a>
+          </li>
+        
+          <li>
+            <a href="/Read-Effective-Objective-C-2-0-1/">读《Effective Objective-C 2.0》（一）</a>
+          </li>
+        
+          <li>
+            <a href="/Programming-With-ObjC/">OC编程基础</a>
+          </li>
+        
+          <li>
+            <a href="/KVC-KVO/">KVC/KVO 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 施治昂<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>从零开始到提交一个开源项目到Cocopods | 不务正业的程序员</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="开发过程 执行pod lib create [ProjectName]创建项目。过程中需要回答几个问题，根据自己的需要设置设置就可以了。我的设置是：  What platform do you want to use?? [ iOS / macOS ]  iOS   What language do you want to use?? [ Swift / ObjC ]  Swift   Would">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始到提交一个开源项目到Cocopods">
+<meta property="og:url" content="http://www.iosprogrammer.tech/Create-Cocoapods-Repo/index.html">
+<meta property="og:site_name" content="不务正业的程序员">
+<meta property="og:description" content="开发过程 执行pod lib create [ProjectName]创建项目。过程中需要回答几个问题，根据自己的需要设置设置就可以了。我的设置是：  What platform do you want to use?? [ iOS / macOS ]  iOS   What language do you want to use?? [ Swift / ObjC ]  Swift   Would">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Create-Cocoapods-Repo/project-struct.png">
+<meta property="og:updated_time" content="2020-07-09T05:24:30.473Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从零开始到提交一个开源项目到Cocopods">
+<meta name="twitter:description" content="开发过程 执行pod lib create [ProjectName]创建项目。过程中需要回答几个问题，根据自己的需要设置设置就可以了。我的设置是：  What platform do you want to use?? [ iOS / macOS ]  iOS   What language do you want to use?? [ Swift / ObjC ]  Swift   Would">
+<meta name="twitter:image" content="http://image.iosprogrammer.hongbility.com/Create-Cocoapods-Repo/project-struct.png">
+  
+    <link rel="alternate" href="/atom.xml" title="不务正业的程序员" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">不务正业的程序员</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">爱编程的大头（公众号同名）</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.iosprogrammer.tech"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Create-Cocoapods-Repo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Create-Cocoapods-Repo/" class="article-date">
+  <time datetime="2018-04-03T10:20:45.000Z" itemprop="datePublished">2018-04-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      从零开始到提交一个开源项目到Cocopods
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h3><ol>
+<li><p>执行<code>pod lib create [ProjectName]</code>创建项目。过程中需要回答几个问题，根据自己的需要设置设置就可以了。我的设置是：</p>
+<ul>
+<li><p>What platform do you want to use?? [ iOS / macOS ]</p>
+<blockquote>
+<p>iOS</p>
+</blockquote>
+</li>
+<li><p>What language do you want to use?? [ Swift / ObjC ]</p>
+<blockquote>
+<p>Swift</p>
+</blockquote>
+</li>
+<li><p>Would you like to include a demo application with your library? [ Yes / No ]</p>
+<blockquote>
+<p>Yes</p>
+</blockquote>
+</li>
+<li><p>Which testing frameworks will you use? [ Quick / None ]</p>
+<blockquote>
+<p>None</p>
+</blockquote>
+</li>
+<li><p>Would you like to do view based testing? [ Yes / No ]</p>
+<blockquote>
+<p>No</p>
+</blockquote>
+<p>紧接着会自动执行<code>pod install</code>，我们只需要静静的等着完成就可以了。</p>
+</li>
+</ul>
+</li>
+<li><p>项目结构。 <code>pod install</code>之后，Cocoapods会直接打开Xcode project。项目结构如下：<br><img src="http://image.iosprogrammer.hongbility.com/Create-Cocoapods-Repo/project-struct.png" alt="project-struct"></p>
+<ol>
+<li>Podspec Metadata<ul>
+<li>.podpsec - 项目相关的pod信息。包括了版本号、github主页、对其他项目的依赖、作者信息和指定资源文件</li>
+<li>README.md - 对当前项目的介绍和使用方法。也就是github中项目主页的介绍内容。</li>
+<li>LICENSE - 指定使用的开源协议  </li>
+</ul>
+</li>
+<li>Example for DemoProj - 对开源代码的使用实例。其他人从github下载了开源项目后可以通过这个来查看使用方法。如果在<code>Would you like to include a demo application with your library?</code>中选择了No，这个项目就不会创建。因此强烈建议这个问题回答YES。对自己调试和别人使用都非常有利。</li>
+<li>Tests - 单元测试。</li>
+<li>Development Pods - 开源库代码就放在这里。</li>
+<li>Frameworks - 当前开源项目的依赖库</li>
+</ol>
+</li>
+<li><p>.podspec文件详解</p>
+<ul>
+<li>s.name - 名称，<code>pod search</code>搜索的关键词,注意这里一定要和.podspec的名称一样,否则报错</li>
+<li>s.version - 版本号，这个版本号要和tag版本一致，否则报错</li>
+<li>s.summary - 项目简介，<code>pod search</code>的结果中会展示</li>
+<li>s.homepage - 项目主页地址，也就是github地址</li>
+<li>s.source - <code>git clone</code>的项目地址。 </li>
+<li>s.ios.deployment_target - 支持到的iOS版本</li>
+<li>s.source_files - 资源文件路径。请确保把项目相关的源文件放在这个文件夹下面，否则报错。</li>
+<li>s.dependency - 项目依赖的其他三方库。</li>
+</ul>
+</li>
+<li><p>在github上创建仓库</p>
+</li>
+<li><p>开发项目。。。</p>
+</li>
+<li><p>开发结束，把项目提交到github。</p>
+</li>
+<li><p>打tag并把tag提交。tag号要和.podspec中的s.server一致。</p>
+</li>
+<li><p>验证.podspec</p>
+<ol>
+<li><code>pod lib lint</code>本地验证</li>
+<li><code>pod spec lint</code>和github上的内容进行对比</li>
+</ol>
+</li>
+<li><p>把项目发布到Cocopods的master上。<code>pod trunk push [ProjectName].podspec</code>。注意，这个过程较(chao ji)慢。</p>
+</li>
+</ol>
+<h3 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h3><ol>
+<li><code>pod lib lint</code>通过，但是<code>pod spec lint</code>报错：<code>use of unresolved identifier</code>。遇到这个问题后，分为两步：<ol>
+<li><code>pod spec lint --no-clean --verbose</code>查看错误原因，这是会看到临时文件，到临时文件里查看会发现缺少文件</li>
+<li>使用<code>pod cache clean</code></li>
+<li>重新执行一次<code>pod spec lint</code></li>
+</ol>
+</li>
+<li>项目提交后执行<code>pod search</code>找不到的话，执行<code>pod setup</code>。</li>
+<li>验证的时候出现<code>.swift-version</code>错误。解决办法是在项目目录下创建一个执行<code>echo &quot;4.0&quot; &gt; .swift-version</code>。注意，这里的4.0是我开发项目时使用的Swift版本。</li>
+<li><strong>注意权限控制和Swift与OC的混编问题</strong></li>
+</ol>
+<h3 id="赠送一个提交开源库的shell脚本"><a href="#赠送一个提交开源库的shell脚本" class="headerlink" title="赠送一个提交开源库的shell脚本"></a>赠送一个提交开源库的shell脚本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> bin/sh</span><br><span class="line"><span class="meta">#</span> 验证本地 pod lib lint</span><br><span class="line">echo 'pod lib lint...\n'</span><br><span class="line">pod lib lint</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 下拉git  git pull</span><br><span class="line">echo '\ngit pull...\n'</span><br><span class="line">git pull</span><br><span class="line">echo `git pull`</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 上传git git add git commit git push</span><br><span class="line">echo "git add . \n"</span><br><span class="line">git add .</span><br><span class="line">echo "Enter a commit message: \c"</span><br><span class="line">read commitMsg</span><br><span class="line">echo "git commit -m $commitMsg"</span><br><span class="line">git commit -m '$commitMsg'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> tag git tag  git push --tags</span><br><span class="line">echo "\ngit push ...\n"</span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line">echo "\nEnter tag version: \c"</span><br><span class="line">read tagVersion</span><br><span class="line">git tag $tagVersion</span><br><span class="line">echo "\n git push --tags ..."</span><br><span class="line">git push --tags</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 远程验证 pod spec lint</span><br><span class="line">echo "\npod spec lint ...\n"</span><br><span class="line">pod spec lint</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 提交代码 pod trunk</span><br><span class="line">echo "\npod trunk push ...\n"</span><br><span class="line">pod trunk push [yourprojectname].podspec</span><br></pre></td></tr></table></figure>
+<p>👍👍👍</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.iosprogrammer.tech/Create-Cocoapods-Repo/" data-id="ckcezpvje000bkcs6pp5tqnbc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Date-And-Time-One/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          日期Date和时间Time（一）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/LLDB-Advanced-Usage/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LLDB调试iOS程序（二）—— 高级用法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Apple开发文档/">Apple开发文档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/日期Date和时间Time/">日期Date和时间Time</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/react-native/">react-native</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/直播/">直播</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/读书/《Effective-Objective-C-2-0》/">《Effective Objective-C 2.0》</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/数据结构与算法分析/">数据结构与算法分析</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/DSAA-1-1/">引论</a>
+          </li>
+        
+          <li>
+            <a href="/Read-Effective-Objective-C-2-0-2/">读《Effective Objective-C 2.0》（二）</a>
+          </li>
+        
+          <li>
+            <a href="/Read-Effective-Objective-C-2-0-1/">读《Effective Objective-C 2.0》（一）</a>
+          </li>
+        
+          <li>
+            <a href="/Programming-With-ObjC/">OC编程基础</a>
+          </li>
+        
+          <li>
+            <a href="/KVC-KVO/">KVC/KVO 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 施治昂<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

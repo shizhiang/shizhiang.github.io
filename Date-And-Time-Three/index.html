@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>日期Date和时间Time（三）- 一个简单的日历 | 不务正业的程序员</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在前面两篇中讲到了日期和时间的基础知识，现在让我们来利用学到的基础知识创建一个简单的日历。 最终效果输入指定的年份和月份后可以得到对应月份的日历。 主要代码123456789101112131415161718192021222324252627282930313233343536/// 某个月的所有天////// - Parameter year: 年份/// - Parameter month">
+<meta property="og:type" content="article">
+<meta property="og:title" content="日期Date和时间Time（三）- 一个简单的日历">
+<meta property="og:url" content="http://www.iosprogrammer.tech/Date-And-Time-Three/index.html">
+<meta property="og:site_name" content="不务正业的程序员">
+<meta property="og:description" content="在前面两篇中讲到了日期和时间的基础知识，现在让我们来利用学到的基础知识创建一个简单的日历。 最终效果输入指定的年份和月份后可以得到对应月份的日历。 主要代码123456789101112131415161718192021222324252627282930313233343536/// 某个月的所有天////// - Parameter year: 年份/// - Parameter month">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Date-And-Time-Three/%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C.png">
+<meta property="og:updated_time" content="2020-07-09T05:24:30.473Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="日期Date和时间Time（三）- 一个简单的日历">
+<meta name="twitter:description" content="在前面两篇中讲到了日期和时间的基础知识，现在让我们来利用学到的基础知识创建一个简单的日历。 最终效果输入指定的年份和月份后可以得到对应月份的日历。 主要代码123456789101112131415161718192021222324252627282930313233343536/// 某个月的所有天////// - Parameter year: 年份/// - Parameter month">
+<meta name="twitter:image" content="http://image.iosprogrammer.hongbility.com/Date-And-Time-Three/%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C.png">
+  
+    <link rel="alternate" href="/atom.xml" title="不务正业的程序员" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">不务正业的程序员</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">爱编程的大头（公众号同名）</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.iosprogrammer.tech"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Date-And-Time-Three" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Date-And-Time-Three/" class="article-date">
+  <time datetime="2018-04-26T09:39:38.000Z" itemprop="datePublished">2018-04-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>►<a class="article-category-link" href="/categories/iOS/日期Date和时间Time/">日期Date和时间Time</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      日期Date和时间Time（三）- 一个简单的日历
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在前面两篇中讲到了日期和时间的基础知识，现在让我们来利用学到的基础知识创建一个简单的日历。</p>
+<h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p><img src="http://image.iosprogrammer.hongbility.com/Date-And-Time-Three/%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C.png" alt><br>输入指定的年份和月份后可以得到对应月份的日历。</p>
+<h3 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 某个月的所有天</span></span><br><span class="line"><span class="comment">///</span></span><br><span class="line"><span class="comment">/// - Parameter year: 年份</span></span><br><span class="line"><span class="comment">/// - Parameter month: 月份</span></span><br><span class="line"><span class="comment">/// - Returns: 天的数组</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">daysInSomeMonth</span><span class="params">(year: Int, month: Int)</span></span> -&gt; [<span class="type">Weekday</span>] &#123;</span><br><span class="line">    <span class="keyword">let</span> calendar = <span class="type">Calendar</span>(identifier: .gregorian)</span><br><span class="line">    <span class="keyword">var</span> components = <span class="type">DateComponents</span>()</span><br><span class="line">    components.year = year</span><br><span class="line">    components.month = month</span><br><span class="line">    components.day = <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> date = calendar.date(from: components)!</span><br><span class="line">    <span class="keyword">let</span> localDate = localData(<span class="type">GMT</span>: date) <span class="comment">// 本地时间</span></span><br><span class="line">    <span class="keyword">var</span> monthStartDate = <span class="type">Date</span>()</span><br><span class="line">    <span class="keyword">var</span> interval: <span class="type">TimeInterval</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> <span class="number">_</span> = calendar.dateInterval(of: <span class="type">Calendar</span>.<span class="type">Component</span>.month, start: monthStartDate, interval: &amp;interval, <span class="keyword">for</span>: localDate)</span><br><span class="line">    <span class="keyword">let</span> endDate = <span class="type">Date</span>(timeInterval: interval - <span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>, since: localDate)</span><br><span class="line">    <span class="keyword">let</span> endComponents = calendar.dateComponents([.month, .day], from:endDate)</span><br><span class="line">    <span class="keyword">let</span> endDay = endComponents.day!</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> weekDays = [<span class="type">Weekday</span>]()</span><br><span class="line">    <span class="keyword">for</span> dayOfMonth <span class="keyword">in</span> <span class="number">1</span>...endDay &#123;</span><br><span class="line">        <span class="keyword">var</span> dayComponents = <span class="type">DateComponents</span>()</span><br><span class="line">        dayComponents.year = year</span><br><span class="line">        dayComponents.month = month</span><br><span class="line">        dayComponents.day = dayOfMonth</span><br><span class="line">        <span class="keyword">let</span> _date = calendar.date(from: dayComponents)!</span><br><span class="line">        <span class="keyword">let</span> _components = calendar.dateComponents([.weekday], from: _date)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> weekDay = <span class="type">Weekday</span>(day: dayOfMonth, weekday:_components.weekday!)</span><br><span class="line">        weekDays.append(weekDay)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> weekDays</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先利用当月第一天的DateComponent获得对应的Date，然后转换成本地时间（北京时间），然后利用<code>public func dateInterval(of component: Calendar.Component, start: inout Date, interval: inout TimeInterval, for date: Date) -&gt; Bool</code>获得当月的天数，之后遍历当月的天数并得到每一天对应的是周几。其中<code>Date(timeInterval: interval - 60*60*24, since: localDate)</code>来保证得到的是当月的最后一天，如果没有<code>- 60*60*24</code>得到的是下月第一天。<br>将GMT时间转换成本地时间的方法是：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">localData</span><span class="params">(GMT date: Date)</span></span> -&gt; <span class="type">Date</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> timeZone = <span class="type">TimeZone</span>.current</span><br><span class="line">    <span class="keyword">let</span> interval = timeZone.secondsFromGMT()</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Date</span>(timeInterval: <span class="type">TimeInterval</span>(interval), since: date)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="待完善"><a href="#待完善" class="headerlink" title="待完善"></a>待完善</h3><p>目前得到的是某个月的日期，如果是完整的日历还需要可以左右滑动。</p>
+<h3 id="github源码"><a href="#github源码" class="headerlink" title="github源码"></a>github源码</h3><p><a href="https://github.com/shizhiang/CalendarTutorial" target="_blank" rel="noopener">https://github.com/shizhiang/CalendarTutorial</a></p>
+<p>👍👍👍</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.iosprogrammer.tech/Date-And-Time-Three/" data-id="ckcezpvjg000ekcs6e2sp2a70" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/iOS-Pull-Live-Stream/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          iOS直播APP的开发——拉流
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Date-And-Time-Two/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">日期Date和时间Time（二）- 日历计算</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Apple开发文档/">Apple开发文档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/日期Date和时间Time/">日期Date和时间Time</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/react-native/">react-native</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/直播/">直播</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/读书/《Effective-Objective-C-2-0》/">《Effective Objective-C 2.0》</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/数据结构与算法分析/">数据结构与算法分析</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/DSAA-1-1/">引论</a>
+          </li>
+        
+          <li>
+            <a href="/Read-Effective-Objective-C-2-0-2/">读《Effective Objective-C 2.0》（二）</a>
+          </li>
+        
+          <li>
+            <a href="/Read-Effective-Objective-C-2-0-1/">读《Effective Objective-C 2.0》（一）</a>
+          </li>
+        
+          <li>
+            <a href="/Programming-With-ObjC/">OC编程基础</a>
+          </li>
+        
+          <li>
+            <a href="/KVC-KVO/">KVC/KVO 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 施治昂<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

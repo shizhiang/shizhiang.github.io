@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>跟我一起学React Native之项目结构搭建 | 不务正业的程序员</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="写在前面这篇文章是“跟我一起学react-native”系列文章的第二篇。这系列文章会随着这个新闻项目的进行更新。想要跟我一起学习React Native的朋友可以关注我的微信公众号iOS进阶指南，或者订阅我的个人博客。 上一篇文章)讲了React Native的环境搭建过程，本篇文章将讨论“水滴新闻”项目结构的搭建。 最终效果 项目文件结构1234567891011121314151617rn_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跟我一起学React Native之项目结构搭建">
+<meta property="og:url" content="http://www.iosprogrammer.tech/learn-react-native-with-me-project-instruction/index.html">
+<meta property="og:site_name" content="不务正业的程序员">
+<meta property="og:description" content="写在前面这篇文章是“跟我一起学react-native”系列文章的第二篇。这系列文章会随着这个新闻项目的进行更新。想要跟我一起学习React Native的朋友可以关注我的微信公众号iOS进阶指南，或者订阅我的个人博客。 上一篇文章)讲了React Native的环境搭建过程，本篇文章将讨论“水滴新闻”项目结构的搭建。 最终效果 项目文件结构1234567891011121314151617rn_">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/424855-c3242548a1c76b6b.gif?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2020-07-09T05:24:30.477Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="跟我一起学React Native之项目结构搭建">
+<meta name="twitter:description" content="写在前面这篇文章是“跟我一起学react-native”系列文章的第二篇。这系列文章会随着这个新闻项目的进行更新。想要跟我一起学习React Native的朋友可以关注我的微信公众号iOS进阶指南，或者订阅我的个人博客。 上一篇文章)讲了React Native的环境搭建过程，本篇文章将讨论“水滴新闻”项目结构的搭建。 最终效果 项目文件结构1234567891011121314151617rn_">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/424855-c3242548a1c76b6b.gif?imageMogr2/auto-orient/strip">
+  
+    <link rel="alternate" href="/atom.xml" title="不务正业的程序员" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">不务正业的程序员</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">爱编程的大头（公众号同名）</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.iosprogrammer.tech"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-learn-react-native-with-me-project-instruction" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/learn-react-native-with-me-project-instruction/" class="article-date">
+  <time datetime="2018-06-12T12:59:58.000Z" itemprop="datePublished">2018-06-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/react-native/">react-native</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      跟我一起学React Native之项目结构搭建
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>这篇文章是“<a href="http://www.iosprogrammer.tech/categories/react-native/">跟我一起学react-native</a>”系列文章的第二篇。这系列文章会随着这个新闻项目的进行更新。想要跟我一起学习React Native的朋友可以关注我的微信公众号<strong>iOS进阶指南</strong>，或者订阅我的<a href="http://www.iosprogrammer.tech">个人博客</a>。</p>
+<p><a href="[http://www.iosprogrammer.tech/learn-react-native-with-me-construction/](http://www.iosprogrammer.tech/learn-react-native-with-me-construction/">上一篇文章</a>)讲了React Native的环境搭建过程，本篇文章将讨论“水滴新闻”项目结构的搭建。</p>
+<h4 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h4><p><img src="https://upload-images.jianshu.io/upload_images/424855-c3242548a1c76b6b.gif?imageMogr2/auto-orient/strip" alt="效果"></p>
+<h4 id="项目文件结构"><a href="#项目文件结构" class="headerlink" title="项目文件结构"></a>项目文件结构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">rn_shuidi</span><br><span class="line">　| - - - - - - - App.js</span><br><span class="line">　| - - - - - - - app.json</span><br><span class="line">　| - - - - - - - index.js</span><br><span class="line">　| - - - - - - - node_modules</span><br><span class="line">　| - - - - - - - shuidi</span><br><span class="line">　　| - - - - - - - home</span><br><span class="line">　　　| - - - - - - - HomeScreen.js</span><br><span class="line">　　　| - - - - - - - NodeScreen.js</span><br><span class="line">　　| - - - - - - - attention</span><br><span class="line">　　| - - - - - - - me</span><br><span class="line">　| - - - - - - - android</span><br><span class="line">　| - - - - - - - ios</span><br><span class="line">　| - - - - - - - img</span><br><span class="line">　　| - - - - - - - home_normal.png</span><br><span class="line">　　| - - - - - - - home_selected.png</span><br><span class="line">　| - - - - - - - package.json</span><br></pre></td></tr></table></figure>
+<h4 id="react-navigation"><a href="#react-navigation" class="headerlink" title="react-navigation"></a>react-navigation</h4><p>因为项目中包含多个页面，页面之间切换要使用TabBar和Navigation，因此要使用react-navigation这个框架。<br>安装react-navigation<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd rn_shuidi</span><br><span class="line">npm install react-navigation</span><br></pre></td></tr></table></figure></p>
+<h4 id="Navigation"><a href="#Navigation" class="headerlink" title="Navigation"></a>Navigation</h4><p>下面以“主页为例”创建navigation<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">App.js</span><br><span class="line"></span><br><span class="line">import &#123; createStackNavigator, createBottomTabNavigator &#125; from &apos;react-navigation&apos;</span><br><span class="line">import HomeScreen from &apos;./shuidi/home/HomeScreen&apos;</span><br><span class="line">import NodeScreen from &apos;./shuidi/home/NodeScreen&apos;</span><br><span class="line"></span><br><span class="line">const HomeStack = createStackNavigator(&#123;</span><br><span class="line">    Home: &#123; screen: HomeScreen &#125;,</span><br><span class="line">    Nodes: &#123; screen: NodeScreen &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>StackNavigation可类比为iOS中的UINavigation，是一种栈类型的导航结构。<br><br><br>Home和Nodes分别是导航中的两个页面（控制器）。这里的名字会在执行导航行为的时候使用到。<br><br><br>screen参数是要放在导航中的页面。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">HomeScreen.js</span><br><span class="line">constructor(props) &#123;</span><br><span class="line">    super(props)</span><br><span class="line">    this.state = &#123; text: &apos;old&apos; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static navigationOptions = &#123;</span><br><span class="line">    title: &apos;主页&apos;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&lt;Text&gt;&#123;this.state.text&#125;&lt;/Text&gt;</span><br><span class="line"></span><br><span class="line">&lt;Button</span><br><span class="line">    title=&quot;Go to NodeScreen&quot;</span><br><span class="line">    onPress=&#123;() =&gt; &#123;</span><br><span class="line">            this.props.navigation.navigate(&apos;Nodes&apos;, &#123;</span><br><span class="line">           title: &apos;测试节点&apos;, callback: ((data) =&gt; &#123;</span><br><span class="line">           this.setState(&#123; text: data &#125;)</span><br><span class="line">         &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">   &#125;&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>navigationOptions是对导航的配置，这里设置了title。相当于<code>self.title=&quot;主页&quot;</code></p>
+<p>点击“Go to NodeScreen”这个<code>Button</code>后会跳转到标签为“Nodes”的页面，如果App.js的<code>HomeStack</code>中不包含“Nodes”标签则不会跳转。</p>
+<p>title和callback分别是传递到“Nodes”页面的参数。其中callback是一个回调，用来进行反向传值。当“Nodes”页面以“data”为参数回调callback之后，<code>this.setState</code>保存接受到的参数，当前页面就会随之改变。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">NodeScreen.js</span><br><span class="line"></span><br><span class="line">static navigationOptions = (&#123; navigation &#125;) =&gt; &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        title: navigation.getParam(&apos;title&apos;, &apos;节点&apos;),</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const callback = navigation.getParam(&apos;callback&apos;)</span><br><span class="line"></span><br><span class="line">&lt;Button</span><br><span class="line">    title=&quot;反向传值测试&quot;</span><br><span class="line">    onPress=&#123;() =&gt; &#123;</span><br><span class="line">        this.props.navigation.goBack(),</span><br><span class="line">        callback(&apos;我是反向传值&apos;)</span><br><span class="line">    &#125;&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+<p><code>navigation.getParam(&#39;title&#39;, &#39;节点&#39;)</code>获取<code>navigation</code>中的<code>title</code>参数。</p>
+<p>点击“反向传值测试”，回到上一级页面，之后调用callback，把字符串“我是反向传值”传递到上一级页面。</p>
+<p><strong>TabBar</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">App.js</span><br><span class="line"></span><br><span class="line">createBottomTabNavigator(</span><br><span class="line">  &#123;</span><br><span class="line">    Home: HomeStack,</span><br><span class="line">    Attention: AttentionStack,</span><br><span class="line">    Me: MeStack</span><br><span class="line">  &#125;,</span><br><span class="line">  navigationOptions: (&#123; navigation &#125;) =&gt; (&#123;</span><br><span class="line">    tabBarLabel: (&#123;focused, tintColor&#125;) =&gt; &#123;</span><br><span class="line">      const &#123; routeName &#125; = navigation.state</span><br><span class="line">      var title = &apos;&apos;</span><br><span class="line">      if (routeName === &apos;Home&apos;) &#123;</span><br><span class="line">        title = &apos;主页&apos;</span><br><span class="line">      &#125; else if (routeName === &apos;Attention&apos;) &#123;</span><br><span class="line">        title = &apos;关注&apos;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        title = &apos;我&apos;</span><br><span class="line">      &#125;</span><br><span class="line">      return &lt;Text&gt;&#123;title&#125;&lt;/Text&gt;</span><br><span class="line">    &#125;,</span><br><span class="line">    tabBarIcon: (&#123; focused, tintColor &#125;) =&gt; &#123;</span><br><span class="line">      const &#123; routeName &#125; = navigation.state;</span><br><span class="line">      var iconName = &apos;&apos;;</span><br><span class="line">      if (routeName === &apos;Home&apos;) &#123;</span><br><span class="line">        iconName = focused ? require(&apos;./img/home_selected.png&apos;) : requi(&apos;./img/home_normal.png&apos;)</span><br><span class="line">      &#125; else if (routeName === &apos;Attention&apos;) &#123;</span><br><span class="line">        iconName = focused ? require(&apos;./img/attention_selected.png&apos;) : requi(&apos;./img/attention_normal.png&apos;)</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        iconName = focused ? require(&apos;./img/me_selected.png&apos;) : requi(&apos;./img/me_normal.png&apos;)</span><br><span class="line">      &#125;</span><br><span class="line">      return &lt;Image </span><br><span class="line">        source=&#123;iconName&#125;</span><br><span class="line">        style=&#123;&#123; width: 26, height: 26 &#125;&#125;</span><br><span class="line">      &gt;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;),</span><br><span class="line">  tabBarOptions: &#123;</span><br><span class="line">    activeTintColor: &apos;blue&apos;,</span><br><span class="line">    inactiveTintColor: &apos;black&apos;,</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><code>tabBarLabel</code>和<code>tabBarIcon</code>分别是当前标签页显示的标题和图片，其中图片根据<code>focused</code>展示不同内容。</p>
+<h4 id="在navigationbar的子页面中隐藏tabbar"><a href="#在navigationbar的子页面中隐藏tabbar" class="headerlink" title="在navigationbar的子页面中隐藏tabbar"></a>在navigationbar的子页面中隐藏tabbar</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HomeStack.navigationOptions = (&#123; navigation &#125;) =&gt; &#123;</span><br><span class="line">	let tabBarVisible = true;</span><br><span class="line">	if (navigation.state.index &gt; 0) &#123;</span><br><span class="line">		tabBarVisible = false;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return &#123;</span><br><span class="line">		tabBarVisible,</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>至此，项目结构搭建完成了。这个过程中如遇到问题可以参考<a href="http://www.iosprogrammer.tech/learn-react-native-with-me-questions">遇到的问题和解决方案</a>🎉🎉🎉</p>
+<p>因为MarkDown解析的问题，排版不好，请见谅。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.iosprogrammer.tech/learn-react-native-with-me-project-instruction/" data-id="ckcezpvjz0010kcs680rojo1r" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/learn-react-native-with-me-mine-and-settings/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          跟我一起学习React Native之我的和设置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/learn-react-native-with-me-questions/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">跟我一起学习React Native之遇到的问题和解决方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Apple开发文档/">Apple开发文档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/日期Date和时间Time/">日期Date和时间Time</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/react-native/">react-native</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/直播/">直播</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/读书/《Effective-Objective-C-2-0》/">《Effective Objective-C 2.0》</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/数据结构与算法分析/">数据结构与算法分析</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/DSAA-1-1/">引论</a>
+          </li>
+        
+          <li>
+            <a href="/Read-Effective-Objective-C-2-0-2/">读《Effective Objective-C 2.0》（二）</a>
+          </li>
+        
+          <li>
+            <a href="/Read-Effective-Objective-C-2-0-1/">读《Effective Objective-C 2.0》（一）</a>
+          </li>
+        
+          <li>
+            <a href="/Programming-With-ObjC/">OC编程基础</a>
+          </li>
+        
+          <li>
+            <a href="/KVC-KVO/">KVC/KVO 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 施治昂<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

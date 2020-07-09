@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>WebSocket简介和SocketRocket源码分析 | 不务正业的程序员</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="之前的文章讲了SocketRocket的用法，这里讲一下什么是WebSocket并且对SocketRocket的源码进行分析。 WebSocket1The WebSocket Protocol is an independent TCP-based protocol.&amp;lt;br&amp;gt;Its only relationship to HTTP is that its handshake is i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebSocket简介和SocketRocket源码分析">
+<meta property="og:url" content="http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/index.html">
+<meta property="og:site_name" content="不务正业的程序员">
+<meta property="og:description" content="之前的文章讲了SocketRocket的用法，这里讲一下什么是WebSocket并且对SocketRocket的源码进行分析。 WebSocket1The WebSocket Protocol is an independent TCP-based protocol.&amp;lt;br&amp;gt;Its only relationship to HTTP is that its handshake is i">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/WebSocket-SocketRocket-Source/6651f2f811ec133b0e6d7e6d0e194b4c_hd.jpg">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/WebSocket-SocketRocket-Source/frame_form.png">
+<meta property="og:updated_time" content="2020-07-09T05:24:30.475Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebSocket简介和SocketRocket源码分析">
+<meta name="twitter:description" content="之前的文章讲了SocketRocket的用法，这里讲一下什么是WebSocket并且对SocketRocket的源码进行分析。 WebSocket1The WebSocket Protocol is an independent TCP-based protocol.&amp;lt;br&amp;gt;Its only relationship to HTTP is that its handshake is i">
+<meta name="twitter:image" content="http://image.iosprogrammer.hongbility.com/WebSocket-SocketRocket-Source/6651f2f811ec133b0e6d7e6d0e194b4c_hd.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="不务正业的程序员" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">不务正业的程序员</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">爱编程的大头（公众号同名）</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.iosprogrammer.tech"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-WebSocket-And-SocketRocket-Source-Analysis" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/WebSocket-And-SocketRocket-Source-Analysis/" class="article-date">
+  <time datetime="2018-06-02T13:16:10.000Z" itemprop="datePublished">2018-06-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      WebSocket简介和SocketRocket源码分析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.iosprogrammer.tech/iOS-SocketRocket/">之前的文章</a>讲了SocketRocket的用法，这里讲一下什么是WebSocket并且对SocketRocket的源码进行分析。</p>
+<h3 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The WebSocket Protocol is an independent TCP-based protocol.&lt;br&gt;Its only relationship to HTTP is that its handshake is interpreted by HTTP servers as an Upgrade request.</span><br></pre></td></tr></table></figure>
+<div align="center"><br><img src="http://image.iosprogrammer.hongbility.com/WebSocket-SocketRocket-Source/6651f2f811ec133b0e6d7e6d0e194b4c_hd.jpg"><br></div>
+
+<p>WebSocket的特点:</p>
+<pre><code>1. 建立在 TCP 协议之上，服务器端的实现比较容易。
+2. 与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。
+3. 数据格式比较轻量，性能开销小，通信高效。
+4. 可以发送文本，也可以发送二进制数据。
+5. 没有同源限制，客户端可以与任意服务器通信。
+6. 协议标识符是ws（如果加密，则为wss），服务器网址就是URL。`ws://example.com:80/some/path`
+7. 全双工通信。
+</code></pre><p>WebSocket握手类似于HTTP：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /chat HTTP/1.1</span><br><span class="line">Host: server.example.com</span><br><span class="line">Upgrade: websocket</span><br><span class="line">Connection: Upgrade</span><br><span class="line">Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==</span><br><span class="line">Sec-WebSocket-Protocol: chat, superchat</span><br><span class="line">Sec-WebSocket-Version: 13</span><br><span class="line">Origin: http://example.com</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Upgrade和Connection是在通知Apache或者Nginx等代理服务器，正在进行的是websocket协议连接而不是普通的HTTP。<br><br>Sec-WebSocket-Key是浏览器随机生成的base64编码值，用来验证服务器是不是真正的websocket。<br> Sec_WebSocket-Protocol 是一个用户定义的字符串，用来区分同URL下，不同的服务所需要的协议。<br> Sec-WebSocket-Version 是告诉服务器所使用的协议版本。</p>
+</blockquote>
+<p>服务器验证通过后会返回：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 101 Switching Protocols</span><br><span class="line">Upgrade: websocket</span><br><span class="line">Connection: Upgrade</span><br><span class="line">Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=</span><br><span class="line">Sec-WebSocket-Protocol: chat</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Upgrade和Connection的作用同样是为了表明进行的是websocket连接。<br><br>Sec-WebSocket-Accept 这个则是经过服务器确认，并且加密过后的 Sec-WebSocket-Key，用来给客户端验证身份。<br><br>Sec-WebSocket-Protocol 则是表示最终使用的协议。</p>
+</blockquote>
+<p>数据帧：<br><br><img src="http://image.iosprogrammer.hongbility.com/WebSocket-SocketRocket-Source/frame_form.png" alt="数据帧格式"></p>
+<div align="center"><br><font color="gray" size="2">数据帧格式</font><br></div>
+
+<ol>
+<li>不同于其他协议，WebSocket是基于帧的而不是基于流<br></li>
+<li><p>字段解释:</p>
+<ol>
+<li>FIN: 1 bit 表示是否是当前信息的最后一段</li>
+<li>RSV1, RSV2, RSV3: 1 bit 除非双方协商定义了非0值，否则为0</li>
+<li>Opcode: 4 bits 定义了数据包的类型，如果不是已定义类型则表示连接出错。定义的数据类型包括: 0x0表示中间数据包；0x1表示text类型数据包；0x2表示binary类型数据包；0x3-7保留；0x8表示连接关闭；0x9表示ping；0xA表示pong；0xB-F保留</li>
+<li>MASK：1 bit 表示Payload是否经过掩码处理。MASK如果是1，Masking-Key的数据即是掩码密钥，用于解码PayloadData。客户端发出的数据帧需要进行掩码处理，所以此为是1。</li>
+<li>Payload length：7 bit，7+16 bits，or 7+64 bits 表示payload data的长度，如果其值是0-125，则是payload的真实长度；如果是126，则后面的2个字节形成的16bits无符号整型数的值是payload的真实长度；如果是127，则后面8个字节形成的64bits无符号整型数的值是payload的真实长度。</li>
+</ol>
+</li>
+<li><p>掩码</p>
+<ol>
+<li>掩码值必须是随机的32-bit值</li>
+<li>掩码值并不会影响Payload data的长度。</li>
+<li>掩码算法：掩码后的第i字节数据 = 掩码前的第i字节的数据 XOR 掩码key的第（i mod 4）字节的数据</li>
+</ol>
+</li>
+</ol>
+<h3 id="SocketRocket源码解析"><a href="#SocketRocket源码解析" class="headerlink" title="SocketRocket源码解析"></a>SocketRocket源码解析</h3><ol>
+<li><p>辅助类简单说明</p>
+<ol>
+<li><text>_SRRunLoopThread</text>: 承载和处理所有事件的线程。通过<code>NSRunLoop (SRWebSocket)</code>把这个线程放到了RunLoop里。并且在<code>- (void)main</code>中使用一个while循环使这个线程正常情况下永不停止。</li>
+<li>SRIOConsumer和SRIOConsumerPool: 用来处理收到的消息。</li>
+</ol>
+</li>
+<li><p>主要方法说明</p>
+<ol>
+<li><p><code>- (id)initWithURLRequest:(NSURLRequest *)request protocols:(NSArray *)protocols allowsUntrustedSSLCertificates:(BOOL)allowsUntrustedSSLCertificates</code> 基本初始化方法。初始化了SRSocket类内的几个成员变量。</p>
+</li>
+<li><p><code>_SR_commonInit</code></p>
+<ol>
+<li>判断协议类型</li>
+<li>初始化了_workQueue，这个GCD队列用来处理主要的业务逻辑，包括处理错误、发送内容、关闭连接等。</li>
+<li>初始化_delegateDispatchQueue，这个队列是用来向外发送通知的。我们可以通过<code>- (void)setDelegateOperationQueue:(NSOperationQueue*) queue</code>或<code>- (void)setDelegateDispatchQueue:(dispatch_queue_t) queue</code>来自定义这个队列。</li>
+</ol>
+</li>
+<li><p><code>_initializeStreams</code> 创建输入/出流</p>
+</li>
+<li><p><code>open</code>/<code>openConnection</code> 这两个方法和被他们调用的方法是用来配置并打开流的</p>
+</li>
+<li><code>didConnect</code><ol>
+<li>构建HTTP Header</li>
+<li>发送HTTP Header</li>
+<li>注册一个接收服务器返回Header信息的监听，并在回调内进行相应处理</li>
+</ol>
+</li>
+<li><code>- (void)safeHandleEvent:(NSStreamEvent)eventCode stream:(NSStream *)aStream</code><ol>
+<li>这是NSStream的回调方法，输入和输出流的共同回调</li>
+<li><code>NSStreamEventOpenCompleted</code> 连接打开；<code>NSStreamEventHasBytesAvailable</code> 可读取；<code>NSStreamEventHasSpaceAvailable</code> 可写入数据</li>
+<li>在<code>NSStreamEventOpenCompleted</code>里面的<code>[self _pumpScanner];</code>用来触发第5条中的3，来处理服务器返回的握手Header信息</li>
+</ol>
+</li>
+<li><code>_pumpWriting</code><ol>
+<li>向输出流写数据<code>[_outputStream write:_outputBuffer.bytes + _outputBufferOffset maxLength:dataLength - _outputBufferOffset]</code></li>
+<li><code>if (_outputBufferOffset &gt; 4096 &amp;&amp; _outputBufferOffset &gt; (_outputBuffer.length &gt;&gt; 1)) { _outputBuffer = [[NSMutableData alloc] initWithBytes:(char *)_outputBuffer.bytes + _outputBufferOffset length:_outputBuffer.length - _outputBufferOffset]; _outputBufferOffset = 0; }</code> 当缓存超过4M时清空</li>
+</ol>
+</li>
+<li><code>- (void)_sendFrameWithOpcode:(SROpCode)opcode data:(id)data</code> 把数据组装成符合协议要求的格式。参考“数据帧格式”的图片。<ol>
+<li>向frame_buffer中写入fin/opcode字段</li>
+<li>写入mask字段</li>
+<li>根据要发送的数据得到未掩码数据<code>unmasked_payload</code></li>
+<li>使用<code>int SecRandomCopyBytes(SecRandomRef rnd, size_t count, void *bytes);</code>得到掩码key<code>mask_key</code></li>
+<li>根据mask_key和unmasked_payload得到掩码后数据并切入frame_buffer</li>
+</ol>
+</li>
+<li><code>_HTTPHeadersDidFinish</code> 处理服务器返回的握手信息。通过对服务器返回的握手信息的分析来判断连接是否成功打开。</li>
+<li><code>_innerPumpScanner</code> 处理收到的数据，读取未读数据，并且把未读数据通过<code>consumer.handler(self, slice);</code>返回给consumer来解析数据内容。</li>
+<li><code>- (void)_handleFrameWithData:(NSData *)frameData opCode:(NSInteger)opcode</code> 根据opCode对收到的数据进行分类处理</li>
+<li><code>- (void)_readFrameContinue</code> 这个是主要的数据处理方法。整个数据结构的处理的过程就是按照WebSocket协议的规定来的。</li>
+</ol>
+</li>
+</ol>
+<p>到此，SocketRocket的源码分析就结束了。其中一些地方说的比较啰嗦，有些地方说的可能不够详细。大家在看源码的时候一定要对照着WebSocket的协议内容。如果有不清楚的地方欢迎咨询。有说的不对的地方也欢迎指正。<br></p>
+<p>祝你早日走上人生巅峰!!!</p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p><a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="noopener">阮一峰的网络日志</a><br><br><a href="https://www.zhihu.com/question/20215561" target="_blank" rel="noopener">知乎</a><br><br><a href="https://tools.ietf.org/html/rfc6455" target="_blank" rel="noopener">RFC6455 WebSocket Protocol</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/" data-id="ckcezpvjt000qkcs6zn68xvo9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/learn-react-native-with-me-construction/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          跟我一起学习React Native之环境搭建
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Calendar-Notes-Reminders/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Mac OS/iOS中日历、备忘录、提醒事项的使用以及使用iMessage共享屏幕</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/Apple开发文档/">Apple开发文档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/日期Date和时间Time/">日期Date和时间Time</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/react-native/">react-native</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/直播/">直播</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/读书/《Effective-Objective-C-2-0》/">《Effective Objective-C 2.0》</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/数据结构与算法分析/">数据结构与算法分析</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/DSAA-1-1/">引论</a>
+          </li>
+        
+          <li>
+            <a href="/Read-Effective-Objective-C-2-0-2/">读《Effective Objective-C 2.0》（二）</a>
+          </li>
+        
+          <li>
+            <a href="/Read-Effective-Objective-C-2-0-1/">读《Effective Objective-C 2.0》（一）</a>
+          </li>
+        
+          <li>
+            <a href="/Programming-With-ObjC/">OC编程基础</a>
+          </li>
+        
+          <li>
+            <a href="/KVC-KVO/">KVC/KVO 总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 施治昂<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
