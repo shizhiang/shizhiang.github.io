@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://www.iosprogrammer.tech/Deploy-Hexo-Aliyun/</loc>
-    <lastmod>2020-07-10T10:27:51.113Z</lastmod>
+    <lastmod>2020-07-12T02:55:15.472Z</lastmod>
     <data>
         <display>
         <title>部署Hexo到自己的服务器</title>
@@ -84,24 +84,6 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
-    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
-    <data>
-        <display>
-        <title>跟我一起学习React Native之我的和设置</title>
-        <pubTime>2018-06-20T07:16:21.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-construction/</loc>
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     <data>
@@ -120,12 +102,12 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-questions/</loc>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     <data>
         <display>
-        <title>跟我一起学习React Native之遇到的问题和解决方法</title>
-        <pubTime>2018-06-11T03:44:22.000Z</pubTime>
+        <title>跟我一起学习React Native之我的和设置</title>
+        <pubTime>2018-06-20T07:16:21.000Z</pubTime>
         
          
            
@@ -155,19 +137,37 @@
     </url>
 
     
-    
   <url>
-    <loc>http://www.iosprogrammer.tech/iOS-Memory-Management/</loc>
-    <lastmod>2020-07-09T05:24:30.476Z</lastmod>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-questions/</loc>
+    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     <data>
         <display>
-        <title>iOS内存管理</title>
-        <pubTime>2018-10-03T04:42:21.000Z</pubTime>
+        <title>跟我一起学习React Native之遇到的问题和解决方法</title>
+        <pubTime>2018-06-11T03:44:22.000Z</pubTime>
         
          
            
              
-              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
+              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/deploy-hexo-to-gitlab/</loc>
+    <lastmod>2020-07-09T05:24:30.476Z</lastmod>
+    <data>
+        <display>
+        <title>hexo博客进阶</title>
+        <pubTime>2018-05-11T09:36:01.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
           
         </display>
     </data>
@@ -193,6 +193,24 @@
 
     
   <url>
+    <loc>http://www.iosprogrammer.tech/iOS-Memory-Management/</loc>
+    <lastmod>2020-07-09T05:24:30.476Z</lastmod>
+    <data>
+        <display>
+        <title>iOS内存管理</title>
+        <pubTime>2018-10-03T04:42:21.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.iosprogrammer.tech/iOS-Scheme-Theory-And-Practice/</loc>
     <lastmod>2020-07-09T05:24:30.476Z</lastmod>
     <data>
@@ -211,24 +229,6 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/deploy-hexo-to-gitlab/</loc>
-    <lastmod>2020-07-09T05:24:30.476Z</lastmod>
-    <data>
-        <display>
-        <title>hexo博客进阶</title>
-        <pubTime>2018-05-11T09:36:01.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.iosprogrammer.tech/iOS-SocketRocket/</loc>
     <lastmod>2020-07-09T05:24:30.476Z</lastmod>
     <data>
@@ -240,27 +240,6 @@
            
              
               <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/Read-Effective-Objective-C-2-0-2/</loc>
-    <lastmod>2020-07-09T05:24:30.475Z</lastmod>
-    <data>
-        <display>
-        <title>读《Effective Objective-C 2.0》（二）</title>
-        <pubTime>2019-01-25T10:17:32.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="读书" url="http://www.iosprogrammer.tech/categories/%E8%AF%BB%E4%B9%A6/"/>
-          
-             
-              <breadCrumb title="《Effective Objective-C 2.0》" url="http://www.iosprogrammer.tech/categories/%E8%AF%BB%E4%B9%A6/%E3%80%8AEffective-Objective-C-2-0%E3%80%8B/"/>
           
         </display>
     </data>
@@ -300,6 +279,27 @@
            
              
               <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/Read-Effective-Objective-C-2-0-2/</loc>
+    <lastmod>2020-07-09T05:24:30.475Z</lastmod>
+    <data>
+        <display>
+        <title>读《Effective Objective-C 2.0》（二）</title>
+        <pubTime>2019-01-25T10:17:32.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="读书" url="http://www.iosprogrammer.tech/categories/%E8%AF%BB%E4%B9%A6/"/>
+          
+             
+              <breadCrumb title="《Effective Objective-C 2.0》" url="http://www.iosprogrammer.tech/categories/%E8%AF%BB%E4%B9%A6/%E3%80%8AEffective-Objective-C-2-0%E3%80%8B/"/>
           
         </display>
     </data>
@@ -460,6 +460,24 @@
 
     
   <url>
+    <loc>http://www.iosprogrammer.tech/Create-Cocoapods-Repo/</loc>
+    <lastmod>2020-07-09T05:24:30.473Z</lastmod>
+    <data>
+        <display>
+        <title>从零开始到提交一个开源项目到Cocopods</title>
+        <pubTime>2018-04-03T10:20:45.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.iosprogrammer.tech/Date-And-Time-One/</loc>
     <lastmod>2020-07-09T05:24:30.473Z</lastmod>
     <data>
@@ -474,24 +492,6 @@
           
              
               <breadCrumb title="日期Date和时间Time" url="http://www.iosprogrammer.tech/categories/iOS/%E6%97%A5%E6%9C%9FDate%E5%92%8C%E6%97%B6%E9%97%B4Time/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/Create-Cocoapods-Repo/</loc>
-    <lastmod>2020-07-09T05:24:30.473Z</lastmod>
-    <data>
-        <display>
-        <title>从零开始到提交一个开源项目到Cocopods</title>
-        <pubTime>2018-04-03T10:20:45.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
           
         </display>
     </data>
