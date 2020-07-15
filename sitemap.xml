@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.iosprogrammer.tech/Hexo%E5%9C%A8%E6%96%87%E7%AB%A0%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%86%85%E5%AE%B9/</loc>
+    
+    <lastmod>2020-07-15T05:40:59.155Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.iosprogrammer.tech/Deploy-Hexo-Aliyun/</loc>
     
     <lastmod>2020-07-15T05:39:52.691Z</lastmod>
@@ -149,13 +156,6 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/XCode-Server-CI/</loc>
-    
-    <lastmod>2020-07-09T05:24:30.475Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.iosprogrammer.tech/Submit-Domain-To-Baidu/</loc>
     
     <lastmod>2020-07-09T05:24:30.475Z</lastmod>
@@ -163,7 +163,21 @@
   </url>
   
   <url>
+    <loc>http://www.iosprogrammer.tech/XCode-Server-CI/</loc>
+    
+    <lastmod>2020-07-09T05:24:30.475Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.iosprogrammer.tech/Growth-Hacker-FanBing/</loc>
+    
+    <lastmod>2020-07-09T05:24:30.474Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iosprogrammer.tech/KVC-KVO/</loc>
     
     <lastmod>2020-07-09T05:24:30.474Z</lastmod>
     
@@ -191,21 +205,14 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/KVC-KVO/</loc>
-    
-    <lastmod>2020-07-09T05:24:30.474Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iosprogrammer.tech/Date-And-Time-One/</loc>
+    <loc>http://www.iosprogrammer.tech/Create-Cocoapods-Repo/</loc>
     
     <lastmod>2020-07-09T05:24:30.473Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/Create-Cocoapods-Repo/</loc>
+    <loc>http://www.iosprogrammer.tech/Date-And-Time-One/</loc>
     
     <lastmod>2020-07-09T05:24:30.473Z</lastmod>
     

@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Hexo在文章末尾添加自定义内容</title>
+      <link href="/Hexo%E5%9C%A8%E6%96%87%E7%AB%A0%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%86%85%E5%AE%B9/"/>
+      <url>/Hexo%E5%9C%A8%E6%96%87%E7%AB%A0%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%86%85%E5%AE%B9/</url>
+      
+        <content type="html"><![CDATA[<p>现在我的博客有些流量了，所以想尝试把博客的流量引流到微信公众号（爱编程的大头）。</p><p>很多文章都是说怎么修改Hexo博客的页脚、Hexo博客怎么修改页头，没有找到一篇文章是讲怎么在文章内部加入固定内容的，所以我写下了这篇文章，希望对你有帮助。</p><p>一种方法是在每一篇文章都手动加入一段内容，这就需要把老文章重新编辑一遍，而且今后在些文章的时候都要复制这段内容。</p><p>很显然手动的方式不符合程序员“偷懒”的品质，所以我就尝试$\color{CornflowerBlue}{修改Next主题的layout文件}$。</p><p><strong>具体效果可以看我所有文章的结尾处。</strong></p><p>首先编辑<code>themes/next/layout/_macro/post.swig</code>，在第330行下面添加你要显示的内容<br><img src="../images/post-gzh.jpg" alt="post.swig"></p><p>然后在<code>themes/next/source/css/_common/components/post/post-buttom.styl</code>中对div添加你要的样式<br><img src="../images/post-gzh-style.png" alt></p><p>这样每一篇文章都会在文章的末尾添加固定的内容了，新建的文章也会有。</p><p>$\color{OrangeRed}{其他热门文章}$</p><ul><li><a href="http://www.iosprogrammer.tech/Deploy-Hexo-Aliyun/">部署Hexo到自己的服务器</a></li><li><a href="http://www.iosprogrammer.tech/deploy-hexo-to-gitlab/">Hexo进阶</a></li><li><a href="http://www.iosprogrammer.tech/Submit-Domain-To-Baidu//">把域名提交到百度资源平台</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 其他 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>部署Hexo到自己的服务器</title>
       <link href="/Deploy-Hexo-Aliyun/"/>
       <url>/Deploy-Hexo-Aliyun/</url>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.iosprogrammer.tech/"/>
-  <updated>2020-07-15T05:39:52.691Z</updated>
+  <updated>2020-07-15T05:40:59.155Z</updated>
   <id>http://www.iosprogrammer.tech/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo在文章末尾添加自定义内容</title>
+    <link href="http://www.iosprogrammer.tech/Hexo%E5%9C%A8%E6%96%87%E7%AB%A0%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%86%85%E5%AE%B9/"/>
+    <id>http://www.iosprogrammer.tech/Hexo在文章末尾添加自定义内容/</id>
+    <published>2020-07-15T05:40:59.000Z</published>
+    <updated>2020-07-15T05:40:59.155Z</updated>
+    
+    <content type="html"><![CDATA[<p>现在我的博客有些流量了，所以想尝试把博客的流量引流到微信公众号（爱编程的大头）。</p><p>很多文章都是说怎么修改Hexo博客的页脚、Hexo博客怎么修改页头，没有找到一篇文章是讲怎么在文章内部加入固定内容的，所以我写下了这篇文章，希望对你有帮助。</p><p>一种方法是在每一篇文章都手动加入一段内容，这就需要把老文章重新编辑一遍，而且今后在些文章的时候都要复制这段内容。</p><p>很显然手动的方式不符合程序员“偷懒”的品质，所以我就尝试$\color{CornflowerBlue}{修改Next主题的layout文件}$。</p><p><strong>具体效果可以看我所有文章的结尾处。</strong></p><p>首先编辑<code>themes/next/layout/_macro/post.swig</code>，在第330行下面添加你要显示的内容<br><img src="../images/post-gzh.jpg" alt="post.swig"></p><p>然后在<code>themes/next/source/css/_common/components/post/post-buttom.styl</code>中对div添加你要的样式<br><img src="../images/post-gzh-style.png" alt></p><p>这样每一篇文章都会在文章的末尾添加固定的内容了，新建的文章也会有。</p><p>$\color{OrangeRed}{其他热门文章}$</p><ul><li><a href="http://www.iosprogrammer.tech/Deploy-Hexo-Aliyun/">部署Hexo到自己的服务器</a></li><li><a href="http://www.iosprogrammer.tech/deploy-hexo-to-gitlab/">Hexo进阶</a></li><li><a href="http://www.iosprogrammer.tech/Submit-Domain-To-Baidu//">把域名提交到百度资源平台</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;现在我的博客有些流量了，所以想尝试把博客的流量引流到微信公众号（爱编程的大头）。&lt;/p&gt;
+&lt;p&gt;很多文章都是说怎么修改Hexo博客的页脚、Hexo博客怎么修改页头，没有找到一篇文章是讲怎么在文章内部加入固定内容的，所以我写下了这篇文章，希望对你有帮助。&lt;/p&gt;
+&lt;p&gt;一种方
+      
+    
+    </summary>
+    
+      <category term="其他" scheme="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>部署Hexo到自己的服务器</title>
@@ -476,32 +501,6 @@
     </summary>
     
       <category term="直播" scheme="http://www.iosprogrammer.tech/categories/%E7%9B%B4%E6%92%AD/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>日期Date和时间Time（三）- 一个简单的日历</title>
-    <link href="http://www.iosprogrammer.tech/Date-And-Time-Three/"/>
-    <id>http://www.iosprogrammer.tech/Date-And-Time-Three/</id>
-    <published>2018-04-26T09:39:38.000Z</published>
-    <updated>2020-07-09T05:24:30.473Z</updated>
-    
-    <content type="html"><![CDATA[<p>在前面两篇中讲到了日期和时间的基础知识，现在让我们来利用学到的基础知识创建一个简单的日历。</p><h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p><img src="http://image.iosprogrammer.hongbility.com/Date-And-Time-Three/%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C.png" alt><br>输入指定的年份和月份后可以得到对应月份的日历。</p><h3 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 某个月的所有天</span></span><br><span class="line"><span class="comment">///</span></span><br><span class="line"><span class="comment">/// - Parameter year: 年份</span></span><br><span class="line"><span class="comment">/// - Parameter month: 月份</span></span><br><span class="line"><span class="comment">/// - Returns: 天的数组</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">daysInSomeMonth</span><span class="params">(year: Int, month: Int)</span></span> -&gt; [<span class="type">Weekday</span>] &#123;</span><br><span class="line">    <span class="keyword">let</span> calendar = <span class="type">Calendar</span>(identifier: .gregorian)</span><br><span class="line">    <span class="keyword">var</span> components = <span class="type">DateComponents</span>()</span><br><span class="line">    components.year = year</span><br><span class="line">    components.month = month</span><br><span class="line">    components.day = <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> date = calendar.date(from: components)!</span><br><span class="line">    <span class="keyword">let</span> localDate = localData(<span class="type">GMT</span>: date) <span class="comment">// 本地时间</span></span><br><span class="line">    <span class="keyword">var</span> monthStartDate = <span class="type">Date</span>()</span><br><span class="line">    <span class="keyword">var</span> interval: <span class="type">TimeInterval</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> <span class="number">_</span> = calendar.dateInterval(of: <span class="type">Calendar</span>.<span class="type">Component</span>.month, start: monthStartDate, interval: &amp;interval, <span class="keyword">for</span>: localDate)</span><br><span class="line">    <span class="keyword">let</span> endDate = <span class="type">Date</span>(timeInterval: interval - <span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>, since: localDate)</span><br><span class="line">    <span class="keyword">let</span> endComponents = calendar.dateComponents([.month, .day], from:endDate)</span><br><span class="line">    <span class="keyword">let</span> endDay = endComponents.day!</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> weekDays = [<span class="type">Weekday</span>]()</span><br><span class="line">    <span class="keyword">for</span> dayOfMonth <span class="keyword">in</span> <span class="number">1</span>...endDay &#123;</span><br><span class="line">        <span class="keyword">var</span> dayComponents = <span class="type">DateComponents</span>()</span><br><span class="line">        dayComponents.year = year</span><br><span class="line">        dayComponents.month = month</span><br><span class="line">        dayComponents.day = dayOfMonth</span><br><span class="line">        <span class="keyword">let</span> _date = calendar.date(from: dayComponents)!</span><br><span class="line">        <span class="keyword">let</span> _components = calendar.dateComponents([.weekday], from: _date)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> weekDay = <span class="type">Weekday</span>(day: dayOfMonth, weekday:_components.weekday!)</span><br><span class="line">        weekDays.append(weekDay)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> weekDays</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>先利用当月第一天的DateComponent获得对应的Date，然后转换成本地时间（北京时间），然后利用<code>public func dateInterval(of component: Calendar.Component, start: inout Date, interval: inout TimeInterval, for date: Date) -&gt; Bool</code>获得当月的天数，之后遍历当月的天数并得到每一天对应的是周几。其中<code>Date(timeInterval: interval - 60*60*24, since: localDate)</code>来保证得到的是当月的最后一天，如果没有<code>- 60*60*24</code>得到的是下月第一天。<br>将GMT时间转换成本地时间的方法是：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">localData</span><span class="params">(GMT date: Date)</span></span> -&gt; <span class="type">Date</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> timeZone = <span class="type">TimeZone</span>.current</span><br><span class="line">    <span class="keyword">let</span> interval = timeZone.secondsFromGMT()</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Date</span>(timeInterval: <span class="type">TimeInterval</span>(interval), since: date)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="待完善"><a href="#待完善" class="headerlink" title="待完善"></a>待完善</h3><p>目前得到的是某个月的日期，如果是完整的日历还需要可以左右滑动。</p><h3 id="github源码"><a href="#github源码" class="headerlink" title="github源码"></a>github源码</h3><p><a href="https://github.com/shizhiang/CalendarTutorial" target="_blank" rel="noopener">https://github.com/shizhiang/CalendarTutorial</a></p><p>👍👍👍</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;在前面两篇中讲到了日期和时间的基础知识，现在让我们来利用学到的基础知识创建一个简单的日历。&lt;/p&gt;
-&lt;h3 id=&quot;最终效果&quot;&gt;&lt;a href=&quot;#最终效果&quot; class=&quot;headerlink&quot; title=&quot;最终效果&quot;&gt;&lt;/a&gt;最终效果&lt;/h3&gt;&lt;p&gt;&lt;img src=
-      
-    
-    </summary>
-    
-      <category term="iOS" scheme="http://www.iosprogrammer.tech/categories/iOS/"/>
-    
-      <category term="日期Date和时间Time" scheme="http://www.iosprogrammer.tech/categories/iOS/%E6%97%A5%E6%9C%9FDate%E5%92%8C%E6%97%B6%E9%97%B4Time/"/>
     
     
   </entry>
