@@ -296,7 +296,7 @@
     <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/Array-addObject-ViewController-cause-viewcontroller-not-release/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="施治昂">
+      <meta itemprop="name" content="爱编程的大头">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -425,6 +425,12 @@
 <h2 id="方法3-Bridge"><a href="#方法3-Bridge" class="headerlink" title="方法3 Bridge"></a>方法3 Bridge</h2><p>增加一个中间层<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">DelegateBridge</span>: <span class="title">NSObject</span> &lt;<span class="title">aDelegate</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="keyword">id</span> &lt;aDelegate&gt;delegate;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithDelegate:(<span class="keyword">id</span>&lt;aDelegate&gt;)delegate;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">DelegateBridge</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithDelegate:(<span class="keyword">id</span>&lt;aDelegate&gt;)delegate;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.delegate = delegate;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)delegateMethod &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.delegate &amp;&amp; [<span class="keyword">self</span>.delegate respondsToSelector:<span class="keyword">@selector</span>(delegateMethod:)]) &#123;</span><br><span class="line">        [<span class="keyword">self</span>.delegate delegateMethod:aMessages];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
 <p><code>addDelegate()</code>的方法改为：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)addDelegate:(<span class="keyword">id</span>&lt;aDelegate&gt;)delegate</span><br><span class="line">&#123;</span><br><span class="line">    DelegateBridge *bridge = [[DelegateBridge alloc] initWithDelegate:delegate];</span><br><span class="line">    [_delegates addObject:bridge];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
+        <div class="wxgzh">
+        <div class="gzhbg">
+          <div>更多优质文章，及时和作者讨论</div>
+          <div>关注微信公众号：<text class="gxhname">爱编程的大头</text></div>
+        </div>
+      </div>
       
     </div>
     
@@ -531,7 +537,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">施治昂</p>
+              <p class="site-author-name" itemprop="name">爱编程的大头</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -612,7 +618,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">施治昂</span>
+  <span class="author" itemprop="copyrightHolder">爱编程的大头</span>
 
   
 </div>

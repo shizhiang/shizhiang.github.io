@@ -296,7 +296,7 @@
     <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/Date-And-Time-Two/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="施治昂">
+      <meta itemprop="name" content="爱编程的大头">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -426,6 +426,12 @@
 <p>判断某个日期是否是本周<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">let calendar = Calendar(identifier: .chinese)</span><br><span class="line">let today = Date()</span><br><span class="line">var startDate = Date()</span><br><span class="line">var extends: TimeInterval = 0</span><br><span class="line">let success = calendar.dateInterval(of: .weekOfYear, start: &amp;startDate,interval: &amp;extends, for: today)</span><br><span class="line">if !success &#123;</span><br><span class="line">    print(&quot;失败&quot;)</span><br><span class="line">&#125;</span><br><span class="line">let testDate = Date(timeIntervalSinceNow: 100000)</span><br><span class="line">let dateInSecs = testDate.timeIntervalSinceReferenceDate</span><br><span class="line">let dayStartInSecs = startDate.timeIntervalSinceReferenceDate</span><br><span class="line">let dateInThisWeek = dayStartInSecs &lt; dateInSecs &amp;&amp; (dateInSecs &lt;(dayStartInSecs + extends))</span><br><span class="line">print(dateInThisWeek)</span><br></pre></td></tr></table></figure></p>
 <p>先使用<code>dateInterval(of: .weekOfYear, start: &amp;startDate,interval: &amp;extends, for: today)</code>获取到本周的<code>startDate</code>和<code>weekOfYear</code>（一周）的<code>extends</code>（时长），然后根据要判断的日期距离指定日期的秒数是否大于本周开始日期距离指定日期的秒数，并且小于本周结束时日期距离指定日期的秒数。</p>
 
+        <div class="wxgzh">
+        <div class="gzhbg">
+          <div>更多优质文章，及时和作者讨论</div>
+          <div>关注微信公众号：<text class="gxhname">爱编程的大头</text></div>
+        </div>
+      </div>
       
     </div>
     
@@ -532,7 +538,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">施治昂</p>
+              <p class="site-author-name" itemprop="name">爱编程的大头</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -613,7 +619,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">施治昂</span>
+  <span class="author" itemprop="copyrightHolder">爱编程的大头</span>
 
   
 </div>

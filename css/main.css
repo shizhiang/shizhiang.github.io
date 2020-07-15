@@ -1547,6 +1547,18 @@ pre .javascript .function {
 .post-button {
   margin-top: 40px;
 }
+.wxgzh {
+  width: 100%;
+  text-align: center;
+}
+.gzhbg {
+  margin: 0 auto;
+  background: #d3d3d3;
+  width: 60%;
+}
+.gxhname {
+  color: #dc143c;
+}
 .posts-expand .post-tags {
   margin-top: 40px;
   text-align: center;
@@ -1822,7 +1834,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #32ec8f;
+  background: #619eff;
 }
 .links-of-blogroll {
   font-size: 13px;

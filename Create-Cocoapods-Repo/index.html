@@ -298,7 +298,7 @@
     <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/Create-Cocoapods-Repo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="施治昂">
+      <meta itemprop="name" content="爱编程的大头">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -494,6 +494,12 @@
 <h3 id="赠送一个提交开源库的shell脚本"><a href="#赠送一个提交开源库的shell脚本" class="headerlink" title="赠送一个提交开源库的shell脚本"></a>赠送一个提交开源库的shell脚本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> bin/sh</span><br><span class="line"><span class="meta">#</span> 验证本地 pod lib lint</span><br><span class="line">echo 'pod lib lint...\n'</span><br><span class="line">pod lib lint</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 下拉git  git pull</span><br><span class="line">echo '\ngit pull...\n'</span><br><span class="line">git pull</span><br><span class="line">echo `git pull`</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 上传git git add git commit git push</span><br><span class="line">echo "git add . \n"</span><br><span class="line">git add .</span><br><span class="line">echo "Enter a commit message: \c"</span><br><span class="line">read commitMsg</span><br><span class="line">echo "git commit -m $commitMsg"</span><br><span class="line">git commit -m '$commitMsg'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> tag git tag  git push --tags</span><br><span class="line">echo "\ngit push ...\n"</span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line">echo "\nEnter tag version: \c"</span><br><span class="line">read tagVersion</span><br><span class="line">git tag $tagVersion</span><br><span class="line">echo "\n git push --tags ..."</span><br><span class="line">git push --tags</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 远程验证 pod spec lint</span><br><span class="line">echo "\npod spec lint ...\n"</span><br><span class="line">pod spec lint</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 提交代码 pod trunk</span><br><span class="line">echo "\npod trunk push ...\n"</span><br><span class="line">pod trunk push [yourprojectname].podspec</span><br></pre></td></tr></table></figure>
 <p>👍👍👍</p>
 
+        <div class="wxgzh">
+        <div class="gzhbg">
+          <div>更多优质文章，及时和作者讨论</div>
+          <div>关注微信公众号：<text class="gxhname">爱编程的大头</text></div>
+        </div>
+      </div>
       
     </div>
     
@@ -600,7 +606,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">施治昂</p>
+              <p class="site-author-name" itemprop="name">爱编程的大头</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -681,7 +687,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">施治昂</span>
+  <span class="author" itemprop="copyrightHolder">爱编程的大头</span>
 
   
 </div>
