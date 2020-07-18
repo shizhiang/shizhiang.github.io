@@ -443,11 +443,8 @@
 <h4 id="使用-3"><a href="#使用-3" class="headerlink" title="使用"></a>使用</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> chineseCalendar = <span class="type">Calendar</span>(identifier: .chinese)</span><br><span class="line"><span class="keyword">var</span> chineseComponents = <span class="type">DateComponents</span>()</span><br><span class="line">chineseComponents.year = <span class="number">2018</span></span><br><span class="line">chineseComponents.month = <span class="number">1</span></span><br><span class="line">chineseComponents.day = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> chineseDate = chineseCalendar.date(from: chineseComponents)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> indianCalendar = <span class="type">Calendar</span>(identifier: .indian)</span><br><span class="line"><span class="keyword">let</span> indianComponents = indianCalendar.dateComponents([.year,.month, .day], from: chineseDate!)</span><br><span class="line"><span class="built_in">print</span>(indianComponents.year!, indianComponents.month!,indianComponents.day!) <span class="comment">// 3922 11 18</span></span><br></pre></td></tr></table></figure>
 
         <div class="wxgzh">
-        <div class="gzhbg">
-          <div>更多优质文章，及时和作者讨论</div>
-          <div>关注微信公众号：<text class="gxhname">爱编程的大头</text></div>
-        </div>
-      </div>
+          <image src="http://assets.iosprogrammer.tech/%E6%8B%89%E6%96%B0%E5%9B%BE%E7%89%87.png">
+      </image></div>
       
     </div>
     
