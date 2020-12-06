@@ -86,13 +86,6 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/</loc>
-    
-    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-construction/</loc>
     
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
@@ -100,7 +93,7 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-project-instruction/</loc>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/</loc>
     
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     
@@ -108,6 +101,13 @@
   
   <url>
     <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
+    
+    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-project-instruction/</loc>
     
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     
@@ -135,13 +135,6 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/iOS-Memory-Management/</loc>
-    
-    <lastmod>2020-07-09T05:24:30.476Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.iosprogrammer.tech/iOS-Scheme-Theory-And-Practice/</loc>
     
     <lastmod>2020-07-09T05:24:30.476Z</lastmod>
@@ -149,9 +142,9 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/Read-Effective-Objective-C-2-0-1/</loc>
+    <loc>http://www.iosprogrammer.tech/iOS-Memory-Management/</loc>
     
-    <lastmod>2020-07-09T05:24:30.475Z</lastmod>
+    <lastmod>2020-07-09T05:24:30.476Z</lastmod>
     
   </url>
   
@@ -170,16 +163,16 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/XCode-Server-CI/</loc>
+    <loc>http://www.iosprogrammer.tech/Read-Effective-Objective-C-2-0-1/</loc>
     
     <lastmod>2020-07-09T05:24:30.475Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/KVC-KVO/</loc>
+    <loc>http://www.iosprogrammer.tech/XCode-Server-CI/</loc>
     
-    <lastmod>2020-07-09T05:24:30.474Z</lastmod>
+    <lastmod>2020-07-09T05:24:30.475Z</lastmod>
     
   </url>
   
@@ -206,6 +199,13 @@
   
   <url>
     <loc>http://www.iosprogrammer.tech/Programming-With-ObjC/</loc>
+    
+    <lastmod>2020-07-09T05:24:30.474Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iosprogrammer.tech/KVC-KVO/</loc>
     
     <lastmod>2020-07-09T05:24:30.474Z</lastmod>
     
