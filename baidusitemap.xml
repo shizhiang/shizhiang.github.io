@@ -4,6 +4,24 @@
 
     
   <url>
+    <loc>http://www.iosprogrammer.tech/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/</loc>
+    <lastmod>2020-12-06T03:27:56.863Z</lastmod>
+    <data>
+        <display>
+        <title>Android FFmpeg Cannot find a valid font for the family Sans</title>
+        <pubTime>2020-12-06T03:25:47.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="FFmpeg" url="http://www.iosprogrammer.tech/categories/FFmpeg/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.iosprogrammer.tech/Hexo%E5%9C%A8%E6%96%87%E7%AB%A0%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%86%85%E5%AE%B9/</loc>
     <lastmod>2020-07-15T05:40:59.155Z</lastmod>
     <data>
@@ -94,24 +112,6 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/</loc>
-    <lastmod>2020-07-15T05:18:17.820Z</lastmod>
-    <data>
-        <display>
-        <title>WebSocket简介和SocketRocket源码分析</title>
-        <pubTime>2018-06-02T13:16:10.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.iosprogrammer.tech/iOS-Pull-Live-Stream/</loc>
     <lastmod>2020-07-15T05:18:17.820Z</lastmod>
     <data>
@@ -123,6 +123,24 @@
            
              
               <breadCrumb title="直播" url="http://www.iosprogrammer.tech/categories/%E7%9B%B4%E6%92%AD/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/</loc>
+    <lastmod>2020-07-15T05:18:17.820Z</lastmod>
+    <data>
+        <display>
+        <title>WebSocket简介和SocketRocket源码分析</title>
+        <pubTime>2018-06-02T13:16:10.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
           
         </display>
     </data>
@@ -210,6 +228,24 @@
 
     
   <url>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-project-instruction/</loc>
+    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
+    <data>
+        <display>
+        <title>跟我一起学React Native之项目结构搭建</title>
+        <pubTime>2018-06-12T12:59:58.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     <data>
@@ -245,24 +281,6 @@
     </url>
 
     
-  <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-project-instruction/</loc>
-    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
-    <data>
-        <display>
-        <title>跟我一起学React Native之项目结构搭建</title>
-        <pubTime>2018-06-12T12:59:58.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
     
   <url>
     <loc>http://www.iosprogrammer.tech/deploy-hexo-to-gitlab/</loc>
@@ -276,24 +294,6 @@
            
              
               <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/iOS-Scheme-Theory-And-Practice/</loc>
-    <lastmod>2020-07-09T05:24:30.476Z</lastmod>
-    <data>
-        <display>
-        <title>Scheme以及微信、支付宝等第三方功能的实现</title>
-        <pubTime>2018-02-05T14:09:03.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
           
         </display>
     </data>
@@ -319,17 +319,17 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/Submit-Domain-To-Baidu/</loc>
-    <lastmod>2020-07-09T05:24:30.475Z</lastmod>
+    <loc>http://www.iosprogrammer.tech/iOS-Scheme-Theory-And-Practice/</loc>
+    <lastmod>2020-07-09T05:24:30.476Z</lastmod>
     <data>
         <display>
-        <title>把域名提交到百度资源平台</title>
-        <pubTime>2018-05-24T09:52:19.000Z</pubTime>
+        <title>Scheme以及微信、支付宝等第三方功能的实现</title>
+        <pubTime>2018-02-05T14:09:03.000Z</pubTime>
         
          
            
              
-              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
           
         </display>
     </data>
@@ -379,6 +379,24 @@
 
     
   <url>
+    <loc>http://www.iosprogrammer.tech/Submit-Domain-To-Baidu/</loc>
+    <lastmod>2020-07-09T05:24:30.475Z</lastmod>
+    <data>
+        <display>
+        <title>把域名提交到百度资源平台</title>
+        <pubTime>2018-05-24T09:52:19.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.iosprogrammer.tech/XCode-Server-CI/</loc>
     <lastmod>2020-07-09T05:24:30.475Z</lastmod>
     <data>
@@ -390,24 +408,6 @@
            
              
               <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/Growth-Hacker-FanBing/</loc>
-    <lastmod>2020-07-09T05:24:30.474Z</lastmod>
-    <data>
-        <display>
-        <title>程序员读《增长黑客》</title>
-        <pubTime>2018-10-21T02:57:35.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="读书" url="http://www.iosprogrammer.tech/categories/%E8%AF%BB%E4%B9%A6/"/>
           
         </display>
     </data>
@@ -447,6 +447,24 @@
            
              
               <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/Growth-Hacker-FanBing/</loc>
+    <lastmod>2020-07-09T05:24:30.474Z</lastmod>
+    <data>
+        <display>
+        <title>程序员读《增长黑客》</title>
+        <pubTime>2018-10-21T02:57:35.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="读书" url="http://www.iosprogrammer.tech/categories/%E8%AF%BB%E4%B9%A6/"/>
           
         </display>
     </data>
@@ -514,12 +532,12 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/Date-And-Time-Three/</loc>
+    <loc>http://www.iosprogrammer.tech/Date-And-Time-One/</loc>
     <lastmod>2020-07-09T05:24:30.473Z</lastmod>
     <data>
         <display>
-        <title>日期Date和时间Time（三）- 一个简单的日历</title>
-        <pubTime>2018-04-26T09:39:38.000Z</pubTime>
+        <title>日期Date和时间Time（一）</title>
+        <pubTime>2018-04-12T15:27:34.000Z</pubTime>
         
          
            
@@ -535,12 +553,12 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/Date-And-Time-One/</loc>
+    <loc>http://www.iosprogrammer.tech/Date-And-Time-Three/</loc>
     <lastmod>2020-07-09T05:24:30.473Z</lastmod>
     <data>
         <display>
-        <title>日期Date和时间Time（一）</title>
-        <pubTime>2018-04-12T15:27:34.000Z</pubTime>
+        <title>日期Date和时间Time（三）- 一个简单的日历</title>
+        <pubTime>2018-04-26T09:39:38.000Z</pubTime>
         
          
            

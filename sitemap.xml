@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.iosprogrammer.tech/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/</loc>
+    
+    <lastmod>2020-12-06T03:27:56.863Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.iosprogrammer.tech/Hexo%E5%9C%A8%E6%96%87%E7%AB%A0%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%86%85%E5%AE%B9/</loc>
     
     <lastmod>2020-07-15T05:40:59.155Z</lastmod>
@@ -37,14 +44,14 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/</loc>
+    <loc>http://www.iosprogrammer.tech/iOS-Pull-Live-Stream/</loc>
     
     <lastmod>2020-07-15T05:18:17.820Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/iOS-Pull-Live-Stream/</loc>
+    <loc>http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/</loc>
     
     <lastmod>2020-07-15T05:18:17.820Z</lastmod>
     
@@ -93,6 +100,13 @@
   </url>
   
   <url>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-project-instruction/</loc>
+    
+    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
     
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
@@ -101,13 +115,6 @@
   
   <url>
     <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-questions/</loc>
-    
-    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-project-instruction/</loc>
     
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     
@@ -128,13 +135,6 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/iOS-Scheme-Theory-And-Practice/</loc>
-    
-    <lastmod>2020-07-09T05:24:30.476Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.iosprogrammer.tech/iOS-Memory-Management/</loc>
     
     <lastmod>2020-07-09T05:24:30.476Z</lastmod>
@@ -142,9 +142,9 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/Submit-Domain-To-Baidu/</loc>
+    <loc>http://www.iosprogrammer.tech/iOS-Scheme-Theory-And-Practice/</loc>
     
-    <lastmod>2020-07-09T05:24:30.475Z</lastmod>
+    <lastmod>2020-07-09T05:24:30.476Z</lastmod>
     
   </url>
   
@@ -163,16 +163,16 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/XCode-Server-CI/</loc>
+    <loc>http://www.iosprogrammer.tech/Submit-Domain-To-Baidu/</loc>
     
     <lastmod>2020-07-09T05:24:30.475Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/Growth-Hacker-FanBing/</loc>
+    <loc>http://www.iosprogrammer.tech/XCode-Server-CI/</loc>
     
-    <lastmod>2020-07-09T05:24:30.474Z</lastmod>
+    <lastmod>2020-07-09T05:24:30.475Z</lastmod>
     
   </url>
   
@@ -185,6 +185,13 @@
   
   <url>
     <loc>http://www.iosprogrammer.tech/LLDB-Advanced-Usage/</loc>
+    
+    <lastmod>2020-07-09T05:24:30.474Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iosprogrammer.tech/Growth-Hacker-FanBing/</loc>
     
     <lastmod>2020-07-09T05:24:30.474Z</lastmod>
     
@@ -212,14 +219,14 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/Date-And-Time-Three/</loc>
+    <loc>http://www.iosprogrammer.tech/Date-And-Time-One/</loc>
     
     <lastmod>2020-07-09T05:24:30.473Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/Date-And-Time-One/</loc>
+    <loc>http://www.iosprogrammer.tech/Date-And-Time-Three/</loc>
     
     <lastmod>2020-07-09T05:24:30.473Z</lastmod>
     
