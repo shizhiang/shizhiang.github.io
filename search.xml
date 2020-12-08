@@ -61,27 +61,6 @@
     
     
     <entry>
-      <title>数据结构与算法分析引论</title>
-      <link href="/DSAA-1-1/"/>
-      <url>/DSAA-1-1/</url>
-      
-        <content type="html"><![CDATA[<p>在许多问题中，一个重要的观念是：<strong>写出一个可以工作的程序并不够</strong>。</p><h1 id="数学知识复习"><a href="#数学知识复习" class="headerlink" title="数学知识复习"></a>数学知识复习</h1><h2 id="指数"><a href="#指数" class="headerlink" title="指数"></a>指数</h2><p>Xᴬ*Xᴮ = Xᴬ⁺ᴮ<br>Xᴬ/Xᴮ = Xᴬ⁻ᴮ<br>(Xᴬ)ᴮ = Xᴬᴮ<br>Xᴺ+Xᴺ = 2Xᴺ != X²ᴺ<br>2ᴺ + 2ᴺ = 2ᴺ⁺¹</p><h2 id="对数"><a href="#对数" class="headerlink" title="对数"></a>对数</h2><p>在计算机科学中，除非有特殊声明，所有的对数都是以2为底的。<br>定义：Xᴬ = B，当且仅当logⅹB = A.<br>定理1.1  log𝖠B = logcB / logcA; C &gt; 0<br>定理1.2  logAB = logA + logB<br>其他一些类似定理：logA/B = logA - logB<br>               log(Aᴮ)=BlogA<br>               logX &lt; X(对所有的X&gt;0成立)<br>               log1 = 0, log2 = 1, log1024 = 10, log1048576 = 20</p><h2 id="级数"><a href="#级数" class="headerlink" title="级数"></a>级数</h2><p>公式1: $\sum_{i=1}^N2^i = {2^{N+1} - 1}$</p><p>公式2: $\sum_{i=0}^NA^i = {A^{N+1} - 1 \over A-1}$</p><h2 id="模运算"><a href="#模运算" class="headerlink" title="模运算"></a>模运算</h2><p>如果N整除A-B，那么我们就说A与B模N同余，记为A≡B(mod N)。<br>若A≡B(mod N)，则A + C≡B + C(mod N)以及AD≡BD(mod N)。</p><h2 id="证明方法"><a href="#证明方法" class="headerlink" title="证明方法"></a>证明方法</h2><p>证明数据结构分析中的结论的两个最常用的方法是<strong>归纳法和反证法</strong>。</p><h3 id="归纳法证明"><a href="#归纳法证明" class="headerlink" title="归纳法证明"></a>归纳法证明</h3><ol><li>证明基准情形，就是确定定理对于某个（某些）小的值的正确性。</li><li>进行归纳假设。假设定理对直到某个有限数k的所有的情况都是成立的。然后使用这个假设证明定理对下一个值（k+1）也是成立的。</li><li>定理得证。</li></ol><p>定理1.3 如果N≥1，则$\sum_{i=1}^Ni^2 = {N(N+1)(N+2) \over 6}$</p><h3 id="反证法证明"><a href="#反证法证明" class="headerlink" title="反证法证明"></a>反证法证明</h3><p>反证法证明是通过假设定理不成立，然后证明该假设导致某个已知的性质不成立，从而证明原假设是错误的。</p><h1 id="递归简论"><a href="#递归简论" class="headerlink" title="递归简论"></a>递归简论</h1><p>当编写递归例程时，关键是要牢记递归的四条基本法则：</p><ol><li>基准情形。必须总有某些基准情形，它无须递归就能解出。</li><li>不断推进。对于那些需要递归求解的情形，每一次递归调用都必须要使求解状况朝接近基准情形的方向推进。</li><li>设计法则。假设所有的递归调用都能运行。</li><li>合成效益法则。在求解一个问题的同一实例时，切勿在不同的递归调用中做重复性的工作。</li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> 读书 </category>
-          
-          <category> 数据结构与算法分析 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>读《Effective Objective-C 2.0》（二）</title>
       <link href="/Read-Effective-Objective-C-2-0-2/"/>
       <url>/Read-Effective-Objective-C-2-0-2/</url>
@@ -91,9 +70,7 @@
       
       <categories>
           
-          <category> 读书 </category>
-          
-          <category> 《Effective Objective-C 2.0》 </category>
+          <category> 其他 </category>
           
       </categories>
       
@@ -112,9 +89,7 @@
       
       <categories>
           
-          <category> 读书 </category>
-          
-          <category> 《Effective Objective-C 2.0》 </category>
+          <category> 其他 </category>
           
       </categories>
       
@@ -135,8 +110,6 @@
           
           <category> iOS </category>
           
-          <category> Apple开发文档 </category>
-          
       </categories>
       
       
@@ -156,8 +129,6 @@
           
           <category> iOS </category>
           
-          <category> Apple开发文档 </category>
-          
       </categories>
       
       
@@ -175,7 +146,7 @@
       
       <categories>
           
-          <category> 读书 </category>
+          <category> 其他 </category>
           
       </categories>
       
@@ -214,8 +185,6 @@
       <categories>
           
           <category> iOS </category>
-          
-          <category> Apple开发文档 </category>
           
       </categories>
       
@@ -426,8 +395,6 @@
           
           <category> iOS </category>
           
-          <category> 日期Date和时间Time </category>
-          
       </categories>
       
       
@@ -447,8 +414,6 @@
           
           <category> iOS </category>
           
-          <category> 日期Date和时间Time </category>
-          
       </categories>
       
       
@@ -467,8 +432,6 @@
       <categories>
           
           <category> iOS </category>
-          
-          <category> 日期Date和时间Time </category>
           
       </categories>
       
