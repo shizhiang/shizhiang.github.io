@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>不务正业的程序员</title>
+  <title>编程学堂</title>
   
-  <subtitle>爱编程的大头（公众号同名）</subtitle>
+  
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.iosprogrammer.tech/"/>
@@ -10,7 +10,7 @@
   <id>http://www.iosprogrammer.tech/</id>
   
   <author>
-    <name>爱编程的大头</name>
+    <name>Davis</name>
     
   </author>
   
