@@ -86,12 +86,12 @@
 <meta property="og:site_name" content="编程学堂">
 <meta property="og:description" content="在Android中使用FFmpeg添加文字水印时出现下面的错误提示：12[Parsed_drawtext_0 @ 0x70fc22fe00] Cannot find a valid font for the family Sans[AVFilterGraph @ 0x71031fc980] Error initializing filter &amp;apos;drawtext&amp;apos; 查看了很多文章">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/424855-941912f73536559e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/620">
-<meta property="og:updated_time" content="2020-12-08T09:33:42.783Z">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/text-water-mark.webp">
+<meta property="og:updated_time" content="2020-12-15T07:50:20.717Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android FFmpeg Cannot find a valid font for the family Sans">
 <meta name="twitter:description" content="在Android中使用FFmpeg添加文字水印时出现下面的错误提示：12[Parsed_drawtext_0 @ 0x70fc22fe00] Cannot find a valid font for the family Sans[AVFilterGraph @ 0x71031fc980] Error initializing filter &amp;apos;drawtext&amp;apos; 查看了很多文章">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/424855-941912f73536559e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/620">
+<meta name="twitter:image" content="http://www.iosprogrammer.tech/images/text-water-mark.webp">
 
 
 
@@ -350,17 +350,6 @@
 
           
             
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/" itemprop="commentsCount"></span>
-                </a>
-              
-            
           
 
           
@@ -383,7 +372,7 @@
 
           
 
-        </span></div>
+        </div>
       </header>
     
 
@@ -412,7 +401,7 @@
 </li>
 </ol>
 <p>之后在FFmpeg加文字水印的命令中使用自定义字体的绝对路径就可以成功了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String drawtext = &quot;Ffmpeg -I xxx.mp4 drawtext=text=&apos;AAAAAA&apos;:fontfile=&apos;/data/user/0/com.sza.shorvideoassistant/files/arial.ttf&apos;:fontcolor=#ffffff:fontsize=33 -y xxx.mp4;</span><br></pre></td></tr></table></figure></p>
-<p>我做的demo的最终效果<br><img src="https://upload-images.jianshu.io/upload_images/424855-941912f73536559e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/620" alt="最终效果"></p>
+<p>我做的demo的最终效果<br><img src="../images/text-water-mark.webp" alt="最终效果"></p>
 <p>$\color{OrangeRed}{其他热门文章}$</p>
 <ul>
 <li><a href="http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/">WebSocket简介和SocketRocket源码分析</a></li>
@@ -421,7 +410,7 @@
 </ul>
 
         <div class="wxgzh">
-          <image src="http://assets.iosprogrammer.tech/%E6%8B%89%E6%96%B0%E5%9B%BE%E7%89%87.png">
+          <image src="http://assets.iosprogrammer.tech/blog-qrcode%E5%89%AF%E6%9C%AC.png">
       </image></div>
       
     </div>
@@ -726,21 +715,6 @@
 
 
 
-
-  
-    <script type="text/javascript">
-    (function(){
-      var appid = 'cyts733wr';
-      var conf = '7c4b289b8077dd8c012f9a0adf4ac3d6';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      if (width < 960) {
-      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
-        window.changyan.api.config({appid:appid,conf:conf})});
-      }
-    })();
-    </script>
-    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
-  
 
 
 

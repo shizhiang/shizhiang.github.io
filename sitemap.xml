@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.iosprogrammer.tech/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/</loc>
+    
+    <lastmod>2020-12-15T07:50:20.717Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.iosprogrammer.tech/XCode-Server-CI/</loc>
     
     <lastmod>2020-12-08T09:46:12.765Z</lastmod>
@@ -100,13 +107,6 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/</loc>
-    
-    <lastmod>2020-12-08T09:33:42.783Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.iosprogrammer.tech/iOS-Pull-Live-Stream/</loc>
     
     <lastmod>2020-12-08T09:33:15.663Z</lastmod>
@@ -149,14 +149,21 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/</loc>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-construction/</loc>
     
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-construction/</loc>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
+    
+    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/</loc>
     
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     
@@ -177,13 +184,6 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
-    
-    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.iosprogrammer.tech/categories/index.html</loc>
     
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
@@ -198,14 +198,14 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/iOS-Scheme-Theory-And-Practice/</loc>
+    <loc>http://www.iosprogrammer.tech/iOS-Memory-Management/</loc>
     
     <lastmod>2020-07-09T05:24:30.476Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/iOS-Memory-Management/</loc>
+    <loc>http://www.iosprogrammer.tech/iOS-Scheme-Theory-And-Practice/</loc>
     
     <lastmod>2020-07-09T05:24:30.476Z</lastmod>
     
@@ -219,14 +219,14 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/Get-To-Know-LLDB/</loc>
+    <loc>http://www.iosprogrammer.tech/Create-Cocoapods-Repo/</loc>
     
     <lastmod>2020-07-09T05:24:30.473Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/Create-Cocoapods-Repo/</loc>
+    <loc>http://www.iosprogrammer.tech/Get-To-Know-LLDB/</loc>
     
     <lastmod>2020-07-09T05:24:30.473Z</lastmod>
     

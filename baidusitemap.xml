@@ -4,6 +4,24 @@
 
     
   <url>
+    <loc>http://www.iosprogrammer.tech/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/</loc>
+    <lastmod>2020-12-15T07:50:20.717Z</lastmod>
+    <data>
+        <display>
+        <title>Android FFmpeg Cannot find a valid font for the family Sans</title>
+        <pubTime>2020-12-06T03:25:47.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="音视频" url="http://www.iosprogrammer.tech/categories/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.iosprogrammer.tech/XCode-Server-CI/</loc>
     <lastmod>2020-12-08T09:46:12.765Z</lastmod>
     <data>
@@ -256,24 +274,6 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/</loc>
-    <lastmod>2020-12-08T09:33:42.783Z</lastmod>
-    <data>
-        <display>
-        <title>Android FFmpeg Cannot find a valid font for the family Sans</title>
-        <pubTime>2020-12-06T03:25:47.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="音视频" url="http://www.iosprogrammer.tech/categories/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.iosprogrammer.tech/iOS-Pull-Live-Stream/</loc>
     <lastmod>2020-12-08T09:33:15.663Z</lastmod>
     <data>
@@ -348,12 +348,12 @@
     
     
   <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/</loc>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-construction/</loc>
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     <data>
         <display>
-        <title>跟我一起学习React Native之调用原生模块</title>
-        <pubTime>2018-09-12T08:18:46.000Z</pubTime>
+        <title>跟我一起学习React Native之环境搭建</title>
+        <pubTime>2018-06-11T03:40:03.000Z</pubTime>
         
          
            
@@ -366,12 +366,30 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-construction/</loc>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     <data>
         <display>
-        <title>跟我一起学习React Native之环境搭建</title>
-        <pubTime>2018-06-11T03:40:03.000Z</pubTime>
+        <title>跟我一起学习React Native之我的和设置</title>
+        <pubTime>2018-06-20T07:16:21.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/</loc>
+    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
+    <data>
+        <display>
+        <title>跟我一起学习React Native之调用原生模块</title>
+        <pubTime>2018-09-12T08:18:46.000Z</pubTime>
         
          
            
@@ -419,24 +437,6 @@
     </url>
 
     
-  <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
-    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
-    <data>
-        <display>
-        <title>跟我一起学习React Native之我的和设置</title>
-        <pubTime>2018-06-20T07:16:21.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
     
   <url>
     <loc>http://www.iosprogrammer.tech/deploy-hexo-to-gitlab/</loc>
@@ -457,12 +457,12 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/iOS-Scheme-Theory-And-Practice/</loc>
+    <loc>http://www.iosprogrammer.tech/iOS-Memory-Management/</loc>
     <lastmod>2020-07-09T05:24:30.476Z</lastmod>
     <data>
         <display>
-        <title>Scheme以及微信、支付宝等第三方功能的实现</title>
-        <pubTime>2018-02-05T14:09:03.000Z</pubTime>
+        <title>iOS内存管理</title>
+        <pubTime>2018-10-03T04:42:21.000Z</pubTime>
         
          
            
@@ -475,12 +475,12 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/iOS-Memory-Management/</loc>
+    <loc>http://www.iosprogrammer.tech/iOS-Scheme-Theory-And-Practice/</loc>
     <lastmod>2020-07-09T05:24:30.476Z</lastmod>
     <data>
         <display>
-        <title>iOS内存管理</title>
-        <pubTime>2018-10-03T04:42:21.000Z</pubTime>
+        <title>Scheme以及微信、支付宝等第三方功能的实现</title>
+        <pubTime>2018-02-05T14:09:03.000Z</pubTime>
         
          
            
@@ -511,12 +511,12 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/Get-To-Know-LLDB/</loc>
+    <loc>http://www.iosprogrammer.tech/Create-Cocoapods-Repo/</loc>
     <lastmod>2020-07-09T05:24:30.473Z</lastmod>
     <data>
         <display>
-        <title>LLDB调试iOS（一）—— 初识LLDB</title>
-        <pubTime>2018-03-11T06:21:13.000Z</pubTime>
+        <title>从零开始到提交一个开源项目到Cocopods</title>
+        <pubTime>2018-04-03T10:20:45.000Z</pubTime>
         
          
            
@@ -529,12 +529,12 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/Create-Cocoapods-Repo/</loc>
+    <loc>http://www.iosprogrammer.tech/Get-To-Know-LLDB/</loc>
     <lastmod>2020-07-09T05:24:30.473Z</lastmod>
     <data>
         <display>
-        <title>从零开始到提交一个开源项目到Cocopods</title>
-        <pubTime>2018-04-03T10:20:45.000Z</pubTime>
+        <title>LLDB调试iOS（一）—— 初识LLDB</title>
+        <pubTime>2018-03-11T06:21:13.000Z</pubTime>
         
          
            
