@@ -1,2 +1,2 @@
+http://www.iosprogrammer.tech/xib-color-different-with-hard-code/
 http://www.iosprogrammer.tech/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/
-http://www.iosprogrammer.tech/Hexo在文章末尾添加自定义内容/

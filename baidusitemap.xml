@@ -4,6 +4,24 @@
 
     
   <url>
+    <loc>http://www.iosprogrammer.tech/xib-color-different-with-hard-code/</loc>
+    <lastmod>2020-12-18T07:15:11.805Z</lastmod>
+    <data>
+        <display>
+        <title>iOS开发xib和代码设置颜色不同的解决方法及其原理（深度好文）</title>
+        <pubTime>2020-12-18T03:40:37.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/</loc>
     <lastmod>2020-12-16T09:39:17.708Z</lastmod>
     <data>
@@ -438,12 +456,12 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-questions/</loc>
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     <data>
         <display>
-        <title>跟我一起学习React Native之我的和设置</title>
-        <pubTime>2018-06-20T07:16:21.000Z</pubTime>
+        <title>跟我一起学习React Native之遇到的问题和解决方法</title>
+        <pubTime>2018-06-11T03:44:22.000Z</pubTime>
         
          
            
@@ -474,12 +492,12 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-questions/</loc>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     <data>
         <display>
-        <title>跟我一起学习React Native之遇到的问题和解决方法</title>
-        <pubTime>2018-06-11T03:44:22.000Z</pubTime>
+        <title>跟我一起学习React Native之我的和设置</title>
+        <pubTime>2018-06-20T07:16:21.000Z</pubTime>
         
          
            

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="addObject控制器不释放">
+  <meta name="keywords" content="xib色差">
 
 
 
@@ -79,18 +79,27 @@
 
 
 
-<meta name="description" content="场景项目中有一个单例Singleton。有多个UIViewController需要向Singleton中注册观察者来接受Singleton的消息。 这种情况下，使用NSNotificationCenter的方案有些松散，因此不作考虑；  还有一种是使用delegate的方式。为了让delegate可以实现一对多的功能，可以在Singleton的里面增加一个mutableArray的变量和一个add">
-<meta name="keywords" content="addObject控制器不释放">
+<meta name="description" content="本文主要包括两部分，其一是解决xib设置颜色有偏差的问题，其二是聊一下颜色的一些基础知识。 xib和代码设置颜色有偏差的原因在开发iOS app的过程中我们都是按照设计同学给出的标注来做的，而UI同学在作图时使用到的工具就会有“颜色配置文件（Color Profile）”。（下面有颜色配置文件的说明）从上图可以看出，ps默认的颜色配置文件是sRGB，因此设计给我们的图都是以sRGB为准的。但是在X">
+<meta name="keywords" content="xib色差">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Array().addObject(ViewController())造成控制器不释放">
-<meta property="og:url" content="http://www.iosprogrammer.tech/Array-addObject-ViewController-cause-viewcontroller-not-release/index.html">
+<meta property="og:title" content="iOS开发xib和代码设置颜色不同的解决方法及其原理（深度好文）">
+<meta property="og:url" content="http://www.iosprogrammer.tech/xib-color-different-with-hard-code/index.html">
 <meta property="og:site_name" content="编程学堂">
-<meta property="og:description" content="场景项目中有一个单例Singleton。有多个UIViewController需要向Singleton中注册观察者来接受Singleton的消息。 这种情况下，使用NSNotificationCenter的方案有些松散，因此不作考虑；  还有一种是使用delegate的方式。为了让delegate可以实现一对多的功能，可以在Singleton的里面增加一个mutableArray的变量和一个add">
+<meta property="og:description" content="本文主要包括两部分，其一是解决xib设置颜色有偏差的问题，其二是聊一下颜色的一些基础知识。 xib和代码设置颜色有偏差的原因在开发iOS app的过程中我们都是按照设计同学给出的标注来做的，而UI同学在作图时使用到的工具就会有“颜色配置文件（Color Profile）”。（下面有颜色配置文件的说明）从上图可以看出，ps默认的颜色配置文件是sRGB，因此设计给我们的图都是以sRGB为准的。但是在X">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-12-16T09:35:38.399Z">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/ps-color-profile.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/xcode-xib-colors.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/record.gif">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/colorsyncutilityicon.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/colorsyncinterface.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/v2-374053ce809551b3eeef09046f48b074_1440w.jpg">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/v2-53ebd97b57e169f8b395766d580a1ea9_1440w.jpg">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/colorsyncprofiles.png">
+<meta property="og:updated_time" content="2020-12-18T07:15:11.805Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Array().addObject(ViewController())造成控制器不释放">
-<meta name="twitter:description" content="场景项目中有一个单例Singleton。有多个UIViewController需要向Singleton中注册观察者来接受Singleton的消息。 这种情况下，使用NSNotificationCenter的方案有些松散，因此不作考虑；  还有一种是使用delegate的方式。为了让delegate可以实现一对多的功能，可以在Singleton的里面增加一个mutableArray的变量和一个add">
+<meta name="twitter:title" content="iOS开发xib和代码设置颜色不同的解决方法及其原理（深度好文）">
+<meta name="twitter:description" content="本文主要包括两部分，其一是解决xib设置颜色有偏差的问题，其二是聊一下颜色的一些基础知识。 xib和代码设置颜色有偏差的原因在开发iOS app的过程中我们都是按照设计同学给出的标注来做的，而UI同学在作图时使用到的工具就会有“颜色配置文件（Color Profile）”。（下面有颜色配置文件的说明）从上图可以看出，ps默认的颜色配置文件是sRGB，因此设计给我们的图都是以sRGB为准的。但是在X">
+<meta name="twitter:image" content="http://www.iosprogrammer.tech/images/ps-color-profile.png">
 
 
 
@@ -120,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://www.iosprogrammer.tech/Array-addObject-ViewController-cause-viewcontroller-not-release/">
+  <link rel="canonical" href="http://www.iosprogrammer.tech/xib-color-different-with-hard-code/">
 
 
 
 
 
-  <title>Array().addObject(ViewController())造成控制器不释放 | 编程学堂</title>
+  <title>iOS开发xib和代码设置颜色不同的解决方法及其原理（深度好文） | 编程学堂</title>
   
 
 
@@ -284,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/Array-addObject-ViewController-cause-viewcontroller-not-release/">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/xib-color-different-with-hard-code/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Davis">
@@ -301,7 +310,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Array().addObject(ViewController())造成控制器不释放</h2>
+          <h2 class="post-title" itemprop="name headline">iOS开发xib和代码设置颜色不同的解决方法及其原理（深度好文）</h2>
         
 
         <div class="post-meta">
@@ -313,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-05T22:12:06+08:00">
-                2018-02-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-18T11:40:37+08:00">
+                2020-12-18
               </time>
             
 
@@ -353,7 +362,7 @@
 
           
           
-             <span id="/Array-addObject-ViewController-cause-viewcontroller-not-release/" class="leancloud_visitors" data-flag-title="Array().addObject(ViewController())造成控制器不释放">
+             <span id="/xib-color-different-with-hard-code/" class="leancloud_visitors" data-flag-title="iOS开发xib和代码设置颜色不同的解决方法及其原理（深度好文）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -384,26 +393,23 @@
       
 
       
-        <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>项目中有一个单例<code>Singleton</code>。有多个<code>UIViewController</code>需要向Singleton中注册观察者来接受<code>Singleton</code>的消息。<br> 这种情况下，使用<code>NSNotificationCenter</code>的方案有些松散，因此不作考虑；<br>  还有一种是使用<code>delegate</code>的方式。为了让<code>delegate</code>可以实现一对多的功能，可以在<code>Singleton</code>的里面增加一个<code>mutableArray</code>的变量和一个<code>addDelegate:</code>的方法。然后在需要接受这个<code>Singleton</code>通知的地方<code>Singleton().addDelegate(self)</code>，这样可以达到目的，但是你会发现这个控制器再也不会调用<code>dealloc</code>。</p>
-<h2 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h2><p>那个调用了<code>Singleton().addDelegate(self)</code>的控制器为什么不会<code>dealloc()</code>了呢？</p>
-<h2 id="分析1"><a href="#分析1" class="headerlink" title="分析1"></a>分析1</h2><ol>
-<li><code>Singleton()</code>作为单例是不会释放的；</li>
-<li><code>mutableArray</code>被<code>Singleton()</code>强引用着，因此也是不会释放的；</li>
-<li>接受消息的控制器被添加到了<code>mutableArray()</code>中，就会被<code>mutableArray()</code>强引用，因此也不会释放；<h2 id="结论1"><a href="#结论1" class="headerlink" title="结论1"></a>结论1</h2>控制器会一直被强引用，因此不会调用<code>dealloc()</code><h2 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h2>那么，如果把<code>Singleton().addDelegate(self)</code>中的self改成__weak呢？<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">__weak UIViewController *weakself = self;</span><br><span class="line">Singleton().addDelegate(weakself);</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="分析2"><a href="#分析2" class="headerlink" title="分析2"></a>分析2</h2><p>先来看一段代码：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">_arr = [<span class="built_in">NSMutableArray</span> array];</span><br><span class="line">Dog *dog1 = [[Dog alloc] init];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"-- retain count: %ld"</span>, <span class="built_in">CFGetRetainCount</span>((__bridge <span class="built_in">CFTypeRef</span>)(dog1)));</span><br><span class="line">__<span class="keyword">weak</span> Dog *weakDog = dog1;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"-- retain count: %ld"</span>, <span class="built_in">CFGetRetainCount</span>((__bridge <span class="built_in">CFTypeRef</span>)(dog1)));</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"-- retain count: %ld"</span>, <span class="built_in">CFGetRetainCount</span>((__bridge <span class="built_in">CFTypeRef</span>)(weakDog)));</span><br><span class="line">[<span class="keyword">self</span>.arr addObject:weakDog];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"-- retain count: %ld"</span>, <span class="built_in">CFGetRetainCount</span>((__bridge <span class="built_in">CFTypeRef</span>)(dog1)));</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"-- retain count: %ld"</span>, <span class="built_in">CFGetRetainCount</span>((__bridge <span class="built_in">CFTypeRef</span>)(weakDog)));</span><br><span class="line"></span><br><span class="line">Dog *dog2 = dog1;    </span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"dog1 = %p"</span>, dog1);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"weakdog1 = %p"</span>, weakDog);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"weakdog1 = %p"</span>, <span class="keyword">self</span>.arr.firstObject);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"dog2 = %p"</span>, dog2);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"retain count: %ld"</span>, <span class="built_in">CFGetRetainCount</span>((__bridge <span class="built_in">CFTypeRef</span>)(dog1)));</span><br></pre></td></tr></table></figure></p>
-<p>打印结果是：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">retain</span> count: <span class="number">1</span></span><br><span class="line"><span class="keyword">retain</span> count: <span class="number">1</span></span><br><span class="line"><span class="keyword">retain</span> count: <span class="number">2</span></span><br><span class="line"><span class="keyword">retain</span> count: <span class="number">2</span></span><br><span class="line"><span class="keyword">retain</span> count: <span class="number">3</span></span><br><span class="line">dog1 = <span class="number">0x60400000b600</span></span><br><span class="line">weakdog1 = <span class="number">0x60400000b600</span></span><br><span class="line">weakdog1 = <span class="number">0x60400000b600</span></span><br><span class="line">dog2 = <span class="number">0x60400000b600</span></span><br><span class="line"><span class="keyword">retain</span> count: <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
-<p>可以验证：</p>
-<pre><code>1. ***__weak的作用是在不增加对象引用计数的前提下持有对象的引用*** 
-2. ***mutableArray会增加所持有指针所指对象的引用计数（不论是不是强指针）***
-3. ***指针赋值可以使新的指针指向相同的地址（与本问题无关）***
-</code></pre><h2 id="结论2"><a href="#结论2" class="headerlink" title="结论2"></a>结论2</h2><p>使用__weak的弱指针同样会使当前控制器被数组强引用，同样会造成当前控制器不释放</p>
-<h1 id="结论3"><a href="#结论3" class="headerlink" title="结论3"></a>结论3</h1><p>通过以上分析可以看出，想要控制器得到释放，就不能让数组持有控制器的强引用，下面有三个方案可以达到这个目的：</p>
-<h2 id="方法1-NSValue-不要使用这个了，最近发现会造成野指针，具体原因不明。"><a href="#方法1-NSValue-不要使用这个了，最近发现会造成野指针，具体原因不明。" class="headerlink" title="方法1 NSValue 不要使用这个了，最近发现会造成野指针，具体原因不明。"></a>方法1 <del>NSValue</del> 不要使用这个了，最近发现会造成野指针，具体原因不明。</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSValue</span> *value = [<span class="built_in">NSValue</span> valueWithNonretainedObject:myObj];</span><br><span class="line">[array addObject:value];</span><br><span class="line"></span><br><span class="line">value.nonretainedObjectValue</span><br></pre></td></tr></table></figure>
-<h2 id="方法2-NSPointerArray"><a href="#方法2-NSPointerArray" class="headerlink" title="方法2 NSPointerArray"></a>方法2 NSPointerArray</h2><p>参见：<a href="http://blog.csdn.net/jeffasd/article/details/60774974" target="_blank" rel="noopener">http://blog.csdn.net/jeffasd/article/details/60774974</a></p>
-<h2 id="方法3-Bridge"><a href="#方法3-Bridge" class="headerlink" title="方法3 Bridge"></a>方法3 Bridge</h2><p>增加一个中间层<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">DelegateBridge</span>: <span class="title">NSObject</span> &lt;<span class="title">aDelegate</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="keyword">id</span> &lt;aDelegate&gt;delegate;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithDelegate:(<span class="keyword">id</span>&lt;aDelegate&gt;)delegate;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">DelegateBridge</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithDelegate:(<span class="keyword">id</span>&lt;aDelegate&gt;)delegate;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.delegate = delegate;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)delegateMethod &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.delegate &amp;&amp; [<span class="keyword">self</span>.delegate respondsToSelector:<span class="keyword">@selector</span>(delegateMethod:)]) &#123;</span><br><span class="line">        [<span class="keyword">self</span>.delegate delegateMethod:aMessages];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
-<p><code>addDelegate()</code>的方法改为：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)addDelegate:(<span class="keyword">id</span>&lt;aDelegate&gt;)delegate</span><br><span class="line">&#123;</span><br><span class="line">    DelegateBridge *bridge = [[DelegateBridge alloc] initWithDelegate:delegate];</span><br><span class="line">    [_delegates addObject:bridge];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>本文主要包括两部分，其一是解决xib设置颜色有偏差的问题，其二是聊一下颜色的一些基础知识。</p>
+<h2 id="xib和代码设置颜色有偏差的原因"><a href="#xib和代码设置颜色有偏差的原因" class="headerlink" title="xib和代码设置颜色有偏差的原因"></a>xib和代码设置颜色有偏差的原因</h2><p>在开发iOS app的过程中我们都是按照设计同学给出的标注来做的，而UI同学在作图时使用到的工具就会有“<strong>颜色配置文件（Color Profile）</strong>”。（下面有颜色配置文件的说明）<br><img src="../images/ps-color-profile.png" alt="PS中的颜色配置文件"><br>从上图可以看出，ps默认的颜色配置文件是sRGB，因此设计给我们的图都是以sRGB为准的。<br>但是在Xcode的ib相关文件中设置颜色时，默认的颜色配置文件是Generic RGB的。<br><img src="../images/xcode-xib-colors.png" alt="Xcode-colors"><br>因此，如果我们直接按照sRGB标的色值在Generic RGB的配置下进行设置就会出现色差了。<br>通过下面的GIF可以更直观的看到这种差异<br><img src="../images/record.gif" alt><br>而代码设置颜色时默认是采用的和photoshop一样的sRGB，也是和xib的Generic RGB不相同的，所以代码设置的颜色和UI同学提供的是一样的，而xib中是和他们两个不一样的。</p>
+<h2 id="xib设置颜色和代码有差异的问题解决方案"><a href="#xib设置颜色和代码有差异的问题解决方案" class="headerlink" title="xib设置颜色和代码有差异的问题解决方案"></a>xib设置颜色和代码有差异的问题解决方案</h2><p>解决方案有两种，一种是把sRGB的色值转化成Generic RGB之后再进行设置，另一种是把配置改成sRGB的再进行设置。<br>这里用到的不同颜色配置之间进行转换的工具可以用mac自带的ColorSync Utility</p>
+<p><center class="half" style="display:flex;margin-left:10%"><br>    <img src="../images/colorsyncutilityicon.png" width="200"><img src="../images/colorsyncinterface.png" width="300"><br></center></p>
+<h2 id="xib和代码设置的颜色有差异的原理分析"><a href="#xib和代码设置的颜色有差异的原理分析" class="headerlink" title="xib和代码设置的颜色有差异的原理分析"></a>xib和代码设置的颜色有差异的原理分析</h2><p>上面说到了xib默认的颜色配置和ps、代码都是不同的，说到颜色配置（Color Profile）就不得不说颜色模型（Color Model）和颜色空间（Color Space）。<br>众所周知，计算机、摄像机、打印机等数字设备中只能认识0和1（不然它们也不会叫数字设备了🐶），因此为了把自然界中的五颜六色在数字设备中展示出来，<strong>颜色转换成数字的算法（公式）—— 颜色模型</strong> 就出现了。<br>现在被广泛使用的颜色模型有RGB、CMYK、CIELAB等，其中RGB主要用在摄像机、显示器等领域，CMYK主要用在打印机领域，具体内容可以查看<a href="https://www.dpbestflow.org/color/color-space-and-color-profiles" target="_blank" rel="noopener">这篇文章</a>。<br>有了算法，就要有<strong>颜色模型具体的算法实现——颜色空间</strong>。<br>之所以叫空间是因为每一个具体的颜色空间都有一个范围<br><img src="../image/../images/v2-374053ce809551b3eeef09046f48b074_1440w.jpg" alt><br>正如上图所示，颜色空间都是有不同的范围的，而不同范围的颜色空间进行转换的时候就会有损失，也就会造成<a href="https://zhuanlan.zhihu.com/p/72530732" target="_blank" rel="noopener">色差</a>。<br><img src="../images/v2-53ebd97b57e169f8b395766d580a1ea9_1440w.jpg" alt><br>颜色模型可以理解为一个概念、理论，颜色空间是对颜色模型的一次具象描述，但是它还不能被计算机所理解。<strong>颜色配置正是能够直接被数字设备拿来用的具体文件</strong>。<br>在Mac电脑的ColorSync Utility应用中可以看到下面这些颜色配置<br><img src="../images/colorsyncprofiles.png" alt></p>
+<p>至此，我们把xib和代码设置颜色有偏差的现象彻底解决了，总结一句话就是：</p>
+<blockquote>
+<p>不同的颜色配置之间转换时会造成色差，而代码和xib进行颜色设置时使用了不同的颜色配置文件，才最终导致了同样的色值的最终表现不同。</p>
+</blockquote>
+<hr>
+<p>$\color{OrangeRed}{其他热门文章}$</p>
+<ul>
+<li><a href="http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/">WebSocket简介和SocketRocket源码分析</a></li>
+<li><a href="http://www.iosprogrammer.tech/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/">Android下编译FFmepg并添加文字水印</a></li>
+<li><a href="http://www.iosprogrammer.tech/Using-Instruments-To-Oprimize-CPU-Performance/">使用Instruments工具测试CPU与常见对CPU占用过高的操作</a></li>
+</ul>
+<hr>
 
         <div class="wxgzh">
           <image src="http://assets.iosprogrammer.tech/blog-qrcode%E5%89%AF%E6%9C%AC.png">
@@ -431,8 +437,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/iOS-Scheme-Theory-And-Practice/" rel="next" title="Scheme以及微信、支付宝等第三方功能的实现">
-                <i class="fa fa-chevron-left"></i> Scheme以及微信、支付宝等第三方功能的实现
+              <a href="/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/" rel="next" title="Android FFmpeg Cannot find a valid font for the family Sans">
+                <i class="fa fa-chevron-left"></i> Android FFmpeg Cannot find a valid font for the family Sans
               </a>
             
           </div>
@@ -440,10 +446,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/iOS-SocketRocket/" rel="prev" title="SocketRocket使用">
-                SocketRocket使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -571,7 +573,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#场景"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题1"><span class="nav-number">2.</span> <span class="nav-text">问题1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析1"><span class="nav-number">3.</span> <span class="nav-text">分析1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论1"><span class="nav-number">4.</span> <span class="nav-text">结论1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题2"><span class="nav-number">5.</span> <span class="nav-text">问题2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析2"><span class="nav-number">6.</span> <span class="nav-text">分析2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论2"><span class="nav-number">7.</span> <span class="nav-text">结论2</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#结论3"><span class="nav-number"></span> <span class="nav-text">结论3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法1-NSValue-不要使用这个了，最近发现会造成野指针，具体原因不明。"><span class="nav-number">1.</span> <span class="nav-text">方法1 NSValue 不要使用这个了，最近发现会造成野指针，具体原因不明。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法2-NSPointerArray"><span class="nav-number">2.</span> <span class="nav-text">方法2 NSPointerArray</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法3-Bridge"><span class="nav-number">3.</span> <span class="nav-text">方法3 Bridge</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#xib和代码设置颜色有偏差的原因"><span class="nav-number">1.</span> <span class="nav-text">xib和代码设置颜色有偏差的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xib设置颜色和代码有差异的问题解决方案"><span class="nav-number">2.</span> <span class="nav-text">xib设置颜色和代码有差异的问题解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xib和代码设置的颜色有差异的原理分析"><span class="nav-number">3.</span> <span class="nav-text">xib和代码设置的颜色有差异的原理分析</span></a></li></ol></div>
             
 
           </div>

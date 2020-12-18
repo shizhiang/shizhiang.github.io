@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>iOS开发xib和代码设置颜色不同的解决方法及其原理（深度好文）</title>
+      <link href="/xib-color-different-with-hard-code/"/>
+      <url>/xib-color-different-with-hard-code/</url>
+      
+        <content type="html"><![CDATA[<p>本文主要包括两部分，其一是解决xib设置颜色有偏差的问题，其二是聊一下颜色的一些基础知识。</p><h2 id="xib和代码设置颜色有偏差的原因"><a href="#xib和代码设置颜色有偏差的原因" class="headerlink" title="xib和代码设置颜色有偏差的原因"></a>xib和代码设置颜色有偏差的原因</h2><p>在开发iOS app的过程中我们都是按照设计同学给出的标注来做的，而UI同学在作图时使用到的工具就会有“<strong>颜色配置文件（Color Profile）</strong>”。（下面有颜色配置文件的说明）<br><img src="../images/ps-color-profile.png" alt="PS中的颜色配置文件"><br>从上图可以看出，ps默认的颜色配置文件是sRGB，因此设计给我们的图都是以sRGB为准的。<br>但是在Xcode的ib相关文件中设置颜色时，默认的颜色配置文件是Generic RGB的。<br><img src="../images/xcode-xib-colors.png" alt="Xcode-colors"><br>因此，如果我们直接按照sRGB标的色值在Generic RGB的配置下进行设置就会出现色差了。<br>通过下面的GIF可以更直观的看到这种差异<br><img src="../images/record.gif" alt><br>而代码设置颜色时默认是采用的和photoshop一样的sRGB，也是和xib的Generic RGB不相同的，所以代码设置的颜色和UI同学提供的是一样的，而xib中是和他们两个不一样的。</p><h2 id="xib设置颜色和代码有差异的问题解决方案"><a href="#xib设置颜色和代码有差异的问题解决方案" class="headerlink" title="xib设置颜色和代码有差异的问题解决方案"></a>xib设置颜色和代码有差异的问题解决方案</h2><p>解决方案有两种，一种是把sRGB的色值转化成Generic RGB之后再进行设置，另一种是把配置改成sRGB的再进行设置。<br>这里用到的不同颜色配置之间进行转换的工具可以用mac自带的ColorSync Utility</p><p><center class="half" style="display:flex;margin-left:10%"><br>    <img src="../images/colorsyncutilityicon.png" width="200"><img src="../images/colorsyncinterface.png" width="300"><br></center></p><h2 id="xib和代码设置的颜色有差异的原理分析"><a href="#xib和代码设置的颜色有差异的原理分析" class="headerlink" title="xib和代码设置的颜色有差异的原理分析"></a>xib和代码设置的颜色有差异的原理分析</h2><p>上面说到了xib默认的颜色配置和ps、代码都是不同的，说到颜色配置（Color Profile）就不得不说颜色模型（Color Model）和颜色空间（Color Space）。<br>众所周知，计算机、摄像机、打印机等数字设备中只能认识0和1（不然它们也不会叫数字设备了🐶），因此为了把自然界中的五颜六色在数字设备中展示出来，<strong>颜色转换成数字的算法（公式）—— 颜色模型</strong> 就出现了。<br>现在被广泛使用的颜色模型有RGB、CMYK、CIELAB等，其中RGB主要用在摄像机、显示器等领域，CMYK主要用在打印机领域，具体内容可以查看<a href="https://www.dpbestflow.org/color/color-space-and-color-profiles" target="_blank" rel="noopener">这篇文章</a>。<br>有了算法，就要有<strong>颜色模型具体的算法实现——颜色空间</strong>。<br>之所以叫空间是因为每一个具体的颜色空间都有一个范围<br><img src="../image/../images/v2-374053ce809551b3eeef09046f48b074_1440w.jpg" alt><br>正如上图所示，颜色空间都是有不同的范围的，而不同范围的颜色空间进行转换的时候就会有损失，也就会造成<a href="https://zhuanlan.zhihu.com/p/72530732" target="_blank" rel="noopener">色差</a>。<br><img src="../images/v2-53ebd97b57e169f8b395766d580a1ea9_1440w.jpg" alt><br>颜色模型可以理解为一个概念、理论，颜色空间是对颜色模型的一次具象描述，但是它还不能被计算机所理解。<strong>颜色配置正是能够直接被数字设备拿来用的具体文件</strong>。<br>在Mac电脑的ColorSync Utility应用中可以看到下面这些颜色配置<br><img src="../images/colorsyncprofiles.png" alt></p><p>至此，我们把xib和代码设置颜色有偏差的现象彻底解决了，总结一句话就是：</p><blockquote><p>不同的颜色配置之间转换时会造成色差，而代码和xib进行颜色设置时使用了不同的颜色配置文件，才最终导致了同样的色值的最终表现不同。</p></blockquote><hr><p>$\color{OrangeRed}{其他热门文章}$</p><ul><li><a href="http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/">WebSocket简介和SocketRocket源码分析</a></li><li><a href="http://www.iosprogrammer.tech/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/">Android下编译FFmepg并添加文字水印</a></li><li><a href="http://www.iosprogrammer.tech/Using-Instruments-To-Oprimize-CPU-Performance/">使用Instruments工具测试CPU与常见对CPU占用过高的操作</a></li></ul><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> iOS </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Android FFmpeg Cannot find a valid font for the family Sans</title>
       <link href="/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/"/>
       <url>/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/</url>
