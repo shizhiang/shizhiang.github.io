@@ -4,6 +4,24 @@
 
     
   <url>
+    <loc>http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/</loc>
+    <lastmod>2021-01-02T14:26:21.071Z</lastmod>
+    <data>
+        <display>
+        <title>UIStackView的正确使用姿势（从入门到精通）</title>
+        <pubTime>2021-01-01T08:28:23.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.iosprogrammer.tech/xib-color-different-with-hard-code/</loc>
     <lastmod>2020-12-18T07:15:11.805Z</lastmod>
     <data>
@@ -456,6 +474,24 @@
 
     
   <url>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
+    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
+    <data>
+        <display>
+        <title>跟我一起学习React Native之我的和设置</title>
+        <pubTime>2018-06-20T07:16:21.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-questions/</loc>
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     <data>
@@ -480,24 +516,6 @@
         <display>
         <title>跟我一起学React Native之项目结构搭建</title>
         <pubTime>2018-06-12T12:59:58.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
-    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
-    <data>
-        <display>
-        <title>跟我一起学习React Native之我的和设置</title>
-        <pubTime>2018-06-20T07:16:21.000Z</pubTime>
         
          
            

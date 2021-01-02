@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>UIStackView的正确使用姿势（从入门到精通）</title>
+      <link href="/UIStackView-Advanced-Knowledge/"/>
+      <url>/UIStackView-Advanced-Knowledge/</url>
+      
+        <content type="html"><![CDATA[<p>UIStackView在iOS9之后开始使用，继承自UIView，用来管理在它内部的views，<text style="color:#1E90FF">但是并不会被渲染出来</text>，经过我在工作中的使用总结，它确实可以很大程度提高界面开发效率，每一个iOS开发者都应该熟练掌握UIStackView的使用。</p><p>本文将分为基础和进阶两部分来讲解UIStackView，因此如果已经一定程度的使用过UIStackView，那么可以直接跳转到进阶部分。</p><h3 id="UIStackView基础入门知识"><a href="#UIStackView基础入门知识" class="headerlink" title="UIStackView基础入门知识"></a>UIStackView基础入门知识</h3><p>UIStackview的主要作用是管理<code>arrangedSubviews</code>数组中的view的布局，管理数组的有三个方法</p><pre><code>- addArrangedSubview:- removeArrangedSubview:- insertArrangedSubview:atIndex:</code></pre><p>UIStackView中arrangedSubview的布局主要是使用<code>UILayoutConstraintAxis</code> <code>UIStackViewDistribution</code> <code>UIStackViewAlignment</code> <code>spacing</code> 几个属性。</p><ol><li><code>UILayoutConstraintAxis</code> - 确定arrangedSubviews的排列方向，分为Horizontal和Vertical</li><li><p><code>UIStackViewDistribution</code> - arrangedSubviews<strong>在排列方向</strong>的布局方式</p><ol><li>UIStackViewDistributionFill 把UIStackView的空间填充满，对于有intrinsic content size的UIView（UILabel、UIButton、UIImageView、UIControl）需要通过设置Size Inspector中的Content Hugging Property来决定优先满足哪个view的contrinsicSize，如果property相同则会默认选择第一个。</li><li>UIStackViewDistributionFillEqually arrangedSubviews平分UIStackView 排列方向上除了spacing的空间</li><li>UIStackViewDistributionFillProportionally 按比例分配每个arrangedSubview所占大小，按照每个arrangedSubview的intrinsic content size的比例</li><li>UIStackViewDistributionEqualSpacing 当arrangedSubviews不能填满时，空白区域会平均分配，而不会自动拉伸Hugging Property较低的view；如果arrangedSubviews放不开时，会优先保证compression resistance priority较高的view内容能够完全展示，priority相同时会默认保证第一个view。</li><li>UIStackViewDistributionEqualCentering view中心之间的spacing相等。当spacing值过大，无法满足所有view都能正常展示，会优先保证compression resistance priority较高的view内容能够完全展示，priority相同时会默认保证第一个view。</li></ol></li><li><p>UIStackViewAlignment - arrangedSubviews<strong>垂直于排列方向</strong>的布局方式</p><ol><li>UIStackViewAlignmentFill 完全填充</li><li>UIStackViewAlignmentLeading/UIStackViewAlignmentTop 靠上/右</li><li>UIStackViewAlignmentTrailing/UIStackViewAlignmentBottom 靠下/左</li><li>UIStackViewAlignmentFirstBaseline/UIStackViewAlignmentLastBaseline 文字基线 下/上</li></ol></li><li>spacing - arrangedSubview的间距。对于<code>UIStackViewDistributionFillxxx</code>就是准确的距离，对于UIStackViewDistributionEqualSpacing、UIStackViewDistributionEqualCentering 是最小距离，<strong>使用负数view会覆盖</strong></li></ol><p>掌握了上面的基础知识后基本就可以上手使用UIStackView了。</p><h3 id="UIStackView进阶知识"><a href="#UIStackView进阶知识" class="headerlink" title="UIStackView进阶知识"></a>UIStackView进阶知识</h3><p>Q1. 在UIStackView中可以对子view使用约束吗？<br>A1. UIStackView是基于约束来确定里面arrangedSubview的布局的，手动给某一个arrangedSubview指定约束时，会优先满足指定的约束，不过因为系统也会根据我们设置的属性添加约束，所以要当心会出现约束冲突。</p><p>Q2. UIStackView.arrangedViews 和 UIStackView.subViews的关系？<br>A2. arragedViews是subViews的子集 </p><ol><li>UIStackView addSubview 并不会添加到arrangedSubviews中；</li><li>当向arrangedSubviews中添加view时会自动添加到subviews中 </li><li>把一个只在subview而不在arrangedview中的view移除时也不会影响到arrangedview </li><li>一个view既在subviews中又在arrangedviews中时，当把它从subviews中移除，也会自动从arragedviews中移除，反之则不然</li></ol><p>Q3. UIStackView设置了背景色为什么显示不出来？<br>A3. UIStackView虽然是UIView的子类，但是它并不会被渲染，所以设置背景色并没有什么显示，但是设置圆角是有作用的。</p><p>Q4. UIStackView怎么设置某一个子view和后面view的距离？<br>A4. 在iOS11之后UIStackView新加了方法可以设置<code>setCustomSpacing:afterView</code></p><iframe src="//player.bilibili.com/player.html?bvid=BV1wz4y1674t&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%" height="300px"> </iframe><hr><p>$\color{OrangeRed}{其他热门文章}$</p><ul><li><a href="https://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/">WebSocket简介和SocketRocket源码分析</a></li><li><a href="https://www.iosprogrammer.tech/xib-color-different-with-hard-code/">xib和代码设置颜色不同的解决方法及其原理</a></li><li><a href="https://www.iosprogrammer.tech/Using-Instruments-To-Oprimize-CPU-Performance/">使用Instruments工具测试CPU与常见对CPU占用过高的操作</a></li></ul><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> iOS </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>iOS开发xib和代码设置颜色不同的解决方法及其原理（深度好文）</title>
       <link href="/xib-color-different-with-hard-code/"/>
       <url>/xib-color-different-with-hard-code/</url>
