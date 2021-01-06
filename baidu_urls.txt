@@ -1,2 +1,2 @@
+http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/
 http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/
-http://www.iosprogrammer.tech/xib-color-different-with-hard-code/

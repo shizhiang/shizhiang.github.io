@@ -4,11 +4,29 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/</loc>
-    <lastmod>2021-01-02T14:26:21.071Z</lastmod>
+    <loc>http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/</loc>
+    <lastmod>2021-01-06T09:03:07.382Z</lastmod>
     <data>
         <display>
-        <title>UIStackView的正确使用姿势（从入门到精通）</title>
+        <title>什么是Content Hugging Priorities/Content Compression Resistance Priorities</title>
+        <pubTime>2021-01-06T07:00:19.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/</loc>
+    <lastmod>2021-01-06T09:02:57.448Z</lastmod>
+    <data>
+        <display>
+        <title>UIStackView的正确使用姿势（最新最全、配视频教程）</title>
         <pubTime>2021-01-01T08:28:23.000Z</pubTime>
         
          

@@ -82,14 +82,14 @@
 <meta name="description" content="UIStackView在iOS9之后开始使用，继承自UIView，用来管理在它内部的views，但是并不会被渲染出来，经过我在工作中的使用总结，它确实可以很大程度提高界面开发效率，每一个iOS开发者都应该熟练掌握UIStackView的使用。 本文将分为基础和进阶两部分来讲解UIStackView，因此如果已经一定程度的使用过UIStackView，那么可以直接跳转到进阶部分。 UIStackVi">
 <meta name="keywords" content="UIStackView,AutoLayout,iOS开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UIStackView的正确使用姿势（从入门到精通）">
+<meta property="og:title" content="UIStackView的正确使用姿势（最新最全、配视频教程）">
 <meta property="og:url" content="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/index.html">
 <meta property="og:site_name" content="编程学堂">
 <meta property="og:description" content="UIStackView在iOS9之后开始使用，继承自UIView，用来管理在它内部的views，但是并不会被渲染出来，经过我在工作中的使用总结，它确实可以很大程度提高界面开发效率，每一个iOS开发者都应该熟练掌握UIStackView的使用。 本文将分为基础和进阶两部分来讲解UIStackView，因此如果已经一定程度的使用过UIStackView，那么可以直接跳转到进阶部分。 UIStackVi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-02T14:26:21.071Z">
+<meta property="og:updated_time" content="2021-01-06T09:02:57.448Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UIStackView的正确使用姿势（从入门到精通）">
+<meta name="twitter:title" content="UIStackView的正确使用姿势（最新最全、配视频教程）">
 <meta name="twitter:description" content="UIStackView在iOS9之后开始使用，继承自UIView，用来管理在它内部的views，但是并不会被渲染出来，经过我在工作中的使用总结，它确实可以很大程度提高界面开发效率，每一个iOS开发者都应该熟练掌握UIStackView的使用。 本文将分为基础和进阶两部分来讲解UIStackView，因此如果已经一定程度的使用过UIStackView，那么可以直接跳转到进阶部分。 UIStackVi">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>UIStackView的正确使用姿势（从入门到精通） | 编程学堂</title>
+  <title>UIStackView的正确使用姿势（最新最全、配视频教程） | 编程学堂</title>
   
 
 
@@ -301,7 +301,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">UIStackView的正确使用姿势（从入门到精通）</h2>
+          <h2 class="post-title" itemprop="name headline">UIStackView的正确使用姿势（最新最全、配视频教程）</h2>
         
 
         <div class="post-meta">
@@ -353,7 +353,7 @@
 
           
           
-             <span id="/UIStackView-Advanced-Knowledge/" class="leancloud_visitors" data-flag-title="UIStackView的正确使用姿势（从入门到精通）">
+             <span id="/UIStackView-Advanced-Knowledge/" class="leancloud_visitors" data-flag-title="UIStackView的正确使用姿势（最新最全、配视频教程）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -395,10 +395,10 @@
 <li><code>UILayoutConstraintAxis</code> - 确定arrangedSubviews的排列方向，分为Horizontal和Vertical</li>
 <li><p><code>UIStackViewDistribution</code> - arrangedSubviews<strong>在排列方向</strong>的布局方式</p>
 <ol>
-<li>UIStackViewDistributionFill 把UIStackView的空间填充满，对于有intrinsic content size的UIView（UILabel、UIButton、UIImageView、UIControl）需要通过设置Size Inspector中的Content Hugging Property来决定优先满足哪个view的contrinsicSize，如果property相同则会默认选择第一个。</li>
+<li>UIStackViewDistributionFill 把UIStackView的空间填充满，对于有intrinsic content size的UIView（UILabel、UIButton、UIImageView、UIControl）需要通过设置Size Inspector中的<a href="https://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">Content Hugging Property</a>来决定优先满足哪个view的contrinsicSize，如果property相同则会默认选择第一个。</li>
 <li>UIStackViewDistributionFillEqually arrangedSubviews平分UIStackView 排列方向上除了spacing的空间</li>
 <li>UIStackViewDistributionFillProportionally 按比例分配每个arrangedSubview所占大小，按照每个arrangedSubview的intrinsic content size的比例</li>
-<li>UIStackViewDistributionEqualSpacing 当arrangedSubviews不能填满时，空白区域会平均分配，而不会自动拉伸Hugging Property较低的view；如果arrangedSubviews放不开时，会优先保证compression resistance priority较高的view内容能够完全展示，priority相同时会默认保证第一个view。</li>
+<li>UIStackViewDistributionEqualSpacing 当arrangedSubviews不能填满时，空白区域会平均分配，而不会自动拉伸Hugging Property较低的view；如果arrangedSubviews放不开时，会优先保证<a href="https://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">compression resistance priority</a>较高的view内容能够完全展示，priority相同时会默认保证第一个view。</li>
 <li>UIStackViewDistributionEqualCentering view中心之间的spacing相等。当spacing值过大，无法满足所有view都能正常展示，会优先保证compression resistance priority较高的view内容能够完全展示，priority相同时会默认保证第一个view。</li>
 </ol>
 </li>
@@ -469,6 +469,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/" rel="prev" title="什么是Content Hugging Priorities/Content Compression Resistance Priorities">
+                什么是Content Hugging Priorities/Content Compression Resistance Priorities <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -550,7 +554,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

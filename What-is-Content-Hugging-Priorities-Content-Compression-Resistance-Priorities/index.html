@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="软件开发,iOS开发,音视频编解码">
+  <meta name="keywords" content="Content Hugging Priorities,Content Compression Resistance Priorities,Autolayout,iOS开发">
 
 
 
@@ -79,19 +79,29 @@
 
 
 
-<meta name="description" content="xxx.github.io在国内访问速度不行，为了增强用户体验，把博客搬到自己的服务器。操作环境：  本地：Mac 服务器：阿里云CentOS  主要步骤：  服务器安装Nginx和Git（具体方法自行百度） 服务器创建用户git并设置密码。  123useradd gitpasswd git // 设置密码su git  服务器端创建Git空仓库。  123mkdir ~/hexo.gitcd">
+<meta name="description" content="这两个优先级属性都是用在iOS开发时Auto Layout布局中的。 Content Hugging PrioritiesContent Hugging Priorities：在Auto Layout中，当子视图不足以填充满空间时，优先满足此属性值较大的子视图的内容展示，而拉伸属性值较低的子视图。 假设有这样一种情况，两个水平排列的UILabel中分别显示“编程学堂”和“www.iosprogra">
+<meta name="keywords" content="Content Hugging Priorities,Content Compression Resistance Priorities,Autolayout,iOS开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="部署Hexo到自己的服务器">
-<meta property="og:url" content="http://www.iosprogrammer.tech/Deploy-Hexo-Aliyun/index.html">
+<meta property="og:title" content="什么是Content Hugging Priorities&#x2F;Content Compression Resistance Priorities">
+<meta property="og:url" content="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/index.html">
 <meta property="og:site_name" content="编程学堂">
-<meta property="og:description" content="xxx.github.io在国内访问速度不行，为了增强用户体验，把博客搬到自己的服务器。操作环境：  本地：Mac 服务器：阿里云CentOS  主要步骤：  服务器安装Nginx和Git（具体方法自行百度） 服务器创建用户git并设置密码。  123useradd gitpasswd git // 设置密码su git  服务器端创建Git空仓库。  123mkdir ~/hexo.gitcd">
+<meta property="og:description" content="这两个优先级属性都是用在iOS开发时Auto Layout布局中的。 Content Hugging PrioritiesContent Hugging Priorities：在Auto Layout中，当子视图不足以填充满空间时，优先满足此属性值较大的子视图的内容展示，而拉伸属性值较低的子视图。 假设有这样一种情况，两个水平排列的UILabel中分别显示“编程学堂”和“www.iosprogra">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://image.zanderwb.com/Hexo/%E6%88%AA%E5%B1%8F2020-07-12%20%E4%B8%8A%E5%8D%8811.37.04.png">
-<meta property="og:updated_time" content="2020-12-08T09:42:55.852Z">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/hugging-prority-1.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/hugging-prority-2.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/hugging-prority-3.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/hugging-prority-4.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/hugging-prority-5.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/hugging-prority-6.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/hugging-prority-7.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/hugging-prority-8.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/hugging-prority-9.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/hugging-prority-10.png">
+<meta property="og:updated_time" content="2021-01-06T09:03:07.382Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="部署Hexo到自己的服务器">
-<meta name="twitter:description" content="xxx.github.io在国内访问速度不行，为了增强用户体验，把博客搬到自己的服务器。操作环境：  本地：Mac 服务器：阿里云CentOS  主要步骤：  服务器安装Nginx和Git（具体方法自行百度） 服务器创建用户git并设置密码。  123useradd gitpasswd git // 设置密码su git  服务器端创建Git空仓库。  123mkdir ~/hexo.gitcd">
-<meta name="twitter:image" content="http://image.zanderwb.com/Hexo/%E6%88%AA%E5%B1%8F2020-07-12%20%E4%B8%8A%E5%8D%8811.37.04.png">
+<meta name="twitter:title" content="什么是Content Hugging Priorities&#x2F;Content Compression Resistance Priorities">
+<meta name="twitter:description" content="这两个优先级属性都是用在iOS开发时Auto Layout布局中的。 Content Hugging PrioritiesContent Hugging Priorities：在Auto Layout中，当子视图不足以填充满空间时，优先满足此属性值较大的子视图的内容展示，而拉伸属性值较低的子视图。 假设有这样一种情况，两个水平排列的UILabel中分别显示“编程学堂”和“www.iosprogra">
+<meta name="twitter:image" content="http://www.iosprogrammer.tech/images/hugging-prority-1.png">
 
 
 
@@ -121,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://www.iosprogrammer.tech/Deploy-Hexo-Aliyun/">
+  <link rel="canonical" href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">
 
 
 
 
 
-  <title>部署Hexo到自己的服务器 | 编程学堂</title>
+  <title>什么是Content Hugging Priorities/Content Compression Resistance Priorities | 编程学堂</title>
   
 
 
@@ -285,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/Deploy-Hexo-Aliyun/">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Davis">
@@ -302,7 +312,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">部署Hexo到自己的服务器</h2>
+          <h2 class="post-title" itemprop="name headline">什么是Content Hugging Priorities/Content Compression Resistance Priorities</h2>
         
 
         <div class="post-meta">
@@ -314,8 +324,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-10T15:51:51+08:00">
-                2020-07-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-06T15:00:19+08:00">
+                2021-01-06
               </time>
             
 
@@ -337,8 +347,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/其他/" itemprop="url" rel="index">
-                    <span itemprop="name">其他</span>
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
                   </a>
                 </span>
 
@@ -354,7 +364,7 @@
 
           
           
-             <span id="/Deploy-Hexo-Aliyun/" class="leancloud_visitors" data-flag-title="部署Hexo到自己的服务器">
+             <span id="/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/" class="leancloud_visitors" data-flag-title="什么是Content Hugging Priorities/Content Compression Resistance Priorities">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -385,49 +395,30 @@
       
 
       
-        <p>xxx.github.io在国内访问速度不行，为了增强用户体验，把博客搬到自己的服务器。<br>操作环境：</p>
-<ul>
-<li>本地：Mac</li>
-<li>服务器：阿里云CentOS</li>
-</ul>
-<p>主要步骤：</p>
-<ol>
-<li>服务器安装Nginx和Git（具体方法自行百度）</li>
-<li><p>服务器创建用户git并设置密码。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">useradd git</span><br><span class="line">passwd git // 设置密码</span><br><span class="line">su git</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>服务器端创建Git空仓库。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/hexo.git</span><br><span class="line">cd ~/hexo.git/</span><br><span class="line">git init --bare</span><br></pre></td></tr></table></figure>
-<p> git空仓库可以跟踪git提交信息，但是并不保存源文件。<br> 如果不使用空仓库，客户端是不能提交代码到服务器的。</p>
-</li>
-<li><p>在根目录下创建源码存放目录，并使用Git钩子指定源码存放目录。<br> 如果只是要使用git进行版本控制，这一步是不需要的。<br> 为了能够让网站被访问才需要存放源码。<br> 上一步创建的空仓库中包含一个Hooks文件夹，这个里面存放的是在Git各个阶段会自动触发的脚本。<br> 我们这里需要让Git仓库收到新的提交后自动把代码转移到源码目录。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/blog</span><br><span class="line">vim ~/hexo.git/hooks/post-receive</span><br><span class="line"></span><br><span class="line">#!/bin/sh</span><br><span class="line">git --work-tree=/~/hexo --git-dir=/~/hexo.git checkout -f</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编辑Nginx配置文件</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  【你的域名】;</span><br><span class="line">    root   /home/git/blog;</span><br><span class="line">    index  index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 重启nginx </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo nginx -t # 检查您想配置文件</span><br><span class="line">sudo nginx -s reload # 重启</span><br></pre></td></tr></table></figure>
-<p> 如果要收录到百度等网站，只能使用80端口。否则你可以指定其他端口。</p>
-</li>
-<li><p>增加hexo目录下_config.yml的deploy内容</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">- type: git # 提交到自己服务器</span><br><span class="line">  repo: git@39.100.115.70:/home/git/hexo.git</span><br><span class="line">- type: git # 提交到github.io</span><br><span class="line">  repo: git@github.com:shizhiang/shizhiang.github.io.git</span><br><span class="line">- type: baidu_url_submitter</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>部署博客内容</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p> 这时候你需要输入自己服务器的root用户密码，如果想省略可以在<code>/root/.ssh/authorized_keys</code>加入自己电脑的<code>~/.ssh/id_rsa.pub</code></p>
-</li>
-<li>遇到的问题<ol>
-<li><code>hexo g</code>生成的.html文件都是空的，解决方法是把node的版本将到稳定版。我的是从14降到了12</li>
-<li>怎么让博客在国内和国外访问都很快？<br> 云解析分别解析。<img src="http://image.zanderwb.com/Hexo/%E6%88%AA%E5%B1%8F2020-07-12%20%E4%B8%8A%E5%8D%8811.37.04.png" alt="域名解析"></li>
-</ol>
-</li>
-</ol>
+        <p>这两个优先级属性都是用在iOS开发时Auto Layout布局中的。</p>
+<h3 id="Content-Hugging-Priorities"><a href="#Content-Hugging-Priorities" class="headerlink" title="Content Hugging Priorities"></a>Content Hugging Priorities</h3><p><strong>Content Hugging Priorities：在Auto Layout中，当子视图不足以填充满空间时，优先满足此属性值较大的子视图的内容展示，而拉伸属性值较低的子视图。</strong></p>
+<p>假设有这样一种情况，两个水平排列的UILabel中分别显示“编程学堂”和“www.iosprogrammer.tech“，给它们加上5个约束，其中2、3、5是水平约束，假设这3个水平约束的值都是10.</p>
+<p>现在两个UILabel里面文字内容所占大小加上3个水平约束的值仍然小于（&lt;）父视图的宽度。此时会发现storyboard中有报错，但是我们仍然可以正常运行项目并看到展示结果。<br><img src="../images/hugging-prority-1.png" alt><br><img src="../images/hugging-prority-2.png" alt><br><img src="../images/hugging-prority-3.png" alt></p>
+<p>我们可以看到“www.iosprogrammer.tech“所在label所占的空间变大了。此时设置这个label的Content Hugging Priorities为750。</p>
+<p><img src="../images/hugging-prority-4.png" alt><br><img src="../images/hugging-prority-5.png" alt></p>
+<p>“www.iosprogrammer.tech“所在label刚好满足展示内容，而“编程学堂”所在label所占空间变大了。</p>
+<p>这也就是Content Hugging Priorities的作用，控制当内容不足以填充满空间时，优先满足此属性值较大的子view的内容展示，而拉伸属性值较低的子view。</p>
+<h3 id="Content-Compression-Resistance-Priorities"><a href="#Content-Compression-Resistance-Priorities" class="headerlink" title="Content Compression Resistance Priorities"></a>Content Compression Resistance Priorities</h3><p><strong>Content Compression Resistance Priorities：在Auto Layout中，当子视图所需的内容超出父视图的空间时，优先展示此值较大的子视图，而省略压缩此值较小的子视图。</strong></p>
+<p>假设有这样一种情况，两个水平排列的UILabel中分别显示“编程学堂专注于提高编程能力”和“编程学堂的官方网站是www.iosprogrammer.tech“，给它们加上5个约束，其中2、3、5是水平约束，假设这3个水平约束的值都是10.</p>
+<p>现在两个UILabel里面文字内容所占大小超过了父视图的宽度。此时会发现storyboard中有报错，但是我们仍然可以正常运行项目并看到展示结果。<br><img src="../images/hugging-prority-6.png" alt><br><img src="../images/hugging-prority-7.png" alt><br><img src="../images/hugging-prority-8.png" alt></p>
+<p>第一个Label被压缩了，里面的文字被省略了；第二个label正常展示了出来。此时我们把第一个label的Content Compression Resistance Priorities设置到大于第二个label。</p>
+<p><img src="../images/hugging-prority-9.png" alt><br><img src="../images/hugging-prority-10.png" alt></p>
+<p>可以看到第二个label被压缩了，第一个label正常展示了出来。</p>
+<p><strong>Content Compression Resistance Priorities：在Auto Layout中，当子视图所需的内容超出父视图的空间时，优先展示此值较大的子视图，而省略压缩此值较小的子视图。</strong></p>
+<p><a href="https://medium.com/@dineshk1389/content-hugging-and-compression-resistance-in-ios-35a0e8f19118" target="_blank" rel="noopener">参考文章</a></p>
+<hr>
 <p>$\color{OrangeRed}{其他热门文章}$</p>
 <ul>
-<li><a href="http://www.iosprogrammer.tech/Hexo-Add-GZH-EveryPage//">Hexo文章末尾添加给公众号引流</a></li>
-<li><a href="http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/">WebSocket简介和SocketRocket源码分析</a></li>
-<li><a href="http://www.iosprogrammer.tech/Calendar-Notes-Reminders/">Mac OS/iOS中日历、备忘录、提醒事项的使用以及使用iMessage共享屏幕</a></li>
+<li><a href="https://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/">WebSocket简介和SocketRocket源码分析</a></li>
+<li><a href="https://www.iosprogrammer.tech/xib-color-different-with-hard-code/">xib和代码设置颜色不同的解决方法及其原理</a></li>
+<li><a href="https://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li>
 </ul>
+<hr>
 
         <div class="wxgzh">
           <image src="http://assets.iosprogrammer.tech/blog-qrcode-new.png">
@@ -455,8 +446,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Read-Effective-Objective-C-2-0-2/" rel="next" title="读《Effective Objective-C 2.0》（二）">
-                <i class="fa fa-chevron-left"></i> 读《Effective Objective-C 2.0》（二）
+              <a href="/UIStackView-Advanced-Knowledge/" rel="next" title="UIStackView的正确使用姿势（最新最全、配视频教程）">
+                <i class="fa fa-chevron-left"></i> UIStackView的正确使用姿势（最新最全、配视频教程）
               </a>
             
           </div>
@@ -464,10 +455,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Hexo在文章末尾添加自定义内容/" rel="prev" title="Hexo在文章末尾添加自定义内容">
-                Hexo在文章末尾添加自定义内容 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -524,8 +511,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -576,6 +572,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Content-Hugging-Priorities"><span class="nav-number">1.</span> <span class="nav-text">Content Hugging Priorities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Content-Compression-Resistance-Priorities"><span class="nav-number">2.</span> <span class="nav-text">Content Compression Resistance Priorities</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
