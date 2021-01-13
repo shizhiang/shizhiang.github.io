@@ -4,6 +4,24 @@
 
     
   <url>
+    <loc>http://www.iosprogrammer.tech/relation-cmake-gcc-ninja/</loc>
+    <lastmod>2021-01-13T10:52:47.306Z</lastmod>
+    <data>
+        <display>
+        <title>一图搞懂Cmake、GCC、Make、Ninja是什么以及他们的关系</title>
+        <pubTime>2021-01-12T12:03:17.755Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.iosprogrammer.tech/Deploy-Hexo-Aliyun/</loc>
     <lastmod>2021-01-13T10:48:45.072Z</lastmod>
     <data>
@@ -64,24 +82,6 @@
         <display>
         <title>向hexo博客中插入数学公式</title>
         <pubTime>2021-01-13T10:43:22.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/relation-cmake-gcc-ninja/</loc>
-    <lastmod>2021-01-13T10:40:10.709Z</lastmod>
-    <data>
-        <display>
-        <title>一图搞懂Cmake、GCC、Make、Ninja是什么</title>
-        <pubTime>2021-01-12T12:03:17.755Z</pubTime>
         
          
            
@@ -528,12 +528,12 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-construction/</loc>
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     <data>
         <display>
-        <title>跟我一起学习React Native之我的和设置</title>
-        <pubTime>2018-06-20T07:16:21.000Z</pubTime>
+        <title>跟我一起学习React Native之环境搭建</title>
+        <pubTime>2018-06-11T03:40:03.000Z</pubTime>
         
          
            
@@ -582,12 +582,12 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-construction/</loc>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     <data>
         <display>
-        <title>跟我一起学习React Native之环境搭建</title>
-        <pubTime>2018-06-11T03:40:03.000Z</pubTime>
+        <title>跟我一起学习React Native之我的和设置</title>
+        <pubTime>2018-06-20T07:16:21.000Z</pubTime>
         
          
            
