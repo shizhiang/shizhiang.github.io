@@ -81,15 +81,15 @@
 
 <meta name="description" content="xxx.github.io在国内访问速度不行，为了增强用户体验，把博客搬到自己的服务器。操作环境：  本地：Mac 服务器：阿里云CentOS  主要步骤：  服务器安装Nginx和Git（具体方法自行百度） 服务器创建用户git并设置密码。  123useradd gitpasswd git // 设置密码su git  服务器端创建Git空仓库。  123mkdir ~/hexo.gitcd">
 <meta property="og:type" content="article">
-<meta property="og:title" content="部署Hexo到自己的服务器">
+<meta property="og:title" content="部署Hexo到自己的阿里云服务器">
 <meta property="og:url" content="http://www.iosprogrammer.tech/Deploy-Hexo-Aliyun/index.html">
 <meta property="og:site_name" content="编程学堂">
 <meta property="og:description" content="xxx.github.io在国内访问速度不行，为了增强用户体验，把博客搬到自己的服务器。操作环境：  本地：Mac 服务器：阿里云CentOS  主要步骤：  服务器安装Nginx和Git（具体方法自行百度） 服务器创建用户git并设置密码。  123useradd gitpasswd git // 设置密码su git  服务器端创建Git空仓库。  123mkdir ~/hexo.gitcd">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://image.zanderwb.com/Hexo/%E6%88%AA%E5%B1%8F2020-07-12%20%E4%B8%8A%E5%8D%8811.37.04.png">
-<meta property="og:updated_time" content="2020-12-08T09:42:55.852Z">
+<meta property="og:updated_time" content="2021-01-13T10:48:45.072Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="部署Hexo到自己的服务器">
+<meta name="twitter:title" content="部署Hexo到自己的阿里云服务器">
 <meta name="twitter:description" content="xxx.github.io在国内访问速度不行，为了增强用户体验，把博客搬到自己的服务器。操作环境：  本地：Mac 服务器：阿里云CentOS  主要步骤：  服务器安装Nginx和Git（具体方法自行百度） 服务器创建用户git并设置密码。  123useradd gitpasswd git // 设置密码su git  服务器端创建Git空仓库。  123mkdir ~/hexo.gitcd">
 <meta name="twitter:image" content="http://image.zanderwb.com/Hexo/%E6%88%AA%E5%B1%8F2020-07-12%20%E4%B8%8A%E5%8D%8811.37.04.png">
 
@@ -127,7 +127,7 @@
 
 
 
-  <title>部署Hexo到自己的服务器 | 编程学堂</title>
+  <title>部署Hexo到自己的阿里云服务器 | 编程学堂</title>
   
 
 
@@ -302,7 +302,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">部署Hexo到自己的服务器</h2>
+          <h2 class="post-title" itemprop="name headline">部署Hexo到自己的阿里云服务器</h2>
         
 
         <div class="post-meta">
@@ -354,7 +354,7 @@
 
           
           
-             <span id="/Deploy-Hexo-Aliyun/" class="leancloud_visitors" data-flag-title="部署Hexo到自己的服务器">
+             <span id="/Deploy-Hexo-Aliyun/" class="leancloud_visitors" data-flag-title="部署Hexo到自己的阿里云服务器">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -422,12 +422,14 @@
 </ol>
 </li>
 </ol>
+<hr>
 <p>$\color{OrangeRed}{其他热门文章}$</p>
 <ul>
-<li><a href="http://www.iosprogrammer.tech/Hexo-Add-GZH-EveryPage//">Hexo文章末尾添加给公众号引流</a></li>
-<li><a href="http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/">WebSocket简介和SocketRocket源码分析</a></li>
-<li><a href="http://www.iosprogrammer.tech/Calendar-Notes-Reminders/">Mac OS/iOS中日历、备忘录、提醒事项的使用以及使用iMessage共享屏幕</a></li>
+<li><a href="http://www.iosprogrammer.tech/Hexo-Add-GZH-EveryPage//">Hexo文章末尾添加自定义内容给引流</a></li>
+<li><a href="http://www.iosprogrammer.tech/insert-math-formula-to-hexo/">Hexo博客插入数学公式</a></li>
+<li><a href="http://www.iosprogrammer.tech/deploy-hexo-to-gitlab/">部署Hexo到gitlab并自定义域名</a></li>
 </ul>
+<hr>
 
         <div class="wxgzh">
           <image src="http://assets.iosprogrammer.tech/blog-qrcode-new.png">
@@ -540,7 +542,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -551,7 +553,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -609,9 +611,9 @@
 
 
 
-  <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1273818990&web_id=1273818990" language="JavaScript"></script>
-  </div>
+
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1273818990'%3E%3C/span%3E%3Cscript src='https://s19.cnzz.com/z_stat.php%3Fid%3D1273818990%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+
 
 
 

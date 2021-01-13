@@ -4,12 +4,102 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/</loc>
-    <lastmod>2021-01-06T09:03:07.382Z</lastmod>
+    <loc>http://www.iosprogrammer.tech/Deploy-Hexo-Aliyun/</loc>
+    <lastmod>2021-01-13T10:48:45.072Z</lastmod>
     <data>
         <display>
-        <title>什么是Content Hugging Priorities/Content Compression Resistance Priorities</title>
-        <pubTime>2021-01-06T07:00:19.000Z</pubTime>
+        <title>部署Hexo到自己的阿里云服务器</title>
+        <pubTime>2020-07-10T07:51:51.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/Hexo%E5%9C%A8%E6%96%87%E7%AB%A0%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%86%85%E5%AE%B9/</loc>
+    <lastmod>2021-01-13T10:48:43.834Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo在文章末尾添加自定义内容</title>
+        <pubTime>2020-07-15T05:40:59.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/deploy-hexo-to-gitlab/</loc>
+    <lastmod>2021-01-13T10:48:42.849Z</lastmod>
+    <data>
+        <display>
+        <title>部署hexo到gitlab并自定义域名</title>
+        <pubTime>2018-05-11T09:36:01.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/insert-math-formula-to-hexo/</loc>
+    <lastmod>2021-01-13T10:48:42.226Z</lastmod>
+    <data>
+        <display>
+        <title>向hexo博客中插入数学公式</title>
+        <pubTime>2021-01-13T10:43:22.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/relation-cmake-gcc-ninja/</loc>
+    <lastmod>2021-01-13T10:40:10.709Z</lastmod>
+    <data>
+        <display>
+        <title>一图搞懂Cmake、GCC、Make、Ninja是什么</title>
+        <pubTime>2021-01-12T12:03:17.755Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/</loc>
+    <lastmod>2021-01-07T12:19:28.575Z</lastmod>
+    <data>
+        <display>
+        <title>UIStackView的正确使用姿势（最新最全、配视频教程）</title>
+        <pubTime>2021-01-01T08:28:23.000Z</pubTime>
         
          
            
@@ -22,12 +112,12 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/</loc>
-    <lastmod>2021-01-06T09:02:57.448Z</lastmod>
+    <loc>http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/</loc>
+    <lastmod>2021-01-07T12:19:28.575Z</lastmod>
     <data>
         <display>
-        <title>UIStackView的正确使用姿势（最新最全、配视频教程）</title>
-        <pubTime>2021-01-01T08:28:23.000Z</pubTime>
+        <title>什么是Content Hugging Priorities/Content Compression Resistance Priorities</title>
+        <pubTime>2021-01-06T07:00:19.000Z</pubTime>
         
          
            
@@ -141,24 +231,6 @@
            
              
               <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/Hexo%E5%9C%A8%E6%96%87%E7%AB%A0%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%86%85%E5%AE%B9/</loc>
-    <lastmod>2020-12-16T09:36:53.217Z</lastmod>
-    <data>
-        <display>
-        <title>Hexo在文章末尾添加自定义内容</title>
-        <pubTime>2020-07-15T05:40:59.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
           
         </display>
     </data>
@@ -328,24 +400,6 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/Deploy-Hexo-Aliyun/</loc>
-    <lastmod>2020-12-08T09:42:55.852Z</lastmod>
-    <data>
-        <display>
-        <title>部署Hexo到自己的服务器</title>
-        <pubTime>2020-07-10T07:51:51.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.iosprogrammer.tech/Date-And-Time-Two/</loc>
     <lastmod>2020-12-08T09:42:52.622Z</lastmod>
     <data>
@@ -474,24 +528,6 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-construction/</loc>
-    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
-    <data>
-        <display>
-        <title>跟我一起学习React Native之环境搭建</title>
-        <pubTime>2018-06-11T03:40:03.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
     <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     <data>
@@ -545,24 +581,24 @@
     </url>
 
     
-    
   <url>
-    <loc>http://www.iosprogrammer.tech/deploy-hexo-to-gitlab/</loc>
-    <lastmod>2020-07-09T05:24:30.476Z</lastmod>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-construction/</loc>
+    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
     <data>
         <display>
-        <title>hexo博客进阶</title>
-        <pubTime>2018-05-11T09:36:01.000Z</pubTime>
+        <title>跟我一起学习React Native之环境搭建</title>
+        <pubTime>2018-06-11T03:40:03.000Z</pubTime>
         
          
            
              
-              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
           
         </display>
     </data>
     </url>
 
+    
     
   <url>
     <loc>http://www.iosprogrammer.tech/iOS-Memory-Management/</loc>

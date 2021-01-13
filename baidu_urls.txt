@@ -1,2 +1,2 @@
-http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/
-http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/
+http://www.iosprogrammer.tech/insert-math-formula-to-hexo/
+http://www.iosprogrammer.tech/relation-cmake-gcc-ninja/
