@@ -4,12 +4,48 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/relation-cmake-gcc-ninja/</loc>
-    <lastmod>2021-01-13T10:52:47.306Z</lastmod>
+    <loc>http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/</loc>
+    <lastmod>2021-01-14T11:22:56.522Z</lastmod>
     <data>
         <display>
-        <title>一图搞懂Cmake、GCC、Make、Ninja是什么以及他们的关系</title>
-        <pubTime>2021-01-12T12:03:17.755Z</pubTime>
+        <title>最佳实践：iOS开发在xib/storyboard中自定义view</title>
+        <pubTime>2021-01-14T06:21:41.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/</loc>
+    <lastmod>2021-01-14T11:19:21.311Z</lastmod>
+    <data>
+        <display>
+        <title>WebSocket简介和SocketRocket源码分析</title>
+        <pubTime>2018-06-02T13:16:10.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/Submit-Domain-To-Baidu/</loc>
+    <lastmod>2021-01-14T11:19:19.575Z</lastmod>
+    <data>
+        <display>
+        <title>把域名提交到百度资源平台</title>
+        <pubTime>2018-05-24T09:52:19.000Z</pubTime>
         
          
            
@@ -22,17 +58,17 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/Deploy-Hexo-Aliyun/</loc>
-    <lastmod>2021-01-13T10:48:45.072Z</lastmod>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-questions/</loc>
+    <lastmod>2021-01-14T11:19:17.751Z</lastmod>
     <data>
         <display>
-        <title>部署Hexo到自己的阿里云服务器</title>
-        <pubTime>2020-07-10T07:51:51.000Z</pubTime>
+        <title>跟我一起学习React Native之遇到的问题和解决方法</title>
+        <pubTime>2018-06-11T03:44:22.000Z</pubTime>
         
          
            
              
-              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
           
         </display>
     </data>
@@ -40,17 +76,89 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/Hexo%E5%9C%A8%E6%96%87%E7%AB%A0%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%86%85%E5%AE%B9/</loc>
-    <lastmod>2021-01-13T10:48:43.834Z</lastmod>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/</loc>
+    <lastmod>2021-01-14T11:19:14.935Z</lastmod>
     <data>
         <display>
-        <title>Hexo在文章末尾添加自定义内容</title>
-        <pubTime>2020-07-15T05:40:59.000Z</pubTime>
+        <title>跟我一起学习React Native之调用原生模块</title>
+        <pubTime>2018-09-12T08:18:46.000Z</pubTime>
         
          
            
              
-              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-construction/</loc>
+    <lastmod>2021-01-14T11:19:14.055Z</lastmod>
+    <data>
+        <display>
+        <title>跟我一起学习React Native之环境搭建</title>
+        <pubTime>2018-06-11T03:40:03.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/iOS-SocketRocket/</loc>
+    <lastmod>2021-01-14T11:19:12.991Z</lastmod>
+    <data>
+        <display>
+        <title>SocketRocket使用</title>
+        <pubTime>2018-02-05T14:14:26.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/Using-Instruments-To-Oprimize-CPU-Performance/</loc>
+    <lastmod>2021-01-14T11:19:11.405Z</lastmod>
+    <data>
+        <display>
+        <title>使用Instruments工具测试CPU与常见对CPU占用过高的操作</title>
+        <pubTime>2018-02-05T14:16:41.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-project-instruction/</loc>
+    <lastmod>2021-01-14T11:19:10.282Z</lastmod>
+    <data>
+        <display>
+        <title>跟我一起学React Native之项目结构搭建</title>
+        <pubTime>2018-06-12T12:59:58.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
           
         </display>
     </data>
@@ -59,7 +167,7 @@
     
   <url>
     <loc>http://www.iosprogrammer.tech/deploy-hexo-to-gitlab/</loc>
-    <lastmod>2021-01-13T10:48:42.849Z</lastmod>
+    <lastmod>2021-01-14T11:19:08.815Z</lastmod>
     <data>
         <display>
         <title>部署hexo到gitlab并自定义域名</title>
@@ -76,12 +184,156 @@
 
     
   <url>
+    <loc>http://www.iosprogrammer.tech/iOS-Pull-Live-Stream/</loc>
+    <lastmod>2021-01-14T11:19:06.127Z</lastmod>
+    <data>
+        <display>
+        <title>iOS直播APP的开发——拉流</title>
+        <pubTime>2018-05-07T08:55:06.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="音视频" url="http://www.iosprogrammer.tech/categories/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/Hexo%E5%9C%A8%E6%96%87%E7%AB%A0%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%86%85%E5%AE%B9/</loc>
+    <lastmod>2021-01-14T11:19:04.544Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo在文章末尾添加自定义内容</title>
+        <pubTime>2020-07-15T05:40:59.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
+    <lastmod>2021-01-14T11:19:01.315Z</lastmod>
+    <data>
+        <display>
+        <title>跟我一起学习React Native之我的和设置</title>
+        <pubTime>2018-06-20T07:16:21.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/Deploy-Hexo-Aliyun/</loc>
+    <lastmod>2021-01-14T11:19:00.151Z</lastmod>
+    <data>
+        <display>
+        <title>部署Hexo到自己的阿里云服务器</title>
+        <pubTime>2020-07-10T07:51:51.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/xib-color-different-with-hard-code/</loc>
+    <lastmod>2021-01-14T11:18:55.108Z</lastmod>
+    <data>
+        <display>
+        <title>iOS开发xib和代码设置颜色不同的解决方法及其原理（深度好文）</title>
+        <pubTime>2020-12-18T03:40:37.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.iosprogrammer.tech/insert-math-formula-to-hexo/</loc>
-    <lastmod>2021-01-13T10:48:42.226Z</lastmod>
+    <lastmod>2021-01-14T11:18:52.913Z</lastmod>
     <data>
         <display>
         <title>向hexo博客中插入数学公式</title>
         <pubTime>2021-01-13T10:43:22.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/relation-cmake-gcc-ninja/</loc>
+    <lastmod>2021-01-14T11:18:49.537Z</lastmod>
+    <data>
+        <display>
+        <title>一图搞懂Cmake、GCC、Make、Ninja是什么以及他们的关系</title>
+        <pubTime>2021-01-12T12:03:17.755Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/</loc>
+    <lastmod>2021-01-14T11:16:58.596Z</lastmod>
+    <data>
+        <display>
+        <title>Android FFmpeg Cannot find a valid font for the family Sans</title>
+        <pubTime>2020-12-06T03:25:47.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="音视频" url="http://www.iosprogrammer.tech/categories/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iosprogrammer.tech/Calendar-Notes-Reminders/</loc>
+    <lastmod>2021-01-14T11:16:47.006Z</lastmod>
+    <data>
+        <display>
+        <title>Mac OS/iOS中日历、备忘录、提醒事项的使用以及使用iMessage共享屏幕</title>
+        <pubTime>2018-05-26T06:40:15.000Z</pubTime>
         
          
            
@@ -130,96 +382,6 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/xib-color-different-with-hard-code/</loc>
-    <lastmod>2020-12-18T07:15:11.805Z</lastmod>
-    <data>
-        <display>
-        <title>iOS开发xib和代码设置颜色不同的解决方法及其原理（深度好文）</title>
-        <pubTime>2020-12-18T03:40:37.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/</loc>
-    <lastmod>2020-12-16T09:39:17.708Z</lastmod>
-    <data>
-        <display>
-        <title>WebSocket简介和SocketRocket源码分析</title>
-        <pubTime>2018-06-02T13:16:10.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/Using-Instruments-To-Oprimize-CPU-Performance/</loc>
-    <lastmod>2020-12-16T09:39:11.132Z</lastmod>
-    <data>
-        <display>
-        <title>使用Instruments工具测试CPU与常见对CPU占用过高的操作</title>
-        <pubTime>2018-02-05T14:16:41.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/Submit-Domain-To-Baidu/</loc>
-    <lastmod>2020-12-16T09:38:43.430Z</lastmod>
-    <data>
-        <display>
-        <title>把域名提交到百度资源平台</title>
-        <pubTime>2018-05-24T09:52:19.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/iOS-SocketRocket/</loc>
-    <lastmod>2020-12-16T09:37:23.142Z</lastmod>
-    <data>
-        <display>
-        <title>SocketRocket使用</title>
-        <pubTime>2018-02-05T14:14:26.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.iosprogrammer.tech/iOS-Scheme-Theory-And-Practice/</loc>
     <lastmod>2020-12-16T09:37:12.785Z</lastmod>
     <data>
@@ -256,24 +418,6 @@
 
     
   <url>
-    <loc>http://www.iosprogrammer.tech/Calendar-Notes-Reminders/</loc>
-    <lastmod>2020-12-16T09:36:12.204Z</lastmod>
-    <data>
-        <display>
-        <title>Mac OS/iOS中日历、备忘录、提醒事项的使用以及使用iMessage共享屏幕</title>
-        <pubTime>2018-05-26T06:40:15.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="其他" url="http://www.iosprogrammer.tech/categories/%E5%85%B6%E4%BB%96/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.iosprogrammer.tech/Array-addObject-ViewController-cause-viewcontroller-not-release/</loc>
     <lastmod>2020-12-16T09:35:38.399Z</lastmod>
     <data>
@@ -285,24 +429,6 @@
            
              
               <breadCrumb title="iOS" url="http://www.iosprogrammer.tech/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/</loc>
-    <lastmod>2020-12-16T09:35:14.775Z</lastmod>
-    <data>
-        <display>
-        <title>Android FFmpeg Cannot find a valid font for the family Sans</title>
-        <pubTime>2020-12-06T03:25:47.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="音视频" url="http://www.iosprogrammer.tech/categories/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
           
         </display>
     </data>
@@ -489,115 +615,7 @@
     </url>
 
     
-  <url>
-    <loc>http://www.iosprogrammer.tech/iOS-Pull-Live-Stream/</loc>
-    <lastmod>2020-12-08T09:33:15.663Z</lastmod>
-    <data>
-        <display>
-        <title>iOS直播APP的开发——拉流</title>
-        <pubTime>2018-05-07T08:55:06.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="音视频" url="http://www.iosprogrammer.tech/categories/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
-    
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/</loc>
-    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
-    <data>
-        <display>
-        <title>跟我一起学习React Native之调用原生模块</title>
-        <pubTime>2018-09-12T08:18:46.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-construction/</loc>
-    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
-    <data>
-        <display>
-        <title>跟我一起学习React Native之环境搭建</title>
-        <pubTime>2018-06-11T03:40:03.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-questions/</loc>
-    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
-    <data>
-        <display>
-        <title>跟我一起学习React Native之遇到的问题和解决方法</title>
-        <pubTime>2018-06-11T03:44:22.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-project-instruction/</loc>
-    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
-    <data>
-        <display>
-        <title>跟我一起学React Native之项目结构搭建</title>
-        <pubTime>2018-06-12T12:59:58.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/</loc>
-    <lastmod>2020-07-09T05:24:30.477Z</lastmod>
-    <data>
-        <display>
-        <title>跟我一起学习React Native之我的和设置</title>
-        <pubTime>2018-06-20T07:16:21.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="react-native" url="http://www.iosprogrammer.tech/categories/react-native/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
     
   <url>
