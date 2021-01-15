@@ -84,12 +84,12 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Scheme以及微信、支付宝等第三方功能的实现">
 <meta property="og:url" content="http://www.iosprogrammer.tech/iOS-Scheme-Theory-And-Practice/index.html">
-<meta property="og:site_name" content="编程学堂">
+<meta property="og:site_name" content="斜杠程序员">
 <meta property="og:description" content="理论在Apple的文档中，scheme在URL相关的内容中出现过，比如：12This property contains the scheme. Any percent-encoded characters are not unescaped. For example, in the URL `http://www.example.com/index.html` , the scheme is `">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/424855-690eea9c590127f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/424855-c63aa2111fe7ca58.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2020-12-16T09:37:12.785Z">
+<meta property="og:updated_time" content="2021-01-15T10:20:09.142Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scheme以及微信、支付宝等第三方功能的实现">
 <meta name="twitter:description" content="理论在Apple的文档中，scheme在URL相关的内容中出现过，比如：12This property contains the scheme. Any percent-encoded characters are not unescaped. For example, in the URL `http://www.example.com/index.html` , the scheme is `">
@@ -129,7 +129,7 @@
 
 
 
-  <title>Scheme以及微信、支付宝等第三方功能的实现 | 编程学堂</title>
+  <title>Scheme以及微信、支付宝等第三方功能的实现 | 斜杠程序员</title>
   
 
 
@@ -168,7 +168,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">编程学堂</span>
+        <span class="site-title">斜杠程序员</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -203,12 +203,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            分类
+            标签
           </a>
         </li>
       
@@ -296,7 +296,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="编程学堂">
+      <meta itemprop="name" content="斜杠程序员">
     </span>
 
     
@@ -326,28 +326,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -406,10 +384,7 @@
 </ol>
 <h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><p>微信、支付宝、微博等应用的第三方登录、支付、分享功能，都是通过scheme来实现的。下面我们用微信的登录为例，来讲解一下scheme的使用过程。<br>要使用微信的授权登录功能，首先要去微信开放平台创建一个应用，需要我们填写应用名称、icon和Bundle Identifier，之后微信会把应用的AppId和AppSecret给我们。然后根据AppID集成微信的SDK，并且在URL types里面添加一个以appid为scheme的item。到这里，微信的分享功能就集成完成了。那么，每一步都在做什么呢？<br><img src="http://upload-images.jianshu.io/upload_images/424855-c63aa2111fe7ca58.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="微信授权过程.jpg"><br>其中，第3步中是否到服务器验证应该可以通过抓包来看到，但是我懒了，没有做。也不影响整体的流程。</p>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>因为本人并不是微信的开发人员，以上内容可能会有出入，微信在安全方面做的应该更好。但是，大致的流程应该就是这样。其他平台、功能应该差别也不大。如有错误或者疑问可以在下面留言。</p>
-
-        <div class="wxgzh">
-          <image src="http://assets.iosprogrammer.tech/blog-qrcode-new.png">
-      </image></div>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
       
     </div>
     
@@ -417,12 +392,26 @@
     
 
     
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Davis wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
 
     
 
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
       
 
       
@@ -530,22 +519,44 @@
             
 
             
+
+            
               
               
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">分类</span>
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
                 </a>
               </div>
-            
-
             
 
           </nav>
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/7414691003/profile" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-globe"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:shizhiang@126.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/shizhiang1" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -569,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论"><span class="nav-number">1.</span> <span class="nav-text">理论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#scheme的使用"><span class="nav-number">1.0.1.</span> <span class="nav-text">scheme的使用</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#高级用法"><span class="nav-number">2.</span> <span class="nav-text">高级用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战"><span class="nav-number">3.</span> <span class="nav-text">实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论"><span class="nav-number">1.</span> <span class="nav-text">理论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#scheme的使用"><span class="nav-number">1.0.1.</span> <span class="nav-text">scheme的使用</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#高级用法"><span class="nav-number">2.</span> <span class="nav-text">高级用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战"><span class="nav-number">3.</span> <span class="nav-text">实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text">推荐文章</span></a></li></div>
             
 
           </div>

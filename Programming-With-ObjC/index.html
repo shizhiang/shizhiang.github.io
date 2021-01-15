@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="软件开发,iOS开发,音视频编解码">
+  <meta name="keywords" content="iOS,">
 
 
 
@@ -80,13 +80,14 @@
 
 
 <meta name="description" content="+ (id)alloc方法返回类型是id。这是Objective-C中的一个特殊的关键字，意味着“某种对象”。它是一个指向一个对象的指针（NSObject *），但它的特殊之处在于它不使用星号。 alloc方法的另一个重要任务是通过把对象属性设置为0来清理为对象属性申请的内存。这避免了以前存储的包含垃圾内存的常见问题，但不足以完全初始化对象 - (id)init方法也返回id。该方法被类用来确保">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OC编程基础">
 <meta property="og:url" content="http://www.iosprogrammer.tech/Programming-With-ObjC/index.html">
-<meta property="og:site_name" content="编程学堂">
+<meta property="og:site_name" content="斜杠程序员">
 <meta property="og:description" content="+ (id)alloc方法返回类型是id。这是Objective-C中的一个特殊的关键字，意味着“某种对象”。它是一个指向一个对象的指针（NSObject *），但它的特殊之处在于它不使用星号。 alloc方法的另一个重要任务是通过把对象属性设置为0来清理为对象属性申请的内存。这避免了以前存储的包含垃圾内存的常见问题，但不足以完全初始化对象 - (id)init方法也返回id。该方法被类用来确保">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-12-08T09:42:05.104Z">
+<meta property="og:updated_time" content="2021-01-15T10:22:08.220Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC编程基础">
 <meta name="twitter:description" content="+ (id)alloc方法返回类型是id。这是Objective-C中的一个特殊的关键字，意味着“某种对象”。它是一个指向一个对象的指针（NSObject *），但它的特殊之处在于它不使用星号。 alloc方法的另一个重要任务是通过把对象属性设置为0来清理为对象属性申请的内存。这避免了以前存储的包含垃圾内存的常见问题，但不足以完全初始化对象 - (id)init方法也返回id。该方法被类用来确保">
@@ -125,7 +126,7 @@
 
 
 
-  <title>OC编程基础 | 编程学堂</title>
+  <title>OC编程基础 | 斜杠程序员</title>
   
 
 
@@ -164,7 +165,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">编程学堂</span>
+        <span class="site-title">斜杠程序员</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -199,12 +200,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            分类
+            标签
           </a>
         </li>
       
@@ -292,7 +293,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="编程学堂">
+      <meta itemprop="name" content="斜杠程序员">
     </span>
 
     
@@ -322,28 +323,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -413,10 +392,7 @@
 <li>block会捕获上下文</li>
 <li>在block捕获上下文之后再修改上下文的内容不会改变block捕获的值。如果被捕获的变量使用<code>__block</code>修饰，则会被修改。</li>
 </ul>
-
-        <div class="wxgzh">
-          <image src="http://assets.iosprogrammer.tech/blog-qrcode-new.png">
-      </image></div>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
       
     </div>
     
@@ -424,12 +400,26 @@
     
 
     
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Davis wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
 
     
 
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
       
 
       
@@ -509,8 +499,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -532,22 +531,44 @@
             
 
             
+
+            
               
               
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">分类</span>
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
                 </a>
               </div>
-            
-
             
 
           </nav>
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/7414691003/profile" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-globe"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:shizhiang@126.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/shizhiang1" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -561,6 +582,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">推荐文章</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

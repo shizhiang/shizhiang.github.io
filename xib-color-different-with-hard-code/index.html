@@ -84,7 +84,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发xib和代码设置颜色不同的解决方法及其原理（深度好文）">
 <meta property="og:url" content="http://www.iosprogrammer.tech/xib-color-different-with-hard-code/index.html">
-<meta property="og:site_name" content="编程学堂">
+<meta property="og:site_name" content="斜杠程序员">
 <meta property="og:description" content="本文主要包括两部分，其一是解决xib设置颜色有偏差的问题，其二是聊一下颜色的一些基础知识。 xib和代码设置颜色有偏差的原因在开发iOS app的过程中我们都是按照设计同学给出的标注来做的，而UI同学在作图时使用到的工具就会有“颜色配置文件（Color Profile）”。（下面有颜色配置文件的说明）从上图可以看出，ps默认的颜色配置文件是sRGB，因此设计给我们的图都是以sRGB为准的。但是在X">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.iosprogrammer.tech/images/ps-color-profile.png">
@@ -95,7 +95,7 @@
 <meta property="og:image" content="http://www.iosprogrammer.tech/images/v2-374053ce809551b3eeef09046f48b074_1440w.jpg">
 <meta property="og:image" content="http://www.iosprogrammer.tech/images/v2-53ebd97b57e169f8b395766d580a1ea9_1440w.jpg">
 <meta property="og:image" content="http://www.iosprogrammer.tech/images/colorsyncprofiles.png">
-<meta property="og:updated_time" content="2021-01-14T11:18:55.108Z">
+<meta property="og:updated_time" content="2021-01-15T10:26:30.870Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发xib和代码设置颜色不同的解决方法及其原理（深度好文）">
 <meta name="twitter:description" content="本文主要包括两部分，其一是解决xib设置颜色有偏差的问题，其二是聊一下颜色的一些基础知识。 xib和代码设置颜色有偏差的原因在开发iOS app的过程中我们都是按照设计同学给出的标注来做的，而UI同学在作图时使用到的工具就会有“颜色配置文件（Color Profile）”。（下面有颜色配置文件的说明）从上图可以看出，ps默认的颜色配置文件是sRGB，因此设计给我们的图都是以sRGB为准的。但是在X">
@@ -135,7 +135,7 @@
 
 
 
-  <title>iOS开发xib和代码设置颜色不同的解决方法及其原理（深度好文） | 编程学堂</title>
+  <title>iOS开发xib和代码设置颜色不同的解决方法及其原理（深度好文） | 斜杠程序员</title>
   
 
 
@@ -174,7 +174,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">编程学堂</span>
+        <span class="site-title">斜杠程序员</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -209,12 +209,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            分类
+            标签
           </a>
         </li>
       
@@ -302,7 +302,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="编程学堂">
+      <meta itemprop="name" content="斜杠程序员">
     </span>
 
     
@@ -332,28 +332,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -402,18 +380,7 @@
 <blockquote>
 <p>不同的颜色配置之间转换时会造成色差，而代码和xib进行颜色设置时使用了不同的颜色配置文件，才最终导致了同样的色值的最终表现不同。</p>
 </blockquote>
-<hr>
-<p>$\color{OrangeRed}{其他热门文章}$</p>
-<ul>
-<li><a href="http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/">WebSocket简介和SocketRocket源码分析</a></li>
-<li><a href="http://www.iosprogrammer.tech/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/">Android下编译FFmepg并添加文字水印</a></li>
-<li><a href="http://www.iosprogrammer.tech/Using-Instruments-To-Oprimize-CPU-Performance/">使用Instruments工具测试CPU与常见对CPU占用过高的操作</a></li>
-</ul>
-<hr>
-
-        <div class="wxgzh">
-          <image src="http://assets.iosprogrammer.tech/blog-qrcode-new.png">
-      </image></div>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
       
     </div>
     
@@ -421,12 +388,26 @@
     
 
     
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Davis wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
 
     
 
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
       
 
       
@@ -538,22 +519,44 @@
             
 
             
+
+            
               
               
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">分类</span>
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
                 </a>
               </div>
-            
-
             
 
           </nav>
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/7414691003/profile" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-globe"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:shizhiang@126.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/shizhiang1" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -577,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#xib和代码设置颜色有偏差的原因"><span class="nav-number">1.</span> <span class="nav-text">xib和代码设置颜色有偏差的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xib设置颜色和代码有差异的问题解决方案"><span class="nav-number">2.</span> <span class="nav-text">xib设置颜色和代码有差异的问题解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xib和代码设置的颜色有差异的原理分析"><span class="nav-number">3.</span> <span class="nav-text">xib和代码设置的颜色有差异的原理分析</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#xib和代码设置颜色有偏差的原因"><span class="nav-number">1.</span> <span class="nav-text">xib和代码设置颜色有偏差的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xib设置颜色和代码有差异的问题解决方案"><span class="nav-number">2.</span> <span class="nav-text">xib设置颜色和代码有差异的问题解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xib和代码设置的颜色有差异的原理分析"><span class="nav-number">3.</span> <span class="nav-text">xib和代码设置的颜色有差异的原理分析</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text">推荐文章</span></a></li></div>
             
 
           </div>

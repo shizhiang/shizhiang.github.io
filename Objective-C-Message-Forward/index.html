@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="软件开发,iOS开发,音视频编解码">
+  <meta name="keywords" content="iOS,">
 
 
 
@@ -80,14 +80,15 @@
 
 
 <meta name="description" content="一些概念静态绑定：在编译期就能决定运行时所应调用的函数。代表语言：C、C++等动态绑定：所要调用的函数直到运行期才能确定。代表语言：OC、swift等消息传递：对象正常解读消息，传递过去消息转发：对象无法解读消息，之后进行消息转发 消息处理流程 OC中调用方法[a method]后都是在执行id objc_msgSend(id receiver, SEL op, ...) id objc_msgS">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Objective-C 消息转发">
 <meta property="og:url" content="http://www.iosprogrammer.tech/Objective-C-Message-Forward/index.html">
-<meta property="og:site_name" content="编程学堂">
+<meta property="og:site_name" content="斜杠程序员">
 <meta property="og:description" content="一些概念静态绑定：在编译期就能决定运行时所应调用的函数。代表语言：C、C++等动态绑定：所要调用的函数直到运行期才能确定。代表语言：OC、swift等消息传递：对象正常解读消息，传递过去消息转发：对象无法解读消息，之后进行消息转发 消息处理流程 OC中调用方法[a method]后都是在执行id objc_msgSend(id receiver, SEL op, ...) id objc_msgS">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/424855-83a396fca4f6c206.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2020-12-08T09:43:38.965Z">
+<meta property="og:updated_time" content="2021-01-15T10:22:04.176Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C 消息转发">
 <meta name="twitter:description" content="一些概念静态绑定：在编译期就能决定运行时所应调用的函数。代表语言：C、C++等动态绑定：所要调用的函数直到运行期才能确定。代表语言：OC、swift等消息传递：对象正常解读消息，传递过去消息转发：对象无法解读消息，之后进行消息转发 消息处理流程 OC中调用方法[a method]后都是在执行id objc_msgSend(id receiver, SEL op, ...) id objc_msgS">
@@ -127,7 +128,7 @@
 
 
 
-  <title>Objective-C 消息转发 | 编程学堂</title>
+  <title>Objective-C 消息转发 | 斜杠程序员</title>
   
 
 
@@ -166,7 +167,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">编程学堂</span>
+        <span class="site-title">斜杠程序员</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -201,12 +202,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            分类
+            标签
           </a>
         </li>
       
@@ -294,7 +295,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="编程学堂">
+      <meta itemprop="name" content="斜杠程序员">
     </span>
 
     
@@ -324,28 +325,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -439,10 +418,7 @@
 </blockquote>
 </li>
 </ol>
-
-        <div class="wxgzh">
-          <image src="http://assets.iosprogrammer.tech/blog-qrcode-new.png">
-      </image></div>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
       
     </div>
     
@@ -450,12 +426,26 @@
     
 
     
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Davis wechat" style="width: 200px; max-width: 100%;">
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
 
     
 
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
       
 
       
@@ -567,22 +557,44 @@
             
 
             
+
+            
               
               
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">分类</span>
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
                 </a>
               </div>
-            
-
             
 
           </nav>
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/7414691003/profile" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-globe"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:shizhiang@126.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/shizhiang1" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -606,7 +618,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些概念"><span class="nav-number">1.</span> <span class="nav-text">一些概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息处理流程"><span class="nav-number">2.</span> <span class="nav-text">消息处理流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息转发流程"><span class="nav-number">3.</span> <span class="nav-text">消息转发流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息转发实例"><span class="nav-number">4.</span> <span class="nav-text">消息转发实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#避开动态绑定"><span class="nav-number">5.</span> <span class="nav-text">避开动态绑定</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些概念"><span class="nav-number">1.</span> <span class="nav-text">一些概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息处理流程"><span class="nav-number">2.</span> <span class="nav-text">消息处理流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息转发流程"><span class="nav-number">3.</span> <span class="nav-text">消息转发流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息转发实例"><span class="nav-number">4.</span> <span class="nav-text">消息转发实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#避开动态绑定"><span class="nav-number">5.</span> <span class="nav-text">避开动态绑定</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text">推荐文章</span></a></li></div>
             
 
           </div>
