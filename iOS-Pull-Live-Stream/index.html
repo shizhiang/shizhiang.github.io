@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -21,7 +21,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 <meta name="description" content="播放器：IJKPlayer github地址：https:&#x2F;&#x2F;github.com&#x2F;Bilibili&#x2F;ijkplayer 下载、编译过程  git clone https:&#x2F;&#x2F;github.com&#x2F;Bilibili&#x2F;ijkplayer.git ijkplayer-ios cd ijkplayer-ios git checkout -B latest k0.8.8 .&#x2F;init-ios.sh cd">
 <meta property="og:type" content="article">
@@ -29,7 +29,7 @@
 <meta property="og:url" content="http://www.iosprogrammer.tech/iOS-Pull-Live-Stream/index.html">
 <meta property="og:site_name" content="iOS开发栈">
 <meta property="og:description" content="播放器：IJKPlayer github地址：https:&#x2F;&#x2F;github.com&#x2F;Bilibili&#x2F;ijkplayer 下载、编译过程  git clone https:&#x2F;&#x2F;github.com&#x2F;Bilibili&#x2F;ijkplayer.git ijkplayer-ios cd ijkplayer-ios git checkout -B latest k0.8.8 .&#x2F;init-ios.sh cd">
-<meta property="og:locale">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-05-07T08:55:06.000Z">
 <meta property="article:modified_time" content="2021-01-15T10:26:00.190Z">
 <meta property="article:author" content="施治昂">
@@ -46,7 +46,7 @@
     sidebar: "",
     isHome : false,
     isPost : true,
-    lang   : 'zh-Hans'
+    lang   : 'zh-CN'
   };
 </script>
 <title>iOS直播APP的开发——拉流 | iOS开发栈</title>
@@ -111,7 +111,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -137,9 +137,9 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
   </ul>
 </nav>
 
@@ -160,10 +160,10 @@
     <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -185,14 +185,14 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">38</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
         <span class="site-state-item-count">5</span>
-        <span class="site-state-item-name">tags</span></a>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -239,7 +239,7 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/iOS-Pull-Live-Stream/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -262,24 +262,24 @@
       <span class="post-meta-item-icon">
         <i class="far fa-calendar"></i>
       </span>
-      <span class="post-meta-item-text">Posted on</span>
+      <span class="post-meta-item-text">发表于</span>
 
-      <time title="Created: 2018-05-07 16:55:06" itemprop="dateCreated datePublished" datetime="2018-05-07T16:55:06+08:00">2018-05-07</time>
+      <time title="创建时间：2018-05-07 16:55:06" itemprop="dateCreated datePublished" datetime="2018-05-07T16:55:06+08:00">2018-05-07</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-01-15 18:26:00" itemprop="dateModified" datetime="2021-01-15T18:26:00+08:00">2021-01-15</time>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-01-15 18:26:00" itemprop="dateModified" datetime="2021-01-15T18:26:00+08:00">2021-01-15</time>
       </span>
 
   
-    <span id="/iOS-Pull-Live-Stream/" class="post-meta-item leancloud_visitors" data-flag-title="iOS直播APP的开发——拉流" title="Views">
+    <span id="/iOS-Pull-Live-Stream/" class="post-meta-item leancloud_visitors" data-flag-title="iOS直播APP的开发——拉流" title="阅读次数">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
-      <span class="post-meta-item-text">Views: </span>
+      <span class="post-meta-item-text">阅读次数：</span>
       <span class="leancloud-visitors-count"></span>
     </span>
 </div>
@@ -329,7 +329,7 @@
 
     <footer class="post-footer">
           <div class="followme">
-  <span>Welcome to my other publishing channels</span>
+  <span>欢迎关注我的其它发布渠道</span>
 
   <div class="social-list">
 
@@ -339,7 +339,7 @@
             <i class="fab fa-weixin"></i>
           </span>
 
-          <span class="label">WeChat</span>
+          <span class="label">公众号【iOS开发栈】</span>
         </a>
       </div>
   </div>
@@ -409,7 +409,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">施治昂</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
     </div>

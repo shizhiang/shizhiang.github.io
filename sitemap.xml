@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.iosprogrammer.tech/hexo-blog-logo-gzh-recommend/</loc>
+    
+    <lastmod>2021-01-21</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.iosprogrammer.tech/Submit-Domain-To-Baidu/</loc>
     
     <lastmod>2021-01-21</lastmod>
@@ -73,13 +80,6 @@
   
   <url>
     <loc>http://www.iosprogrammer.tech/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/</loc>
-    
-    <lastmod>2021-01-21</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iosprogrammer.tech/hexo-blog-logo-gzh-recommend/</loc>
     
     <lastmod>2021-01-21</lastmod>
     
@@ -298,14 +298,14 @@
 
   
   <url>
-    <loc>http://www.iosprogrammer.tech/tags/Hexo%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>http://www.iosprogrammer.tech/tags/iOS/</loc>
     <lastmod>2021-01-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/tags/iOS/</loc>
+    <loc>http://www.iosprogrammer.tech/tags/Hexo%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2021-01-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
