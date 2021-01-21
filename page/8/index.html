@@ -480,7 +480,7 @@
 </ol>
 <h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><p>微信、支付宝、微博等应用的第三方登录、支付、分享功能，都是通过scheme来实现的。下面我们用微信的登录为例，来讲解一下scheme的使用过程。<br>要使用微信的授权登录功能，首先要去微信开放平台创建一个应用，需要我们填写应用名称、icon和Bundle Identifier，之后微信会把应用的AppId和AppSecret给我们。然后根据AppID集成微信的SDK，并且在URL types里面添加一个以appid为scheme的item。到这里，微信的分享功能就集成完成了。那么，每一步都在做什么呢？<br><img src="http://upload-images.jianshu.io/upload_images/424855-c63aa2111fe7ca58.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="微信授权过程.jpg"><br>其中，第3步中是否到服务器验证应该可以通过抓包来看到，但是我懒了，没有做。也不影响整体的流程。</p>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>因为本人并不是微信的开发人员，以上内容可能会有出入，微信在安全方面做的应该更好。但是，大致的流程应该就是这样。其他平台、功能应该差别也不大。如有错误或者疑问可以在下面留言。</p>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+
       
     </div>
 

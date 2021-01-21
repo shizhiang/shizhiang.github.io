@@ -172,7 +172,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">开发过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">可能遇到的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%A0%E9%80%81%E4%B8%80%E4%B8%AA%E6%8F%90%E4%BA%A4%E5%BC%80%E6%BA%90%E5%BA%93%E7%9A%84shell%E8%84%9A%E6%9C%AC"><span class="nav-number">3.</span> <span class="nav-text">赠送一个提交开源库的shell脚本</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number"></span> <span class="nav-text">推荐文章</span></a></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">开发过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">可能遇到的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%A0%E9%80%81%E4%B8%80%E4%B8%AA%E6%8F%90%E4%BA%A4%E5%BC%80%E6%BA%90%E5%BA%93%E7%9A%84shell%E8%84%9A%E6%9C%AC"><span class="nav-number">3.</span> <span class="nav-text">赠送一个提交开源库的shell脚本</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -380,12 +380,26 @@
 </ol>
 <h3 id="赠送一个提交开源库的shell脚本"><a href="#赠送一个提交开源库的shell脚本" class="headerlink" title="赠送一个提交开源库的shell脚本"></a>赠送一个提交开源库的shell脚本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> bin/sh</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 验证本地 pod lib lint</span></span><br><span class="line">echo &#x27;pod lib lint...\n&#x27;</span><br><span class="line">pod lib lint</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下拉git  git pull</span></span><br><span class="line">echo &#x27;\ngit pull...\n&#x27;</span><br><span class="line">git pull</span><br><span class="line">echo `git pull`</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 上传git git add git commit git push</span></span><br><span class="line">echo &quot;git add . \n&quot;</span><br><span class="line">git add .</span><br><span class="line">echo &quot;Enter a commit message: \c&quot;</span><br><span class="line">read commitMsg</span><br><span class="line">echo &quot;git commit -m $commitMsg&quot;</span><br><span class="line">git commit -m &#x27;$commitMsg&#x27;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> tag git tag  git push --tags</span></span><br><span class="line">echo &quot;\ngit push ...\n&quot;</span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line">echo &quot;\nEnter tag version: \c&quot;</span><br><span class="line">read tagVersion</span><br><span class="line">git tag $tagVersion</span><br><span class="line">echo &quot;\n git push --tags ...&quot;</span><br><span class="line">git push --tags</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 远程验证 pod spec lint</span></span><br><span class="line">echo &quot;\npod spec lint ...\n&quot;</span><br><span class="line">pod spec lint</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 提交代码 pod trunk</span></span><br><span class="line">echo &quot;\npod trunk push ...\n&quot;</span><br><span class="line">pod trunk push [yourprojectname].podspec</span><br></pre></td></tr></table></figure>
 <p>👍👍👍</p>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+
     </div>
 
     
     
     
+      
+  <div class="popular-posts-header">精选热门文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/Date-And-Time-Three/" rel="bookmark">日期Date和时间Time（三）- 一个简单的日历</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/Date-And-Time-One/" rel="bookmark">日期Date和时间Time（一）</a></div>
+    </li>
+  </ul>
+
 
     <footer class="post-footer">
           <div class="followme">

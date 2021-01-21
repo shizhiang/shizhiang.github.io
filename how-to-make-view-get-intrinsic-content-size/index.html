@@ -186,7 +186,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8Exib%E5%8A%A0%E8%BD%BD%E8%87%AA%E5%AE%9A%E4%B9%89view%E8%A7%86%E5%9B%BE"><span class="nav-number">1.</span> <span class="nav-text">从xib加载自定义view视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xib%E6%96%87%E4%BB%B6%E4%B8%AD%E6%B7%BB%E5%8A%A0view%E5%B9%B6%E8%AE%BE%E7%BD%AE%E7%BA%A6%E6%9D%9F"><span class="nav-number">2.</span> <span class="nav-text">xib文件中添加view并设置约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xib%E5%92%8C-m%E5%BB%BA%E7%AB%8B%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">.xib和.m建立链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%86%99initWithCoder-%E6%96%B9%E6%B3%95%E6%8A%8Axib%E4%B8%AD%E7%9A%84view%E6%B7%BB%E5%8A%A0%E8%BF%9B%E6%9D%A5"><span class="nav-number">4.</span> <span class="nav-text">重写initWithCoder:方法把xib中的view添加进来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8Main-storyboard%E4%B8%AD%E6%B7%BB%E5%8A%A0CustomView%EF%BC%8C%E5%B9%B6%E8%AE%BE%E7%BD%AE%E7%BA%A6%E6%9D%9F"><span class="nav-number">5.</span> <span class="nav-text">在Main.storyboard中添加CustomView，并设置约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A9UIView%E5%83%8FUILabel%E4%B8%80%E6%A0%B7%E6%8B%A5%E6%9C%89IntrinsicContentSize"><span class="nav-number">6.</span> <span class="nav-text">让UIView像UILabel一样拥有IntrinsicContentSize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number"></span> <span class="nav-text">推荐文章</span></a></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8Exib%E5%8A%A0%E8%BD%BD%E8%87%AA%E5%AE%9A%E4%B9%89view%E8%A7%86%E5%9B%BE"><span class="nav-number">1.</span> <span class="nav-text">从xib加载自定义view视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xib%E6%96%87%E4%BB%B6%E4%B8%AD%E6%B7%BB%E5%8A%A0view%E5%B9%B6%E8%AE%BE%E7%BD%AE%E7%BA%A6%E6%9D%9F"><span class="nav-number">2.</span> <span class="nav-text">xib文件中添加view并设置约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xib%E5%92%8C-m%E5%BB%BA%E7%AB%8B%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">.xib和.m建立链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%86%99initWithCoder-%E6%96%B9%E6%B3%95%E6%8A%8Axib%E4%B8%AD%E7%9A%84view%E6%B7%BB%E5%8A%A0%E8%BF%9B%E6%9D%A5"><span class="nav-number">4.</span> <span class="nav-text">重写initWithCoder:方法把xib中的view添加进来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8Main-storyboard%E4%B8%AD%E6%B7%BB%E5%8A%A0CustomView%EF%BC%8C%E5%B9%B6%E8%AE%BE%E7%BD%AE%E7%BA%A6%E6%9D%9F"><span class="nav-number">5.</span> <span class="nav-text">在Main.storyboard中添加CustomView，并设置约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A9UIView%E5%83%8FUILabel%E4%B8%80%E6%A0%B7%E6%8B%A5%E6%9C%89IntrinsicContentSize"><span class="nav-number">6.</span> <span class="nav-text">让UIView像UILabel一样拥有IntrinsicContentSize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -359,12 +359,26 @@
 <li><a href="http://www.iosprogrammer.tech/Using-Instruments-To-Oprimize-CPU-Performance/">使用Instruments工具测试CPU与常见对CPU占用过高的操作</a></li>
 </ul>
 <hr>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li><li><a href="http://www.iosprogrammer.tech/xib-color-different-with-hard-code/">iOS开发xib和代码设置颜色不同的解决方法及其原理（深度好文）</a></li></ul></div>
+
     </div>
 
     
     
     
+      
+  <div class="popular-posts-header">精选热门文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/Date-And-Time-Three/" rel="bookmark">日期Date和时间Time（三）- 一个简单的日历</a></div>
+    </li>
+  </ul>
+
 
     <footer class="post-footer">
           <div class="followme">

@@ -422,7 +422,7 @@
 <p>这种方法在需要多次执行的场景中特别有用，完全可以代替使用<code>print()</code>来查看变量值的方案。</p>
 <h3 id="给断点增加触发条件"><a href="#给断点增加触发条件" class="headerlink" title="给断点增加触发条件"></a><strong><em>给断点增加触发条件</em></strong></h3><p>有这样一种场景：在一个循环中，我们只要在某些条件下才需要触发断点。可以这样设置：<br>![breakpoint condition](<a target="_blank" rel="noopener" href="http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint">http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint</a> condition.png)</p>
 <h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4><p><a target="_blank" rel="noopener" href="http://www.cocoachina.com/swift/20171013/20789.html">使用LLDB调试Swift</a></p>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+
       
     </div>
 
@@ -654,7 +654,7 @@
 <p>其中第一个问题需要在每次integrate之前执行<code>pod install</code>；第二个问题是由于Ruby的编码问题导致的，这两个问题的统一解决方案是给Bot添加一个prebuild script，步骤如下： 1. Edit Bot…  2. Triggers 3. Click ‘+’, select ‘Pre-Integraation Script’<br>具体的脚本内容为：<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/pre-script.jpg"><br>下面对这个脚本做一个解释说明:<br>(1). 第2行是用来查看脚本（也就是Server）当前的环境<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/set.jpg"><br>(2). 第4行是切换到项目所在目录，目录地址可以从环境的PWD变量获得<br>(3). 6-8行是用来解决第2个问题的<br>(4). 第10行来执行<code>pod install</code></p>
 </blockquote>
 <h3 id="脚本上传到蒲公英"><a href="#脚本上传到蒲公英" class="headerlink" title="脚本上传到蒲公英"></a>脚本上传到蒲公英</h3><p>   增加一个Post-Integration Scripts<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/post_integration_scripy.jpg" alt="post_integration_script"></p>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+
       
     </div>
 
@@ -757,7 +757,7 @@
 的地方尽量换成iOS7以后新增的方法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[view drawViewHierachyInRect:]</span><br></pre></td></tr></table></figure>
 性能同样可以获得很大的提升</li>
 </ul>
-<h4 id="上面的内容如有错误，还请在评论区指出。如果对您有帮助请给个赞，谢谢。"><a href="#上面的内容如有错误，还请在评论区指出。如果对您有帮助请给个赞，谢谢。" class="headerlink" title="上面的内容如有错误，还请在评论区指出。如果对您有帮助请给个赞，谢谢。"></a>上面的内容如有错误，还请在评论区指出。如果对您有帮助请给个赞，谢谢。</h4><div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+<h4 id="上面的内容如有错误，还请在评论区指出。如果对您有帮助请给个赞，谢谢。"><a href="#上面的内容如有错误，还请在评论区指出。如果对您有帮助请给个赞，谢谢。" class="headerlink" title="上面的内容如有错误，还请在评论区指出。如果对您有帮助请给个赞，谢谢。"></a>上面的内容如有错误，还请在评论区指出。如果对您有帮助请给个赞，谢谢。</h4>
       
     </div>
 

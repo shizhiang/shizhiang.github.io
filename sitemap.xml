@@ -254,14 +254,14 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/</loc>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-construction/</loc>
     
     <lastmod>2021-01-15</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-construction/</loc>
+    <loc>http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/</loc>
     
     <lastmod>2021-01-15</lastmod>
     
@@ -298,13 +298,6 @@
 
   
   <url>
-    <loc>http://www.iosprogrammer.tech/tags/iOS/</loc>
-    <lastmod>2021-01-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://www.iosprogrammer.tech/tags/Hexo%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2021-01-21</lastmod>
     <changefreq>daily</changefreq>
@@ -312,7 +305,7 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</loc>
+    <loc>http://www.iosprogrammer.tech/tags/iOS/</loc>
     <lastmod>2021-01-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -320,6 +313,13 @@
   
   <url>
     <loc>http://www.iosprogrammer.tech/tags/%E5%85%B6%E4%BB%96/</loc>
+    <lastmod>2021-01-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.iosprogrammer.tech/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</loc>
     <lastmod>2021-01-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

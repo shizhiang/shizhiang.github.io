@@ -405,7 +405,7 @@
 <h3 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h3><p>(o゜▽゜)o☆[BINGO!]</p>
 <h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9743a68c2939">https://www.jianshu.com/p/9743a68c2939</a></p>
 <p>👍👍👍</p>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/">Android FFmpeg Cannot find a valid font for the family Sans</a></li></ul></div>
+
       
     </div>
 
@@ -490,7 +490,7 @@
 <h3 id="待完善"><a href="#待完善" class="headerlink" title="待完善"></a>待完善</h3><p>目前得到的是某个月的日期，如果是完整的日历还需要可以左右滑动。</p>
 <h3 id="github源码"><a href="#github源码" class="headerlink" title="github源码"></a>github源码</h3><p><a target="_blank" rel="noopener" href="https://github.com/shizhiang/CalendarTutorial">https://github.com/shizhiang/CalendarTutorial</a></p>
 <p>👍👍👍</p>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+
       
     </div>
 
@@ -581,7 +581,7 @@
 <p>判断某个日期是否是本周</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">let calendar &#x3D; Calendar(identifier: .chinese)</span><br><span class="line">let today &#x3D; Date()</span><br><span class="line">var startDate &#x3D; Date()</span><br><span class="line">var extends: TimeInterval &#x3D; 0</span><br><span class="line">let success &#x3D; calendar.dateInterval(of: .weekOfYear, start: &amp;startDate,interval: &amp;extends, for: today)</span><br><span class="line">if !success &#123;</span><br><span class="line">    print(&quot;失败&quot;)</span><br><span class="line">&#125;</span><br><span class="line">let testDate &#x3D; Date(timeIntervalSinceNow: 100000)</span><br><span class="line">let dateInSecs &#x3D; testDate.timeIntervalSinceReferenceDate</span><br><span class="line">let dayStartInSecs &#x3D; startDate.timeIntervalSinceReferenceDate</span><br><span class="line">let dateInThisWeek &#x3D; dayStartInSecs &lt; dateInSecs &amp;&amp; (dateInSecs &lt;(dayStartInSecs + extends))</span><br><span class="line">print(dateInThisWeek)</span><br></pre></td></tr></table></figure>
 <p>先使用<code>dateInterval(of: .weekOfYear, start: &amp;startDate,interval: &amp;extends, for: today)</code>获取到本周的<code>startDate</code>和<code>weekOfYear</code>（一周）的<code>extends</code>（时长），然后根据要判断的日期距离指定日期的秒数是否大于本周开始日期距离指定日期的秒数，并且小于本周结束时日期距离指定日期的秒数。</p>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+
       
     </div>
 

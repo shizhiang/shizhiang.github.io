@@ -172,7 +172,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C"><span class="nav-number">2.</span> <span class="nav-text">最终效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">项目文件结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#react-navigation"><span class="nav-number">4.</span> <span class="nav-text">react-navigation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Navigation"><span class="nav-number">5.</span> <span class="nav-text">Navigation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8navigationbar%E7%9A%84%E5%AD%90%E9%A1%B5%E9%9D%A2%E4%B8%AD%E9%9A%90%E8%97%8Ftabbar"><span class="nav-number">6.</span> <span class="nav-text">在navigationbar的子页面中隐藏tabbar</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number"></span> <span class="nav-text">推荐文章</span></a></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C"><span class="nav-number">2.</span> <span class="nav-text">最终效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">项目文件结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#react-navigation"><span class="nav-number">4.</span> <span class="nav-text">react-navigation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Navigation"><span class="nav-number">5.</span> <span class="nav-text">Navigation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8navigationbar%E7%9A%84%E5%AD%90%E9%A1%B5%E9%9D%A2%E4%B8%AD%E9%9A%90%E8%97%8Ftabbar"><span class="nav-number">6.</span> <span class="nav-text">在navigationbar的子页面中隐藏tabbar</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -315,12 +315,26 @@
 <h4 id="在navigationbar的子页面中隐藏tabbar"><a href="#在navigationbar的子页面中隐藏tabbar" class="headerlink" title="在navigationbar的子页面中隐藏tabbar"></a>在navigationbar的子页面中隐藏tabbar</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HomeStack.navigationOptions &#x3D; (&#123; navigation &#125;) &#x3D;&gt; &#123;</span><br><span class="line">	let tabBarVisible &#x3D; true;</span><br><span class="line">	if (navigation.state.index &gt; 0) &#123;</span><br><span class="line">		tabBarVisible &#x3D; false;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return &#123;</span><br><span class="line">		tabBarVisible,</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>至此，项目结构搭建完成了。这个过程中如遇到问题可以参考<a href="http://www.iosprogrammer.tech/learn-react-native-with-me-questions">遇到的问题和解决方案</a>🎉🎉🎉</p>
 <p>因为MarkDown解析的问题，排版不好，请见谅。</p>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/">跟我一起学习React Native之调用原生模块</a></li><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/">跟我一起学习React Native之我的和设置</a></li><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-questions/">跟我一起学习React Native之遇到的问题和解决方法</a></li></ul></div>
+
     </div>
 
     
     
     
+      
+  <div class="popular-posts-header">精选热门文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/learn-react-native-with-me-construction/" rel="bookmark">跟我一起学习React Native之环境搭建</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/learn-react-native-with-me-mine-and-settings/" rel="bookmark">跟我一起学习React Native之我的和设置</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/learn-react-native-with-me-call-native/" rel="bookmark">跟我一起学习React Native之调用原生模块</a></div>
+    </li>
+  </ul>
+
 
     <footer class="post-footer">
           <div class="followme">

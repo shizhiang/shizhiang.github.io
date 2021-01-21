@@ -172,7 +172,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%E5%9B%BE"><span class="nav-number">2.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%80%9C%E6%88%91%E7%9A%84%E2%80%9D%E7%95%8C%E9%9D%A2"><span class="nav-number">3.</span> <span class="nav-text">“我的”界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%80%9CSimpleCell%E2%80%9D%E7%BB%84%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">“SimpleCell”组件</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number"></span> <span class="nav-text">推荐文章</span></a></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%E5%9B%BE"><span class="nav-number">2.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%80%9C%E6%88%91%E7%9A%84%E2%80%9D%E7%95%8C%E9%9D%A2"><span class="nav-number">3.</span> <span class="nav-text">“我的”界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%80%9CSimpleCell%E2%80%9D%E7%BB%84%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">“SimpleCell”组件</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -311,12 +311,26 @@
 <h4 id="“SimpleCell”组件"><a href="#“SimpleCell”组件" class="headerlink" title="“SimpleCell”组件"></a>“SimpleCell”组件</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">export default class SimpleCell extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    let logo &#x3D; this.props.photo ? &lt;Image style&#x3D;&#123;styles.logo&#125; source&#x3D;&#123;this.props.photo&#125;&#x2F;&gt; : null</span><br><span class="line">    let detail &#x3D; this.props.detail ? &lt;View style&#x3D;&#123;styles.detail&#125;&gt; </span><br><span class="line">    &lt;Text style&#x3D;&#123;&#123;color: &#39;#999999&#39;&#125;&#125;&gt;&#123;this.props.detail&#125;&lt;&#x2F;Text&gt; &lt;&#x2F;View&gt; : null</span><br><span class="line">    return (</span><br><span class="line">      &lt;TouchableHighlight underlayColor&#x3D;&#39;#999&#39; onPress&#x3D;&#123;this.props.onPress&#125;&gt;</span><br><span class="line">        &lt;View style&#x3D;&#123;styles.container&#125;&gt;</span><br><span class="line">          &#123;logo&#125;</span><br><span class="line">          &lt;View style&#x3D;&#123;styles.titleView&#125;&gt;</span><br><span class="line">            &lt;Text&gt;&#123;this.props.title&#125;&lt;&#x2F;Text&gt;</span><br><span class="line">          &lt;&#x2F;View&gt;</span><br><span class="line">          &#123;detail&#125;</span><br><span class="line">          &lt;Image style&#x3D;&#123;styles.rightArrow&#125;</span><br><span class="line">            source&#x3D;&#123;require(&#39;..&#x2F;..&#x2F;img&#x2F;right_arrow.png&#39;)&#125;</span><br><span class="line">          &#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;View&gt;</span><br><span class="line">      &lt;&#x2F;TouchableHighlight&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>“我的”中的cell前面有icon，“设置”里面没有，因此这里根据条件判断是否显示。</p>
 <p>如遇到问题可以参考<a href="http://www.iosprogrammer.tech/learn-react-native-with-me-questions">遇到的问题和解决方案</a></p>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/">跟我一起学习React Native之调用原生模块</a></li><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-project-instruction/">跟我一起学React Native之项目结构搭建</a></li><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-questions/">跟我一起学习React Native之遇到的问题和解决方法</a></li></ul></div>
+
     </div>
 
     
     
     
+      
+  <div class="popular-posts-header">精选热门文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/learn-react-native-with-me-construction/" rel="bookmark">跟我一起学习React Native之环境搭建</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/learn-react-native-with-me-call-native/" rel="bookmark">跟我一起学习React Native之调用原生模块</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/learn-react-native-with-me-project-instruction/" rel="bookmark">跟我一起学React Native之项目结构搭建</a></div>
+    </li>
+  </ul>
+
 
     <footer class="post-footer">
           <div class="followme">

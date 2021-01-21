@@ -159,7 +159,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -172,7 +172,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">推荐文章</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -308,12 +307,26 @@
 <li>Image加载不出来，onload不执行的问题。<br>iOS 8以上，默认不支持HTTP。需要在info.plist中设置App Transport Security Settings -&gt; Allow Arbitray Loads = YES</li>
 <li>RCTBridge required dispatch_sync to load RCTDevLoadingView. This may lead to deadlocks.<br>APPDelegate.m<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">#if RCT_DEV</span><br><span class="line">#import &lt;React&#x2F;RCTDevLoadingView.h&gt;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">@implementation AppDelegate</span><br><span class="line"></span><br><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</span><br><span class="line">&#123;</span><br><span class="line">  NSURL *jsCodeLocation;</span><br><span class="line"></span><br><span class="line">  jsCodeLocation &#x3D; [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@&quot;index&quot; fallbackResource:nil];</span><br><span class="line">  </span><br><span class="line">  RCTBridge *bridge &#x3D; [[RCTBridge alloc] initWithBundleURL:jsCodeLocation</span><br><span class="line">                                            moduleProvider:nil</span><br><span class="line">                                             launchOptions:launchOptions];</span><br><span class="line">#if RCT_DEV</span><br><span class="line">  [bridge moduleForClass:[RCTDevLoadingView class]];</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">  RCTRootView *rootView &#x3D; [[RCTRootView alloc] initWithBridge:bridge moduleName:@&quot;rn_shuidi&quot; initialProperties:launchOptions];</span><br><span class="line">  rootView.backgroundColor &#x3D; [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];</span><br><span class="line"></span><br><span class="line">  self.window &#x3D; [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];</span><br><span class="line">  UIViewController *rootViewController &#x3D; [UIViewController new];</span><br><span class="line">  rootViewController.view &#x3D; rootView;</span><br><span class="line">  self.window.rootViewController &#x3D; rootViewController;</span><br><span class="line">  [self.window makeKeyAndVisible];</span><br><span class="line">  return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/">跟我一起学习React Native之调用原生模块</a></li><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/">跟我一起学习React Native之我的和设置</a></li><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-project-instruction/">跟我一起学React Native之项目结构搭建</a></li></ul></div>
+
     </div>
 
     
     
     
+      
+  <div class="popular-posts-header">精选热门文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/learn-react-native-with-me-construction/" rel="bookmark">跟我一起学习React Native之环境搭建</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/learn-react-native-with-me-mine-and-settings/" rel="bookmark">跟我一起学习React Native之我的和设置</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/learn-react-native-with-me-call-native/" rel="bookmark">跟我一起学习React Native之调用原生模块</a></div>
+    </li>
+  </ul>
+
 
     <footer class="post-footer">
           <div class="followme">

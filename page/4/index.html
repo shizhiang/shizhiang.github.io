@@ -382,7 +382,7 @@
 <blockquote>
 <p>如果使用了 POSIX 线程 APIS 而不是 NSThread 对象来创建线程，你不能使用 Cocoa，包括 NSautoreleasePool，除非 Cocoa 是在多线程模式下，Cocoa 进入了多线程模式只有在首次创建 NSThread 对象的时候，为了在第二个 POSIX 线程中使用 Cocoa ，你的应用必须首先至少创建了一个独立的 NSThread 对象，这个对象可以立即退出。你可以通过 NSThread 类方法 isMultiTheraded 来测试 Cocoa 是否在多线程模式下。</p>
 </blockquote>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+
       
     </div>
 
@@ -512,7 +512,7 @@
 </blockquote>
 </li>
 </ol>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+
       
     </div>
 
@@ -613,7 +613,7 @@
 </li>
 </ol>
 <p><strong>如果这篇文章能为你提供些许的帮助，我将不胜荣幸。如果你能慷慨的点个赞或者关注我，我将万分感激。</strong></p>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/">跟我一起学习React Native之我的和设置</a></li><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-project-instruction/">跟我一起学React Native之项目结构搭建</a></li><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-questions/">跟我一起学习React Native之遇到的问题和解决方法</a></li></ul></div>
+
       
     </div>
 
@@ -708,7 +708,7 @@
 <h4 id="“SimpleCell”组件"><a href="#“SimpleCell”组件" class="headerlink" title="“SimpleCell”组件"></a>“SimpleCell”组件</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">export default class SimpleCell extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    let logo &#x3D; this.props.photo ? &lt;Image style&#x3D;&#123;styles.logo&#125; source&#x3D;&#123;this.props.photo&#125;&#x2F;&gt; : null</span><br><span class="line">    let detail &#x3D; this.props.detail ? &lt;View style&#x3D;&#123;styles.detail&#125;&gt; </span><br><span class="line">    &lt;Text style&#x3D;&#123;&#123;color: &#39;#999999&#39;&#125;&#125;&gt;&#123;this.props.detail&#125;&lt;&#x2F;Text&gt; &lt;&#x2F;View&gt; : null</span><br><span class="line">    return (</span><br><span class="line">      &lt;TouchableHighlight underlayColor&#x3D;&#39;#999&#39; onPress&#x3D;&#123;this.props.onPress&#125;&gt;</span><br><span class="line">        &lt;View style&#x3D;&#123;styles.container&#125;&gt;</span><br><span class="line">          &#123;logo&#125;</span><br><span class="line">          &lt;View style&#x3D;&#123;styles.titleView&#125;&gt;</span><br><span class="line">            &lt;Text&gt;&#123;this.props.title&#125;&lt;&#x2F;Text&gt;</span><br><span class="line">          &lt;&#x2F;View&gt;</span><br><span class="line">          &#123;detail&#125;</span><br><span class="line">          &lt;Image style&#x3D;&#123;styles.rightArrow&#125;</span><br><span class="line">            source&#x3D;&#123;require(&#39;..&#x2F;..&#x2F;img&#x2F;right_arrow.png&#39;)&#125;</span><br><span class="line">          &#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;View&gt;</span><br><span class="line">      &lt;&#x2F;TouchableHighlight&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>“我的”中的cell前面有icon，“设置”里面没有，因此这里根据条件判断是否显示。</p>
 <p>如遇到问题可以参考<a href="http://www.iosprogrammer.tech/learn-react-native-with-me-questions">遇到的问题和解决方案</a></p>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/">跟我一起学习React Native之调用原生模块</a></li><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-project-instruction/">跟我一起学React Native之项目结构搭建</a></li><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-questions/">跟我一起学习React Native之遇到的问题和解决方法</a></li></ul></div>
+
       
     </div>
 
@@ -807,7 +807,7 @@
 <h4 id="在navigationbar的子页面中隐藏tabbar"><a href="#在navigationbar的子页面中隐藏tabbar" class="headerlink" title="在navigationbar的子页面中隐藏tabbar"></a>在navigationbar的子页面中隐藏tabbar</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HomeStack.navigationOptions &#x3D; (&#123; navigation &#125;) &#x3D;&gt; &#123;</span><br><span class="line">	let tabBarVisible &#x3D; true;</span><br><span class="line">	if (navigation.state.index &gt; 0) &#123;</span><br><span class="line">		tabBarVisible &#x3D; false;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return &#123;</span><br><span class="line">		tabBarVisible,</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>至此，项目结构搭建完成了。这个过程中如遇到问题可以参考<a href="http://www.iosprogrammer.tech/learn-react-native-with-me-questions">遇到的问题和解决方案</a>🎉🎉🎉</p>
 <p>因为MarkDown解析的问题，排版不好，请见谅。</p>
-<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/">跟我一起学习React Native之调用原生模块</a></li><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/">跟我一起学习React Native之我的和设置</a></li><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-questions/">跟我一起学习React Native之遇到的问题和解决方法</a></li></ul></div>
+
       
     </div>
 
