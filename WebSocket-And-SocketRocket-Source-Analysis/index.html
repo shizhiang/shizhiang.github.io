@@ -1,37 +1,648 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/wechatlogo32*32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/wechatlogo16*16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic%7CLobster+Two:300,300italic,400,400italic,700,700italic%7CAmita:300,300italic,400,400italic,700,700italic%7CMontserrat:300,300italic,400,400italic,700,700italic%7CPT+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="之前的文章讲了SocketRocket的用法，这里讲一下什么是WebSocket并且对SocketRocket的源码进行分析。 WebSocket1The WebSocket Protocol is an independent TCP-based protocol.&lt;br&gt;Its only relationship to HTTP is that its handshake is i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebSocket简介和SocketRocket源码分析">
+<meta property="og:url" content="http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/index.html">
+<meta property="og:site_name" content="iOS开发栈">
+<meta property="og:description" content="之前的文章讲了SocketRocket的用法，这里讲一下什么是WebSocket并且对SocketRocket的源码进行分析。 WebSocket1The WebSocket Protocol is an independent TCP-based protocol.&lt;br&gt;Its only relationship to HTTP is that its handshake is i">
+<meta property="og:locale">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/WebSocket-SocketRocket-Source/6651f2f811ec133b0e6d7e6d0e194b4c_hd.jpg">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/WebSocket-SocketRocket-Source/frame_form.png">
+<meta property="article:published_time" content="2018-06-02T13:16:10.000Z">
+<meta property="article:modified_time" content="2021-01-15T10:26:21.366Z">
+<meta property="article:author" content="施治昂">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.iosprogrammer.hongbility.com/WebSocket-SocketRocket-Source/6651f2f811ec133b0e6d7e6d0e194b4c_hd.jpg">
 
 
-{% block content %}
+<link rel="canonical" href="http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+<title>WebSocket简介和SocketRocket源码分析 | iOS开发栈</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-127387039-1');
+      }
+    </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="iOS开发栈" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">iOS开发栈</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#WebSocket"><span class="nav-number">1.</span> <span class="nav-text">WebSocket</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SocketRocket%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">SocketRocket源码解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">3.</span> <span class="nav-text">参考文章</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number"></span> <span class="nav-text">推荐文章</span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">施治昂</p>
+  <div class="site-description" itemprop="description">分享iOS开发知识，Objective-C、Swift、Xcode相关技巧</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:shizhiang@126.com" title="E-Mail → mailto:shizhiang@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7414691003/profile" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7414691003&#x2F;profile" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          WebSocket简介和SocketRocket源码分析
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-06-02 21:16:10" itemprop="dateCreated datePublished" datetime="2018-06-02T21:16:10+08:00">2018-06-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-15 18:26:21" itemprop="dateModified" datetime="2021-01-15T18:26:21+08:00">2021-01-15</time>
+      </span>
+
+  
+    <span id="/WebSocket-And-SocketRocket-Source-Analysis/" class="post-meta-item leancloud_visitors" data-flag-title="WebSocket简介和SocketRocket源码分析" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><a href="http://www.iosprogrammer.tech/iOS-SocketRocket/">之前的文章</a>讲了SocketRocket的用法，这里讲一下什么是WebSocket并且对SocketRocket的源码进行分析。</p>
+<h3 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The WebSocket Protocol is an independent TCP-based protocol.&lt;br&gt;Its only relationship to HTTP is that its handshake is interpreted by HTTP servers as an Upgrade request.</span><br></pre></td></tr></table></figure>
+<div align=center>
+<img src="http://image.iosprogrammer.hongbility.com/WebSocket-SocketRocket-Source/6651f2f811ec133b0e6d7e6d0e194b4c_hd.jpg">
+</div>
+
+<p>WebSocket的特点:</p>
+<pre><code>1. 建立在 TCP 协议之上，服务器端的实现比较容易。
+2. 与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。
+3. 数据格式比较轻量，性能开销小，通信高效。
+4. 可以发送文本，也可以发送二进制数据。
+5. 没有同源限制，客户端可以与任意服务器通信。
+6. 协议标识符是ws（如果加密，则为wss），服务器网址就是URL。`ws://example.com:80/some/path`
+7. 全双工通信。</code></pre>
+<p>WebSocket握手类似于HTTP：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;chat HTTP&#x2F;1.1</span><br><span class="line">Host: server.example.com</span><br><span class="line">Upgrade: websocket</span><br><span class="line">Connection: Upgrade</span><br><span class="line">Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw&#x3D;&#x3D;</span><br><span class="line">Sec-WebSocket-Protocol: chat, superchat</span><br><span class="line">Sec-WebSocket-Version: 13</span><br><span class="line">Origin: http:&#x2F;&#x2F;example.com</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Upgrade和Connection是在通知Apache或者Nginx等代理服务器，正在进行的是websocket协议连接而不是普通的HTTP。<br><br>Sec-WebSocket-Key是浏览器随机生成的base64编码值，用来验证服务器是不是真正的websocket。<br> Sec_WebSocket-Protocol 是一个用户定义的字符串，用来区分同URL下，不同的服务所需要的协议。<br> Sec-WebSocket-Version 是告诉服务器所使用的协议版本。</p>
+</blockquote>
+<p>服务器验证通过后会返回：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HTTP&#x2F;1.1 101 Switching Protocols</span><br><span class="line">Upgrade: websocket</span><br><span class="line">Connection: Upgrade</span><br><span class="line">Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk&#x3D;</span><br><span class="line">Sec-WebSocket-Protocol: chat</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Upgrade和Connection的作用同样是为了表明进行的是websocket连接。<br><br>Sec-WebSocket-Accept 这个则是经过服务器确认，并且加密过后的 Sec-WebSocket-Key，用来给客户端验证身份。<br><br>Sec-WebSocket-Protocol 则是表示最终使用的协议。</p>
+</blockquote>
+<p>数据帧：<br><br><img src="http://image.iosprogrammer.hongbility.com/WebSocket-SocketRocket-Source/frame_form.png" alt="数据帧格式"></p>
+<div align=center>
+<font color="gray" size="2">数据帧格式</font>
+</div>
+
+<ol>
+<li><p>不同于其他协议，WebSocket是基于帧的而不是基于流<br></p>
+</li>
+<li><p>字段解释:</p>
+<ol>
+<li>FIN: 1 bit 表示是否是当前信息的最后一段</li>
+<li>RSV1, RSV2, RSV3: 1 bit 除非双方协商定义了非0值，否则为0</li>
+<li>Opcode: 4 bits 定义了数据包的类型，如果不是已定义类型则表示连接出错。定义的数据类型包括: 0x0表示中间数据包；0x1表示text类型数据包；0x2表示binary类型数据包；0x3-7保留；0x8表示连接关闭；0x9表示ping；0xA表示pong；0xB-F保留</li>
+<li>MASK：1 bit 表示Payload是否经过掩码处理。MASK如果是1，Masking-Key的数据即是掩码密钥，用于解码PayloadData。客户端发出的数据帧需要进行掩码处理，所以此为是1。</li>
+<li>Payload length：7 bit，7+16 bits，or 7+64 bits 表示payload data的长度，如果其值是0-125，则是payload的真实长度；如果是126，则后面的2个字节形成的16bits无符号整型数的值是payload的真实长度；如果是127，则后面8个字节形成的64bits无符号整型数的值是payload的真实长度。</li>
+</ol>
+</li>
+<li><p>掩码</p>
+<ol>
+<li>掩码值必须是随机的32-bit值</li>
+<li>掩码值并不会影响Payload data的长度。</li>
+<li>掩码算法：掩码后的第i字节数据 = 掩码前的第i字节的数据 XOR 掩码key的第（i mod 4）字节的数据</li>
+</ol>
+</li>
+</ol>
+<h3 id="SocketRocket源码解析"><a href="#SocketRocket源码解析" class="headerlink" title="SocketRocket源码解析"></a>SocketRocket源码解析</h3><ol start="0">
+<li><p>辅助类简单说明</p>
+<ol>
+<li><text>_SRRunLoopThread</text>: 承载和处理所有事件的线程。通过<code>NSRunLoop (SRWebSocket)</code>把这个线程放到了RunLoop里。并且在<code>- (void)main</code>中使用一个while循环使这个线程正常情况下永不停止。</li>
+<li>SRIOConsumer和SRIOConsumerPool: 用来处理收到的消息。</li>
+</ol>
+</li>
+<li><p>主要方法说明</p>
+<ol>
+<li><p><code>- (id)initWithURLRequest:(NSURLRequest *)request protocols:(NSArray *)protocols allowsUntrustedSSLCertificates:(BOOL)allowsUntrustedSSLCertificates</code> 基本初始化方法。初始化了SRSocket类内的几个成员变量。</p>
+</li>
+<li><p><code>_SR_commonInit</code></p>
+<ol>
+<li>判断协议类型</li>
+<li>初始化了_workQueue，这个GCD队列用来处理主要的业务逻辑，包括处理错误、发送内容、关闭连接等。</li>
+<li>初始化_delegateDispatchQueue，这个队列是用来向外发送通知的。我们可以通过<code>- (void)setDelegateOperationQueue:(NSOperationQueue*) queue</code>或<code>- (void)setDelegateDispatchQueue:(dispatch_queue_t) queue</code>来自定义这个队列。</li>
+</ol>
+</li>
+<li><p><code>_initializeStreams</code> 创建输入/出流</p>
+</li>
+<li><p><code>open</code>/<code>openConnection</code> 这两个方法和被他们调用的方法是用来配置并打开流的</p>
+</li>
+<li><p><code>didConnect</code></p>
+<ol>
+<li>构建HTTP Header</li>
+<li>发送HTTP Header</li>
+<li>注册一个接收服务器返回Header信息的监听，并在回调内进行相应处理</li>
+</ol>
+</li>
+<li><p><code>- (void)safeHandleEvent:(NSStreamEvent)eventCode stream:(NSStream *)aStream</code></p>
+<ol>
+<li>这是NSStream的回调方法，输入和输出流的共同回调</li>
+<li><code>NSStreamEventOpenCompleted</code> 连接打开；<code>NSStreamEventHasBytesAvailable</code> 可读取；<code>NSStreamEventHasSpaceAvailable</code> 可写入数据</li>
+<li>在<code>NSStreamEventOpenCompleted</code>里面的<code>[self _pumpScanner];</code>用来触发第5条中的3，来处理服务器返回的握手Header信息</li>
+</ol>
+</li>
+<li><p><code>_pumpWriting</code></p>
+<ol>
+<li>向输出流写数据<code>[_outputStream write:_outputBuffer.bytes + _outputBufferOffset maxLength:dataLength - _outputBufferOffset]</code></li>
+<li><code>if (_outputBufferOffset &gt; 4096 &amp;&amp; _outputBufferOffset &gt; (_outputBuffer.length &gt;&gt; 1)) &#123; _outputBuffer = [[NSMutableData alloc] initWithBytes:(char *)_outputBuffer.bytes + _outputBufferOffset length:_outputBuffer.length - _outputBufferOffset]; _outputBufferOffset = 0; &#125;</code> 当缓存超过4M时清空</li>
+</ol>
+</li>
+<li><p><code>- (void)_sendFrameWithOpcode:(SROpCode)opcode data:(id)data</code> 把数据组装成符合协议要求的格式。参考“数据帧格式”的图片。</p>
+<ol>
+<li>向frame_buffer中写入fin/opcode字段</li>
+<li>写入mask字段</li>
+<li>根据要发送的数据得到未掩码数据<code>unmasked_payload</code></li>
+<li>使用<code>int SecRandomCopyBytes(SecRandomRef rnd, size_t count, void *bytes);</code>得到掩码key<code>mask_key</code></li>
+<li>根据mask_key和unmasked_payload得到掩码后数据并切入frame_buffer</li>
+</ol>
+</li>
+<li><p><code>_HTTPHeadersDidFinish</code> 处理服务器返回的握手信息。通过对服务器返回的握手信息的分析来判断连接是否成功打开。</p>
+</li>
+<li><p><code>_innerPumpScanner</code> 处理收到的数据，读取未读数据，并且把未读数据通过<code>consumer.handler(self, slice);</code>返回给consumer来解析数据内容。</p>
+</li>
+<li><p><code>- (void)_handleFrameWithData:(NSData *)frameData opCode:(NSInteger)opcode</code> 根据opCode对收到的数据进行分类处理</p>
+</li>
+<li><p><code>- (void)_readFrameContinue</code> 这个是主要的数据处理方法。整个数据结构的处理的过程就是按照WebSocket协议的规定来的。</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>到此，SocketRocket的源码分析就结束了。其中一些地方说的比较啰嗦，有些地方说的可能不够详细。大家在看源码的时候一定要对照着WebSocket的协议内容。如果有不清楚的地方欢迎咨询。有说的不对的地方也欢迎指正。<br></p>
+<p>祝你早日走上人生巅峰!!!</p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2017/05/websocket.html">阮一峰的网络日志</a><br><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20215561">知乎</a><br><br><a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc6455">RFC6455 WebSocket Protocol</a></p>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Calendar-Notes-Reminders/" rel="prev" title="Mac OS/iOS中日历、备忘录、提醒事项的使用以及使用iMessage共享屏幕">
+                  <i class="fa fa-chevron-left"></i> Mac OS/iOS中日历、备忘录、提醒事项的使用以及使用iMessage共享屏幕
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/learn-react-native-with-me-construction/" rel="next" title="跟我一起学习React Native之环境搭建">
+                  跟我一起学习React Native之环境搭建 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">施治昂</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+
+
+  
+
+
+<script data-pjax>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      const visitors = document.querySelector('.leancloud_visitors');
+      const url = decodeURI(visitors.id);
+      const title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            const counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      const visitors = document.querySelectorAll('.leancloud_visitors');
+      const entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            const target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    const { app_id, app_key, server_url } = {"enable":true,"app_id":"ENF98d3lY1q1PN1nHaX8tLzX-gzGzoHsz","app_key":"gVbfqVHqQAnAqFM6hVRLrPJT","server_url":null,"security":true};
+    function fetchData(api_server) {
+      const Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    const api_server = app_id.slice(-9) === '-MdYXbMMI' ? `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com` : server_url;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+    <div class="pjax">
+
+  
+
+
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

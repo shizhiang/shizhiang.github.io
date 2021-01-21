@@ -1,37 +1,620 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/wechatlogo32*32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/wechatlogo16*16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic%7CLobster+Two:300,300italic,400,400italic,700,700italic%7CAmita:300,300italic,400,400italic,700,700italic%7CMontserrat:300,300italic,400,400italic,700,700italic%7CPT+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="开发过程 执行pod lib create [ProjectName]创建项目。过程中需要回答几个问题，根据自己的需要设置设置就可以了。我的设置是：  What platform do you want to use?? [ iOS &#x2F; macOS ]  iOS   What language do you want to use?? [ Swift &#x2F; ObjC ]  Swift   Would">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始到提交一个开源项目到Cocopods">
+<meta property="og:url" content="http://www.iosprogrammer.tech/Create-Cocoapods-Repo/index.html">
+<meta property="og:site_name" content="iOS开发栈">
+<meta property="og:description" content="开发过程 执行pod lib create [ProjectName]创建项目。过程中需要回答几个问题，根据自己的需要设置设置就可以了。我的设置是：  What platform do you want to use?? [ iOS &#x2F; macOS ]  iOS   What language do you want to use?? [ Swift &#x2F; ObjC ]  Swift   Would">
+<meta property="og:locale">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Create-Cocoapods-Repo/project-struct.png">
+<meta property="article:published_time" content="2018-04-03T10:20:45.000Z">
+<meta property="article:modified_time" content="2021-01-21T05:38:06.361Z">
+<meta property="article:author" content="施治昂">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.iosprogrammer.hongbility.com/Create-Cocoapods-Repo/project-struct.png">
 
 
-{% block content %}
+<link rel="canonical" href="http://www.iosprogrammer.tech/Create-Cocoapods-Repo/">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+<title>从零开始到提交一个开源项目到Cocopods | iOS开发栈</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-127387039-1');
+      }
+    </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="iOS开发栈" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">iOS开发栈</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">开发过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">可能遇到的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%A0%E9%80%81%E4%B8%80%E4%B8%AA%E6%8F%90%E4%BA%A4%E5%BC%80%E6%BA%90%E5%BA%93%E7%9A%84shell%E8%84%9A%E6%9C%AC"><span class="nav-number">3.</span> <span class="nav-text">赠送一个提交开源库的shell脚本</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number"></span> <span class="nav-text">推荐文章</span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">施治昂</p>
+  <div class="site-description" itemprop="description">分享iOS开发知识，Objective-C、Swift、Xcode相关技巧</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:shizhiang@126.com" title="E-Mail → mailto:shizhiang@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7414691003/profile" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7414691003&#x2F;profile" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/Create-Cocoapods-Repo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从零开始到提交一个开源项目到Cocopods
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-04-03 18:20:45" itemprop="dateCreated datePublished" datetime="2018-04-03T18:20:45+08:00">2018-04-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-21 13:38:06" itemprop="dateModified" datetime="2021-01-21T13:38:06+08:00">2021-01-21</time>
+      </span>
+
+  
+    <span id="/Create-Cocoapods-Repo/" class="post-meta-item leancloud_visitors" data-flag-title="从零开始到提交一个开源项目到Cocopods" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h3><ol>
+<li><p>执行<code>pod lib create [ProjectName]</code>创建项目。过程中需要回答几个问题，根据自己的需要设置设置就可以了。我的设置是：</p>
+<ul>
+<li><p>What platform do you want to use?? [ iOS / macOS ]</p>
+<blockquote>
+<p>iOS</p>
+</blockquote>
+</li>
+<li><p>What language do you want to use?? [ Swift / ObjC ]</p>
+<blockquote>
+<p>Swift</p>
+</blockquote>
+</li>
+<li><p>Would you like to include a demo application with your library? [ Yes / No ]</p>
+<blockquote>
+<p>Yes</p>
+</blockquote>
+</li>
+<li><p>Which testing frameworks will you use? [ Quick / None ]</p>
+<blockquote>
+<p>None</p>
+</blockquote>
+</li>
+<li><p>Would you like to do view based testing? [ Yes / No ]</p>
+<blockquote>
+<p>No</p>
+</blockquote>
+<p>紧接着会自动执行<code>pod install</code>，我们只需要静静的等着完成就可以了。</p>
+</li>
+</ul>
+</li>
+<li><p>项目结构。 <code>pod install</code>之后，Cocoapods会直接打开Xcode project。项目结构如下：<br><img src="http://image.iosprogrammer.hongbility.com/Create-Cocoapods-Repo/project-struct.png" alt="project-struct"></p>
+<ol>
+<li>Podspec Metadata<ul>
+<li>.podpsec - 项目相关的pod信息。包括了版本号、github主页、对其他项目的依赖、作者信息和指定资源文件</li>
+<li>README.md - 对当前项目的介绍和使用方法。也就是github中项目主页的介绍内容。</li>
+<li>LICENSE - 指定使用的开源协议  </li>
+</ul>
+</li>
+<li>Example for DemoProj - 对开源代码的使用实例。其他人从github下载了开源项目后可以通过这个来查看使用方法。如果在<code>Would you like to include a demo application with your library?</code>中选择了No，这个项目就不会创建。因此强烈建议这个问题回答YES。对自己调试和别人使用都非常有利。</li>
+<li>Tests - 单元测试。</li>
+<li>Development Pods - 开源库代码就放在这里。</li>
+<li>Frameworks - 当前开源项目的依赖库<a id="more"></a></li>
+</ol>
+</li>
+<li><p>.podspec文件详解</p>
+<ul>
+<li>s.name - 名称，<code>pod search</code>搜索的关键词,注意这里一定要和.podspec的名称一样,否则报错</li>
+<li>s.version - 版本号，这个版本号要和tag版本一致，否则报错</li>
+<li>s.summary - 项目简介，<code>pod search</code>的结果中会展示</li>
+<li>s.homepage - 项目主页地址，也就是github地址</li>
+<li>s.source - <code>git clone</code>的项目地址。 </li>
+<li>s.ios.deployment_target - 支持到的iOS版本</li>
+<li>s.source_files - 资源文件路径。请确保把项目相关的源文件放在这个文件夹下面，否则报错。</li>
+<li>s.dependency - 项目依赖的其他三方库。</li>
+</ul>
+</li>
+<li><p>在github上创建仓库</p>
+</li>
+<li><p>开发项目。。。</p>
+</li>
+<li><p>开发结束，把项目提交到github。</p>
+</li>
+<li><p>打tag并把tag提交。tag号要和.podspec中的s.server一致。</p>
+</li>
+<li><p>验证.podspec</p>
+<ol>
+<li><code>pod lib lint</code>本地验证</li>
+<li><code>pod spec lint</code>和github上的内容进行对比</li>
+</ol>
+</li>
+<li><p>把项目发布到Cocopods的master上。<code>pod trunk push [ProjectName].podspec</code>。注意，这个过程较(chao ji)慢。</p>
+</li>
+</ol>
+<h3 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h3><ol>
+<li><code>pod lib lint</code>通过，但是<code>pod spec lint</code>报错：<code>use of unresolved identifier</code>。遇到这个问题后，分为两步：<ol>
+<li><code>pod spec lint --no-clean --verbose</code>查看错误原因，这是会看到临时文件，到临时文件里查看会发现缺少文件</li>
+<li>使用<code>pod cache clean</code></li>
+<li>重新执行一次<code>pod spec lint</code></li>
+</ol>
+</li>
+<li>项目提交后执行<code>pod search</code>找不到的话，执行<code>pod setup</code>。</li>
+<li>验证的时候出现<code>.swift-version</code>错误。解决办法是在项目目录下创建一个执行<code>echo &quot;4.0&quot; &gt; .swift-version</code>。注意，这里的4.0是我开发项目时使用的Swift版本。</li>
+<li><strong>注意权限控制和Swift与OC的混编问题</strong></li>
+</ol>
+<h3 id="赠送一个提交开源库的shell脚本"><a href="#赠送一个提交开源库的shell脚本" class="headerlink" title="赠送一个提交开源库的shell脚本"></a>赠送一个提交开源库的shell脚本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> bin/sh</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 验证本地 pod lib lint</span></span><br><span class="line">echo &#x27;pod lib lint...\n&#x27;</span><br><span class="line">pod lib lint</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下拉git  git pull</span></span><br><span class="line">echo &#x27;\ngit pull...\n&#x27;</span><br><span class="line">git pull</span><br><span class="line">echo `git pull`</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 上传git git add git commit git push</span></span><br><span class="line">echo &quot;git add . \n&quot;</span><br><span class="line">git add .</span><br><span class="line">echo &quot;Enter a commit message: \c&quot;</span><br><span class="line">read commitMsg</span><br><span class="line">echo &quot;git commit -m $commitMsg&quot;</span><br><span class="line">git commit -m &#x27;$commitMsg&#x27;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> tag git tag  git push --tags</span></span><br><span class="line">echo &quot;\ngit push ...\n&quot;</span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line">echo &quot;\nEnter tag version: \c&quot;</span><br><span class="line">read tagVersion</span><br><span class="line">git tag $tagVersion</span><br><span class="line">echo &quot;\n git push --tags ...&quot;</span><br><span class="line">git push --tags</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 远程验证 pod spec lint</span></span><br><span class="line">echo &quot;\npod spec lint ...\n&quot;</span><br><span class="line">pod spec lint</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 提交代码 pod trunk</span></span><br><span class="line">echo &quot;\npod trunk push ...\n&quot;</span><br><span class="line">pod trunk push [yourprojectname].podspec</span><br></pre></td></tr></table></figure>
+<p>👍👍👍</p>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/LLDB-Advanced-Usage/" rel="prev" title="LLDB调试iOS程序（二）—— 高级用法">
+                  <i class="fa fa-chevron-left"></i> LLDB调试iOS程序（二）—— 高级用法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Date-And-Time-One/" rel="next" title="日期Date和时间Time（一）">
+                  日期Date和时间Time（一） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">施治昂</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+
+
+  
+
+
+<script data-pjax>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      const visitors = document.querySelector('.leancloud_visitors');
+      const url = decodeURI(visitors.id);
+      const title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            const counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      const visitors = document.querySelectorAll('.leancloud_visitors');
+      const entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            const target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    const { app_id, app_key, server_url } = {"enable":true,"app_id":"ENF98d3lY1q1PN1nHaX8tLzX-gzGzoHsz","app_key":"gVbfqVHqQAnAqFM6hVRLrPJT","server_url":null,"security":true};
+    function fetchData(api_server) {
+      const Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    const api_server = app_id.slice(-9) === '-MdYXbMMI' ? `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com` : server_url;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+    <div class="pjax">
+
+  
+
+
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

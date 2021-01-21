@@ -1,37 +1,577 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/wechatlogo32*32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/wechatlogo16*16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic%7CLobster+Two:300,300italic,400,400italic,700,700italic%7CAmita:300,300italic,400,400italic,700,700italic%7CMontserrat:300,300italic,400,400italic,700,700italic%7CPT+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="既然花了上万元买了一台苹果的设备就要好好利用。本篇文章让我们学习一下iPhone&#x2F;Mac自带的几个APP的使用。 一. 日历这部分我直接用电脑上的截图，和手机上的是一样的不用担心。日常使用：我们学校的课程表是外包给一个科技公司，可以自动导入日历的，安卓的也可以。如果其他朋友没有这种服务的话，需要添加课程表的话就看看有没有特殊的软件可以导入。实在不行就手动导入了，日程是可以设置循环周期的。团队协作：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac OS&#x2F;iOS中日历、备忘录、提醒事项的使用以及使用iMessage共享屏幕">
+<meta property="og:url" content="http://www.iosprogrammer.tech/Calendar-Notes-Reminders/index.html">
+<meta property="og:site_name" content="iOS开发栈">
+<meta property="og:description" content="既然花了上万元买了一台苹果的设备就要好好利用。本篇文章让我们学习一下iPhone&#x2F;Mac自带的几个APP的使用。 一. 日历这部分我直接用电脑上的截图，和手机上的是一样的不用担心。日常使用：我们学校的课程表是外包给一个科技公司，可以自动导入日历的，安卓的也可以。如果其他朋友没有这种服务的话，需要添加课程表的话就看看有没有特殊的软件可以导入。实在不行就手动导入了，日程是可以设置循环周期的。团队协作：">
+<meta property="og:locale">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/calendar-1.jpg">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/calendar-2.jpg">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/calendar-3.jpg">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/notes-1.jpg">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/notes-2.jpg">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/notes-4.jpg">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/notes-8.jpg">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/notes-11.jpg">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/notes-12.jpg">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/notes-13.jpg">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/notes-14.jpg">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/reminders-2.jpg">
+<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/reminders-5.jpg">
+<meta property="article:published_time" content="2018-05-26T06:40:15.000Z">
+<meta property="article:modified_time" content="2021-01-21T05:38:01.247Z">
+<meta property="article:author" content="施治昂">
+<meta property="article:tag" content="其他">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/calendar-1.jpg">
 
 
-{% block content %}
+<link rel="canonical" href="http://www.iosprogrammer.tech/Calendar-Notes-Reminders/">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+<title>Mac OS/iOS中日历、备忘录、提醒事项的使用以及使用iMessage共享屏幕 | iOS开发栈</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-127387039-1');
+      }
+    </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="iOS开发栈" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">iOS开发栈</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E6%97%A5%E5%8E%86"><span class="nav-number">1.</span> <span class="nav-text">一. 日历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%A4%87%E5%BF%98%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">二、备忘录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%8F%90%E9%86%92%E4%BA%8B%E9%A1%B9"><span class="nav-number">3.</span> <span class="nav-text">三、提醒事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81iMessage%E5%85%B1%E4%BA%AB%E5%B1%8F%E5%B9%95"><span class="nav-number">4.</span> <span class="nav-text">四、iMessage共享屏幕</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E6%82%A8%E4%B8%8D%E8%83%BD%E5%85%B1%E4%BA%AB%E5%B1%8F%E5%B9%95"><span class="nav-number">4.0.1.</span> <span class="nav-text">如果您不能共享屏幕</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number"></span> <span class="nav-text">推荐文章</span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">施治昂</p>
+  <div class="site-description" itemprop="description">分享iOS开发知识，Objective-C、Swift、Xcode相关技巧</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:shizhiang@126.com" title="E-Mail → mailto:shizhiang@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7414691003/profile" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7414691003&#x2F;profile" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/Calendar-Notes-Reminders/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Mac OS/iOS中日历、备忘录、提醒事项的使用以及使用iMessage共享屏幕
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-05-26 14:40:15" itemprop="dateCreated datePublished" datetime="2018-05-26T14:40:15+08:00">2018-05-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-21 13:38:01" itemprop="dateModified" datetime="2021-01-21T13:38:01+08:00">2021-01-21</time>
+      </span>
+
+  
+    <span id="/Calendar-Notes-Reminders/" class="post-meta-item leancloud_visitors" data-flag-title="Mac OS/iOS中日历、备忘录、提醒事项的使用以及使用iMessage共享屏幕" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>既然花了上万元买了一台苹果的设备就要好好利用。本篇文章让我们学习一下iPhone/Mac自带的几个APP的使用。</p>
+<h2 id="一-日历"><a href="#一-日历" class="headerlink" title="一. 日历"></a>一. 日历</h2><p>这部分我直接用电脑上的截图，和手机上的是一样的不用担心。<br><br><strong>日常使用</strong>：我们学校的课程表是外包给一个科技公司，可以自动导入日历的，安卓的也可以。如果其他朋友没有这种服务的话，需要添加课程表的话就看看有没有特殊的软件可以导入。实在不行就手动导入了，日程是可以设置循环周期的。<br><img src="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/calendar-1.jpg" alt="课表"><br><strong>团队协作</strong>：比如我会给我同事发日历，开会时间，并且设置了提前一天和提前6小时提醒，怕有些人会忘记= =。这个功能在使用之前需要把同事们的绑定iCloud的手机号/邮箱地址存入通讯录中，添加名字的时候直接输入参加会议的成员名字，对方即可收到通知（前提是对方打开了日历的通知）<br><img src="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/calendar-2.jpg" alt="团队协作"><br><strong>时间管理</strong>的好习惯：我放假回家和同学频繁聚餐约饭，我甚至把每顿饭时间地点人物提前写在日历上提醒自己（对，我基本不放人家鸽子，答应的事情除非天塌下来才会爽约）<br><img src="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/calendar-3.jpg"></p>
+<a id="more"></a>
+<h2 id="二、备忘录"><a href="#二、备忘录" class="headerlink" title="二、备忘录"></a>二、备忘录</h2><p><strong>日常使用</strong>：我已经不把这个东西当备忘录了，已经是我的随身笔记本了。（其实英文版的系统就叫Note）<br><img src="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/notes-1.jpg"><br><strong>多种媒体/多种形式的文件支持</strong>：图片、手绘、扫描文件、插入文件（例如pdf.）、表格、地图、音频、视频，而且在mac上截图后直接粘贴是相当方便的。<br><img src="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/notes-2.jpg" alt="多种文件格式支持"><br><img src="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/notes-4.jpg" alt="表格功能"><br><img src="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/notes-8.jpg" alt="烧烤list"></p>
+<p><strong>团队协作</strong>：同样又是iCloud账号共享给好友，可以同时修改同一份文案，实时的协作。另一个人有改动你马上可以看到，宛如直播同事码字一样。可以打开提醒和高亮显示所有修改，这样修改的部分一目了然。<br><img src="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/notes-11.jpg"><br><strong>排版也像Word一样好用</strong>：选项要么在最顶部的状态栏里面，要么就选中词以后单击右键会调出更多选项，只有你想不到，没有备忘录做不到。（这些特殊功能要Mac才可以实现，手机端不可调整，仅可以做除了这个部分的功能）<br><img src="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/notes-12.jpg" alt="顶部状态栏"><br><img src="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/notes-13.jpg" alt="排版"><br><strong>快捷的“拷贝”功能</strong>：当两台苹果设备同时协作的时候，打开蓝牙和wifi功能，不管是否连接，打开就好（这个原理类似于内联网？我问了一个学计算机的同学）。需要拷贝的文字或者图片，图片得在原生的“照片”软件中拷贝（如下图）；文字的话直接复制即可。然后在想粘贴的地方粘贴即可。<br><img src="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/notes-14.jpg" alt="拷贝"></p>
+<h2 id="三、提醒事项"><a href="#三、提醒事项" class="headerlink" title="三、提醒事项"></a>三、提醒事项</h2><p><strong>提醒你做固定周期、固定时间和固定地点必须要做但是又怕忘记的的事情</strong>。比如提醒每天做法语作业，运动，记账，固定时间吃药等。在 设置——通知——提醒事项 里面，检查下通知是否是出现。有些事情要坚持下来，不是说没时间做，是态度问题或者说是优先级排序的问题，就是你重不重视它，如果有个人或者软件来提醒你的话，每天坚持做某件事情不再是一件难事。<br><img src="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/reminders-2.jpg" alt="日常提醒"><br><img src="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/reminders-5.jpg" alt="日常提醒"></p>
+<h2 id="四、iMessage共享屏幕"><a href="#四、iMessage共享屏幕" class="headerlink" title="四、iMessage共享屏幕"></a>四、iMessage共享屏幕</h2><ol>
+<li>在Mac上的“信息”应用中，给您要与之共享的联系人发送信息，然后点按“详细信息”</li>
+<li>点按“屏幕共享”按钮，然后执行以下一项操作。</li>
+</ol>
+<ul>
+<li><p>共享屏幕：选取“邀请共享我的屏幕”</p>
+</li>
+<li><p>查看您朋友给的屏幕：选取“请求共享屏幕”</p>
+<p>当共享屏幕请求被允许后，系统会自动开始音频通话（这样你们可以边说边做）且“屏幕共享”应用将打开。</p>
+</li>
+</ul>
+<ol start="3">
+<li>若要停止共享屏幕，请执行以下一项操作</li>
+</ol>
+<ul>
+<li>如果正在共享您的屏幕：点按菜单栏中的屏幕共享图标，选取“结束屏幕共享”。（如果您尚未准备好停止共享，请选取“暂停屏幕共享”；再次选取该按钮以继续共享。）</li>
+<li>如果正在查看您朋友的屏幕：选取“屏幕共享”&gt;“退出”，或者点按屏幕共享窗口中的红色关闭按钮。</li>
+</ul>
+<h4 id="如果您不能共享屏幕"><a href="#如果您不能共享屏幕" class="headerlink" title="如果您不能共享屏幕"></a>如果您不能共享屏幕</h4><p>在 Mac 上的“信息”应用  中，如果“屏幕共享”按钮  呈灰色，请尝试以下操作：<br>确保尝试进行共享的联系人用来登录 iCloud 的 Apple ID 与用来登录“信息”的相同。<br>如果联系人无法使用同一个 Apple ID 登录 iCloud 和“信息”，请打开您的“通讯录”应用，确保该联系人的名片中包含了两个 Apple ID，即该联系人用于登录 iCloud 的 Apple ID 以及登录“信息”的 Apple ID。然后再次尝试共享。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>iCloud真的是苹果的黑科技，如果你买了苹果产品没有充分用到iCloud功能，真的很浪费钱啊，这个肯定是算在售价里面的。购买并使用苹果产品，更多情况下我理解为买他们的服务和操作系统，因为比起Windows真的太好用了。<br><br>把你的日常事务电子化，并且存储在云端，实时同步，不受地域限制。<br><br>如果苹果系统本身有原生app的，就别去下别的软件了，比如印象笔记、有道云笔记等（个人观点），支持苹果原生app的理由：</p>
+<ol>
+<li>简约，操作不繁琐 </li>
+<li>其他app功能大同小异，操作繁琐，有些功能不实用，还有广告，苹果的打开直接</li>
+<li>兼容性强，可以共享给很多app </li>
+<li>可以在你的多个设备上同步</li>
+</ol>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/relation-cmake-gcc-ninja/">一图搞懂Cmake、GCC、Make、Ninja是什么以及他们的关系</a></li><li><a href="http://www.iosprogrammer.tech/Read-Effective-Objective-C-2-0-2/">读《Effective Objective-C 2.0》（二）</a></li><li><a href="http://www.iosprogrammer.tech/Read-Effective-Objective-C-2-0-1/">读《Effective Objective-C 2.0》（一）</a></li></ul></div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%85%B6%E4%BB%96/" rel="tag"># 其他</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Submit-Domain-To-Baidu/" rel="prev" title="把域名提交到百度资源平台">
+                  <i class="fa fa-chevron-left"></i> 把域名提交到百度资源平台
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/WebSocket-And-SocketRocket-Source-Analysis/" rel="next" title="WebSocket简介和SocketRocket源码分析">
+                  WebSocket简介和SocketRocket源码分析 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">施治昂</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+
+
+  
+
+
+<script data-pjax>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      const visitors = document.querySelector('.leancloud_visitors');
+      const url = decodeURI(visitors.id);
+      const title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            const counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      const visitors = document.querySelectorAll('.leancloud_visitors');
+      const entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            const target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    const { app_id, app_key, server_url } = {"enable":true,"app_id":"ENF98d3lY1q1PN1nHaX8tLzX-gzGzoHsz","app_key":"gVbfqVHqQAnAqFM6hVRLrPJT","server_url":null,"security":true};
+    function fetchData(api_server) {
+      const Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    const api_server = app_id.slice(-9) === '-MdYXbMMI' ? `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com` : server_url;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+    <div class="pjax">
+
+  
+
+
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,23 +1,886 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/wechatlogo32*32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/wechatlogo16*16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
+<link rel="stylesheet" href="/css/main.css">
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic%7CLobster+Two:300,300italic,400,400italic,700,700italic%7CAmita:300,300italic,400,400italic,700,700italic%7CMontserrat:300,300italic,400,400italic,700,700italic%7CPT+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+<meta property="og:type" content="website">
+<meta property="og:title" content="iOS开发栈">
+<meta property="og:url" content="http://www.iosprogrammer.tech/page/6/index.html">
+<meta property="og:site_name" content="iOS开发栈">
+<meta property="og:description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+<meta property="og:locale">
+<meta property="article:author" content="施治昂">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.iosprogrammer.tech/page/6/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+<title>iOS开发栈</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-127387039-1');
+      }
+    </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="iOS开发栈" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">iOS开发栈</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">施治昂</p>
+  <div class="site-description" itemprop="description">分享iOS开发知识，Objective-C、Swift、Xcode相关技巧</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:shizhiang@126.com" title="E-Mail → mailto:shizhiang@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7414691003/profile" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7414691003&#x2F;profile" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/deploy-hexo-to-gitlab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/deploy-hexo-to-gitlab/" class="post-title-link" itemprop="url">部署hexo到gitlab并自定义域名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-05-11 17:36:01" itemprop="dateCreated datePublished" datetime="2018-05-11T17:36:01+08:00">2018-05-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-21 13:38:22" itemprop="dateModified" datetime="2021-01-21T13:38:22+08:00">2021-01-21</time>
+      </span>
+
+  
+    <span id="/deploy-hexo-to-gitlab/" class="post-meta-item leancloud_visitors" data-flag-title="部署hexo到gitlab并自定义域名" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="部署Hexo到Gitlab"><a href="#部署Hexo到Gitlab" class="headerlink" title="部署Hexo到Gitlab"></a>部署Hexo到Gitlab</h1><ul>
+<li>Hexo + GtHub：起初想要把这个博客放到Github上，但是由于Github不让百度爬取。</li>
+<li>Hexo + Coding.net：后来又尝试了 coding.net，在使用coding.net的过程中遇到了一些坑。<ul>
+<li>普通会员不能自定义域名 -&gt; 申请成为白银会员（使用腾讯云授权）</li>
+<li>微信等方式登录腾讯云后，授权失败（不知原因） -&gt; 使用腾讯云直接登录 -&gt; 授权成功，成为白银会员，可以自定义域名</li>
+<li>首次打开会显示5s的coding.net广告，后跳转到博客，据说这样的话无法被百度收录 -&gt; 充值199/年 成为黄金会员（我没有充）
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/deploy-hexo-to-gitlab/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/iOS-Pull-Live-Stream/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/iOS-Pull-Live-Stream/" class="post-title-link" itemprop="url">iOS直播APP的开发——拉流</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-05-07 16:55:06" itemprop="dateCreated datePublished" datetime="2018-05-07T16:55:06+08:00">2018-05-07</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-15 18:26:00" itemprop="dateModified" datetime="2021-01-15T18:26:00+08:00">2021-01-15</time>
+      </span>
+
+  
+    <span id="/iOS-Pull-Live-Stream/" class="post-meta-item leancloud_visitors" data-flag-title="iOS直播APP的开发——拉流" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="播放器：IJKPlayer"><a href="#播放器：IJKPlayer" class="headerlink" title="播放器：IJKPlayer"></a>播放器：IJKPlayer</h3><ul>
+<li>github地址：<a target="_blank" rel="noopener" href="https://github.com/Bilibili/ijkplayer">https://github.com/Bilibili/ijkplayer</a></li>
+<li>下载、编译过程<ul>
+<li> git clone <a target="_blank" rel="noopener" href="https://github.com/Bilibili/ijkplayer.git">https://github.com/Bilibili/ijkplayer.git</a> ijkplayer-ios</li>
+<li>cd ijkplayer-ios</li>
+<li>git checkout -B latest k0.8.8</li>
+<li>./init-ios.sh</li>
+<li>cd ios</li>
+<li>./compile-ffmpeg.sh clean</li>
+<li>./compile-ffmpeg.sh all</li>
+</ul>
+</li>
+<li>编译过程中遇到的问题：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;libavutil&#x2F;arm&#x2F;asm.S:50:9: error: unknown directive</span><br><span class="line">        .arch armv7-a</span><br><span class="line">        ^</span><br><span class="line">make: *** [libavcodec&#x2F;arm&#x2F;aacpsdsp_neon.o] Error 1</span><br></pre></td></tr></table></figure></li>
+<li>解决：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">最新的 Xcode 已经弱化了对 32 位的支持, 解决方法: 在 compile-ffmpeg.sh 中删除 armv7 , 修改:FF_ALL_ARCHS_IOS8_SDK&#x3D;&quot;arm64 i386 x86_64&quot; 再重新执行出现错误的命令: .&#x2F;compile-ffmpeg.sh all</span><br></pre></td></tr></table></figure>
+<h3 id="获取-framework"><a href="#获取-framework" class="headerlink" title="获取.framework"></a>获取.framework</h3></li>
+</ul>
+<ol>
+<li>打开<code>IJKMediaPlayer.xcodeproj</code></li>
+<li>选择真机</li>
+<li>切换到Release模式</li>
+<li>cmd+B 编译项目</li>
+<li>获取/Product目录下的<code>IJKMediaFramework.framework</code>，并拷贝</li>
+</ol>
+<h3 id="获取rtmp直播流"><a href="#获取rtmp直播流" class="headerlink" title="获取rtmp直播流"></a>获取rtmp直播流</h3><p>我使用charles抓包到《鱼水直播》的推荐列表链接：<a target="_blank" rel="noopener" href="http://api.chujianapp.com/live/get_hot_list?app_version=6.3.0&amp;bundle_id=fish.livezb.wte&amp;device=ios&amp;device_id=7ED19CAE-E21F-44BF-98DC-F5346E64E502&amp;device_idfa=51C0FC66-54C0-4F69-91E4-4C168698D1F5&amp;device_model=iPhone%206s&amp;device_version=iOS11.3.1&amp;pkg_channel=ys19&amp;secure_key=bd54628575ff36bd7695519218f6934f&amp;server_upgrade=1&amp;time_stamp=1525858044919&amp;token=18231046%7C227842b7058bc5dad052bc6d8834e68f%7C1525858019&amp;uid=18231046">http://api.chujianapp.com/live/get_hot_list?app_version=6.3.0&amp;bundle_id=fish.livezb.wte&amp;device=ios&amp;device_id=7ED19CAE-E21F-44BF-98DC-F5346E64E502&amp;device_idfa=51C0FC66-54C0-4F69-91E4-4C168698D1F5&amp;device_model=iPhone%206s&amp;device_version=iOS11.3.1&amp;pkg_channel=ys19&amp;secure_key=bd54628575ff36bd7695519218f6934f&amp;server_upgrade=1&amp;time_stamp=1525858044919&amp;token=18231046%7C227842b7058bc5dad052bc6d8834e68f%7C1525858019&amp;uid=18231046</a><br>从这个链接中可以得到rtmp流</p>
+<h3 id="新建一个OC-Demo项目"><a href="#新建一个OC-Demo项目" class="headerlink" title="新建一个OC Demo项目"></a>新建一个OC Demo项目</h3><p>1. 把<code>IJKMediaFramework.framework</code>拷贝到项目目录中<br>2. 在<code>ViewController.m</code>中<code>#import &lt;IJKMediaFramework/IJKFFMoviePlayerController.h&gt;</code>，并且在<code>viewDidLoad</code>中添加如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NSURL *playerURL &#x3D; [NSURL URLWithString:@&quot;rtmp:\&#x2F;\&#x2F;pili-live-rtmp.chujianapp.com\&#x2F;ragingfire\&#x2F;1663091115258475730&quot;];</span><br><span class="line">    IJKFFMoviePlayerController *playerVC &#x3D; [[IJKFFMoviePlayerController alloc] initWithContentURL:playerURL withOptions:nil];</span><br><span class="line">    [playerVC prepareToPlay];</span><br><span class="line">    playerVC.view.frame &#x3D; CGRectMake(30, 20, [UIScreen mainScreen].bounds.size.width * 2 &#x2F; 3, [UIScreen mainScreen].bounds.size.height * 2 &#x2F; 3);</span><br><span class="line">    playerVC.view.backgroundColor &#x3D; [UIColor grayColor];</span><br><span class="line">    [self.view insertSubview:playerVC.view atIndex:1];</span><br></pre></td></tr></table></figure>
+<h3 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h3><p>(o゜▽゜)o☆[BINGO!]</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9743a68c2939">https://www.jianshu.com/p/9743a68c2939</a></p>
+<p>👍👍👍</p>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/Android-FFmpeg-Cannot-find-a-valid-font-for-the-family-Sans/">Android FFmpeg Cannot find a valid font for the family Sans</a></li></ul></div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/Date-And-Time-Three/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Date-And-Time-Three/" class="post-title-link" itemprop="url">日期Date和时间Time（三）- 一个简单的日历</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-04-26 17:39:38" itemprop="dateCreated datePublished" datetime="2018-04-26T17:39:38+08:00">2018-04-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-15 18:21:02" itemprop="dateModified" datetime="2021-01-15T18:21:02+08:00">2021-01-15</time>
+      </span>
+
+  
+    <span id="/Date-And-Time-Three/" class="post-meta-item leancloud_visitors" data-flag-title="日期Date和时间Time（三）- 一个简单的日历" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在前面两篇中讲到了日期和时间的基础知识，现在让我们来利用学到的基础知识创建一个简单的日历。</p>
+<h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p><img src="http://image.iosprogrammer.hongbility.com/Date-And-Time-Three/%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C.png"><br>输入指定的年份和月份后可以得到对应月份的日历。</p>
+<h3 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 某个月的所有天</span></span><br><span class="line"><span class="comment">///</span></span><br><span class="line"><span class="comment">/// - Parameter year: 年份</span></span><br><span class="line"><span class="comment">/// - Parameter month: 月份</span></span><br><span class="line"><span class="comment">/// - Returns: 天的数组</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">daysInSomeMonth</span><span class="params">(year: Int, month: Int)</span></span> -&gt; [<span class="type">Weekday</span>] &#123;</span><br><span class="line">    <span class="keyword">let</span> calendar <span class="operator">=</span> <span class="type">Calendar</span>(identifier: .gregorian)</span><br><span class="line">    <span class="keyword">var</span> components <span class="operator">=</span> <span class="type">DateComponents</span>()</span><br><span class="line">    components.year <span class="operator">=</span> year</span><br><span class="line">    components.month <span class="operator">=</span> month</span><br><span class="line">    components.day <span class="operator">=</span> <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> date <span class="operator">=</span> calendar.date(from: components)<span class="operator">!</span></span><br><span class="line">    <span class="keyword">let</span> localDate <span class="operator">=</span> localData(<span class="type">GMT</span>: date) <span class="comment">// 本地时间</span></span><br><span class="line">    <span class="keyword">var</span> monthStartDate <span class="operator">=</span> <span class="type">Date</span>()</span><br><span class="line">    <span class="keyword">var</span> interval: <span class="type">TimeInterval</span> <span class="operator">=</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">_</span> <span class="operator">=</span> calendar.dateInterval(of: <span class="type">Calendar</span>.<span class="type">Component</span>.month, start: monthStartDate, interval: <span class="operator">&amp;</span>interval, <span class="keyword">for</span>: localDate)</span><br><span class="line">    <span class="keyword">let</span> endDate <span class="operator">=</span> <span class="type">Date</span>(timeInterval: interval <span class="operator">-</span> <span class="number">60</span><span class="operator">*</span><span class="number">60</span><span class="operator">*</span><span class="number">24</span>, since: localDate)</span><br><span class="line">    <span class="keyword">let</span> endComponents <span class="operator">=</span> calendar.dateComponents([.month, .day], from:endDate)</span><br><span class="line">    <span class="keyword">let</span> endDay <span class="operator">=</span> endComponents.day<span class="operator">!</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> weekDays <span class="operator">=</span> [<span class="type">Weekday</span>]()</span><br><span class="line">    <span class="keyword">for</span> dayOfMonth <span class="keyword">in</span> <span class="number">1</span><span class="operator">...</span>endDay &#123;</span><br><span class="line">        <span class="keyword">var</span> dayComponents <span class="operator">=</span> <span class="type">DateComponents</span>()</span><br><span class="line">        dayComponents.year <span class="operator">=</span> year</span><br><span class="line">        dayComponents.month <span class="operator">=</span> month</span><br><span class="line">        dayComponents.day <span class="operator">=</span> dayOfMonth</span><br><span class="line">        <span class="keyword">let</span> _date <span class="operator">=</span> calendar.date(from: dayComponents)<span class="operator">!</span></span><br><span class="line">        <span class="keyword">let</span> _components <span class="operator">=</span> calendar.dateComponents([.weekday], from: _date)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> weekDay <span class="operator">=</span> <span class="type">Weekday</span>(day: dayOfMonth, weekday:_components.weekday<span class="operator">!</span>)</span><br><span class="line">        weekDays.append(weekDay)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> weekDays</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先利用当月第一天的DateComponent获得对应的Date，然后转换成本地时间（北京时间），然后利用<code>public func dateInterval(of component: Calendar.Component, start: inout Date, interval: inout TimeInterval, for date: Date) -&gt; Bool</code>获得当月的天数，之后遍历当月的天数并得到每一天对应的是周几。其中<code>Date(timeInterval: interval - 60*60*24, since: localDate)</code>来保证得到的是当月的最后一天，如果没有<code>- 60*60*24</code>得到的是下月第一天。<br>将GMT时间转换成本地时间的方法是：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">localData</span><span class="params">(GMT date: Date)</span></span> -&gt; <span class="type">Date</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> timeZone <span class="operator">=</span> <span class="type">TimeZone</span>.current</span><br><span class="line">    <span class="keyword">let</span> interval <span class="operator">=</span> timeZone.secondsFromGMT()</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Date</span>(timeInterval: <span class="type">TimeInterval</span>(interval), since: date)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="待完善"><a href="#待完善" class="headerlink" title="待完善"></a>待完善</h3><p>目前得到的是某个月的日期，如果是完整的日历还需要可以左右滑动。</p>
+<h3 id="github源码"><a href="#github源码" class="headerlink" title="github源码"></a>github源码</h3><p><a target="_blank" rel="noopener" href="https://github.com/shizhiang/CalendarTutorial">https://github.com/shizhiang/CalendarTutorial</a></p>
+<p>👍👍👍</p>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/Date-And-Time-Two/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Date-And-Time-Two/" class="post-title-link" itemprop="url">日期Date和时间Time（二）- 日历计算</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-04-19 21:48:38" itemprop="dateCreated datePublished" datetime="2018-04-19T21:48:38+08:00">2018-04-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-15 18:21:07" itemprop="dateModified" datetime="2021-01-15T18:21:07+08:00">2021-01-15</time>
+      </span>
+
+  
+    <span id="/Date-And-Time-Two/" class="post-meta-item leancloud_visitors" data-flag-title="日期Date和时间Time（二）- 日历计算" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在iOS开发过程中关于日历计算的需求都应该使用NSDate提供的方法，因为这些方法里面考虑了夏时制开始或者结束以及闰年等极端情况。</p>
+<h3 id="将组件添加到Date"><a href="#将组件添加到Date" class="headerlink" title="将组件添加到Date"></a>将组件添加到Date</h3><p>使用<code>public func date(byAdding components: DateComponents, to date: Date, wrappingComponents: Bool = default) -&gt; Date?</code>方法给一个日期添加组件并得到一个新的日期。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> gregorian <span class="operator">=</span> <span class="type">Calendar</span>(identifier: .chinese)</span><br><span class="line"><span class="keyword">var</span> addingComponents <span class="operator">=</span> <span class="type">DateComponents</span>()</span><br><span class="line">addingComponents.day <span class="operator">=</span> <span class="number">1</span></span><br><span class="line">addingComponents.second <span class="operator">=</span> <span class="operator">-</span><span class="number">10</span></span><br><span class="line">gregorian.date(byAdding: addingComponents, to: <span class="type">Date</span>())</span><br></pre></td></tr></table></figure>
+<p>如上例，添加到日期的组件可以是负数。</p>
+<p>获取本周的周日：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> gregorian <span class="operator">=</span> <span class="type">Calendar</span>(identifier: .chinese)</span><br><span class="line"><span class="keyword">let</span> weekdayComponents <span class="operator">=</span> gregorian.dateComponents([.weekday], from: <span class="type">Date</span>())</span><br><span class="line"><span class="built_in">print</span>(weekdayComponents.weekday<span class="operator">!</span>)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">var</span> componentsToSubtract <span class="operator">=</span> <span class="type">DateComponents</span>()</span><br><span class="line">componentsToSubtract.day <span class="operator">=</span> <span class="number">0</span> <span class="operator">-</span> (weekdayComponents.weekday<span class="operator">!</span> <span class="operator">-</span> <span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(componentsToSubtract.day<span class="operator">!</span>)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">let</span> beggingOfWeek <span class="operator">=</span> gregorian.date(byAdding: componentsToSubtract, to: <span class="type">Date</span>())</span><br><span class="line"><span class="built_in">print</span>(beggingOfWeek<span class="operator">!</span>)</span><br></pre></td></tr></table></figure>
+<p>注意：上例的日历中每周是从周日开始的，有些日历不是这样。</p>
+<h3 id="计算两个日期之间的间隔-网络时间协议NTP"><a href="#计算两个日期之间的间隔-网络时间协议NTP" class="headerlink" title="计算两个日期之间的间隔 网络时间协议NTP"></a>计算两个日期之间的间隔 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/NTP/1100433">网络时间协议NTP</a></h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> gregorian <span class="operator">=</span> <span class="type">Calendar</span>(identifier: .gregorian)</span><br><span class="line"><span class="keyword">let</span> startDate <span class="operator">=</span> <span class="type">Date</span>()</span><br><span class="line"><span class="keyword">let</span> endDate <span class="operator">=</span> <span class="type">Date</span>(timeIntervalSinceNow: <span class="number">1000000</span>)</span><br><span class="line"><span class="keyword">let</span> dayComponents <span class="operator">=</span> gregorian.dateComponents([.day], from: startDate, to: endDate)</span><br><span class="line"><span class="built_in">print</span>(dayComponents.day<span class="operator">!</span>) <span class="comment">// 231</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">let</span> monthAndDayComponents <span class="operator">=</span> gregorian.dateComponents([.month, .day], from: startDate, to: endDate)</span><br><span class="line"><span class="built_in">print</span>(monthAndDayComponents.month<span class="operator">!</span>, monthAndDayComponents.day<span class="operator">!</span>) <span class="comment">// 7 17</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">let</span> monthComponents <span class="operator">=</span> gregorian.dateComponents([.month], from: startDate, to: endDate)</span><br><span class="line"><span class="built_in">print</span>(monthComponents.month<span class="operator">!</span>) <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+<p>从上例中可以看出，日期间隔的溢出被自动处理了（在dayComponents中，得到的是7个月零17天的天数）。<br>但是这个方法也会把计算结果截断为所提供的最小单位（monthComponents得到的只有7个月）。这个截断结果在某些情况下是我们所不希望得到的，如果说在即时通讯软件中，我们需要显示“一天前的聊天”，也就是当天的0点以后要把前一天的聊天显示为“一天前”，如果按照上面的方法，我们将会得到两个时间的间隔为0天，为了解决这个问题和得到我们想要的结果，可以使用下面的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let gregorian &#x3D; Calendar(identifier: .chinese)</span><br><span class="line">let startDate &#x3D; Date() &#x2F;&#x2F; 20:41</span><br><span class="line">let endDate &#x3D; Date(timeIntervalSinceNow: 3600 * 5)</span><br><span class="line">let dayComponents &#x3D; gregorian.dateComponents([.day], from: startDate, to: endDate)</span><br><span class="line">print(dayComponents.day!) &#x2F;&#x2F; 0</span><br><span class="line">    </span><br><span class="line">let startDay &#x3D; gregorian.ordinality(of: .day, in: .month, for: startDate)</span><br><span class="line">let endDay &#x3D; gregorian.ordinality(of: .day, in: .month, for: endDate)</span><br><span class="line">print(endDay! - startDay!) &#x2F;&#x2F; 1</span><br></pre></td></tr></table></figure>
+<p>上面是分别用两个方法获取到的时间间隔，当前时间是20：41，结束时间是5小时后。至于哪个结果是我们想要的，要根据具体需求分析。其中，方法<code>open func ordinality(of smaller: NSCalendar.Unit, in larger: NSCalendar.Unit, for date: Date) -&gt; Int</code>是在一个较大的日期组件中获取指定日期的较小组件的数值。如果<code>larger &lt; smaller</code>将返回nil。</p>
+<p>判断某个日期是否是本周</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">let calendar &#x3D; Calendar(identifier: .chinese)</span><br><span class="line">let today &#x3D; Date()</span><br><span class="line">var startDate &#x3D; Date()</span><br><span class="line">var extends: TimeInterval &#x3D; 0</span><br><span class="line">let success &#x3D; calendar.dateInterval(of: .weekOfYear, start: &amp;startDate,interval: &amp;extends, for: today)</span><br><span class="line">if !success &#123;</span><br><span class="line">    print(&quot;失败&quot;)</span><br><span class="line">&#125;</span><br><span class="line">let testDate &#x3D; Date(timeIntervalSinceNow: 100000)</span><br><span class="line">let dateInSecs &#x3D; testDate.timeIntervalSinceReferenceDate</span><br><span class="line">let dayStartInSecs &#x3D; startDate.timeIntervalSinceReferenceDate</span><br><span class="line">let dateInThisWeek &#x3D; dayStartInSecs &lt; dateInSecs &amp;&amp; (dateInSecs &lt;(dayStartInSecs + extends))</span><br><span class="line">print(dateInThisWeek)</span><br></pre></td></tr></table></figure>
+<p>先使用<code>dateInterval(of: .weekOfYear, start: &amp;startDate,interval: &amp;extends, for: today)</code>获取到本周的<code>startDate</code>和<code>weekOfYear</code>（一周）的<code>extends</code>（时长），然后根据要判断的日期距离指定日期的秒数是否大于本周开始日期距离指定日期的秒数，并且小于本周结束时日期距离指定日期的秒数。</p>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/Date-And-Time-One/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Date-And-Time-One/" class="post-title-link" itemprop="url">日期Date和时间Time（一）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-04-12 23:27:34" itemprop="dateCreated datePublished" datetime="2018-04-12T23:27:34+08:00">2018-04-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-21 13:38:12" itemprop="dateModified" datetime="2021-01-21T13:38:12+08:00">2021-01-21</time>
+      </span>
+
+  
+    <span id="/Date-And-Time-One/" class="post-meta-item leancloud_visitors" data-flag-title="日期Date和时间Time（一）" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h3><ol>
+<li>UTC - <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8D%8F%E8%B0%83%E4%B8%96%E7%95%8C%E6%97%B6/787659?fr=aladdin&fromid=5899996&fromtitle=UTC">协调时间时，世界统一时间</a></li>
+<li>历法 - <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%97%A5%E5%8E%86/84469?fr=aladdin">公历、农历、阳历、阴历</a></li>
+</ol>
+<h3 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><ul>
+<li>NSDate是Cocoa框架中的一个基本的值对象。它表示了一个不变的时间点。其中包含了时钟时间和日期。</li>
+<li>NSDate的单位是用浮点数（NSTimeInterval）表示的秒。因此，NSDate可以提供10000年内毫秒级精度的时间</li>
+<li>NSDate将时间计算为相对于绝对参考时间（2001年1月1日0点0分0秒：UTC时间）的秒数。国内获取到的是2001年1月1日08点00分00秒。</li>
+<li>正数表示参考日期后的某个日期，负数表示参考日期之前。<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4></li>
+<li>获取当前时间。<code>NSDat()</code></li>
+<li>获取相对某个日期前/后的时间。<code>init(timeIntervalSince... sec: TimeInterval)</code>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Date-And-Time-One/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">施治昂</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+
+
+  
+
+
+<script data-pjax>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      const visitors = document.querySelector('.leancloud_visitors');
+      const url = decodeURI(visitors.id);
+      const title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            const counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      const visitors = document.querySelectorAll('.leancloud_visitors');
+      const entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            const target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    const { app_id, app_key, server_url } = {"enable":true,"app_id":"ENF98d3lY1q1PN1nHaX8tLzX-gzGzoHsz","app_key":"gVbfqVHqQAnAqFM6hVRLrPJT","server_url":null,"security":true};
+    function fetchData(api_server) {
+      const Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    const api_server = app_id.slice(-9) === '-MdYXbMMI' ? `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com` : server_url;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+    <div class="pjax">
+
+  
+
+
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

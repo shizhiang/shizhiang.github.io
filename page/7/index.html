@@ -1,23 +1,967 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/wechatlogo32*32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/wechatlogo16*16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
+<link rel="stylesheet" href="/css/main.css">
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic%7CLobster+Two:300,300italic,400,400italic,700,700italic%7CAmita:300,300italic,400,400italic,700,700italic%7CMontserrat:300,300italic,400,400italic,700,700italic%7CPT+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+<meta property="og:type" content="website">
+<meta property="og:title" content="iOS开发栈">
+<meta property="og:url" content="http://www.iosprogrammer.tech/page/7/index.html">
+<meta property="og:site_name" content="iOS开发栈">
+<meta property="og:description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+<meta property="og:locale">
+<meta property="article:author" content="施治昂">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.iosprogrammer.tech/page/7/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+<title>iOS开发栈</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-127387039-1');
+      }
+    </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="iOS开发栈" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">iOS开发栈</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">施治昂</p>
+  <div class="site-description" itemprop="description">分享iOS开发知识，Objective-C、Swift、Xcode相关技巧</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:shizhiang@126.com" title="E-Mail → mailto:shizhiang@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7414691003/profile" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7414691003&#x2F;profile" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/Create-Cocoapods-Repo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Create-Cocoapods-Repo/" class="post-title-link" itemprop="url">从零开始到提交一个开源项目到Cocopods</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-04-03 18:20:45" itemprop="dateCreated datePublished" datetime="2018-04-03T18:20:45+08:00">2018-04-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-21 13:38:06" itemprop="dateModified" datetime="2021-01-21T13:38:06+08:00">2021-01-21</time>
+      </span>
+
+  
+    <span id="/Create-Cocoapods-Repo/" class="post-meta-item leancloud_visitors" data-flag-title="从零开始到提交一个开源项目到Cocopods" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h3><ol>
+<li><p>执行<code>pod lib create [ProjectName]</code>创建项目。过程中需要回答几个问题，根据自己的需要设置设置就可以了。我的设置是：</p>
+<ul>
+<li><p>What platform do you want to use?? [ iOS / macOS ]</p>
+<blockquote>
+<p>iOS</p>
+</blockquote>
+</li>
+<li><p>What language do you want to use?? [ Swift / ObjC ]</p>
+<blockquote>
+<p>Swift</p>
+</blockquote>
+</li>
+<li><p>Would you like to include a demo application with your library? [ Yes / No ]</p>
+<blockquote>
+<p>Yes</p>
+</blockquote>
+</li>
+<li><p>Which testing frameworks will you use? [ Quick / None ]</p>
+<blockquote>
+<p>None</p>
+</blockquote>
+</li>
+<li><p>Would you like to do view based testing? [ Yes / No ]</p>
+<blockquote>
+<p>No</p>
+</blockquote>
+<p>紧接着会自动执行<code>pod install</code>，我们只需要静静的等着完成就可以了。</p>
+</li>
+</ul>
+</li>
+<li><p>项目结构。 <code>pod install</code>之后，Cocoapods会直接打开Xcode project。项目结构如下：<br><img src="http://image.iosprogrammer.hongbility.com/Create-Cocoapods-Repo/project-struct.png" alt="project-struct"></p>
+<ol>
+<li>Podspec Metadata<ul>
+<li>.podpsec - 项目相关的pod信息。包括了版本号、github主页、对其他项目的依赖、作者信息和指定资源文件</li>
+<li>README.md - 对当前项目的介绍和使用方法。也就是github中项目主页的介绍内容。</li>
+<li>LICENSE - 指定使用的开源协议  </li>
+</ul>
+</li>
+<li>Example for DemoProj - 对开源代码的使用实例。其他人从github下载了开源项目后可以通过这个来查看使用方法。如果在<code>Would you like to include a demo application with your library?</code>中选择了No，这个项目就不会创建。因此强烈建议这个问题回答YES。对自己调试和别人使用都非常有利。</li>
+<li>Tests - 单元测试。</li>
+<li>Development Pods - 开源库代码就放在这里。</li>
+<li>Frameworks - 当前开源项目的依赖库
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Create-Cocoapods-Repo/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/LLDB-Advanced-Usage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/LLDB-Advanced-Usage/" class="post-title-link" itemprop="url">LLDB调试iOS程序（二）—— 高级用法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-03-22 16:04:48" itemprop="dateCreated datePublished" datetime="2018-03-22T16:04:48+08:00">2018-03-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-15 18:20:09" itemprop="dateModified" datetime="2021-01-15T18:20:09+08:00">2021-01-15</time>
+      </span>
+
+  
+    <span id="/LLDB-Advanced-Usage/" class="post-meta-item leancloud_visitors" data-flag-title="LLDB调试iOS程序（二）—— 高级用法" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="巧用help命令"><a href="#巧用help命令" class="headerlink" title="巧用help命令"></a>巧用<code>help</code>命令</h3><p>LLDB中的命令非常多，虽然有一些算是常用的，但是要完全记住也很难，为了解决这个问题，我们可以充分利用<code>help</code>命令。比如要查看<code>breakPoint</code>的用法，可以先查看它的自命令：<br>![help breakpoint](<a target="_blank" rel="noopener" href="http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/help">http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/help</a> breakpoint.png)<br>图中列举出了所有的<code>breakpoint</code>的子命令。</p>
+<p>请看最后一行<code>For more help on any particular subcommand, type &#39;help &lt;command&gt; &lt;subcommand&gt;&#39;</code>。根据这条提示，我们来查看其中一条子命令的详细用法。<br>![help breakpoint](<a target="_blank" rel="noopener" href="http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/help">http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/help</a> breakpoint set.png)<br>图中只是截取了部分内容。</p>
+<p>由此可见LLDB给我们提供的<code>help</code>命令还是很强大的。我们在平时的调试过程中，如果遇到了不确定命令是什么了，可以使用<code>help</code>命令来查看，也可以使用<strong>自动提示</strong>功能来帮助我们。</p>
+<h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h3><p>执行流程控制的命令包括<code>process</code>、<code>breakpoint</code>、<code>thread</code>，具体可以查看<a target="_blank" rel="noopener" href="http://www.cocoachina.com/swift/20171013/20789.html">这篇文章</a>。</p>
+<p>这里只讨论设置命中断点后执行的命令<code>breakpoint command add &lt;#断点#&gt;</code>。</p>
+<p>首先使用<code>breakpoint list</code>来查看所有的断点。<br>![breakpoint list](<a target="_blank" rel="noopener" href="http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint">http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint</a> list.png)<br>其中，前面的数字是断点的序号，可以唯一标识一个断点。图中的1/2都是全局断点，3是我自己加的断点。下面我们给3.1断点增加执行后的指令：<br>![breakpoint command add](<a target="_blank" rel="noopener" href="http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint">http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint</a> command add.png)<br>如图，我们在断点出分别执行<code>po self</code>、<code>po self.view</code>、<code>continue</code>。其中<code>continue</code><strong>表示到此断点后继续执行，这在循环等场景特别有用</strong>。命令的执行结果为：<br>![breakpoint command add result](<a target="_blank" rel="noopener" href="http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint">http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint</a> command add result.png)</p>
+<p>这种方法在需要多次执行的场景中特别有用，完全可以代替使用<code>print()</code>来查看变量值的方案。</p>
+<h3 id="给断点增加触发条件"><a href="#给断点增加触发条件" class="headerlink" title="给断点增加触发条件"></a><strong><em>给断点增加触发条件</em></strong></h3><p>有这样一种场景：在一个循环中，我们只要在某些条件下才需要触发断点。可以这样设置：<br>![breakpoint condition](<a target="_blank" rel="noopener" href="http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint">http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint</a> condition.png)</p>
+<h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4><p><a target="_blank" rel="noopener" href="http://www.cocoachina.com/swift/20171013/20789.html">使用LLDB调试Swift</a></p>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/Get-To-Know-LLDB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Get-To-Know-LLDB/" class="post-title-link" itemprop="url">LLDB调试iOS（一）—— 初识LLDB</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-03-11 14:21:13" itemprop="dateCreated datePublished" datetime="2018-03-11T14:21:13+08:00">2018-03-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-21 13:38:29" itemprop="dateModified" datetime="2021-01-21T13:38:29+08:00">2021-01-21</time>
+      </span>
+
+  
+    <span id="/Get-To-Know-LLDB/" class="post-meta-item leancloud_visitors" data-flag-title="LLDB调试iOS（一）—— 初识LLDB" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="什么是LLDB"><a href="#什么是LLDB" class="headerlink" title="什么是LLDB"></a><strong>什么是LLDB</strong></h3><p>LLDB是下一代、高性能的调试器。它是作为一组可重用组件构建的，它可以高度利用较大<strong>LLVM</strong>项目中的现有库，例如<strong>Clang</strong>表达式解析器和LLVM反汇编器。</p>
+<p>LLDB是Mac OS X上Xcode的默认调试器，支持在桌面和iOS设备、模拟器上调试C/Objective-C/C++/Swift。</p>
+<h3 id="LLDB的进步"><a href="#LLDB的进步" class="headerlink" title="LLDB的进步"></a>LLDB的进步</h3><ol>
+<li>支持现代化的多线程程序</li>
+<li>以高效的方式处理调试符号</li>
+<li>使用基于编码器（LLVM）的代码知识</li>
+<li>支持插件扩展
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Get-To-Know-LLDB/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/XCode-Server-CI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/XCode-Server-CI/" class="post-title-link" itemprop="url">Xcode持续集成简介</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-03-06 16:28:14" itemprop="dateCreated datePublished" datetime="2018-03-06T16:28:14+08:00">2018-03-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-15 18:20:09" itemprop="dateModified" datetime="2021-01-15T18:20:09+08:00">2021-01-15</time>
+      </span>
+
+  
+    <span id="/XCode-Server-CI/" class="post-meta-item leancloud_visitors" data-flag-title="Xcode持续集成简介" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><ul>
+<li>Xcode 9.2</li>
+<li>macOS High Sierra 10.13.2</li>
+</ul>
+<h3 id="本文的目的"><a href="#本文的目的" class="headerlink" title="本文的目的"></a>本文的目的</h3><ul>
+<li>介绍Xcode CI和Xcode Server</li>
+<li>手把手教你从头开始创建一个Xcode Server来进行自动集成</li>
+</ul>
+<h3 id="Xcode-CI和Xcode-Server"><a href="#Xcode-CI和Xcode-Server" class="headerlink" title="Xcode CI和Xcode Server"></a>Xcode CI和Xcode Server</h3><p>正如<a target="_blank" rel="noopener" href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/xcode_guide-continuous_integration/index.html#//apple_ref/doc/uid/TP40013292-CH1-SW1">苹果开发者网站</a>所描述的</p>
+<blockquote>
+<p>In Xcode, continuous integration is the process of automating and streamlining the building, analyzing, testing, and archiving of your Mac and iOS apps, in order to ensure that they are always in a releasable state.</p>
+</blockquote>
+<p>Xcode CI是一种为了确保你的APP始终处于可发布状态而存在的自动的、流式的过程，整个过程包括了编译、解析、测试和打包。<br>Xcode Server是用来远程进行这个过程的服务器。</p>
+<p>整个过程类似下图<br><img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Xcode-CI-Intro.png"></p>
+<ul>
+<li>使用这个过程的目的就是为了集成开发APP的整个过程，让这个过程完全自动化进行。通过Xcode CI可以在每次提交代码后自动进行编译到打包的过程，并且可以查看代码的测试覆盖率。因为它可以自动执行单元测试，可以更方便的查看测试报告。</li>
+</ul>
+<h3 id="集成"><a href="#集成" class="headerlink" title="集成"></a>集成</h3><ol>
+<li><p>打开Xcode Server</p>
+<ol>
+<li>点击Xcode菜单栏中的Xcode选项卡的Xcode Server…</li>
+<li>将右上角的开关调到On</li>
+</ol>
+</li>
+<li><p>配置Xcode Server</p>
+<ol>
+<li><p>点击Product选项卡中的Create Bot…</p>
+</li>
+<li><p>配置bot的Name。Server一般不需要<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Create-a-new-bot.png"></p>
+</li>
+<li><p>配置代码库<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Configure-source-control-for-this-bot.png"><br><img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Configrure-souce-code-2.png"></p>
+<blockquote>
+<p>这里选择的是使用.ssh的公钥来配置，当然也可以使用UserName And Password或者Bot Specific SSh Keys。</p>
+</blockquote>
+</li>
+<li><p>选择分支</p>
+</li>
+<li><p>配置Bot的环境<br><img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Configure-build-configuration.png"></p>
+<blockquote>
+<p>这里可以选择在集成的时候是否进行静态分析、测试和打包</p>
+</blockquote>
+</li>
+<li><p>配置集成周期<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Schedule-bot-integrations.png"></p>
+<blockquote>
+<p>其中，Ingegrate选项中Periodically表示按周期集成，包括小时、天、周；Clean选项表示对项目进行Clean的周期，包括Always/Once a day/Once a week/Never。</p>
+</blockquote>
+</li>
+<li><p>选择集成的目标设备。可以设置模拟器和真机、所有的模拟器、所有的真机、指定的模拟器和指定的真机。</p>
+</li>
+<li><p>配置项目证书</p>
+</li>
+<li><p>集成完成<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/create-ci-success.png"></p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="可能遇到的问题和解决方案"><a href="#可能遇到的问题和解决方案" class="headerlink" title="可能遇到的问题和解决方案"></a>可能遇到的问题和解决方案</h3><ol>
+<li>The sandbox is not in sync with the Podfile.lock.Run ‘pod install’ or update your CocoaPods installation.</li>
+<li>Invalid byte sequence in US_ASCII(Argument Error)</li>
+</ol>
+<blockquote>
+<p>其中第一个问题需要在每次integrate之前执行<code>pod install</code>；第二个问题是由于Ruby的编码问题导致的，这两个问题的统一解决方案是给Bot添加一个prebuild script，步骤如下： 1. Edit Bot…  2. Triggers 3. Click ‘+’, select ‘Pre-Integraation Script’<br>具体的脚本内容为：<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/pre-script.jpg"><br>下面对这个脚本做一个解释说明:<br>(1). 第2行是用来查看脚本（也就是Server）当前的环境<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/set.jpg"><br>(2). 第4行是切换到项目所在目录，目录地址可以从环境的PWD变量获得<br>(3). 6-8行是用来解决第2个问题的<br>(4). 第10行来执行<code>pod install</code></p>
+</blockquote>
+<h3 id="脚本上传到蒲公英"><a href="#脚本上传到蒲公英" class="headerlink" title="脚本上传到蒲公英"></a>脚本上传到蒲公英</h3><p>   增加一个Post-Integration Scripts<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/post_integration_scripy.jpg" alt="post_integration_script"></p>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/Using-Instruments-To-Oprimize-CPU-Performance/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Using-Instruments-To-Oprimize-CPU-Performance/" class="post-title-link" itemprop="url">使用Instruments工具测试CPU与常见对CPU占用过高的操作</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-02-05 22:16:41" itemprop="dateCreated datePublished" datetime="2018-02-05T22:16:41+08:00">2018-02-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-15 18:26:17" itemprop="dateModified" datetime="2021-01-15T18:26:17+08:00">2021-01-15</time>
+      </span>
+
+  
+    <span id="/Using-Instruments-To-Oprimize-CPU-Performance/" class="post-meta-item leancloud_visitors" data-flag-title="使用Instruments工具测试CPU与常见对CPU占用过高的操作" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="使用Xcode自带的Instruments工具，检测CPU"><a href="#使用Xcode自带的Instruments工具，检测CPU" class="headerlink" title="使用Xcode自带的Instruments工具，检测CPU"></a>使用Xcode自带的Instruments工具，检测CPU</h1><h2 id="Instruments"><a href="#Instruments" class="headerlink" title="Instruments"></a>Instruments</h2><p>打开Instruments：Xcode -&gt; Product -&gt; Profile 或者 cmd + i<br>启动后如下：<br><img src="http://upload-images.jianshu.io/upload_images/424855-8c5d278b6d7b35c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Instruments.png"><br>其中常用的有用来检测内存泄露的Leaks和查看CPU消耗情况的Time Profiler。下面介绍查看CPU使用情况的Time Profiler</p>
+<h3 id="Time-Profier"><a href="#Time-Profier" class="headerlink" title="Time Profier"></a>Time Profier</h3><ol>
+<li>打开Time Profier</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/424855-4322b66e910ec9ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Timer profile 9.0.png"></p>
+<blockquote>
+<p>要查看每个函数的CPU性能，直接双击函数就可以定位到代码了。<br>函数前面的数值是所用时间，可以根据这个时间判断是是否需要优化。</p>
+</blockquote>
+<p>有了上面的基础知识就可以对App的CPU消耗情况进行实时检测了。</p>
+<h3 id="常见的对CPU消耗过高的操作"><a href="#常见的对CPU消耗过高的操作" class="headerlink" title="常见的对CPU消耗过高的操作"></a>常见的对CPU消耗过高的操作</h3><ul>
+<li>加载图片<br>两种不同方式在相同时间内的CPU消耗情况对比：<br><img src="http://upload-images.jianshu.io/upload_images/424855-70124a2646fe806a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"><br><img src="http://upload-images.jianshu.io/upload_images/424855-0f98cb8f0b9d974b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2016-03-13 下午6.25.34.png"><br>并且，使用5s真机测试以下代码40s后Memory过高造成闪退，但是使用<code>imageWithContentOfFile</code>数分钟后没有出现闪退现象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while (1)</span><br><span class="line">    &#123;</span><br><span class="line">        [UIImage imageNamed:@&quot;58_58&quot;];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<li>初始化对象<ul>
+<li>正则表达式</li>
+<li>时间戳<br><img src="http://upload-images.jianshu.io/upload_images/424855-612ee50bf16040c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2016-03-13 下午6.37.50.png"></li>
+</ul>
+</li>
+</ul>
+<p>在需要多次使用的地方尽量只初始化一次，然后多次使用</p>
+<ul>
+<li>视图布局<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;-(void)layoutSubviews</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; do something</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[view setNeedsLayout];</span><br><span class="line">[view layoutIfNeeded];</span><br></pre></td></tr></table></figure>
+这些函数尽量不要使用。每对view进行一次重新布局就会对CPU增加很多消耗。</li>
+<li>绘制图层<br>需要用到<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[layout rendInContext:]</span><br></pre></td></tr></table></figure>
+的地方尽量换成iOS7以后新增的方法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[view drawViewHierachyInRect:]</span><br></pre></td></tr></table></figure>
+性能同样可以获得很大的提升</li>
+</ul>
+<h4 id="上面的内容如有错误，还请在评论区指出。如果对您有帮助请给个赞，谢谢。"><a href="#上面的内容如有错误，还请在评论区指出。如果对您有帮助请给个赞，谢谢。" class="headerlink" title="上面的内容如有错误，还请在评论区指出。如果对您有帮助请给个赞，谢谢。"></a>上面的内容如有错误，还请在评论区指出。如果对您有帮助请给个赞，谢谢。</h4><div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">施治昂</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+
+
+  
+
+
+<script data-pjax>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      const visitors = document.querySelector('.leancloud_visitors');
+      const url = decodeURI(visitors.id);
+      const title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            const counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      const visitors = document.querySelectorAll('.leancloud_visitors');
+      const entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            const target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    const { app_id, app_key, server_url } = {"enable":true,"app_id":"ENF98d3lY1q1PN1nHaX8tLzX-gzGzoHsz","app_key":"gVbfqVHqQAnAqFM6hVRLrPJT","server_url":null,"security":true};
+    function fetchData(api_server) {
+      const Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    const api_server = app_id.slice(-9) === '-MdYXbMMI' ? `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com` : server_url;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+    <div class="pjax">
+
+  
+
+
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

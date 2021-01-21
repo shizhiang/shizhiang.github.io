@@ -1,23 +1,975 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/wechatlogo32*32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/wechatlogo16*16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
+<link rel="stylesheet" href="/css/main.css">
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic%7CLobster+Two:300,300italic,400,400italic,700,700italic%7CAmita:300,300italic,400,400italic,700,700italic%7CMontserrat:300,300italic,400,400italic,700,700italic%7CPT+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+<meta property="og:type" content="website">
+<meta property="og:title" content="iOS开发栈">
+<meta property="og:url" content="http://www.iosprogrammer.tech/page/5/index.html">
+<meta property="og:site_name" content="iOS开发栈">
+<meta property="og:description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+<meta property="og:locale">
+<meta property="article:author" content="施治昂">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.iosprogrammer.tech/page/5/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+<title>iOS开发栈</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-127387039-1');
+      }
+    </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="iOS开发栈" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">iOS开发栈</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">施治昂</p>
+  <div class="site-description" itemprop="description">分享iOS开发知识，Objective-C、Swift、Xcode相关技巧</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:shizhiang@126.com" title="E-Mail → mailto:shizhiang@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7414691003/profile" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7414691003&#x2F;profile" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/learn-react-native-with-me-questions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/learn-react-native-with-me-questions/" class="post-title-link" itemprop="url">跟我一起学习React Native之遇到的问题和解决方法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-06-11 11:44:22" itemprop="dateCreated datePublished" datetime="2018-06-11T11:44:22+08:00">2018-06-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-15 18:20:09" itemprop="dateModified" datetime="2021-01-15T18:20:09+08:00">2021-01-15</time>
+      </span>
+
+  
+    <span id="/learn-react-native-with-me-questions/" class="post-meta-item leancloud_visitors" data-flag-title="跟我一起学习React Native之遇到的问题和解决方法" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>这篇文章是“<a href="http://www.iosprogrammer.tech/categories/react-native/">跟我一起学react-native</a>”系列文章的答疑篇。这系列文章会持续更新。想要跟我一起学习RN的朋友可以关注我的微信公众号iOS进阶指南，或者订阅<a href="http://www.iosprogrammer.tech/">我的个人博客</a>。</p>
+<ol>
+<li>No bundle URL present.<br><br><br> <img src="http://image.iosprogrammer.hongbility.com/react-native/problem-1.png" alt="No bundle URL present"><br><br><blockquote>
+<ul>
+<li>Run “react-native run-ios”</li>
+<li>When the error appears, run “npm install”</li>
+<li>Then run “react-native run-ios” again.</li>
+</ul>
+</blockquote>
+</li>
+<li>isMounted(…) is deprecated in plain JavaScript React classes…</li>
+<li>Class RCTCxxModule was not exported. Did you forget to use RCT_EXPORT_MODULE()?<br>这两个目前没找到好的解决办法，暂时隐藏警告吧，以后找到好的办法再更新。<br>这个问题在react-navigation的github主页里面有一个<a target="_blank" rel="noopener" href="https://github.com/react-navigation/react-navigation/issues/3956">专门的issue</a>，但是根据react-navigation的开发者说这个是react-native内部调用了废弃的方法所至。<br>目前大家的统一解决办法是在index.js文件中添加<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123; YellowBox &#125; from &#39;react-native&#39;;</span><br><span class="line">YellowBox.ignoreWarnings([&#39;Warning: isMounted(...) is deprecated&#39;, &#39;Module RCTImageLoader&#39;]);</span><br><span class="line">YellowBox.ignoreWarnings([&#39;Class RCTCxxModule&#39;]);</span><br></pre></td></tr></table></figure></li>
+<li>Image加载不出来，onload不执行的问题。<br>iOS 8以上，默认不支持HTTP。需要在info.plist中设置App Transport Security Settings -&gt; Allow Arbitray Loads = YES</li>
+<li>RCTBridge required dispatch_sync to load RCTDevLoadingView. This may lead to deadlocks.<br>APPDelegate.m<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">#if RCT_DEV</span><br><span class="line">#import &lt;React&#x2F;RCTDevLoadingView.h&gt;</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">@implementation AppDelegate</span><br><span class="line"></span><br><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</span><br><span class="line">&#123;</span><br><span class="line">  NSURL *jsCodeLocation;</span><br><span class="line"></span><br><span class="line">  jsCodeLocation &#x3D; [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@&quot;index&quot; fallbackResource:nil];</span><br><span class="line">  </span><br><span class="line">  RCTBridge *bridge &#x3D; [[RCTBridge alloc] initWithBundleURL:jsCodeLocation</span><br><span class="line">                                            moduleProvider:nil</span><br><span class="line">                                             launchOptions:launchOptions];</span><br><span class="line">#if RCT_DEV</span><br><span class="line">  [bridge moduleForClass:[RCTDevLoadingView class]];</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">  RCTRootView *rootView &#x3D; [[RCTRootView alloc] initWithBridge:bridge moduleName:@&quot;rn_shuidi&quot; initialProperties:launchOptions];</span><br><span class="line">  rootView.backgroundColor &#x3D; [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];</span><br><span class="line"></span><br><span class="line">  self.window &#x3D; [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];</span><br><span class="line">  UIViewController *rootViewController &#x3D; [UIViewController new];</span><br><span class="line">  rootViewController.view &#x3D; rootView;</span><br><span class="line">  self.window.rootViewController &#x3D; rootViewController;</span><br><span class="line">  [self.window makeKeyAndVisible];</span><br><span class="line">  return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/">跟我一起学习React Native之调用原生模块</a></li><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/">跟我一起学习React Native之我的和设置</a></li><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-project-instruction/">跟我一起学React Native之项目结构搭建</a></li></ul></div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/learn-react-native-with-me-construction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/learn-react-native-with-me-construction/" class="post-title-link" itemprop="url">跟我一起学习React Native之环境搭建</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-06-11 11:40:03" itemprop="dateCreated datePublished" datetime="2018-06-11T11:40:03+08:00">2018-06-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-15 18:20:09" itemprop="dateModified" datetime="2021-01-15T18:20:09+08:00">2021-01-15</time>
+      </span>
+
+  
+    <span id="/learn-react-native-with-me-construction/" class="post-meta-item leancloud_visitors" data-flag-title="跟我一起学习React Native之环境搭建" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>这篇文章是“<a href="http://www.iosprogrammer.tech/categories/react-native/">跟我一起学react-native</a>”系列文章的第一篇。这系列文章会持续更新。想要跟我一起学习React Native的朋友可以关注我的微信公众号<strong>iOS进阶指南</strong>，或者订阅<a href="http://www.iosprogrammer.tech/">我的个人博客</a>。</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近想要做一款新闻类的App，主要特点是把新闻事件按照时间线整理出来方便跟踪事情的发展。</p>
+<p>作为一个雷（xia）厉（bi）风（dao）行（gu）的程序员肯定说干就干。</p>
+<p>俗话说不想火的应用不是好App，想要更多的用户肯定不能只局限于一个平台，那就要让这个应用同时登陆安卓和iOS两个平台。但是我作为一个万年iOSer，现在从头开始学安卓恐怕有点不赶趟了。</p>
+<p>根据当前敌我态势和恶劣的环境，跨平台开发成为了最优选择。</p>
+<p>那怎么样达到跨平台开发的目的呢？根据百度爸爸的指导和以往的所见所闻，就要在阿里的weex和Facebook的react-native中二选一了。</p>
+<p>从这篇文章的标题来看，大家肯定知道要选rn，其实最开始我选的是weex，奈何经过三四天的奋战和四处求教，我实在是没有搞定环境，在这里不得不说weex的官方文档真的可以称为简陋，当然我可能是因为我前几天手贱把Mac的系统升级到了Mojave。</p>
+<p>在不得不放弃weex以后，只能🙏RN能给点面子。多亏上天眷顾，环境稍微折腾了一下就搞定了。</p>
+<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ol>
+<li><p>安装Node和Watchman</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br><span class="line">brew install watchman</span><br></pre></td></tr></table></figure>
+<p> 其中，node需要是8或者更新的版本。Watchman是Facebook用来监视文件系统更改的工具，RN强烈建议使用。</p>
+</li>
+<li><p>安装React Native command line interface.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g react-native-cli</span><br></pre></td></tr></table></figure></li>
+<li><p>创建项目</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">react-native init rn-test</span><br></pre></td></tr></table></figure></li>
+<li><p>运行项目</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd rn-test</span><br><span class="line">react-native run-ios</span><br></pre></td></tr></table></figure>
+<p> 项目默认会在iPhone 6的模拟器上运行。<br><br> <img src="http://image.iosprogrammer.hongbility.com/react-native/new-project-screenshot.png" alt="iPhone 6 Screenshot"><br><br> 至此，环境搭建完成，这个过程中如遇到问题可以参考<a href="http://www.iosprogrammer.tech/learn-react-native-with-me-questions">遇到的问题和解决方案</a></p>
+</li>
+</ol>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-call-native/">跟我一起学习React Native之调用原生模块</a></li><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-mine-and-settings/">跟我一起学习React Native之我的和设置</a></li><li><a href="http://www.iosprogrammer.tech/learn-react-native-with-me-project-instruction/">跟我一起学React Native之项目结构搭建</a></li></ul></div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/WebSocket-And-SocketRocket-Source-Analysis/" class="post-title-link" itemprop="url">WebSocket简介和SocketRocket源码分析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-06-02 21:16:10" itemprop="dateCreated datePublished" datetime="2018-06-02T21:16:10+08:00">2018-06-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-15 18:26:21" itemprop="dateModified" datetime="2021-01-15T18:26:21+08:00">2021-01-15</time>
+      </span>
+
+  
+    <span id="/WebSocket-And-SocketRocket-Source-Analysis/" class="post-meta-item leancloud_visitors" data-flag-title="WebSocket简介和SocketRocket源码分析" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a href="http://www.iosprogrammer.tech/iOS-SocketRocket/">之前的文章</a>讲了SocketRocket的用法，这里讲一下什么是WebSocket并且对SocketRocket的源码进行分析。</p>
+<h3 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The WebSocket Protocol is an independent TCP-based protocol.&lt;br&gt;Its only relationship to HTTP is that its handshake is interpreted by HTTP servers as an Upgrade request.</span><br></pre></td></tr></table></figure>
+<div align=center>
+<img src="http://image.iosprogrammer.hongbility.com/WebSocket-SocketRocket-Source/6651f2f811ec133b0e6d7e6d0e194b4c_hd.jpg">
+</div>
+
+<p>WebSocket的特点:</p>
+<pre><code>1. 建立在 TCP 协议之上，服务器端的实现比较容易。
+2. 与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。
+3. 数据格式比较轻量，性能开销小，通信高效。
+4. 可以发送文本，也可以发送二进制数据。
+5. 没有同源限制，客户端可以与任意服务器通信。
+6. 协议标识符是ws（如果加密，则为wss），服务器网址就是URL。`ws://example.com:80/some/path`
+7. 全双工通信。</code></pre>
+<p>WebSocket握手类似于HTTP：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;chat HTTP&#x2F;1.1</span><br><span class="line">Host: server.example.com</span><br><span class="line">Upgrade: websocket</span><br><span class="line">Connection: Upgrade</span><br><span class="line">Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw&#x3D;&#x3D;</span><br><span class="line">Sec-WebSocket-Protocol: chat, superchat</span><br><span class="line">Sec-WebSocket-Version: 13</span><br><span class="line">Origin: http:&#x2F;&#x2F;example.com</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Upgrade和Connection是在通知Apache或者Nginx等代理服务器，正在进行的是websocket协议连接而不是普通的HTTP。<br><br>Sec-WebSocket-Key是浏览器随机生成的base64编码值，用来验证服务器是不是真正的websocket。<br> Sec_WebSocket-Protocol 是一个用户定义的字符串，用来区分同URL下，不同的服务所需要的协议。<br> Sec-WebSocket-Version 是告诉服务器所使用的协议版本。</p>
+</blockquote>
+<p>服务器验证通过后会返回：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HTTP&#x2F;1.1 101 Switching Protocols</span><br><span class="line">Upgrade: websocket</span><br><span class="line">Connection: Upgrade</span><br><span class="line">Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk&#x3D;</span><br><span class="line">Sec-WebSocket-Protocol: chat</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Upgrade和Connection的作用同样是为了表明进行的是websocket连接。<br><br>Sec-WebSocket-Accept 这个则是经过服务器确认，并且加密过后的 Sec-WebSocket-Key，用来给客户端验证身份。<br><br>Sec-WebSocket-Protocol 则是表示最终使用的协议。</p>
+</blockquote>
+<p>数据帧：<br><br><img src="http://image.iosprogrammer.hongbility.com/WebSocket-SocketRocket-Source/frame_form.png" alt="数据帧格式"></p>
+<div align=center>
+<font color="gray" size="2">数据帧格式</font>
+</div>
+
+<ol>
+<li><p>不同于其他协议，WebSocket是基于帧的而不是基于流<br></p>
+</li>
+<li><p>字段解释:</p>
+<ol>
+<li>FIN: 1 bit 表示是否是当前信息的最后一段</li>
+<li>RSV1, RSV2, RSV3: 1 bit 除非双方协商定义了非0值，否则为0</li>
+<li>Opcode: 4 bits 定义了数据包的类型，如果不是已定义类型则表示连接出错。定义的数据类型包括: 0x0表示中间数据包；0x1表示text类型数据包；0x2表示binary类型数据包；0x3-7保留；0x8表示连接关闭；0x9表示ping；0xA表示pong；0xB-F保留</li>
+<li>MASK：1 bit 表示Payload是否经过掩码处理。MASK如果是1，Masking-Key的数据即是掩码密钥，用于解码PayloadData。客户端发出的数据帧需要进行掩码处理，所以此为是1。</li>
+<li>Payload length：7 bit，7+16 bits，or 7+64 bits 表示payload data的长度，如果其值是0-125，则是payload的真实长度；如果是126，则后面的2个字节形成的16bits无符号整型数的值是payload的真实长度；如果是127，则后面8个字节形成的64bits无符号整型数的值是payload的真实长度。</li>
+</ol>
+</li>
+<li><p>掩码</p>
+<ol>
+<li>掩码值必须是随机的32-bit值</li>
+<li>掩码值并不会影响Payload data的长度。</li>
+<li>掩码算法：掩码后的第i字节数据 = 掩码前的第i字节的数据 XOR 掩码key的第（i mod 4）字节的数据</li>
+</ol>
+</li>
+</ol>
+<h3 id="SocketRocket源码解析"><a href="#SocketRocket源码解析" class="headerlink" title="SocketRocket源码解析"></a>SocketRocket源码解析</h3><ol start="0">
+<li><p>辅助类简单说明</p>
+<ol>
+<li><text>_SRRunLoopThread</text>: 承载和处理所有事件的线程。通过<code>NSRunLoop (SRWebSocket)</code>把这个线程放到了RunLoop里。并且在<code>- (void)main</code>中使用一个while循环使这个线程正常情况下永不停止。</li>
+<li>SRIOConsumer和SRIOConsumerPool: 用来处理收到的消息。</li>
+</ol>
+</li>
+<li><p>主要方法说明</p>
+<ol>
+<li><p><code>- (id)initWithURLRequest:(NSURLRequest *)request protocols:(NSArray *)protocols allowsUntrustedSSLCertificates:(BOOL)allowsUntrustedSSLCertificates</code> 基本初始化方法。初始化了SRSocket类内的几个成员变量。</p>
+</li>
+<li><p><code>_SR_commonInit</code></p>
+<ol>
+<li>判断协议类型</li>
+<li>初始化了_workQueue，这个GCD队列用来处理主要的业务逻辑，包括处理错误、发送内容、关闭连接等。</li>
+<li>初始化_delegateDispatchQueue，这个队列是用来向外发送通知的。我们可以通过<code>- (void)setDelegateOperationQueue:(NSOperationQueue*) queue</code>或<code>- (void)setDelegateDispatchQueue:(dispatch_queue_t) queue</code>来自定义这个队列。</li>
+</ol>
+</li>
+<li><p><code>_initializeStreams</code> 创建输入/出流</p>
+</li>
+<li><p><code>open</code>/<code>openConnection</code> 这两个方法和被他们调用的方法是用来配置并打开流的</p>
+</li>
+<li><p><code>didConnect</code></p>
+<ol>
+<li>构建HTTP Header</li>
+<li>发送HTTP Header</li>
+<li>注册一个接收服务器返回Header信息的监听，并在回调内进行相应处理</li>
+</ol>
+</li>
+<li><p><code>- (void)safeHandleEvent:(NSStreamEvent)eventCode stream:(NSStream *)aStream</code></p>
+<ol>
+<li>这是NSStream的回调方法，输入和输出流的共同回调</li>
+<li><code>NSStreamEventOpenCompleted</code> 连接打开；<code>NSStreamEventHasBytesAvailable</code> 可读取；<code>NSStreamEventHasSpaceAvailable</code> 可写入数据</li>
+<li>在<code>NSStreamEventOpenCompleted</code>里面的<code>[self _pumpScanner];</code>用来触发第5条中的3，来处理服务器返回的握手Header信息</li>
+</ol>
+</li>
+<li><p><code>_pumpWriting</code></p>
+<ol>
+<li>向输出流写数据<code>[_outputStream write:_outputBuffer.bytes + _outputBufferOffset maxLength:dataLength - _outputBufferOffset]</code></li>
+<li><code>if (_outputBufferOffset &gt; 4096 &amp;&amp; _outputBufferOffset &gt; (_outputBuffer.length &gt;&gt; 1)) &#123; _outputBuffer = [[NSMutableData alloc] initWithBytes:(char *)_outputBuffer.bytes + _outputBufferOffset length:_outputBuffer.length - _outputBufferOffset]; _outputBufferOffset = 0; &#125;</code> 当缓存超过4M时清空</li>
+</ol>
+</li>
+<li><p><code>- (void)_sendFrameWithOpcode:(SROpCode)opcode data:(id)data</code> 把数据组装成符合协议要求的格式。参考“数据帧格式”的图片。</p>
+<ol>
+<li>向frame_buffer中写入fin/opcode字段</li>
+<li>写入mask字段</li>
+<li>根据要发送的数据得到未掩码数据<code>unmasked_payload</code></li>
+<li>使用<code>int SecRandomCopyBytes(SecRandomRef rnd, size_t count, void *bytes);</code>得到掩码key<code>mask_key</code></li>
+<li>根据mask_key和unmasked_payload得到掩码后数据并切入frame_buffer</li>
+</ol>
+</li>
+<li><p><code>_HTTPHeadersDidFinish</code> 处理服务器返回的握手信息。通过对服务器返回的握手信息的分析来判断连接是否成功打开。</p>
+</li>
+<li><p><code>_innerPumpScanner</code> 处理收到的数据，读取未读数据，并且把未读数据通过<code>consumer.handler(self, slice);</code>返回给consumer来解析数据内容。</p>
+</li>
+<li><p><code>- (void)_handleFrameWithData:(NSData *)frameData opCode:(NSInteger)opcode</code> 根据opCode对收到的数据进行分类处理</p>
+</li>
+<li><p><code>- (void)_readFrameContinue</code> 这个是主要的数据处理方法。整个数据结构的处理的过程就是按照WebSocket协议的规定来的。</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>到此，SocketRocket的源码分析就结束了。其中一些地方说的比较啰嗦，有些地方说的可能不够详细。大家在看源码的时候一定要对照着WebSocket的协议内容。如果有不清楚的地方欢迎咨询。有说的不对的地方也欢迎指正。<br></p>
+<p>祝你早日走上人生巅峰!!!</p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2017/05/websocket.html">阮一峰的网络日志</a><br><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20215561">知乎</a><br><br><a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc6455">RFC6455 WebSocket Protocol</a></p>
+<div><h1>推荐文章<span style="font-size:0.45em; color:gray"></span></h1><ul><li><a href="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/">最佳实践：iOS开发在xib/storyboard中自定义view</a></li><li><a href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">什么是Content Hugging Priorities/Content Compression Resistance Priorities</a></li><li><a href="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/">UIStackView的正确使用姿势（最新最全、配视频教程）</a></li></ul></div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/Calendar-Notes-Reminders/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Calendar-Notes-Reminders/" class="post-title-link" itemprop="url">Mac OS/iOS中日历、备忘录、提醒事项的使用以及使用iMessage共享屏幕</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-05-26 14:40:15" itemprop="dateCreated datePublished" datetime="2018-05-26T14:40:15+08:00">2018-05-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-21 13:38:01" itemprop="dateModified" datetime="2021-01-21T13:38:01+08:00">2021-01-21</time>
+      </span>
+
+  
+    <span id="/Calendar-Notes-Reminders/" class="post-meta-item leancloud_visitors" data-flag-title="Mac OS/iOS中日历、备忘录、提醒事项的使用以及使用iMessage共享屏幕" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>既然花了上万元买了一台苹果的设备就要好好利用。本篇文章让我们学习一下iPhone/Mac自带的几个APP的使用。</p>
+<h2 id="一-日历"><a href="#一-日历" class="headerlink" title="一. 日历"></a>一. 日历</h2><p>这部分我直接用电脑上的截图，和手机上的是一样的不用担心。<br><br><strong>日常使用</strong>：我们学校的课程表是外包给一个科技公司，可以自动导入日历的，安卓的也可以。如果其他朋友没有这种服务的话，需要添加课程表的话就看看有没有特殊的软件可以导入。实在不行就手动导入了，日程是可以设置循环周期的。<br><img src="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/calendar-1.jpg" alt="课表"><br><strong>团队协作</strong>：比如我会给我同事发日历，开会时间，并且设置了提前一天和提前6小时提醒，怕有些人会忘记= =。这个功能在使用之前需要把同事们的绑定iCloud的手机号/邮箱地址存入通讯录中，添加名字的时候直接输入参加会议的成员名字，对方即可收到通知（前提是对方打开了日历的通知）<br><img src="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/calendar-2.jpg" alt="团队协作"><br><strong>时间管理</strong>的好习惯：我放假回家和同学频繁聚餐约饭，我甚至把每顿饭时间地点人物提前写在日历上提醒自己（对，我基本不放人家鸽子，答应的事情除非天塌下来才会爽约）<br><img src="http://image.iosprogrammer.hongbility.com/Calendar-Notes-Reminders/calendar-3.jpg"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Calendar-Notes-Reminders/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/Submit-Domain-To-Baidu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Submit-Domain-To-Baidu/" class="post-title-link" itemprop="url">把域名提交到百度资源平台</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-05-24 17:52:19" itemprop="dateCreated datePublished" datetime="2018-05-24T17:52:19+08:00">2018-05-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-21 13:39:04" itemprop="dateModified" datetime="2021-01-21T13:39:04+08:00">2021-01-21</time>
+      </span>
+
+  
+    <span id="/Submit-Domain-To-Baidu/" class="post-meta-item leancloud_visitors" data-flag-title="把域名提交到百度资源平台" title="Views">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">Views: </span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>上一篇<a href="http://www.iosprogrammer.tech/deploy-hexo-to-gitlab/">博客</a>讲了怎么把Hexo博客部署到Gitlab。</p>
+<h3 id="本文的目的"><a href="#本文的目的" class="headerlink" title="本文的目的"></a>本文的目的</h3><p>作为一个开发者写博客的目的除了记录知识和自己的想法外就是分享。要把我们的博客分享出去最好的办法就是让其他人可以通过搜索引擎查找到。</p>
+<p>那么怎么让如此忙碌的搜索引擎知道咱们呢？其实每一个搜索引擎都有一个让广大站长们提交链接的地方，比如<a target="_blank" rel="noopener" href="https://ziyuan.baidu.com/">百度资源平台</a>。</p>
+<p>下面跟着我来把博客提交到百度吧。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Submit-Domain-To-Baidu/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">施治昂</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+
+
+  
+
+
+<script data-pjax>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      const visitors = document.querySelector('.leancloud_visitors');
+      const url = decodeURI(visitors.id);
+      const title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            const counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      const visitors = document.querySelectorAll('.leancloud_visitors');
+      const entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            const target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    const { app_id, app_key, server_url } = {"enable":true,"app_id":"ENF98d3lY1q1PN1nHaX8tLzX-gzGzoHsz","app_key":"gVbfqVHqQAnAqFM6hVRLrPJT","server_url":null,"security":true};
+    function fetchData(api_server) {
+      const Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    const api_server = app_id.slice(-9) === '-MdYXbMMI' ? `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com` : server_url;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+    <div class="pjax">
+
+  
+
+
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
