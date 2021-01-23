@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/wechatlogo32*32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/wechatlogo16*16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="在WWDC2019中，iOS引入了一个全新的UI框架——SwiftUI。它的目的是通过全新的设计思想来解决iPhone、iPad、Mac的界面统一，以便开发者可以通过一次学习多处使用（Learn Once, Use anywhere）。从iOS13开始我们就可以使用这个全新的框架了，iOS开发者应该尽快掌握它。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习SwiftUI，必须掌握的3个知识点">
+<meta property="og:url" content="http://www.iosprogrammer.tech/swiftui-concept-essential/index.html">
+<meta property="og:site_name" content="iOS开发栈">
+<meta property="og:description" content="在WWDC2019中，iOS引入了一个全新的UI框架——SwiftUI。它的目的是通过全新的设计思想来解决iPhone、iPad、Mac的界面统一，以便开发者可以通过一次学习多处使用（Learn Once, Use anywhere）。从iOS13开始我们就可以使用这个全新的框架了，iOS开发者应该尽快掌握它。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/swiftui-concept/1.png">
+<meta property="article:published_time" content="2021-01-23T14:36:39.000Z">
+<meta property="article:modified_time" content="2021-01-23T14:37:31.418Z">
+<meta property="article:author" content="施治昂">
+<meta property="article:tag" content="SwiftUI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.iosprogrammer.tech/images/swiftui-concept/1.png">
+
+
+<link rel="canonical" href="http://www.iosprogrammer.tech/swiftui-concept-essential/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>学习SwiftUI，必须掌握的3个知识点 | iOS开发栈</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-127387039-1');
+      }
+    </script>
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bd7459ebb71091a406c3493a12d04ecc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="iOS开发栈" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">iOS开发栈</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#View"><span class="nav-number">1.</span> <span class="nav-text">View</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modifer"><span class="nav-number">2.</span> <span class="nav-text">Modifer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#State%E5%92%8C-%E2%80%94%E2%80%94-Binding-Value"><span class="nav-number">3.</span> <span class="nav-text">@State和$ —— Binding Value</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.1.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">施治昂</p>
+  <div class="site-description" itemprop="description">分享iOS开发知识，Objective-C、Swift、Xcode相关技巧</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:shizhiang@126.com" title="E-Mail → mailto:shizhiang@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7414691003/profile" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7414691003&#x2F;profile" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/swiftui-concept-essential/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          学习SwiftUI，必须掌握的3个知识点
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-01-23 22:36:39 / 修改时间：22:37:31" itemprop="dateCreated datePublished" datetime="2021-01-23T22:36:39+08:00">2021-01-23</time>
+    </span>
+
+  
+    <span id="/swiftui-concept-essential/" class="post-meta-item leancloud_visitors" data-flag-title="学习SwiftUI，必须掌握的3个知识点" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在WWDC2019中，iOS引入了一个全新的UI框架——SwiftUI。它的目的是通过全新的设计思想来解决iPhone、iPad、Mac的界面统一，以便开发者可以通过一次学习多处使用（Learn Once, Use anywhere）。从iOS13开始我们就可以使用这个全新的框架了，iOS开发者应该尽快掌握它。</p>
+<a id="more"></a>
+
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容</p>
+</div>
+
+<h2 id="View"><a href="#View" class="headerlink" title="View"></a>View</h2><p>SwiftUI中一切皆View，不论是我们熟悉的<code>Button</code>还是<code>backgroundColor</code>，甚至<code>Color.red</code>，它们都是<code>View</code>。</p>
+<p>与UIKit中的<code>UIView</code>不同的是，在SwiftUI中<code>View</code>不再是一个类而是一个协议。`</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">View</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The type of view representing the body of this view.</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// When you create a custom view, Swift infers this type from your</span></span><br><span class="line">    <span class="comment">/// implementation of the required `body` property.</span></span><br><span class="line">    <span class="keyword">associatedtype</span> <span class="type">Body</span> : <span class="type">View</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The content and behavior of the view.</span></span><br><span class="line">    <span class="meta">@ViewBuilder</span> <span class="keyword">var</span> body: <span class="keyword">Self</span>.<span class="type">Body</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>SwiftUI中的View是不能直接使用的，否则会报错 <mark class="label danger">'View' cannot be constructed because it has no accessible initializers</mark>，当你遇到这个问题的时候请仔细思考一下你是不是真的要这么用，或许可以用一个其他的代替。</p>
+<p>常用到的<code>View</code>有：<code>Text</code>/<code>Button</code>/<code>Toggle</code>/<code>Picker</code>/<code>V(Z)(H)Stack</code>/<code>Color</code>/<code>Spacer</code>/<code>Image</code>/<code>Shape</code>/<code>Divider</code>以及它们的<code>modifier</code>等。</p>
+<p><code>@ViewBuilder</code>标记的<code>body</code>变量表示它是一个容器，里面可以包含任意多个其他的<code>View</code>。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Button</span>(action: btnClick) &#123;</span><br><span class="line">    <span class="type">VStack</span> &#123;</span><br><span class="line">        <span class="type">Image</span>(systemName: <span class="string">&quot;star&quot;</span>)</span><br><span class="line">        <span class="type">Text</span>(<span class="string">&quot;Placeholder&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Modifer"><a href="#Modifer" class="headerlink" title="Modifer"></a>Modifer</h2><p>我们分别看一下在UIKit和SwiftUI中修改一个Label的文字颜色</p>
+<div class="tabs" id="modify-label-text-color"><ul class="nav-tabs"><li class="tab active"><a href="#modify-label-text-color-1">UIKit</a></li><li class="tab"><a href="#modify-label-text-color-2">SwiftUI</a></li></ul><div class="tab-content"><div class="tab-pane active" id="modify-label-text-color-1"><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> label <span class="operator">=</span> <span class="type">UILabel</span>()</span><br><span class="line">label.text <span class="operator">=</span> <span class="string">&quot;UIKit&quot;</span></span><br><span class="line">label.textColor <span class="operator">=</span> <span class="type">UIColor</span>.red</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="modify-label-text-color-2"><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">&quot;SwiftUI&quot;</span>).foregroundColor(.red)</span><br></pre></td></tr></table></figure></div></div></div>
+
+<p>SwiftUI中的<code>.foregroundColor</code>和<code>textColor</code>有本质的不同，它是一种<strong>modifier</strong>，它返回的是令一个View。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@inlinable</span> <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">foregroundColor</span><span class="params">(<span class="keyword">_</span> color: Color?)</span></span> -&gt; <span class="keyword">some</span> <span class="type">View</span></span><br></pre></td></tr></table></figure>
+<p>当我们调用了<code>.foregroundColor</code>其实是创造了一个新的View，这也正是SwiftUI中万物皆View的例子。</p>
+<h2 id="State和-——-Binding-Value"><a href="#State和-——-Binding-Value" class="headerlink" title="@State和$ —— Binding Value"></a>@State和$ —— Binding Value</h2><div class="tabs" id="toggle"><ul class="nav-tabs"><li class="tab active"><a href="#toggle-1">代码</a></li><li class="tab"><a href="#toggle-2">效果图</a></li></ul><div class="tab-content"><div class="tab-pane active" id="toggle-1"><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="meta">@State</span> <span class="keyword">var</span> isOn: <span class="type">Bool</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">Toggle</span>(isOn: <span class="variable">$isOn</span>) &#123;</span><br><span class="line">            <span class="type">Text</span>(<span class="string">&quot;Toggle&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="toggle-2"><p><img src="../images/swiftui-concept/1.png" alt="SwiftUI Toggle Binding"></p></div></div></div>
+<blockquote>
+<p>这是一个双向绑定</p>
+</blockquote>
+<p>绑定建立以后，不论是<code>isOn</code>的修改触发了Toggle状态的改变，还是用户点击了Toggle引起<code>isOn</code>变量值的改变我们都不需要关心，SwiftUI会帮我们完成。</p>
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容</p>
+</div>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这篇文章聊了SwiftUI中最基础最重要的3个概念，如果你有任何的问题、建议都可以通过<a target="_blank" rel="noopener" href="https://weibo.com/7414691003/profile">微博</a>或<a href="mailto:shizhiang@126.com">邮件</a>联系到我本人。</p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">公众号【iOS开发栈】</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/SwiftUI/" rel="tag"># SwiftUI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/how-to-make-view-get-intrinsic-content-size/" rel="prev" title="最佳实践：iOS开发在xib/storyboard中自定义view">
+                  <i class="fa fa-chevron-left"></i> 最佳实践：iOS开发在xib/storyboard中自定义view
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">施治昂</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+
+
+  
+
+
+<script data-pjax>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      const visitors = document.querySelector('.leancloud_visitors');
+      const url = decodeURI(visitors.id);
+      const title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            const counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      const visitors = document.querySelectorAll('.leancloud_visitors');
+      const entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            const target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    const { app_id, app_key, server_url } = {"enable":true,"app_id":"ENF98d3lY1q1PN1nHaX8tLzX-gzGzoHsz","app_key":"gVbfqVHqQAnAqFM6hVRLrPJT","server_url":null,"security":true};
+    function fetchData(api_server) {
+      const Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    const api_server = app_id.slice(-9) === '-MdYXbMMI' ? `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com` : server_url;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+    <div class="pjax">
+
+  
+
+
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

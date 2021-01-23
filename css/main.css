@@ -2,9 +2,9 @@
   --body-bg-color: #eee;
   --content-bg-color: #fff;
   --card-bg-color: #f5f5f5;
-  --text-color: #555;
+  --text-color: #000;
   --blockquote-color: #666;
-  --link-color: #555;
+  --link-color: #000;
   --link-hover-color: #222;
   --brand-color: #fff;
   --brand-hover-color: #fff;
@@ -12,8 +12,8 @@
   --table-row-hover-bg-color: #f5f5f5;
   --menu-item-bg-color: #f5f5f5;
   --btn-default-bg: #fff;
-  --btn-default-color: #555;
-  --btn-default-border-color: #555;
+  --btn-default-color: #000;
+  --btn-default-border-color: #000;
   --btn-default-hover-bg: #222;
   --btn-default-hover-color: #fff;
   --btn-default-hover-border-color: #222;
@@ -181,8 +181,8 @@ body {
 body {
   background: var(--body-bg-color);
   color: var(--text-color);
-  font-family: Monda, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  font-size: 1.125em;
+  font-family: sans, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 2em;
   line-height: 2;
   min-height: 100%;
   position: relative;
@@ -194,7 +194,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Amita, Monda, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: sans, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-weight: bold;
   line-height: 1.5;
   margin: 20px 0 15px;
@@ -473,7 +473,7 @@ pre {
 }
 pre,
 code {
-  font-family: PT Mono, consolas, Menlo, monospace, 'PingFang SC', 'Microsoft YaHei';
+  font-family: consolas, Menlo, monospace, 'PingFang SC', 'Microsoft YaHei';
 }
 code {
   border-radius: 3px;
@@ -617,7 +617,7 @@ pre code {
   width: 100%;
 }
 .post-body .label {
-  color: #555;
+  color: #000;
   padding: 0 2px;
 }
 .post-body .label.default {
@@ -946,8 +946,9 @@ pre code {
   margin-bottom: 20px;
   padding: 1em;
   position: relative;
-  border: 1px solid #eee;
-  border-left-width: 5px;
+  background: #f9f9f9;
+  border: initial;
+  border-left: 3px solid #eee;
 }
 .post-body .note summary {
   cursor: pointer;
@@ -983,7 +984,17 @@ pre code {
 .post-body .note img:last-child {
   margin-bottom: 0;
 }
+.post-body .note:not(.no-icon) {
+  padding-left: 2.5em;
+}
+.post-body .note:not(.no-icon)::before {
+  font-size: 1.5em;
+  left: 0.3em;
+  position: absolute;
+  top: calc(50% - 1em);
+}
 .post-body .note.default {
+  background: #f7f7f7;
   border-left-color: #777;
 }
 .post-body .note.default h2,
@@ -993,7 +1004,14 @@ pre code {
 .post-body .note.default h6 {
   color: #777;
 }
+.post-body .note.default:not(.no-icon)::before {
+  content: '\f0a9';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #777;
+}
 .post-body .note.primary {
+  background: #f5f0fa;
   border-left-color: #6f42c1;
 }
 .post-body .note.primary h2,
@@ -1003,7 +1021,14 @@ pre code {
 .post-body .note.primary h6 {
   color: #6f42c1;
 }
+.post-body .note.primary:not(.no-icon)::before {
+  content: '\f055';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #6f42c1;
+}
 .post-body .note.info {
+  background: #eef7fa;
   border-left-color: #428bca;
 }
 .post-body .note.info h2,
@@ -1013,7 +1038,14 @@ pre code {
 .post-body .note.info h6 {
   color: #428bca;
 }
+.post-body .note.info:not(.no-icon)::before {
+  content: '\f05a';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #428bca;
+}
 .post-body .note.success {
+  background: #eff8f0;
   border-left-color: #5cb85c;
 }
 .post-body .note.success h2,
@@ -1023,7 +1055,14 @@ pre code {
 .post-body .note.success h6 {
   color: #5cb85c;
 }
+.post-body .note.success:not(.no-icon)::before {
+  content: '\f058';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #5cb85c;
+}
 .post-body .note.warning {
+  background: #fdf8ea;
   border-left-color: #f0ad4e;
 }
 .post-body .note.warning h2,
@@ -1033,7 +1072,14 @@ pre code {
 .post-body .note.warning h6 {
   color: #f0ad4e;
 }
+.post-body .note.warning:not(.no-icon)::before {
+  content: '\f06a';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #f0ad4e;
+}
 .post-body .note.danger {
+  background: #fcf1f2;
   border-left-color: #d9534f;
 }
 .post-body .note.danger h2,
@@ -1041,6 +1087,12 @@ pre code {
 .post-body .note.danger h4,
 .post-body .note.danger h5,
 .post-body .note.danger h6 {
+  color: #d9534f;
+}
+.post-body .note.danger:not(.no-icon)::before {
+  content: '\f056';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
   color: #d9534f;
 }
 .pagination .prev,
@@ -1197,7 +1249,7 @@ pre code {
   color: var(--brand-hover-color);
 }
 .site-title {
-  font-family: Lobster Two, Monda, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: sans, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-size: 1.375em;
   font-weight: normal;
   margin: 0;
@@ -1297,35 +1349,6 @@ pre code {
 }
 .use-motion .menu-item {
   visibility: hidden;
-}
-.book-mark-link {
-  border-bottom: 0;
-  position: fixed;
-  top: -10px;
-  transition: top 0.3s;
-  right: 30px;
-}
-@media (max-width: 991px) {
-  .book-mark-link {
-    right: 20px;
-  }
-}
-@media (max-width: 991px) {
-  .book-mark-link {
-    display: none;
-  }
-}
-.book-mark-link::before {
-  color: #222;
-  font-size: 32px;
-  line-height: 1;
-  content: '\f02e';
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-}
-.book-mark-link:hover,
-.book-mark-link-fixed {
-  top: -2px;
 }
 .sidebar-inner {
   color: #999;
@@ -1754,6 +1777,9 @@ pre code {
     margin-bottom: 10px !important;
     padding: 10px !important;
   }
+  .post-body .note:not(.no-icon) {
+    padding-left: 35px !important;
+  }
   .post-body .tabs .tab-content .tab-pane {
     padding: 10px 10px 0 !important;
   }
@@ -1963,7 +1989,7 @@ pre code {
   width: 4px;
 }
 .post-body {
-  font-family: Montserrat, Monda, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: sans, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   overflow-wrap: break-word;
 }
 @media (min-width: 1200px) {
@@ -2157,7 +2183,7 @@ pre code {
 }
 .posts-expand .post-meta-container {
   color: #999;
-  font-family: Montserrat, Monda, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-family: sans, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-size: 0.75em;
   margin-top: 3px;
 }

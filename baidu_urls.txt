@@ -1,2 +1,2 @@
-http://www.iosprogrammer.tech/hexo-blog-logo-gzh-recommend/
+http://www.iosprogrammer.tech/swiftui-concept-essential/
 http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/
