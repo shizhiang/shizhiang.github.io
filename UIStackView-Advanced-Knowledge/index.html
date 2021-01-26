@@ -23,15 +23,15 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="UIStackView在iOS9之后开始使用，继承自UIView，用来管理在它内部的views，但是并不会被渲染出来，经过我在工作中的使用总结，它确实可以很大程度提高界面开发效率，每一个iOS开发者都应该熟练掌握UIStackView的使用。 本文将分为基础和进阶两部分来讲解UIStackView，因此如果已经一定程度的使用过UIStackView，那么可以直接跳转到进阶部分。 UIStackVi">
+<meta name="description" content="UIStackView在iOS9之后开始使用，继承自UIView，用来管理在它内部的views，但是并不会被渲染出来，经过我在工作中的使用总结，它确实可以很大程度提高界面开发效率，每一个iOS开发者都应该熟练掌握UIStackView的使用。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UIStackView的正确使用姿势（最新最全、配视频教程）">
 <meta property="og:url" content="http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/index.html">
 <meta property="og:site_name" content="iOS开发栈">
-<meta property="og:description" content="UIStackView在iOS9之后开始使用，继承自UIView，用来管理在它内部的views，但是并不会被渲染出来，经过我在工作中的使用总结，它确实可以很大程度提高界面开发效率，每一个iOS开发者都应该熟练掌握UIStackView的使用。 本文将分为基础和进阶两部分来讲解UIStackView，因此如果已经一定程度的使用过UIStackView，那么可以直接跳转到进阶部分。 UIStackVi">
+<meta property="og:description" content="UIStackView在iOS9之后开始使用，继承自UIView，用来管理在它内部的views，但是并不会被渲染出来，经过我在工作中的使用总结，它确实可以很大程度提高界面开发效率，每一个iOS开发者都应该熟练掌握UIStackView的使用。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-01T08:28:23.000Z">
-<meta property="article:modified_time" content="2021-01-15T10:26:12.694Z">
+<meta property="article:modified_time" content="2021-01-26T03:41:42.248Z">
 <meta property="article:author" content="施治昂">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
@@ -278,6 +278,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>UIStackView在iOS9之后开始使用，继承自UIView，用来管理在它内部的views，<text style="color:#1E90FF">但是并不会被渲染出来</text>，经过我在工作中的使用总结，它确实可以很大程度提高界面开发效率，每一个iOS开发者都应该熟练掌握UIStackView的使用。</p>
+<a id="more"></a>
 <p>本文将分为基础和进阶两部分来讲解UIStackView，因此如果已经一定程度的使用过UIStackView，那么可以直接跳转到进阶部分。</p>
 <h3 id="UIStackView基础入门知识"><a href="#UIStackView基础入门知识" class="headerlink" title="UIStackView基础入门知识"></a>UIStackView基础入门知识</h3><p>UIStackview的主要作用是管理<code>arrangedSubviews</code>数组中的view的布局，管理数组的有三个方法<br>    - addArrangedSubview:<br>    - removeArrangedSubview:<br>    - insertArrangedSubview:atIndex:</p>
 <p>UIStackView中arrangedSubview的布局主要是使用<code>UILayoutConstraintAxis</code> <code>UIStackViewDistribution</code> <code>UIStackViewAlignment</code> <code>spacing</code> 几个属性。</p>
@@ -325,10 +326,10 @@
   <div class="popular-posts-header">精选热门文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
+      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
+      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/Get-To-Know-LLDB/" rel="bookmark">LLDB调试iOS（一）—— 初识LLDB</a></div>

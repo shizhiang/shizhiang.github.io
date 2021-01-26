@@ -272,36 +272,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="播放器：IJKPlayer"><a href="#播放器：IJKPlayer" class="headerlink" title="播放器：IJKPlayer"></a>播放器：IJKPlayer</h3><ul>
-<li>github地址：<a target="_blank" rel="noopener" href="https://github.com/Bilibili/ijkplayer">https://github.com/Bilibili/ijkplayer</a></li>
-<li>下载、编译过程<ul>
-<li> git clone <a target="_blank" rel="noopener" href="https://github.com/Bilibili/ijkplayer.git">https://github.com/Bilibili/ijkplayer.git</a> ijkplayer-ios</li>
-<li>cd ijkplayer-ios</li>
-<li>git checkout -B latest k0.8.8</li>
-<li>./init-ios.sh</li>
-<li>cd ios</li>
-<li>./compile-ffmpeg.sh clean</li>
-<li>./compile-ffmpeg.sh all</li>
-</ul>
-</li>
-<li>编译过程中遇到的问题：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;libavutil&#x2F;arm&#x2F;asm.S:50:9: error: unknown directive</span><br><span class="line">        .arch armv7-a</span><br><span class="line">        ^</span><br><span class="line">make: *** [libavcodec&#x2F;arm&#x2F;aacpsdsp_neon.o] Error 1</span><br></pre></td></tr></table></figure></li>
-<li>解决：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">最新的 Xcode 已经弱化了对 32 位的支持, 解决方法: 在 compile-ffmpeg.sh 中删除 armv7 , 修改:FF_ALL_ARCHS_IOS8_SDK&#x3D;&quot;arm64 i386 x86_64&quot; 再重新执行出现错误的命令: .&#x2F;compile-ffmpeg.sh all</span><br></pre></td></tr></table></figure>
-<h3 id="获取-framework"><a href="#获取-framework" class="headerlink" title="获取.framework"></a>获取.framework</h3></li>
-</ul>
-<ol>
-<li>打开<code>IJKMediaPlayer.xcodeproj</code></li>
-<li>选择真机</li>
-<li>切换到Release模式</li>
-<li>cmd+B 编译项目</li>
-<li>获取/Product目录下的<code>IJKMediaFramework.framework</code>，并拷贝</li>
-</ol>
-<h3 id="获取rtmp直播流"><a href="#获取rtmp直播流" class="headerlink" title="获取rtmp直播流"></a>获取rtmp直播流</h3><p>我使用charles抓包到《鱼水直播》的推荐列表链接：<a target="_blank" rel="noopener" href="http://api.chujianapp.com/live/get_hot_list?app_version=6.3.0&amp;bundle_id=fish.livezb.wte&amp;device=ios&amp;device_id=7ED19CAE-E21F-44BF-98DC-F5346E64E502&amp;device_idfa=51C0FC66-54C0-4F69-91E4-4C168698D1F5&amp;device_model=iPhone%206s&amp;device_version=iOS11.3.1&amp;pkg_channel=ys19&amp;secure_key=bd54628575ff36bd7695519218f6934f&amp;server_upgrade=1&amp;time_stamp=1525858044919&amp;token=18231046%7C227842b7058bc5dad052bc6d8834e68f%7C1525858019&amp;uid=18231046">http://api.chujianapp.com/live/get_hot_list?app_version=6.3.0&amp;bundle_id=fish.livezb.wte&amp;device=ios&amp;device_id=7ED19CAE-E21F-44BF-98DC-F5346E64E502&amp;device_idfa=51C0FC66-54C0-4F69-91E4-4C168698D1F5&amp;device_model=iPhone%206s&amp;device_version=iOS11.3.1&amp;pkg_channel=ys19&amp;secure_key=bd54628575ff36bd7695519218f6934f&amp;server_upgrade=1&amp;time_stamp=1525858044919&amp;token=18231046%7C227842b7058bc5dad052bc6d8834e68f%7C1525858019&amp;uid=18231046</a><br>从这个链接中可以得到rtmp流</p>
-<h3 id="新建一个OC-Demo项目"><a href="#新建一个OC-Demo项目" class="headerlink" title="新建一个OC Demo项目"></a>新建一个OC Demo项目</h3><p>1. 把<code>IJKMediaFramework.framework</code>拷贝到项目目录中<br>2. 在<code>ViewController.m</code>中<code>#import &lt;IJKMediaFramework/IJKFFMoviePlayerController.h&gt;</code>，并且在<code>viewDidLoad</code>中添加如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NSURL *playerURL &#x3D; [NSURL URLWithString:@&quot;rtmp:\&#x2F;\&#x2F;pili-live-rtmp.chujianapp.com\&#x2F;ragingfire\&#x2F;1663091115258475730&quot;];</span><br><span class="line">    IJKFFMoviePlayerController *playerVC &#x3D; [[IJKFFMoviePlayerController alloc] initWithContentURL:playerURL withOptions:nil];</span><br><span class="line">    [playerVC prepareToPlay];</span><br><span class="line">    playerVC.view.frame &#x3D; CGRectMake(30, 20, [UIScreen mainScreen].bounds.size.width * 2 &#x2F; 3, [UIScreen mainScreen].bounds.size.height * 2 &#x2F; 3);</span><br><span class="line">    playerVC.view.backgroundColor &#x3D; [UIColor grayColor];</span><br><span class="line">    [self.view insertSubview:playerVC.view atIndex:1];</span><br></pre></td></tr></table></figure>
-<h3 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h3><p>(o゜▽゜)o☆[BINGO!]</p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9743a68c2939">https://www.jianshu.com/p/9743a68c2939</a></p>
-<p>👍👍👍</p>
-
+          <p>编译iOS平台使用的ijkPlayer并用它来进行直播推流和拉流。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/iOS-Pull-Live-Stream/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -356,49 +335,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h3><ol>
-<li><p>执行<code>pod lib create [ProjectName]</code>创建项目。过程中需要回答几个问题，根据自己的需要设置设置就可以了。我的设置是：</p>
-<ul>
-<li><p>What platform do you want to use?? [ iOS / macOS ]</p>
-<blockquote>
-<p>iOS</p>
-</blockquote>
-</li>
-<li><p>What language do you want to use?? [ Swift / ObjC ]</p>
-<blockquote>
-<p>Swift</p>
-</blockquote>
-</li>
-<li><p>Would you like to include a demo application with your library? [ Yes / No ]</p>
-<blockquote>
-<p>Yes</p>
-</blockquote>
-</li>
-<li><p>Which testing frameworks will you use? [ Quick / None ]</p>
-<blockquote>
-<p>None</p>
-</blockquote>
-</li>
-<li><p>Would you like to do view based testing? [ Yes / No ]</p>
-<blockquote>
-<p>No</p>
-</blockquote>
-<p>紧接着会自动执行<code>pod install</code>，我们只需要静静的等着完成就可以了。</p>
-</li>
-</ul>
-</li>
-<li><p>项目结构。 <code>pod install</code>之后，Cocoapods会直接打开Xcode project。项目结构如下：<br><img src="http://image.iosprogrammer.hongbility.com/Create-Cocoapods-Repo/project-struct.png" alt="project-struct"></p>
-<ol>
-<li>Podspec Metadata<ul>
-<li>.podpsec - 项目相关的pod信息。包括了版本号、github主页、对其他项目的依赖、作者信息和指定资源文件</li>
-<li>README.md - 对当前项目的介绍和使用方法。也就是github中项目主页的介绍内容。</li>
-<li>LICENSE - 指定使用的开源协议  </li>
-</ul>
-</li>
-<li>Example for DemoProj - 对开源代码的使用实例。其他人从github下载了开源项目后可以通过这个来查看使用方法。如果在<code>Would you like to include a demo application with your library?</code>中选择了No，这个项目就不会创建。因此强烈建议这个问题回答YES。对自己调试和别人使用都非常有利。</li>
-<li>Tests - 单元测试。</li>
-<li>Development Pods - 开源库代码就放在这里。</li>
-<li>Frameworks - 当前开源项目的依赖库
+          <p>iOS组件化要用到Cocopods，让我们讨论一下那么怎么创建自己的Cocoapods并且在多个项目组成员中间使用。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Create-Cocoapods-Repo/#more" rel="contents">
@@ -461,16 +398,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="巧用help命令"><a href="#巧用help命令" class="headerlink" title="巧用help命令"></a>巧用<code>help</code>命令</h3><p>LLDB中的命令非常多，虽然有一些算是常用的，但是要完全记住也很难，为了解决这个问题，我们可以充分利用<code>help</code>命令。比如要查看<code>breakPoint</code>的用法，可以先查看它的自命令：<br>![help breakpoint](<a target="_blank" rel="noopener" href="http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/help">http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/help</a> breakpoint.png)<br>图中列举出了所有的<code>breakpoint</code>的子命令。</p>
-<p>请看最后一行<code>For more help on any particular subcommand, type &#39;help &lt;command&gt; &lt;subcommand&gt;&#39;</code>。根据这条提示，我们来查看其中一条子命令的详细用法。<br>![help breakpoint](<a target="_blank" rel="noopener" href="http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/help">http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/help</a> breakpoint set.png)<br>图中只是截取了部分内容。</p>
-<p>由此可见LLDB给我们提供的<code>help</code>命令还是很强大的。我们在平时的调试过程中，如果遇到了不确定命令是什么了，可以使用<code>help</code>命令来查看，也可以使用<strong>自动提示</strong>功能来帮助我们。</p>
-<h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h3><p>执行流程控制的命令包括<code>process</code>、<code>breakpoint</code>、<code>thread</code>，具体可以查看<a target="_blank" rel="noopener" href="http://www.cocoachina.com/swift/20171013/20789.html">这篇文章</a>。</p>
-<p>这里只讨论设置命中断点后执行的命令<code>breakpoint command add &lt;#断点#&gt;</code>。</p>
-<p>首先使用<code>breakpoint list</code>来查看所有的断点。<br>![breakpoint list](<a target="_blank" rel="noopener" href="http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint">http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint</a> list.png)<br>其中，前面的数字是断点的序号，可以唯一标识一个断点。图中的1/2都是全局断点，3是我自己加的断点。下面我们给3.1断点增加执行后的指令：<br>![breakpoint command add](<a target="_blank" rel="noopener" href="http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint">http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint</a> command add.png)<br>如图，我们在断点出分别执行<code>po self</code>、<code>po self.view</code>、<code>continue</code>。其中<code>continue</code><strong>表示到此断点后继续执行，这在循环等场景特别有用</strong>。命令的执行结果为：<br>![breakpoint command add result](<a target="_blank" rel="noopener" href="http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint">http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint</a> command add result.png)</p>
-<p>这种方法在需要多次执行的场景中特别有用，完全可以代替使用<code>print()</code>来查看变量值的方案。</p>
-<h3 id="给断点增加触发条件"><a href="#给断点增加触发条件" class="headerlink" title="给断点增加触发条件"></a><strong><em>给断点增加触发条件</em></strong></h3><p>有这样一种场景：在一个循环中，我们只要在某些条件下才需要触发断点。可以这样设置：<br>![breakpoint condition](<a target="_blank" rel="noopener" href="http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint">http://image.iosprogrammer.hongbility.com/LLDB-Advanced-Usage/breakpoint</a> condition.png)</p>
-<h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4><p><a target="_blank" rel="noopener" href="http://www.cocoachina.com/swift/20171013/20789.html">使用LLDB调试Swift</a></p>
-
+          <p>断点调试是每一个开发人员的必备技能，在iOS开发中LLDB作为官方的调试工具是iOS开发者必须掌握的。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/LLDB-Advanced-Usage/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -527,11 +463,6 @@
     <div class="post-body" itemprop="articleBody">
           <h3 id="什么是LLDB"><a href="#什么是LLDB" class="headerlink" title="什么是LLDB"></a><strong>什么是LLDB</strong></h3><p>LLDB是下一代、高性能的调试器。它是作为一组可重用组件构建的，它可以高度利用较大<strong>LLVM</strong>项目中的现有库，例如<strong>Clang</strong>表达式解析器和LLVM反汇编器。</p>
 <p>LLDB是Mac OS X上Xcode的默认调试器，支持在桌面和iOS设备、模拟器上调试C/Objective-C/C++/Swift。</p>
-<h3 id="LLDB的进步"><a href="#LLDB的进步" class="headerlink" title="LLDB的进步"></a>LLDB的进步</h3><ol>
-<li>支持现代化的多线程程序</li>
-<li>以高效的方式处理调试符号</li>
-<li>使用基于编码器（LLVM）的代码知识</li>
-<li>支持插件扩展
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Get-To-Know-LLDB/#more" rel="contents">
@@ -594,71 +525,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><ul>
-<li>Xcode 9.2</li>
-<li>macOS High Sierra 10.13.2</li>
-</ul>
-<h3 id="本文的目的"><a href="#本文的目的" class="headerlink" title="本文的目的"></a>本文的目的</h3><ul>
-<li>介绍Xcode CI和Xcode Server</li>
-<li>手把手教你从头开始创建一个Xcode Server来进行自动集成</li>
-</ul>
-<h3 id="Xcode-CI和Xcode-Server"><a href="#Xcode-CI和Xcode-Server" class="headerlink" title="Xcode CI和Xcode Server"></a>Xcode CI和Xcode Server</h3><p>正如<a target="_blank" rel="noopener" href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/xcode_guide-continuous_integration/index.html#//apple_ref/doc/uid/TP40013292-CH1-SW1">苹果开发者网站</a>所描述的</p>
-<blockquote>
-<p>In Xcode, continuous integration is the process of automating and streamlining the building, analyzing, testing, and archiving of your Mac and iOS apps, in order to ensure that they are always in a releasable state.</p>
-</blockquote>
-<p>Xcode CI是一种为了确保你的APP始终处于可发布状态而存在的自动的、流式的过程，整个过程包括了编译、解析、测试和打包。<br>Xcode Server是用来远程进行这个过程的服务器。</p>
-<p>整个过程类似下图<br><img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Xcode-CI-Intro.png"></p>
-<ul>
-<li>使用这个过程的目的就是为了集成开发APP的整个过程，让这个过程完全自动化进行。通过Xcode CI可以在每次提交代码后自动进行编译到打包的过程，并且可以查看代码的测试覆盖率。因为它可以自动执行单元测试，可以更方便的查看测试报告。</li>
-</ul>
-<h3 id="集成"><a href="#集成" class="headerlink" title="集成"></a>集成</h3><ol>
-<li><p>打开Xcode Server</p>
-<ol>
-<li>点击Xcode菜单栏中的Xcode选项卡的Xcode Server…</li>
-<li>将右上角的开关调到On</li>
-</ol>
-</li>
-<li><p>配置Xcode Server</p>
-<ol>
-<li><p>点击Product选项卡中的Create Bot…</p>
-</li>
-<li><p>配置bot的Name。Server一般不需要<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Create-a-new-bot.png"></p>
-</li>
-<li><p>配置代码库<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Configure-source-control-for-this-bot.png"><br><img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Configrure-souce-code-2.png"></p>
-<blockquote>
-<p>这里选择的是使用.ssh的公钥来配置，当然也可以使用UserName And Password或者Bot Specific SSh Keys。</p>
-</blockquote>
-</li>
-<li><p>选择分支</p>
-</li>
-<li><p>配置Bot的环境<br><img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Configure-build-configuration.png"></p>
-<blockquote>
-<p>这里可以选择在集成的时候是否进行静态分析、测试和打包</p>
-</blockquote>
-</li>
-<li><p>配置集成周期<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Schedule-bot-integrations.png"></p>
-<blockquote>
-<p>其中，Ingegrate选项中Periodically表示按周期集成，包括小时、天、周；Clean选项表示对项目进行Clean的周期，包括Always/Once a day/Once a week/Never。</p>
-</blockquote>
-</li>
-<li><p>选择集成的目标设备。可以设置模拟器和真机、所有的模拟器、所有的真机、指定的模拟器和指定的真机。</p>
-</li>
-<li><p>配置项目证书</p>
-</li>
-<li><p>集成完成<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/create-ci-success.png"></p>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="可能遇到的问题和解决方案"><a href="#可能遇到的问题和解决方案" class="headerlink" title="可能遇到的问题和解决方案"></a>可能遇到的问题和解决方案</h3><ol>
-<li>The sandbox is not in sync with the Podfile.lock.Run ‘pod install’ or update your CocoaPods installation.</li>
-<li>Invalid byte sequence in US_ASCII(Argument Error)</li>
-</ol>
-<blockquote>
-<p>其中第一个问题需要在每次integrate之前执行<code>pod install</code>；第二个问题是由于Ruby的编码问题导致的，这两个问题的统一解决方案是给Bot添加一个prebuild script，步骤如下： 1. Edit Bot…  2. Triggers 3. Click ‘+’, select ‘Pre-Integraation Script’<br>具体的脚本内容为：<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/pre-script.jpg"><br>下面对这个脚本做一个解释说明:<br>(1). 第2行是用来查看脚本（也就是Server）当前的环境<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/set.jpg"><br>(2). 第4行是切换到项目所在目录，目录地址可以从环境的PWD变量获得<br>(3). 6-8行是用来解决第2个问题的<br>(4). 第10行来执行<code>pod install</code></p>
-</blockquote>
-<h3 id="脚本上传到蒲公英"><a href="#脚本上传到蒲公英" class="headerlink" title="脚本上传到蒲公英"></a>脚本上传到蒲公英</h3><p>   增加一个Post-Integration Scripts<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/post_integration_scripy.jpg" alt="post_integration_script"></p>
-
+          <p>Xcode持续集成简介</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/XCode-Server-CI/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

@@ -23,16 +23,16 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="开发过程 执行pod lib create [ProjectName]创建项目。过程中需要回答几个问题，根据自己的需要设置设置就可以了。我的设置是：  What platform do you want to use?? [ iOS &#x2F; macOS ]  iOS   What language do you want to use?? [ Swift &#x2F; ObjC ]  Swift   Would">
+<meta name="description" content="iOS组件化要用到Cocopods，让我们讨论一下那么怎么创建自己的Cocoapods并且在多个项目组成员中间使用。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从零开始到提交一个开源项目到Cocopods">
 <meta property="og:url" content="http://www.iosprogrammer.tech/Create-Cocoapods-Repo/index.html">
 <meta property="og:site_name" content="iOS开发栈">
-<meta property="og:description" content="开发过程 执行pod lib create [ProjectName]创建项目。过程中需要回答几个问题，根据自己的需要设置设置就可以了。我的设置是：  What platform do you want to use?? [ iOS &#x2F; macOS ]  iOS   What language do you want to use?? [ Swift &#x2F; ObjC ]  Swift   Would">
+<meta property="og:description" content="iOS组件化要用到Cocopods，让我们讨论一下那么怎么创建自己的Cocoapods并且在多个项目组成员中间使用。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://image.iosprogrammer.hongbility.com/Create-Cocoapods-Repo/project-struct.png">
 <meta property="article:published_time" content="2018-04-03T10:20:45.000Z">
-<meta property="article:modified_time" content="2021-01-21T05:38:06.361Z">
+<meta property="article:modified_time" content="2021-01-26T03:17:01.707Z">
 <meta property="article:author" content="施治昂">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
@@ -279,7 +279,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h3><ol>
+        <p>iOS组件化要用到Cocopods，让我们讨论一下那么怎么创建自己的Cocoapods并且在多个项目组成员中间使用。</p>
+<a id="more"></a>
+
+<h3 id="开发过程"><a href="#开发过程" class="headerlink" title="开发过程"></a>开发过程</h3><ol>
 <li><p>执行<code>pod lib create [ProjectName]</code>创建项目。过程中需要回答几个问题，根据自己的需要设置设置就可以了。我的设置是：</p>
 <ul>
 <li><p>What platform do you want to use?? [ iOS / macOS ]</p>
@@ -321,7 +324,7 @@
 <li>Example for DemoProj - 对开源代码的使用实例。其他人从github下载了开源项目后可以通过这个来查看使用方法。如果在<code>Would you like to include a demo application with your library?</code>中选择了No，这个项目就不会创建。因此强烈建议这个问题回答YES。对自己调试和别人使用都非常有利。</li>
 <li>Tests - 单元测试。</li>
 <li>Development Pods - 开源库代码就放在这里。</li>
-<li>Frameworks - 当前开源项目的依赖库<a id="more"></a></li>
+<li>Frameworks - 当前开源项目的依赖库</li>
 </ol>
 </li>
 <li><p>.podspec文件详解</p>

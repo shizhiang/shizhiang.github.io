@@ -23,17 +23,17 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="之前的文章讲了SocketRocket的用法，这里讲一下什么是WebSocket并且对SocketRocket的源码进行分析。 WebSocket1The WebSocket Protocol is an independent TCP-based protocol.&lt;br&gt;Its only relationship to HTTP is that its handshake is i">
+<meta name="description" content="iOS开发使用FB开源的项目实现Socket长链接。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WebSocket简介和SocketRocket源码分析">
 <meta property="og:url" content="http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/index.html">
 <meta property="og:site_name" content="iOS开发栈">
-<meta property="og:description" content="之前的文章讲了SocketRocket的用法，这里讲一下什么是WebSocket并且对SocketRocket的源码进行分析。 WebSocket1The WebSocket Protocol is an independent TCP-based protocol.&lt;br&gt;Its only relationship to HTTP is that its handshake is i">
+<meta property="og:description" content="iOS开发使用FB开源的项目实现Socket长链接。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://image.iosprogrammer.hongbility.com/WebSocket-SocketRocket-Source/6651f2f811ec133b0e6d7e6d0e194b4c_hd.jpg">
 <meta property="og:image" content="http://image.iosprogrammer.hongbility.com/WebSocket-SocketRocket-Source/frame_form.png">
 <meta property="article:published_time" content="2018-06-02T13:16:10.000Z">
-<meta property="article:modified_time" content="2021-01-15T10:26:21.366Z">
+<meta property="article:modified_time" content="2021-01-26T03:43:05.467Z">
 <meta property="article:author" content="施治昂">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
@@ -280,20 +280,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><a href="http://www.iosprogrammer.tech/iOS-SocketRocket/">之前的文章</a>讲了SocketRocket的用法，这里讲一下什么是WebSocket并且对SocketRocket的源码进行分析。</p>
+        <p>iOS开发使用FB开源的项目实现Socket长链接。</p>
+<a id="more"></a>
+<p><a href="http://www.iosprogrammer.tech/iOS-SocketRocket/">之前的文章</a>讲了SocketRocket的用法，这里讲一下什么是WebSocket并且对SocketRocket的源码进行分析。</p>
 <h3 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The WebSocket Protocol is an independent TCP-based protocol.&lt;br&gt;Its only relationship to HTTP is that its handshake is interpreted by HTTP servers as an Upgrade request.</span><br></pre></td></tr></table></figure>
 <div align=center>
 <img src="http://image.iosprogrammer.hongbility.com/WebSocket-SocketRocket-Source/6651f2f811ec133b0e6d7e6d0e194b4c_hd.jpg">
 </div>
 
-<p>WebSocket的特点:</p>
-<pre><code>1. 建立在 TCP 协议之上，服务器端的实现比较容易。
-2. 与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。
-3. 数据格式比较轻量，性能开销小，通信高效。
-4. 可以发送文本，也可以发送二进制数据。
-5. 没有同源限制，客户端可以与任意服务器通信。
-6. 协议标识符是ws（如果加密，则为wss），服务器网址就是URL。`ws://example.com:80/some/path`
-7. 全双工通信。</code></pre>
+<p>WebSocket的特点:<br>    1. 建立在 TCP 协议之上，服务器端的实现比较容易。<br>    2. 与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。<br>    3. 数据格式比较轻量，性能开销小，通信高效。<br>    4. 可以发送文本，也可以发送二进制数据。<br>    5. 没有同源限制，客户端可以与任意服务器通信。<br>    6. 协议标识符是ws（如果加密，则为wss），服务器网址就是URL。<code>ws://example.com:80/some/path</code><br>    7. 全双工通信。</p>
 <p>WebSocket握手类似于HTTP：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;chat HTTP&#x2F;1.1</span><br><span class="line">Host: server.example.com</span><br><span class="line">Upgrade: websocket</span><br><span class="line">Connection: Upgrade</span><br><span class="line">Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw&#x3D;&#x3D;</span><br><span class="line">Sec-WebSocket-Protocol: chat, superchat</span><br><span class="line">Sec-WebSocket-Version: 13</span><br><span class="line">Origin: http:&#x2F;&#x2F;example.com</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -404,10 +399,10 @@
   <div class="popular-posts-header">精选热门文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
+      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
+      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/Get-To-Know-LLDB/" rel="bookmark">LLDB调试iOS（一）—— 初识LLDB</a></div>

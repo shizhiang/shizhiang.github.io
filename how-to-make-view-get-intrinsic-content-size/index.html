@@ -23,12 +23,12 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="从xib加载自定义view视图新建项目:   添加view和xib到项目中：     设置xib的大小为freedom，并设置xib的大小为 200x100">
+<meta name="description" content="在xib或者storyboard嵌套另一个用xib布局的view是一个经常用到的技术点，要完全掌握好这个知识点不是那么容易，用常规的xib创建view的方法通常并不能满足我们的需求。 当我们使用Autolayout自动布局时，在xib中嵌套一个自定义的view可能就更麻烦了。通过这篇文章你将学习到嵌套xib布局的方法和怎么在xib中使用autolayout的一些高级用法来使view向label一样">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最佳实践：iOS开发在xib&#x2F;storyboard中自定义view">
 <meta property="og:url" content="http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/index.html">
 <meta property="og:site_name" content="iOS开发栈">
-<meta property="og:description" content="从xib加载自定义view视图新建项目:   添加view和xib到项目中：     设置xib的大小为freedom，并设置xib的大小为 200x100">
+<meta property="og:description" content="在xib或者storyboard嵌套另一个用xib布局的view是一个经常用到的技术点，要完全掌握好这个知识点不是那么容易，用常规的xib创建view的方法通常并不能满足我们的需求。 当我们使用Autolayout自动布局时，在xib中嵌套一个自定义的view可能就更麻烦了。通过这篇文章你将学习到嵌套xib布局的方法和怎么在xib中使用autolayout的一些高级用法来使view向label一样">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.iosprogrammer.tech/images/xib-view/xib-1.png">
 <meta property="og:image" content="http://www.iosprogrammer.tech/images/xib-view/xib-4.png">
@@ -46,7 +46,7 @@
 <meta property="og:image" content="http://www.iosprogrammer.tech/images/xib-view/xib-12.png">
 <meta property="og:image" content="http://www.iosprogrammer.tech/images/xib-view/xib-16.png">
 <meta property="article:published_time" content="2021-01-14T06:21:41.000Z">
-<meta property="article:modified_time" content="2021-01-21T05:38:43.420Z">
+<meta property="article:modified_time" content="2021-01-26T03:32:08.592Z">
 <meta property="article:author" content="施治昂">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
@@ -293,7 +293,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="从xib加载自定义view视图"><a href="#从xib加载自定义view视图" class="headerlink" title="从xib加载自定义view视图"></a>从xib加载自定义view视图</h3><p>新建项目:</p>
+        <p>在xib或者storyboard嵌套另一个用xib布局的view是一个经常用到的技术点，要完全掌握好这个知识点不是那么容易，用常规的xib创建view的方法通常并不能满足我们的需求。</p>
+<p>当我们使用Autolayout自动布局时，在xib中嵌套一个自定义的view可能就更麻烦了。通过这篇文章你将学习到嵌套xib布局的方法和怎么在xib中使用autolayout的一些高级用法来使view向label一样具有contrisic content size。</p>
+<a id="more"></a>
+
+<h3 id="从xib加载自定义view视图"><a href="#从xib加载自定义view视图" class="headerlink" title="从xib加载自定义view视图"></a>从xib加载自定义view视图</h3><p>新建项目:</p>
 <img src="../images/xib-view/xib-1.png" style="height:300px"/>
 
 <p>添加view和xib到项目中：</p>
@@ -302,7 +306,6 @@
 <img src="../images/xib-view/xib-3.png" style="height:300px"/>
 
 <p>设置xib的大小为freedom，并设置xib的大小为 200x100</p>
-<a id="more"></a>
 <img src="../images/xib-view/xib-6.png" style="height:300px"/>
 <img src="../images/xib-view/xib-7.png" style="height:300px"/>
 
@@ -355,10 +358,10 @@
   <div class="popular-posts-header">精选热门文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
+      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
+      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/Get-To-Know-LLDB/" rel="bookmark">LLDB调试iOS（一）—— 初识LLDB</a></div>

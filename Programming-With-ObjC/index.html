@@ -23,15 +23,15 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="+ (id)alloc方法返回类型是id。这是Objective-C中的一个特殊的关键字，意味着“某种对象”。它是一个指向一个对象的指针（NSObject *），但它的特殊之处在于它不使用星号。 alloc方法的另一个重要任务是通过把对象属性设置为0来清理为对象属性申请的内存。这避免了以前存储的包含垃圾内存的常见问题，但不足以完全初始化对象 - (id)init方法也返回id。该方法被类用来确保">
+<meta name="description" content="OC编程基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OC编程基础">
 <meta property="og:url" content="http://www.iosprogrammer.tech/Programming-With-ObjC/index.html">
 <meta property="og:site_name" content="iOS开发栈">
-<meta property="og:description" content="+ (id)alloc方法返回类型是id。这是Objective-C中的一个特殊的关键字，意味着“某种对象”。它是一个指向一个对象的指针（NSObject *），但它的特殊之处在于它不使用星号。 alloc方法的另一个重要任务是通过把对象属性设置为0来清理为对象属性申请的内存。这避免了以前存储的包含垃圾内存的常见问题，但不足以完全初始化对象 - (id)init方法也返回id。该方法被类用来确保">
+<meta property="og:description" content="OC编程基础">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-11-06T03:02:17.000Z">
-<meta property="article:modified_time" content="2021-01-15T10:22:08.220Z">
+<meta property="article:modified_time" content="2021-01-26T03:44:14.352Z">
 <meta property="article:author" content="施治昂">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
@@ -276,7 +276,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <ul>
+        <p>OC编程基础</p>
+<a id="more"></a>
+<ul>
 <li><code>+ (id)alloc</code>方法返回类型是<code>id</code>。这是Objective-C中的一个特殊的关键字，意味着“某种对象”。它是一个指向一个对象的指针（NSObject *），但它的特殊之处在于它不使用星号。</li>
 <li><code>alloc</code>方法的另一个重要任务是通过把对象属性设置为0来清理为对象属性申请的内存。这避免了以前存储的包含垃圾内存的常见问题，但不足以完全初始化对象</li>
 <li><code>- (id)init</code>方法也返回<code>id</code>。该方法被类用来确保它的属性在创建时具有合适的初始值。</li>
@@ -316,10 +318,10 @@
   <div class="popular-posts-header">精选热门文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
+      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
+      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/Get-To-Know-LLDB/" rel="bookmark">LLDB调试iOS（一）—— 初识LLDB</a></div>

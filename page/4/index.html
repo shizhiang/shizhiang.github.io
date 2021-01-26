@@ -272,33 +272,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="使用Xcode自带的Instruments工具，检测CPU"><a href="#使用Xcode自带的Instruments工具，检测CPU" class="headerlink" title="使用Xcode自带的Instruments工具，检测CPU"></a>使用Xcode自带的Instruments工具，检测CPU</h1><h2 id="Instruments"><a href="#Instruments" class="headerlink" title="Instruments"></a>Instruments</h2><p>打开Instruments：Xcode -&gt; Product -&gt; Profile 或者 cmd + i<br>启动后如下：<br><img src="http://upload-images.jianshu.io/upload_images/424855-8c5d278b6d7b35c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Instruments.png"><br>其中常用的有用来检测内存泄露的Leaks和查看CPU消耗情况的Time Profiler。下面介绍查看CPU使用情况的Time Profiler</p>
-<h3 id="Time-Profier"><a href="#Time-Profier" class="headerlink" title="Time Profier"></a>Time Profier</h3><ol>
-<li>打开Time Profier</li>
-</ol>
-<p><img src="https://upload-images.jianshu.io/upload_images/424855-4322b66e910ec9ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Timer profile 9.0.png"></p>
-<blockquote>
-<p>要查看每个函数的CPU性能，直接双击函数就可以定位到代码了。<br>函数前面的数值是所用时间，可以根据这个时间判断是是否需要优化。</p>
-</blockquote>
-<p>有了上面的基础知识就可以对App的CPU消耗情况进行实时检测了。</p>
-<h3 id="常见的对CPU消耗过高的操作"><a href="#常见的对CPU消耗过高的操作" class="headerlink" title="常见的对CPU消耗过高的操作"></a>常见的对CPU消耗过高的操作</h3><ul>
-<li>加载图片<br>两种不同方式在相同时间内的CPU消耗情况对比：<br><img src="http://upload-images.jianshu.io/upload_images/424855-70124a2646fe806a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"><br><img src="http://upload-images.jianshu.io/upload_images/424855-0f98cb8f0b9d974b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2016-03-13 下午6.25.34.png"><br>并且，使用5s真机测试以下代码40s后Memory过高造成闪退，但是使用<code>imageWithContentOfFile</code>数分钟后没有出现闪退现象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while (1)</span><br><span class="line">    &#123;</span><br><span class="line">        [UIImage imageNamed:@&quot;58_58&quot;];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
-<li>初始化对象<ul>
-<li>正则表达式</li>
-<li>时间戳<br><img src="http://upload-images.jianshu.io/upload_images/424855-612ee50bf16040c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="屏幕快照 2016-03-13 下午6.37.50.png"></li>
-</ul>
-</li>
-</ul>
-<p>在需要多次使用的地方尽量只初始化一次，然后多次使用</p>
-<ul>
-<li>视图布局<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;-(void)layoutSubviews</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; do something</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[view setNeedsLayout];</span><br><span class="line">[view layoutIfNeeded];</span><br></pre></td></tr></table></figure>
-这些函数尽量不要使用。每对view进行一次重新布局就会对CPU增加很多消耗。</li>
-<li>绘制图层<br>需要用到<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[layout rendInContext:]</span><br></pre></td></tr></table></figure>
-的地方尽量换成iOS7以后新增的方法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[view drawViewHierachyInRect:]</span><br></pre></td></tr></table></figure>
-性能同样可以获得很大的提升</li>
-</ul>
-<h4 id="上面的内容如有错误，还请在评论区指出。如果对您有帮助请给个赞，谢谢。"><a href="#上面的内容如有错误，还请在评论区指出。如果对您有帮助请给个赞，谢谢。" class="headerlink" title="上面的内容如有错误，还请在评论区指出。如果对您有帮助请给个赞，谢谢。"></a>上面的内容如有错误，还请在评论区指出。如果对您有帮助请给个赞，谢谢。</h4>
+          <p>使用Xcode自带的Instruments工具，检测CPU</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Using-Instruments-To-Oprimize-CPU-Performance/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -354,11 +336,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>SocketRocket是Facebook开源的一个用于 iOS, macOS and tvOS客户端的websocket框架。<br></p>
-<p>WebSocket的协议分析和SocketRocket框架源码分析在<a href="http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/">这里</a></p>
-<h2 id="1-集成"><a href="#1-集成" class="headerlink" title="1. 集成"></a>1. 集成</h2><ul>
-<li>使用cocoapods<br>  只需要在podfile文件中加入<code>pod &#39;SocketRocket&#39;</code>，然后执行<code>pod install</code>就可以了</li>
-<li>不使用cocoapods<ol>
-<li>添加文件<br>把下面的三个文件拖入项目中<br><img src="http://upload-images.jianshu.io/upload_images/424855-07d19159ebcaf127.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"><br>其中，SocketRocket.h文件是用来引入框架的所有类的文件，就像&lt;UIKit/UIkit.h&gt;。目前，这个文件只引入了一个类，所以只有一行代码 <code>&lt;SocketRocket/SRWebSocket.h&gt;</code>，这样的话，编译会报错，因为并没有一个SocketRocket的framework，需要把这一行代码改为 <code>#import &quot;SRWebSocket.h&quot;</code>。
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/iOS-SocketRocket/#more" rel="contents">
@@ -484,26 +461,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h2><p>在Apple的文档中，scheme在URL相关的内容中出现过，比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">This property contains the scheme. Any percent-encoded characters are not unescaped. For example, in the URL &#96;http:&#x2F;&#x2F;www.example.com&#x2F;index.html&#96; , the scheme is &#96;http&#96; .</span><br><span class="line">The full URL is the concatenation of the scheme, a colon ( &#96;:&#96; ), and the value of &#96;resourceSpecifier&#96; .</span><br></pre></td></tr></table></figure>
-<p>紧接着这一段，有如下说明：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Note</span><br><span class="line">The term “protocol” is also sometimes used when talking about network-based URL schemes. However, not all URL schemes are networking protocols—data:&#x2F;&#x2F; URLs, for example.</span><br></pre></td></tr></table></figure>
-<p>详情点击<a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/foundation/nsurl/1413437-scheme">这里</a>。可以看出，scheme是URL中 <strong>:</strong> 之前的部分。<br>在iOS/macOS/WatchOS 2中，可以利用scheme来标记APP并且通过它进行一些简单的通信。</p>
-<h4 id="scheme的使用"><a href="#scheme的使用" class="headerlink" title="scheme的使用"></a>scheme的使用</h4><ol>
-<li>设置scheme<br>Xcode项目的info.plist中增加URL types，这是一个数组，里面的每一项都是一个字典，默认只有URL Identifier——标记URL types中的某一个item，在这里可以添加URL Schemes。比如添加一个”test”</li>
-<li>使用scheme，添加了scheme以后，重新run项目。<ol>
-<li>可以在Safari中输入添加的scheme，然后就可以跳转到刚才的APP中了。</li>
-<li>通过<code>UIApplication.shared.openURL</code>来进行APP间的跳转。如果是iOS9.0之后，需要先在info.plist中添加<a target="_blank" rel="noopener" href="https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/uid/TP40009250-SW14">LSApplicationQueriesSchemes</a>，然后把要打开的scheme添加到里面。<br><img src="http://upload-images.jianshu.io/upload_images/424855-690eea9c590127f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></li>
-</ol>
-</li>
-</ol>
-<h2 id="高级用法"><a href="#高级用法" class="headerlink" title="高级用法"></a>高级用法</h2><ol>
-<li>当APP被其他APP通过scheme调起的时候，可以通过<code>func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -&gt; Bool</code>方法从url参数中获取到当前启动这个APP的完整URL，还可以通过options获取到其他APP的**<em>Bundle Identifier**</em></li>
-<li>在Safari中输入URL或者通过openURL来调起APP的时候，除了输入[scheme]://之外，还可以在后面带上一些内容，比如：<code>[scheme]://aaa=1?bbb=52</code></li>
-</ol>
-<h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><p>微信、支付宝、微博等应用的第三方登录、支付、分享功能，都是通过scheme来实现的。下面我们用微信的登录为例，来讲解一下scheme的使用过程。<br>要使用微信的授权登录功能，首先要去微信开放平台创建一个应用，需要我们填写应用名称、icon和Bundle Identifier，之后微信会把应用的AppId和AppSecret给我们。然后根据AppID集成微信的SDK，并且在URL types里面添加一个以appid为scheme的item。到这里，微信的分享功能就集成完成了。那么，每一步都在做什么呢？<br><img src="http://upload-images.jianshu.io/upload_images/424855-c63aa2111fe7ca58.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="微信授权过程.jpg"><br>其中，第3步中是否到服务器验证应该可以通过抓包来看到，但是我懒了，没有做。也不影响整体的流程。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>因为本人并不是微信的开发人员，以上内容可能会有出入，微信在安全方面做的应该更好。但是，大致的流程应该就是这样。其他平台、功能应该差别也不大。如有错误或者疑问可以在下面留言。</p>
-
+          <p>通过配置plist文件中的scheme完成在app中接入微信、支付宝、微博等第三方平台并且能够来回跳转。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/iOS-Scheme-Theory-And-Practice/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

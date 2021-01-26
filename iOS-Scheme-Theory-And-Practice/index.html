@@ -23,17 +23,17 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="理论在Apple的文档中，scheme在URL相关的内容中出现过，比如： 12This property contains the scheme. Any percent-encoded characters are not unescaped. For example, in the URL &#96;http:&#x2F;&#x2F;www.example.com&#x2F;index.htm">
+<meta name="description" content="通过配置plist文件中的scheme完成在app中接入微信、支付宝、微博等第三方平台并且能够来回跳转。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Scheme以及微信、支付宝等第三方功能的实现">
 <meta property="og:url" content="http://www.iosprogrammer.tech/iOS-Scheme-Theory-And-Practice/index.html">
 <meta property="og:site_name" content="iOS开发栈">
-<meta property="og:description" content="理论在Apple的文档中，scheme在URL相关的内容中出现过，比如： 12This property contains the scheme. Any percent-encoded characters are not unescaped. For example, in the URL &#96;http:&#x2F;&#x2F;www.example.com&#x2F;index.htm">
+<meta property="og:description" content="通过配置plist文件中的scheme完成在app中接入微信、支付宝、微博等第三方平台并且能够来回跳转。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/424855-690eea9c590127f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/424855-c63aa2111fe7ca58.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="article:published_time" content="2018-02-05T14:09:03.000Z">
-<meta property="article:modified_time" content="2021-01-15T10:20:09.142Z">
+<meta property="article:modified_time" content="2021-01-26T03:35:15.580Z">
 <meta property="article:author" content="施治昂">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
@@ -182,7 +182,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">理论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#scheme%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.0.1.</span> <span class="nav-text">scheme的使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">高级用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%88%98"><span class="nav-number">3.</span> <span class="nav-text">实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">理论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#scheme%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.0.1.</span> <span class="nav-text">scheme的使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">高级用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%88%98"><span class="nav-number">3.</span> <span class="nav-text">实战</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -280,7 +280,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h2><p>在Apple的文档中，scheme在URL相关的内容中出现过，比如：</p>
+        <p>通过配置plist文件中的scheme完成在app中接入微信、支付宝、微博等第三方平台并且能够来回跳转。</p>
+<a id="more"></a>
+
+<h2 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h2><p>在Apple的文档中，scheme在URL相关的内容中出现过，比如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">This property contains the scheme. Any percent-encoded characters are not unescaped. For example, in the URL &#96;http:&#x2F;&#x2F;www.example.com&#x2F;index.html&#96; , the scheme is &#96;http&#96; .</span><br><span class="line">The full URL is the concatenation of the scheme, a colon ( &#96;:&#96; ), and the value of &#96;resourceSpecifier&#96; .</span><br></pre></td></tr></table></figure>
 <p>紧接着这一段，有如下说明：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Note</span><br><span class="line">The term “protocol” is also sometimes used when talking about network-based URL schemes. However, not all URL schemes are networking protocols—data:&#x2F;&#x2F; URLs, for example.</span><br></pre></td></tr></table></figure>
@@ -297,8 +300,7 @@
 <li>当APP被其他APP通过scheme调起的时候，可以通过<code>func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -&gt; Bool</code>方法从url参数中获取到当前启动这个APP的完整URL，还可以通过options获取到其他APP的**<em>Bundle Identifier**</em></li>
 <li>在Safari中输入URL或者通过openURL来调起APP的时候，除了输入[scheme]://之外，还可以在后面带上一些内容，比如：<code>[scheme]://aaa=1?bbb=52</code></li>
 </ol>
-<h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><p>微信、支付宝、微博等应用的第三方登录、支付、分享功能，都是通过scheme来实现的。下面我们用微信的登录为例，来讲解一下scheme的使用过程。<br>要使用微信的授权登录功能，首先要去微信开放平台创建一个应用，需要我们填写应用名称、icon和Bundle Identifier，之后微信会把应用的AppId和AppSecret给我们。然后根据AppID集成微信的SDK，并且在URL types里面添加一个以appid为scheme的item。到这里，微信的分享功能就集成完成了。那么，每一步都在做什么呢？<br><img src="http://upload-images.jianshu.io/upload_images/424855-c63aa2111fe7ca58.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="微信授权过程.jpg"><br>其中，第3步中是否到服务器验证应该可以通过抓包来看到，但是我懒了，没有做。也不影响整体的流程。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>因为本人并不是微信的开发人员，以上内容可能会有出入，微信在安全方面做的应该更好。但是，大致的流程应该就是这样。其他平台、功能应该差别也不大。如有错误或者疑问可以在下面留言。</p>
+<h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><p>微信、支付宝、微博等应用的第三方登录、支付、分享功能，都是通过scheme来实现的。下面我们用微信的登录为例，来讲解一下scheme的使用过程。<br>要使用微信的授权登录功能，首先要去微信开放平台创建一个应用，需要我们填写应用名称、icon和Bundle Identifier，之后微信会把应用的AppId和AppSecret给我们。然后根据AppID集成微信的SDK，并且在URL types里面添加一个以appid为scheme的item。到这里，微信的分享功能就集成完成了。那么，每一步都在做什么呢？<br><img src="http://upload-images.jianshu.io/upload_images/424855-c63aa2111fe7ca58.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="微信授权过程.jpg"><br>其中，第3步中是否到服务器验证应该可以通过抓包来看到，但是我懒了，没有做。也不影响整体的流程。  </p>
 
     </div>
 
@@ -309,10 +311,10 @@
   <div class="popular-posts-header">精选热门文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
+      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
+      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/Get-To-Know-LLDB/" rel="bookmark">LLDB调试iOS（一）—— 初识LLDB</a></div>

@@ -335,15 +335,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="从xib加载自定义view视图"><a href="#从xib加载自定义view视图" class="headerlink" title="从xib加载自定义view视图"></a>从xib加载自定义view视图</h3><p>新建项目:</p>
-<img src="../images/xib-view/xib-1.png" style="height:300px"/>
-
-<p>添加view和xib到项目中：</p>
-<img src="../images/xib-view/xib-4.png" style="height:300px" alt="点击查看大图"/>
-<img src="../images/xib-view/xib-2.png" style="height:300px"/>
-<img src="../images/xib-view/xib-3.png" style="height:300px"/>
-
-<p>设置xib的大小为freedom，并设置xib的大小为 200x100</p>
+          <p>在xib或者storyboard嵌套另一个用xib布局的view是一个经常用到的技术点，要完全掌握好这个知识点不是那么容易，用常规的xib创建view的方法通常并不能满足我们的需求。</p>
+<p>当我们使用Autolayout自动布局时，在xib中嵌套一个自定义的view可能就更麻烦了。通过这篇文章你将学习到嵌套xib布局的方法和怎么在xib中使用autolayout的一些高级用法来使view向label一样具有contrisic content size。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/how-to-make-view-get-intrinsic-content-size/#more" rel="contents">
@@ -407,22 +400,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>这两个优先级属性都是用在iOS开发时Auto Layout布局中的。</p>
-<h3 id="Content-Hugging-Priorities"><a href="#Content-Hugging-Priorities" class="headerlink" title="Content Hugging Priorities"></a>Content Hugging Priorities</h3><p><strong>Content Hugging Priorities：在Auto Layout中，当子视图不足以填充满空间时，优先满足此属性值较大的子视图的内容展示，而拉伸属性值较低的子视图。</strong></p>
-<p>假设有这样一种情况，两个水平排列的UILabel中分别显示“斜杠程序员”和“<a target="_blank" rel="noopener" href="http://www.iosprogrammer.tech“,给它们加上5个约束,其中2、3、5是水平约束,假设这3个水平约束的值都是10/">www.iosprogrammer.tech“，给它们加上5个约束，其中2、3、5是水平约束，假设这3个水平约束的值都是10</a>.</p>
-<p>现在两个UILabel里面文字内容所占大小加上3个水平约束的值仍然小于（&lt;）父视图的宽度。此时会发现storyboard中有报错，但是我们仍然可以正常运行项目并看到展示结果。<br><img src="../images/hugging-prority-1.png"><br><img src="../images/hugging-prority-2.png"><br><img src="../images/hugging-prority-3.png"></p>
-<p>我们可以看到“<a target="_blank" rel="noopener" href="http://www.iosprogrammer.tech“所在label所占的空间变大了.此时设置这个label的content/">www.iosprogrammer.tech“所在label所占的空间变大了。此时设置这个label的Content</a> Hugging Priorities为750。</p>
-<p><img src="../images/hugging-prority-4.png"><br><img src="../images/hugging-prority-5.png"></p>
-<p>“<a target="_blank" rel="noopener" href="http://www.iosprogrammer.tech“所在label刚好满足展示内容,而“斜杠程序员”所在label所占空间变大了./">www.iosprogrammer.tech“所在label刚好满足展示内容，而“斜杠程序员”所在label所占空间变大了。</a></p>
-<p>这也就是Content Hugging Priorities的作用，控制当内容不足以填充满空间时，优先满足此属性值较大的子view的内容展示，而拉伸属性值较低的子view。</p>
-<h3 id="Content-Compression-Resistance-Priorities"><a href="#Content-Compression-Resistance-Priorities" class="headerlink" title="Content Compression Resistance Priorities"></a>Content Compression Resistance Priorities</h3><p><strong>Content Compression Resistance Priorities：在Auto Layout中，当子视图所需的内容超出父视图的空间时，优先展示此值较大的子视图，而省略压缩此值较小的子视图。</strong></p>
-<p>假设有这样一种情况，两个水平排列的UILabel中分别显示“斜杠程序员专注于提高编程能力”和“斜杠程序员的官方网站是<a target="_blank" rel="noopener" href="http://www.iosprogrammer.tech“,给它们加上5个约束,其中2、3、5是水平约束,假设这3个水平约束的值都是10/">www.iosprogrammer.tech“，给它们加上5个约束，其中2、3、5是水平约束，假设这3个水平约束的值都是10</a>.</p>
-<p>现在两个UILabel里面文字内容所占大小超过了父视图的宽度。此时会发现storyboard中有报错，但是我们仍然可以正常运行项目并看到展示结果。<br><img src="../images/hugging-prority-6.png"><br><img src="../images/hugging-prority-7.png"><br><img src="../images/hugging-prority-8.png"></p>
-<p>第一个Label被压缩了，里面的文字被省略了；第二个label正常展示了出来。此时我们把第一个label的Content Compression Resistance Priorities设置到大于第二个label。</p>
-<p><img src="../images/hugging-prority-9.png"><br><img src="../images/hugging-prority-10.png"></p>
-<p>可以看到第二个label被压缩了，第一个label正常展示了出来。</p>
-<p><strong>Content Compression Resistance Priorities：在Auto Layout中，当子视图所需的内容超出父视图的空间时，优先展示此值较大的子视图，而省略压缩此值较小的子视图。</strong></p>
-<p><a target="_blank" rel="noopener" href="https://medium.com/@dineshk1389/content-hugging-and-compression-resistance-in-ios-35a0e8f19118">参考文章</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -478,44 +463,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>UIStackView在iOS9之后开始使用，继承自UIView，用来管理在它内部的views，<text style="color:#1E90FF">但是并不会被渲染出来</text>，经过我在工作中的使用总结，它确实可以很大程度提高界面开发效率，每一个iOS开发者都应该熟练掌握UIStackView的使用。</p>
-<p>本文将分为基础和进阶两部分来讲解UIStackView，因此如果已经一定程度的使用过UIStackView，那么可以直接跳转到进阶部分。</p>
-<h3 id="UIStackView基础入门知识"><a href="#UIStackView基础入门知识" class="headerlink" title="UIStackView基础入门知识"></a>UIStackView基础入门知识</h3><p>UIStackview的主要作用是管理<code>arrangedSubviews</code>数组中的view的布局，管理数组的有三个方法<br>    - addArrangedSubview:<br>    - removeArrangedSubview:<br>    - insertArrangedSubview:atIndex:</p>
-<p>UIStackView中arrangedSubview的布局主要是使用<code>UILayoutConstraintAxis</code> <code>UIStackViewDistribution</code> <code>UIStackViewAlignment</code> <code>spacing</code> 几个属性。</p>
-<ol>
-<li><p><code>UILayoutConstraintAxis</code> - 确定arrangedSubviews的排列方向，分为Horizontal和Vertical</p>
-</li>
-<li><p><code>UIStackViewDistribution</code> - arrangedSubviews<strong>在排列方向</strong>的布局方式</p>
-<ol>
-<li>UIStackViewDistributionFill 把UIStackView的空间填充满，对于有intrinsic content size的UIView（UILabel、UIButton、UIImageView、UIControl）需要通过设置Size Inspector中的<a href="https://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">Content Hugging Property</a>来决定优先满足哪个view的contrinsicSize，如果property相同则会默认选择第一个。</li>
-<li>UIStackViewDistributionFillEqually arrangedSubviews平分UIStackView 排列方向上除了spacing的空间</li>
-<li>UIStackViewDistributionFillProportionally 按比例分配每个arrangedSubview所占大小，按照每个arrangedSubview的intrinsic content size的比例</li>
-<li>UIStackViewDistributionEqualSpacing 当arrangedSubviews不能填满时，空白区域会平均分配，而不会自动拉伸Hugging Property较低的view；如果arrangedSubviews放不开时，会优先保证<a href="https://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/">compression resistance priority</a>较高的view内容能够完全展示，priority相同时会默认保证第一个view。</li>
-<li>UIStackViewDistributionEqualCentering view中心之间的spacing相等。当spacing值过大，无法满足所有view都能正常展示，会优先保证compression resistance priority较高的view内容能够完全展示，priority相同时会默认保证第一个view。</li>
-</ol>
-</li>
-<li><p>UIStackViewAlignment - arrangedSubviews<strong>垂直于排列方向</strong>的布局方式</p>
-<ol>
-<li>UIStackViewAlignmentFill 完全填充</li>
-<li>UIStackViewAlignmentLeading/UIStackViewAlignmentTop 靠上/右</li>
-<li>UIStackViewAlignmentTrailing/UIStackViewAlignmentBottom 靠下/左</li>
-<li>UIStackViewAlignmentFirstBaseline/UIStackViewAlignmentLastBaseline 文字基线 下/上</li>
-</ol>
-</li>
-<li><p>spacing - arrangedSubview的间距。对于<code>UIStackViewDistributionFillxxx</code>就是准确的距离，对于UIStackViewDistributionEqualSpacing、UIStackViewDistributionEqualCentering 是最小距离，<strong>使用负数view会覆盖</strong></p>
-</li>
-</ol>
-<p>掌握了上面的基础知识后基本就可以上手使用UIStackView了。</p>
-<h3 id="UIStackView进阶知识"><a href="#UIStackView进阶知识" class="headerlink" title="UIStackView进阶知识"></a>UIStackView进阶知识</h3><p>Q1. 在UIStackView中可以对子view使用约束吗？<br>A1. UIStackView是基于约束来确定里面arrangedSubview的布局的，手动给某一个arrangedSubview指定约束时，会优先满足指定的约束，不过因为系统也会根据我们设置的属性添加约束，所以要当心会出现约束冲突。</p>
-<p>Q2. UIStackView.arrangedViews 和 UIStackView.subViews的关系？<br>A2. arragedViews是subViews的子集 </p>
-<ol>
-<li>UIStackView addSubview 并不会添加到arrangedSubviews中；</li>
-<li>当向arrangedSubviews中添加view时会自动添加到subviews中 </li>
-<li>把一个只在subview而不在arrangedview中的view移除时也不会影响到arrangedview </li>
-<li>一个view既在subviews中又在arrangedviews中时，当把它从subviews中移除，也会自动从arragedviews中移除，反之则不然</li>
-</ol>
-<p>Q3. UIStackView设置了背景色为什么显示不出来？<br>A3. UIStackView虽然是UIView的子类，但是它并不会被渲染，所以设置背景色并没有什么显示，但是设置圆角是有作用的。</p>
-<p>Q4. UIStackView怎么设置某一个子view和后面view的距离？<br>A4. 在iOS11之后UIStackView新加了方法可以设置<code>setCustomSpacing:afterView</code></p>
-<iframe src="//player.bilibili.com/player.html?bvid=BV1wz4y1674t&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%" height="300px"> </iframe>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/UIStackView-Advanced-Knowledge/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -571,29 +526,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>本文主要包括两部分，其一是解决xib设置颜色有偏差的问题，其二是聊一下颜色的一些基础知识。</p>
-<h2 id="xib和代码设置颜色有偏差的原因"><a href="#xib和代码设置颜色有偏差的原因" class="headerlink" title="xib和代码设置颜色有偏差的原因"></a>xib和代码设置颜色有偏差的原因</h2><p>在开发iOS app的过程中我们都是按照设计同学给出的标注来做的，而UI同学在作图时使用到的工具就会有“<strong>颜色配置文件（Color Profile）</strong>”。（下面有颜色配置文件的说明）<br><img src="../images/ps-color-profile.png" alt="PS中的颜色配置文件"><br>从上图可以看出，ps默认的颜色配置文件是sRGB，因此设计给我们的图都是以sRGB为准的。<br>但是在Xcode的ib相关文件中设置颜色时，默认的颜色配置文件是Generic RGB的。<br><img src="../images/xcode-xib-colors.png" alt="Xcode-colors"><br>因此，如果我们直接按照sRGB标的色值在Generic RGB的配置下进行设置就会出现色差了。<br>通过下面的GIF可以更直观的看到这种差异<br><img src="../images/record.gif"><br>而代码设置颜色时默认是采用的和photoshop一样的sRGB，也是和xib的Generic RGB不相同的，所以代码设置的颜色和UI同学提供的是一样的，而xib中是和他们两个不一样的。</p>
-<h2 id="xib设置颜色和代码有差异的问题解决方案"><a href="#xib设置颜色和代码有差异的问题解决方案" class="headerlink" title="xib设置颜色和代码有差异的问题解决方案"></a>xib设置颜色和代码有差异的问题解决方案</h2><p>解决方案有两种，一种是把sRGB的色值转化成Generic RGB之后再进行设置，另一种是把配置改成sRGB的再进行设置。<br>这里用到的不同颜色配置之间进行转换的工具可以用mac自带的ColorSync Utility</p>
-<center class="half" style="display:flex;margin-left:10%">
-    <img src="../images/colorsyncutilityicon.png" width="200"/><img src="../images/colorsyncinterface.png" width="300"/>
-</center>
-## xib和代码设置的颜色有差异的原理分析
-上面说到了xib默认的颜色配置和ps、代码都是不同的，说到颜色配置（Color Profile）就不得不说颜色模型（Color Model）和颜色空间（Color Space）。
-众所周知，计算机、摄像机、打印机等数字设备中只能认识0和1（不然它们也不会叫数字设备了🐶），因此为了把自然界中的五颜六色在数字设备中展示出来，**颜色转换成数字的算法（公式）—— 颜色模型** 就出现了。
-现在被广泛使用的颜色模型有RGB、CMYK、CIELAB等，其中RGB主要用在摄像机、显示器等领域，CMYK主要用在打印机领域，具体内容可以查看[这篇文章](https://www.dpbestflow.org/color/color-space-and-color-profiles)。
-有了算法，就要有**颜色模型具体的算法实现——颜色空间**。
-之所以叫空间是因为每一个具体的颜色空间都有一个范围
-![](../image/../images/v2-374053ce809551b3eeef09046f48b074_1440w.jpg)
-正如上图所示，颜色空间都是有不同的范围的，而不同范围的颜色空间进行转换的时候就会有损失，也就会造成[色差](https://zhuanlan.zhihu.com/p/72530732)。
-![](../images/v2-53ebd97b57e169f8b395766d580a1ea9_1440w.jpg)
-颜色模型可以理解为一个概念、理论，颜色空间是对颜色模型的一次具象描述，但是它还不能被计算机所理解。**颜色配置正是能够直接被数字设备拿来用的具体文件**。
-在Mac电脑的ColorSync Utility应用中可以看到下面这些颜色配置
-![](../images/colorsyncprofiles.png)
-
-<p>至此，我们把xib和代码设置颜色有偏差的现象彻底解决了，总结一句话就是：</p>
-<blockquote>
-<p>不同的颜色配置之间转换时会造成色差，而代码和xib进行颜色设置时使用了不同的颜色配置文件，才最终导致了同样的色值的最终表现不同。</p>
-</blockquote>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/xib-color-different-with-hard-code/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
