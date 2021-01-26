@@ -182,7 +182,7 @@ body {
   background: var(--body-bg-color);
   color: var(--text-color);
   font-family: sans, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  font-size: 1.125em;
+  font-size: 1em;
   line-height: 2;
   min-height: 100%;
   position: relative;
@@ -1872,11 +1872,6 @@ pre code {
   margin-top: 40px;
   text-align: center;
 }
-.use-motion .post-block,
-.use-motion .pagination,
-.use-motion .comments {
-  visibility: hidden;
-}
 .use-motion .post-header {
   visibility: hidden;
 }
@@ -2799,7 +2794,6 @@ mjx-container[display="true"] + br {
   position: sticky;
   top: 12px;
   width: 240px;
-  visibility: hidden;
 }
 @media (max-width: 991px) {
   .sidebar {

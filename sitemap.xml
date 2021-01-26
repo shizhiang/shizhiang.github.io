@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.iosprogrammer.tech/swiftui/what-is-the-different-between-foreach-and-list/</loc>
+    
+    <lastmod>2021-01-26</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iosprogrammer.tech/swiftui/swiftui-concept-essential/</loc>
+    
+    <lastmod>2021-01-26</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.iosprogrammer.tech/XCode-Server-CI/</loc>
     
     <lastmod>2021-01-26</lastmod>
@@ -121,13 +135,6 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/swiftui-concept-essential/</loc>
-    
-    <lastmod>2021-01-24</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.iosprogrammer.tech/discard/hexo-blog-logo-gzh-recommend.html</loc>
     
     <lastmod>2021-01-21</lastmod>
@@ -240,14 +247,14 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/discard/learn-react-native-with-me-call-native.html</loc>
+    <loc>http://www.iosprogrammer.tech/discard/learn-react-native-with-me-construction.html</loc>
     
     <lastmod>2021-01-15</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/discard/learn-react-native-with-me-construction.html</loc>
+    <loc>http://www.iosprogrammer.tech/discard/learn-react-native-with-me-call-native.html</loc>
     
     <lastmod>2021-01-15</lastmod>
     

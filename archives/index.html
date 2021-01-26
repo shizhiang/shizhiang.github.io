@@ -17,11 +17,11 @@
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":false,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 <meta name="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
 <meta property="og:type" content="website">
@@ -110,7 +110,7 @@
 <!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="iOS开发栈" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+<body itemscope itemtype="http://schema.org/WebPage">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
 
   <main class="main">
@@ -189,7 +189,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -242,13 +242,33 @@
   <div class="post-block">
     <div class="post-content">
       <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 19 篇日志。 继续努力。</span>
+        <span class="collection-header">嗯..! 目前共计 20 篇日志。 继续努力。</span>
       </div>
 
       
     <div class="collection-year">
       <span class="collection-header">2021</span>
     </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-01-26T13:54:47+08:00"
+              content="2021-01-26">
+          01-26
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/swiftui/what-is-the-different-between-foreach-and-list/" itemprop="url">
+            <span itemprop="name">在SwiftUI中使用ForEach和List模仿UITableView、UICollectionView</span>
+          </a>
+      </div>
+
+      
+    </header>
+  </article>
 
   <article itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
@@ -261,7 +281,7 @@
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/swiftui-concept-essential/" itemprop="url">
+          <a class="post-title-link" href="/swiftui/swiftui-concept-essential/" itemprop="url">
             <span itemprop="name">学习SwiftUI，必须掌握的3个知识点</span>
           </a>
       </div>
@@ -436,26 +456,6 @@
     </header>
   </article>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2018-06-02T21:16:10+08:00"
-              content="2018-06-02">
-          06-02
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/WebSocket-And-SocketRocket-Source-Analysis/" itemprop="url">
-            <span itemprop="name">WebSocket简介和SocketRocket源码分析</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
 
     </div>
   </div>
@@ -512,7 +512,9 @@
   
   <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script>
 var pjax = new Pjax({
   selectors: [
     'head title',

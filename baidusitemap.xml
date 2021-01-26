@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.iosprogrammer.tech/swiftui/what-is-the-different-between-foreach-and-list/</loc>
+    <lastmod>2021-01-26</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/swiftui/swiftui-concept-essential/</loc>
+    <lastmod>2021-01-26</lastmod>
+  </url>
+  <url>
     <loc>http://www.iosprogrammer.tech/XCode-Server-CI/</loc>
     <lastmod>2021-01-26</lastmod>
   </url>
@@ -67,10 +75,6 @@
   <url>
     <loc>http://www.iosprogrammer.tech/Create-Cocoapods-Repo/</loc>
     <lastmod>2021-01-26</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/swiftui-concept-essential/</loc>
-    <lastmod>2021-01-24</lastmod>
   </url>
   <url>
     <loc>http://www.iosprogrammer.tech/Array-addObject-ViewController-cause-viewcontroller-not-release/</loc>
