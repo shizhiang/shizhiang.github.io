@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://www.iosprogrammer.tech/swiftui/what-is-the-different-between-foreach-and-list/</loc>
-    <lastmod>2021-01-30</lastmod>
+    <loc>http://www.iosprogrammer.tech/xib-color-different-with-hard-code/</loc>
+    <lastmod>2021-01-31</lastmod>
   </url>
   <url>
-    <loc>http://www.iosprogrammer.tech/UIScrollView-Keyboard/</loc>
-    <lastmod>2021-01-30</lastmod>
+    <loc>http://www.iosprogrammer.tech/Using-Instruments-To-Oprimize-CPU-Performance/</loc>
+    <lastmod>2021-01-31</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/swiftui/what-is-the-different-between-foreach-and-list/</loc>
+    <lastmod>2021-01-31</lastmod>
   </url>
   <url>
     <loc>http://www.iosprogrammer.tech/swiftui/swiftui-concept-essential/</loc>
-    <lastmod>2021-01-30</lastmod>
+    <lastmod>2021-01-31</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/UIScrollView-Keyboard/</loc>
+    <lastmod>2021-01-31</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/</loc>
+    <lastmod>2021-01-31</lastmod>
   </url>
   <url>
     <loc>http://www.iosprogrammer.tech/XCode-Server-CI/</loc>
@@ -21,19 +33,11 @@
     <lastmod>2021-01-26</lastmod>
   </url>
   <url>
-    <loc>http://www.iosprogrammer.tech/xib-color-different-with-hard-code/</loc>
-    <lastmod>2021-01-26</lastmod>
-  </url>
-  <url>
     <loc>http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/</loc>
     <lastmod>2021-01-26</lastmod>
   </url>
   <url>
     <loc>http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/</loc>
-    <lastmod>2021-01-26</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/Using-Instruments-To-Oprimize-CPU-Performance/</loc>
     <lastmod>2021-01-26</lastmod>
   </url>
   <url>
@@ -70,10 +74,6 @@
   </url>
   <url>
     <loc>http://www.iosprogrammer.tech/Get-To-Know-LLDB/</loc>
-    <lastmod>2021-01-26</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/</loc>
     <lastmod>2021-01-26</lastmod>
   </url>
   <url>
