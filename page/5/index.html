@@ -189,7 +189,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -234,6 +234,69 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/Array-addObject-ViewController-cause-viewcontroller-not-release/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" class="post-title-link" itemprop="url">Array().addObject(ViewController())造成控制器不释放</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>项目中有一个单例<code>Singleton</code>。有多个<code>UIViewController</code>需要向Singleton中注册观察者来接受<code>Singleton</code>的消息。<br> 这种情况下，使用<code>NSNotificationCenter</code>的方案有些松散，因此不作考虑；<br>  还有一种是使用<code>delegate</code>的方式。为了让<code>delegate</code>可以实现一对多的功能，可以在<code>Singleton</code>的里面增加一个<code>mutableArray</code>的变量和一个<code>addDelegate:</code>的方法。然后在需要接受这个<code>Singleton</code>通知的地方<code>Singleton().addDelegate(self)</code>，这样可以达到目的，但是你会发现这个控制器再也不会调用<code>dealloc</code>。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Array-addObject-ViewController-cause-viewcontroller-not-release/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
