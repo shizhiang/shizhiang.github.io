@@ -1,2 +1,2 @@
 http://www.iosprogrammer.tech/swiftui/swiftui-divide-spacer/
-http://www.iosprogrammer.tech/swiftui/swiftui-data-flow/
+http://www.iosprogrammer.tech/ios/ios-integrate-admob/

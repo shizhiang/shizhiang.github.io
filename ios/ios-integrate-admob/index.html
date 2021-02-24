@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/wechatlogo32*32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/wechatlogo16*16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":false,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="Admob是谷歌推出的广告服务，其中包含的广告类型有：banner、插屏、激励、开屏（最近添加的）。利用Admob的中介组可以引入其他广告商的广告，比如FaceBook、unity等10多家平台。对于出海的App集成Admob是非常必要的变现手段。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS完整集成admob教程（2021）">
+<meta property="og:url" content="http://www.iosprogrammer.tech/ios/ios-integrate-admob/index.html">
+<meta property="og:site_name" content="iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
+<meta property="og:description" content="Admob是谷歌推出的广告服务，其中包含的广告类型有：banner、插屏、激励、开屏（最近添加的）。利用Admob的中介组可以引入其他广告商的广告，比如FaceBook、unity等10多家平台。对于出海的App集成Admob是非常必要的变现手段。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/admob/admob.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/admob/quick_start_skadnetwork.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/admob/UnitId.png">
+<meta property="article:published_time" content="2021-02-06T11:57:33.000Z">
+<meta property="article:modified_time" content="2021-02-24T04:00:01.391Z">
+<meta property="article:author" content="施治昂">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.iosprogrammer.tech/ios/images/admob/admob.png">
+
+
+<link rel="canonical" href="http://www.iosprogrammer.tech/ios/ios-integrate-admob/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>iOS完整集成admob教程（2021） | iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-127387039-1');
+      }
+    </script>
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bd7459ebb71091a406c3493a12d04ecc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9A%E8%BF%87Cocoapods%E5%AF%BC%E5%85%A5Admob-SDK"><span class="nav-number">1.</span> <span class="nav-text">通过Cocoapods导入Admob SDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BB%E5%B7%A5%E7%A8%8B%E7%9A%84info-plist%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">修改主工程的info.plist文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96Admob-SDK"><span class="nav-number">3.</span> <span class="nav-text">初始化Admob SDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%84%E7%A7%8DAdmob%E5%B9%BF%E5%91%8A%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E6%96%B9%E6%A1%88"><span class="nav-number">4.</span> <span class="nav-text">各种Admob广告类型的最佳实践方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Admob%E4%B8%AD%E4%BB%8B%E7%BB%84%E8%81%9A%E5%90%88%E5%A4%9A%E4%B8%AA%E5%B9%B3%E5%8F%B0%E5%B9%BF%E5%91%8A"><span class="nav-number">5.</span> <span class="nav-text">使用Admob中介组聚合多个平台广告</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">施治昂</p>
+  <div class="site-description" itemprop="description">分享iOS开发知识，Objective-C、Swift、Xcode相关技巧</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:shizhiang@126.com" title="E-Mail → mailto:shizhiang@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7414691003/profile" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7414691003&#x2F;profile" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/ios/ios-integrate-admob/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          iOS完整集成admob教程（2021）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Admob是谷歌推出的广告服务，其中包含的广告类型有：banner、插屏、激励、开屏（最近添加的）。利用Admob的中介组可以引入其他广告商的广告，比如FaceBook、unity等10多家平台。对于出海的App集成Admob是非常必要的变现手段。</p>
+<a id="more"></a>
+
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
+</div>
+
+<p><img src="../images/admob/admob.png" alt="Admob 集成"></p>
+<h1 id="通过Cocoapods导入Admob-SDK"><a href="#通过Cocoapods导入Admob-SDK" class="headerlink" title="通过Cocoapods导入Admob SDK"></a>通过Cocoapods导入Admob SDK</h1><p>通过Cocoapods导入SDK是最简单的方法，如果不知道Cocoapods的使用方法可以看一下<a target="_blank" rel="noopener" href="https://cocoapods.org/">官方文档</a>。在Podfile中添加一行代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod &#39;Google-Mobile-Ads-SDK&#39;</span><br></pre></td></tr></table></figure>
+<p>之后在终端执行命令行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod install --repo-update</span><br></pre></td></tr></table></figure>
+<h1 id="修改主工程的info-plist文件"><a href="#修改主工程的info-plist文件" class="headerlink" title="修改主工程的info.plist文件"></a>修改主工程的info.plist文件</h1><p>在主工程的info.plist文件中添加两个键值对：</p>
+<ol>
+<li><code>GADApplicationIdentifier</code>对应的是你的app在Admob申请到的App ID。</li>
+<li><code>SKAdNetworkItems</code>对应的是一个固定的<code>cstr6suwn9.skadnetwork</code>。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;key&gt;GADApplicationIdentifier&lt;&#x2F;key&gt;</span><br><span class="line">&lt;string&gt;ca-app-pub-3940256099942544~1458002511&lt;&#x2F;string&gt;</span><br><span class="line">&lt;key&gt;SKAdNetworkItems&lt;&#x2F;key&gt;</span><br><span class="line">  &lt;array&gt;</span><br><span class="line">    &lt;dict&gt;</span><br><span class="line">      &lt;key&gt;SKAdNetworkIdentifier&lt;&#x2F;key&gt;</span><br><span class="line">      &lt;string&gt;cstr6suwn9.skadnetwork&lt;&#x2F;string&gt;</span><br><span class="line">    &lt;&#x2F;dict&gt;</span><br><span class="line">  &lt;&#x2F;array&gt;</span><br></pre></td></tr></table></figure>
+<p>添加之后的info.plist效果：<br><img src="../images/admob/quick_start_skadnetwork.png" alt="info.plist添加Admob"></p>
+<p>关于注册Admob账号和获取App ID的内容可以到<a target="_blank" rel="noopener" href="https://apps.admob.com/v2/home">Admob的官方网站</a>查看。</p>
+<h1 id="初始化Admob-SDK"><a href="#初始化Admob-SDK" class="headerlink" title="初始化Admob SDK"></a>初始化Admob SDK</h1><p>在<code>AppDelegate</code>中添加初始化Admob SDK的代码</p>
+<div class="tabs" id="initialize-admob-sdk"><ul class="nav-tabs"><li class="tab active"><a href="#initialize-admob-sdk-1">Objective-C</a></li><li class="tab"><a href="#initialize-admob-sdk-2">Swift</a></li></ul><div class="tab-content"><div class="tab-pane active" id="initialize-admob-sdk-1"><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> GoogleMobileAds;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">AppDelegate</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application</span><br><span class="line">    didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</span><br><span class="line"></span><br><span class="line">  [[GADMobileAds sharedInstance] startWithCompletionHandler:<span class="literal">nil</span>];</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="initialize-admob-sdk-2"><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> GoogleMobileAds</span><br><span class="line"></span><br><span class="line"><span class="keyword">@UIApplicationMain</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppDelegate</span>: <span class="title">UIResponde</span>, <span class="title">UIApplicationDelegate</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="keyword">_</span> application: UIApplication,</span></span></span><br><span class="line"><span class="function"><span class="params">      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: <span class="keyword">Any</span>]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">GADMobileAds</span>.sharedInstance().start(completionHandler: <span class="literal">nil</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div>
+
+<p>到这里，我们就可以根据需要来在App的不同位置添加需要的广告类型了。</p>
+<p>因为类型比较多，这里如果分别介绍的话篇幅就太长了。所以在这篇文章只说一下需要注意的地方，详细的集成方法可以到<a target="_blank" rel="noopener" href="https://developers.google.com/admob/ios/quick-start">Admob开发官网</a>查看。</p>
+<h1 id="各种Admob广告类型的最佳实践方案"><a href="#各种Admob广告类型的最佳实践方案" class="headerlink" title="各种Admob广告类型的最佳实践方案"></a>各种Admob广告类型的最佳实践方案</h1><p>不同类型的Admob广告适用于不同的场景，按照场景放广告不仅更能被用户接受，而且对广告营收有一定的益处。相反，如果不按照推荐方法来展示广告有可能会被广告商警告，严重的话可能会被禁止投放（我们就被Facebook警告了）。</p>
+<ol>
+<li>Banner广告是那种长条状的横幅形式，建议放在屏幕的边缘处，对于手机屏幕建议放在屏幕的最上面或者最下面。</li>
+<li>插屏广告是一种全屏展示的广告，可能是一张图片或者一个视频，只有用户点击关闭按钮是才会关闭。这种广告对用户打扰非常大，建议放在界面切换的时候才展示这种广告，<strong>并且不能在push到一个新页面以后再展示</strong>，比如说不能在到一个新页面后网络请求服务端的过程中展示这个广告。</li>
+<li>Native广告（原生广告）是一种比较特殊的广告形式，它通过SDK来实现广告加载，加载到的是广告的一些组件（文字、图片、视频），我们可以自定义组件的展示位置和大小。<strong>这种广告适合用在启动图或者列表（UITableView/UICollectionView）中。</strong></li>
+<li>激励视频广告是一种可以让用户通过观看广告获取App内奖励的广告形式，在游戏类App中十分常见。在弹出这种广告前一定要让用户选择是否要通过看广告获取“更多奖励”。</li>
+</ol>
+<h1 id="使用Admob中介组聚合多个平台广告"><a href="#使用Admob中介组聚合多个平台广告" class="headerlink" title="使用Admob中介组聚合多个平台广告"></a>使用Admob中介组聚合多个平台广告</h1><p>谷歌广告平台不仅有自家的Admob广告还有很多其他广告平台的资源，我们在集成了<code>Google-Mobile-Ads-SDK</code>的基础上通过添加不同平台的中介组（Mediation）来快速获取不同平台的广告。</p>
+<p>在这里我们仅以集成Facebook的广告为例做一下说明，其他平台的广告也都大同小异。如果在集成过程中有什么问题也可以到公众号“iOS开发栈”问我。</p>
+<p>在<code>Podfile</code>文件中添加Admob SDK和Facebook的中介组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pod &#39;Google-Mobile-Ads-SDK&#39;,</span><br><span class="line">pod &#39;GoogleMobileAdsMediationFacebook&#39;</span><br></pre></td></tr></table></figure>
+<p>之后在终端切换到项目所在目录，并执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &lt;当前项目目录&gt;</span><br><span class="line">pod install --repo-update</span><br></pre></td></tr></table></figure>
+<p>安装完Admob SDk和FB的广告中介组以后，就可以直接使用对应的广告形式了。对应广告形式的使用方式可以到上一节查看，这里不再赘述。</p>
+<p>这里有一点需要强调的是在初始化不同的广告形式需要调用<code>initWithAdUnitID:</code>方法，这里的<em>UnitID</em>是广告但愿ID，可以在Admob的管理后台-&gt;广告单元页面查看。</p>
+<p><img src="../images/admob/UnitId.png" alt="Admob UnitID"></p>
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。回复“博客”免费获取各大互联网公司面试题，和破解版cleanMyMac等软件</p>
+</div>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>谷歌的Admob服务和其他广告商相比文档更加全面（不过文档中也可能有错误），社区也非常活跃（我曾经提过一个问题，很快可以得到回复），。这篇文章是我在使用过程中的一些总结，里面除了基础的集成方法外，大都是使用过程中的注意事项，至于详细的集成过程推荐到<a target="_blank" rel="noopener" href="https://developers.google.com/admob/ios/quick-start">官方文档</a>中查看。如果你有任何的问题、建议都可以通过<a target="_blank" rel="noopener" href="https://weibo.com/7414691003/profile">微博</a>或<a href="mailto:shizhiang@126.com">邮件</a>联系到我本人。</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/Get-To-Know-LLDB/" rel="bookmark">LLDB调试iOS（一）—— 初识LLDB</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">公众号【iOS开发栈】</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/swiftui/swiftui-data-flow/" rel="prev" title="详解SwiftUI数据流是怎么在View间传递的">
+                  <i class="fa fa-chevron-left"></i> 详解SwiftUI数据流是怎么在View间传递的
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/swiftui/swiftui-divide-spacer/" rel="next" title="详解SwiftUI中Divider和Spacer的用法和区别（最新）">
+                  详解SwiftUI中Divider和Spacer的用法和区别（最新） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">施治昂</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+    <div class="pjax">
+
+  
+
+
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
