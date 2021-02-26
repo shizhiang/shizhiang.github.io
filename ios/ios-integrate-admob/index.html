@@ -30,15 +30,15 @@
 <meta property="og:site_name" content="iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
 <meta property="og:description" content="Admob是谷歌推出的广告服务，其中包含的广告类型有：banner、插屏、激励、开屏（最近添加的）。利用Admob的中介组可以引入其他广告商的广告，比如FaceBook、unity等10多家平台。对于出海的App集成Admob是非常必要的变现手段。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/admob/admob.png">
-<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/admob/quick_start_skadnetwork.png">
-<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/admob/UnitId.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/admob/admob.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/admob/quick_start_skadnetwork.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/admob/UnitId.png">
 <meta property="article:published_time" content="2021-02-06T11:57:33.000Z">
-<meta property="article:modified_time" content="2021-02-24T04:00:01.391Z">
+<meta property="article:modified_time" content="2021-02-25T06:53:41.437Z">
 <meta property="article:author" content="施治昂">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.iosprogrammer.tech/ios/images/admob/admob.png">
+<meta name="twitter:image" content="http://www.iosprogrammer.tech/images/admob/admob.png">
 
 
 <link rel="canonical" href="http://www.iosprogrammer.tech/ios/ios-integrate-admob/">
@@ -197,7 +197,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -287,7 +287,7 @@
 <div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
 </div>
 
-<p><img src="../images/admob/admob.png" alt="Admob 集成"></p>
+<p><img src="../../images/admob/admob.png" alt="Admob 集成"></p>
 <h1 id="通过Cocoapods导入Admob-SDK"><a href="#通过Cocoapods导入Admob-SDK" class="headerlink" title="通过Cocoapods导入Admob SDK"></a>通过Cocoapods导入Admob SDK</h1><p>通过Cocoapods导入SDK是最简单的方法，如果不知道Cocoapods的使用方法可以看一下<a target="_blank" rel="noopener" href="https://cocoapods.org/">官方文档</a>。在Podfile中添加一行代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod &#39;Google-Mobile-Ads-SDK&#39;</span><br></pre></td></tr></table></figure>
 <p>之后在终端执行命令行：</p>
@@ -298,7 +298,7 @@
 <li><code>SKAdNetworkItems</code>对应的是一个固定的<code>cstr6suwn9.skadnetwork</code>。</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;key&gt;GADApplicationIdentifier&lt;&#x2F;key&gt;</span><br><span class="line">&lt;string&gt;ca-app-pub-3940256099942544~1458002511&lt;&#x2F;string&gt;</span><br><span class="line">&lt;key&gt;SKAdNetworkItems&lt;&#x2F;key&gt;</span><br><span class="line">  &lt;array&gt;</span><br><span class="line">    &lt;dict&gt;</span><br><span class="line">      &lt;key&gt;SKAdNetworkIdentifier&lt;&#x2F;key&gt;</span><br><span class="line">      &lt;string&gt;cstr6suwn9.skadnetwork&lt;&#x2F;string&gt;</span><br><span class="line">    &lt;&#x2F;dict&gt;</span><br><span class="line">  &lt;&#x2F;array&gt;</span><br></pre></td></tr></table></figure>
-<p>添加之后的info.plist效果：<br><img src="../images/admob/quick_start_skadnetwork.png" alt="info.plist添加Admob"></p>
+<p>添加之后的info.plist效果：<br><img src="../../images/admob/quick_start_skadnetwork.png" alt="info.plist添加Admob"></p>
 <p>关于注册Admob账号和获取App ID的内容可以到<a target="_blank" rel="noopener" href="https://apps.admob.com/v2/home">Admob的官方网站</a>查看。</p>
 <h1 id="初始化Admob-SDK"><a href="#初始化Admob-SDK" class="headerlink" title="初始化Admob SDK"></a>初始化Admob SDK</h1><p>在<code>AppDelegate</code>中添加初始化Admob SDK的代码</p>
 <div class="tabs" id="initialize-admob-sdk"><ul class="nav-tabs"><li class="tab active"><a href="#initialize-admob-sdk-1">Objective-C</a></li><li class="tab"><a href="#initialize-admob-sdk-2">Swift</a></li></ul><div class="tab-content"><div class="tab-pane active" id="initialize-admob-sdk-1"><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> GoogleMobileAds;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">AppDelegate</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application</span><br><span class="line">    didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</span><br><span class="line"></span><br><span class="line">  [[GADMobileAds sharedInstance] startWithCompletionHandler:<span class="literal">nil</span>];</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="initialize-admob-sdk-2"><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> GoogleMobileAds</span><br><span class="line"></span><br><span class="line"><span class="keyword">@UIApplicationMain</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppDelegate</span>: <span class="title">UIResponde</span>, <span class="title">UIApplicationDelegate</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="keyword">_</span> application: UIApplication,</span></span></span><br><span class="line"><span class="function"><span class="params">      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: <span class="keyword">Any</span>]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">GADMobileAds</span>.sharedInstance().start(completionHandler: <span class="literal">nil</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div>
@@ -320,11 +320,11 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &lt;当前项目目录&gt;</span><br><span class="line">pod install --repo-update</span><br></pre></td></tr></table></figure>
 <p>安装完Admob SDk和FB的广告中介组以后，就可以直接使用对应的广告形式了。对应广告形式的使用方式可以到上一节查看，这里不再赘述。</p>
 <p>这里有一点需要强调的是在初始化不同的广告形式需要调用<code>initWithAdUnitID:</code>方法，这里的<em>UnitID</em>是广告但愿ID，可以在Admob的管理后台-&gt;广告单元页面查看。</p>
-<p><img src="../images/admob/UnitId.png" alt="Admob UnitID"></p>
-<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。回复“博客”免费获取各大互联网公司面试题，和破解版cleanMyMac等软件</p>
+<p><img src="../../images/admob/UnitId.png" alt="Admob UnitID"></p>
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。回复“博客”免费获取各大互联网公司面试题。</p>
 </div>
 
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>谷歌的Admob服务和其他广告商相比文档更加全面（不过文档中也可能有错误），社区也非常活跃（我曾经提过一个问题，很快可以得到回复），。这篇文章是我在使用过程中的一些总结，里面除了基础的集成方法外，大都是使用过程中的注意事项，至于详细的集成过程推荐到<a target="_blank" rel="noopener" href="https://developers.google.com/admob/ios/quick-start">官方文档</a>中查看。如果你有任何的问题、建议都可以通过<a target="_blank" rel="noopener" href="https://weibo.com/7414691003/profile">微博</a>或<a href="mailto:shizhiang@126.com">邮件</a>联系到我本人。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>谷歌的Admob服务和其他广告商相比文档更加全面（不过文档中也可能有错误），社区也非常活跃（我曾经提过一个问题，很快可以得到回复）。这篇文章是我在使用过程中的一些总结，里面除了基础的集成方法外，大都是使用过程中的注意事项，至于详细的集成过程推荐到<a target="_blank" rel="noopener" href="https://developers.google.com/admob/ios/quick-start">官方文档</a>中查看。如果你有任何的问题、建议都可以通过<a target="_blank" rel="noopener" href="https://weibo.com/7414691003/profile">微博</a>或<a href="mailto:shizhiang@126.com">邮件</a>联系到我本人。</p>
 
     </div>
 

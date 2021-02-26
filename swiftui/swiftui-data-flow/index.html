@@ -32,7 +32,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.iosprogrammer.tech/images/first/SwiftUI-Data-Flow.jpg">
 <meta property="article:published_time" content="2021-02-02T06:35:42.234Z">
-<meta property="article:modified_time" content="2021-02-03T12:30:45.226Z">
+<meta property="article:modified_time" content="2021-02-25T06:53:41.437Z">
 <meta property="article:author" content="施治昂">
 <meta property="article:tag" content="SwiftUI">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -323,7 +323,7 @@
 <p>Environment Object和ObservedObject/StateObject用法非常相似，首先DataSource遵守ObservableObject协议，要观察的属性counter使用Publisher包装。</p>
 <p>被<em><em>@EnvironmentObject</em></em>包装的属性会随着Publised属性的改变而变化，所在的view也会重新加载。</p>
 <p><em>.environmentObject</em>是一个<a href="https://www.iosprogrammer.tech/swiftui-concept-essential">Modifier</a>，它向环境变量中注入一个属性，如果不在使用@EnvironmentObject之前使用把属性注入到环境变量中，就会包错 <mark class="label danger">MissingEnvironmentObjectError: Missing EnvironmentObject</mark></p>
-<div class="note info"><p>到公众号【iOS开发栈】回复“博客”免费获取各大互联网公司面试题，和破解版CleanMyMac等软件</p>
+<div class="note info"><p>到公众号【iOS开发栈】回复“博客”免费获取各大互联网公司面试题。</p>
 </div>
 
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在这篇文章中我们学习了SwiftUI框架中数据的流动相关知识，其中主要涉及了几个常用的属性包装器（property wrapper）：@State @Binding @ObservedObject @StateObject @EnvironmentObject用法和适用场景，希望对你所有帮助。如果你有任何的问题、建议都可以通过<a target="_blank" rel="noopener" href="https://weibo.com/7414691003/profile">微博</a>或<a href="mailto:shizhiang@126.com">邮件</a>联系到我本人。</p>
@@ -337,13 +337,13 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/swiftui/SwiftUI-Color-Hex/" rel="bookmark">SwiftUI给Color添加扩展支持十六进制字符串</a></div>
+    </li>
+    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/swiftui/swiftui-concept-essential/" rel="bookmark">学习SwiftUI，必须掌握的3个知识点</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/swiftui/swiftui-divide-spacer/" rel="bookmark">详解SwiftUI中Divider和Spacer的用法和区别（最新）</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/swiftui/what-is-the-different-between-foreach-and-list/" rel="bookmark">在SwiftUI中使用ForEach和List模仿UITableView、UICollectionView</a></div>
     </li>
   </ul>
 
