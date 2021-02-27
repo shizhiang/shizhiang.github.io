@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>3个关于SwiftUI中TextField不得不看的知识点</title>
+      <link href="swiftui/swiftui-textfield/"/>
+      <url>swiftui/swiftui-textfield/</url>
+      
+        <content type="html"><![CDATA[<p>几乎每一个iOS App都需要处理用户交互，输入框作为获取用户输入内容的最常用控件之一是开发者经常用到的一个控件。这篇文章我们来看一下在iOS14中怎么使用全新的SwiftUI框架来处理TextField。</p><a id="more"></a><div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p></div><p><img src="../../images/first/swiftui-textfiled.png" alt="SwiftUI TextField知识点"></p><h1 id="SwiftUI创建一个基础的TextField"><a href="#SwiftUI创建一个基础的TextField" class="headerlink" title="SwiftUI创建一个基础的TextField"></a>SwiftUI创建一个基础的TextField</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> aStr <span class="operator">=</span> <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">VStack</span> &#123;</span><br><span class="line">            <span class="type">TextField</span>(<span class="string">&quot;公众号&lt;iOS开发栈&gt;&quot;</span>, text: <span class="variable">$aStr</span>)</span><br><span class="line">            </span><br><span class="line">            <span class="type">Text</span>(aStr)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>创建一个<code>TextField</code>需要两个参数，一个占位符和一个<a href="https://www.iosprogrammer.tech/swiftui/swiftui-data-flow.html"><code>Bind&lt;Binding&lt;String</code></a>。</p><h1 id="TextFieldStyle"><a href="#TextFieldStyle" class="headerlink" title="TextFieldStyle"></a>TextFieldStyle</h1><p>通过设置<code>textFieldStyle</code>可以修改<code>TextField</code>的展现样式，在SwiftUI中系统自带了UIKit框架中的几个样式：<code>DefaultTextFieldStyle</code>/<code>PlainTextFieldStyle</code>/<code>RoundedBorderTextFieldStyle</code>。</p><p>设置的方法是：</p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">TextField</span>(<span class="string">&quot;公众号&lt;iOS开发栈&gt;&quot;</span>, text: <span class="variable">$aStr</span>)</span><br><span class="line">    .textFieldStyle(<span class="type">DefaultTextFieldStyle</span>())</span><br></pre></td></tr></table></figure><blockquote><p>如果系统自带的这三种样式都不能满足需求，也可以自定义TextField的样式</p></blockquote><h1 id="TextField文本对齐方式"><a href="#TextField文本对齐方式" class="headerlink" title="TextField文本对齐方式"></a>TextField文本对齐方式</h1><p>在SwiftUI中设置TextField的文本对齐方式使用的modifier是<code>multilineTextAlignment</code>，其中包含<code>leading</code>/<code>center</code>/<code>trailing</code>三种对齐方式。</p><p>使用这个modifier的方法如下：</p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">TextField</span>(<span class="string">&quot;公众号&lt;iOS开发栈&gt;&quot;</span>, text: <span class="variable">$aStr</span>)</span><br><span class="line">    .multilineTextAlignment(.trailing)</span><br></pre></td></tr></table></figure><div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p></div><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这篇文章对SwiftUI框架中的<code>TextFiled</code>控件进行了讲解，主要涉及了创建方法、修改展示样式和设置文本对齐方法三个方面，希望对你有所帮助。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> SwiftUI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SwiftUI给Color添加扩展支持十六进制字符串</title>
       <link href="swiftui/SwiftUI-Color-Hex/"/>
       <url>swiftui/SwiftUI-Color-Hex/</url>
