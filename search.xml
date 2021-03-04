@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>在SwiftUI中实现UISegmentControl</title>
+      <link href="swiftui/swiftui-uisegmentcontrol/"/>
+      <url>swiftui/swiftui-uisegmentcontrol/</url>
+      
+        <content type="html"><![CDATA[<p>在SwiftUI中官方把控件做了精简，造成有些在UIKit中使用的控件找不到了。这篇文章来看一下UIPickerView在SwiftUI中是怎么表示的。</p><a id="more"></a><p>了解了一些SwiftUI的基础知识以后，应该就知道有一个<code>Picker</code>控件，想要实现UISegmentControl的效果就要用到这个控件。</p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@State</span> <span class="keyword">var</span> platform <span class="operator">=</span> <span class="number">1</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">    <span class="type">VStack</span> &#123;</span><br><span class="line">        <span class="type">Picker</span>(<span class="string">&quot;平台名称&quot;</span>, selection: <span class="variable">$platform</span>) &#123;</span><br><span class="line">            <span class="type">Text</span>(<span class="string">&quot;支付宝&quot;</span>).tag(<span class="number">1</span>).navigationTitle(<span class="string">&quot;选择平台&quot;</span>)</span><br><span class="line">            <span class="type">Text</span>(<span class="string">&quot;京东金融&quot;</span>).tag(<span class="number">2</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        .pickerStyle(<span class="type">SegmentedPickerStyle</span>())</span><br><span class="line">        </span><br><span class="line">        <span class="type">Text</span>(<span class="string">&quot;<span class="subst">\(platform)</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>使用这段代码就可以得到一个UISegmentControl效果的Picker了。</p><p>其中关键部分是<code>.pickerStyle(SegmentedPickerStyle())</code>，pickerStyle是一个设置Picker样式的Modifier，<code>SegmentedPickerStyle</code>就是外型和UISegmentControl一摸一样的效果。</p><p>除了SegmentedPickerStyle以外，pickerStyle还有下面几种类型：</p><ul><li><code>DefaultPickerStyle</code> 在不同平台有不同的展现形式。iOS平台上和<em>InlinePickerStyle</em>相同都是滚轮样式；MacOS平台和<em>MenuPickerStyle</em>相同；tvOS平台上和<em>SegmentedPickerStyle</em>相同</li><li><code>InlinePickerStyle</code>/<code>WheelPickerStyle</code> 滚轮样式</li><li><code>MenuPickerStyle</code> 点击后Picker的text后弹出选项，有点类似于<code>MenuController</code></li><li><code>RadioGroupPickerStyle</code> MacOS上使用的，所有选项一字排开，每个前面都有一个复选框☑️</li><li><code>SegmentedPickerStyle</code> 上面说的模仿UISegmentControl的外形，使用这种style的时候，Picker的content只能是Text或者Image</li></ul><div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p></div>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> SwiftUI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>3个关于SwiftUI中TextField不得不看的知识点</title>
       <link href="swiftui/swiftui-textfield/"/>
       <url>swiftui/swiftui-textfield/</url>

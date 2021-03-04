@@ -1,2 +1,2 @@
+http://www.iosprogrammer.tech/swiftui/swiftui-uisegmentcontrol/
 http://www.iosprogrammer.tech/swiftui/swiftui-textfield/
-http://www.iosprogrammer.tech/swiftui/SwiftUI-Color-Hex/
