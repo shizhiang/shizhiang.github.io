@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/wechatlogo32*32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/wechatlogo16*16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":false,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="SwiftUI中传递环境变量时会发现两个相似的方法：environment&lt;V&gt;(_ keyPath:, _ value:)和environmentObject&lt;T&gt;(_ object:)，这篇文章我们来看一下这两个方法的不同之处和分别的适用场景。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="environment和environmentObject的区别及适用场景">
+<meta property="og:url" content="http://www.iosprogrammer.tech/swiftui/environment-vs-environmentObject/index.html">
+<meta property="og:site_name" content="iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
+<meta property="og:description" content="SwiftUI中传递环境变量时会发现两个相似的方法：environment&lt;V&gt;(_ keyPath:, _ value:)和environmentObject&lt;T&gt;(_ object:)，这篇文章我们来看一下这两个方法的不同之处和分别的适用场景。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/first/swiftui-environmentobject-environment.png">
+<meta property="article:published_time" content="2021-03-05T03:25:18.000Z">
+<meta property="article:modified_time" content="2021-03-05T07:01:31.618Z">
+<meta property="article:author" content="施治昂">
+<meta property="article:tag" content="SwiftUI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.iosprogrammer.tech/images/first/swiftui-environmentobject-environment.png">
+
+
+<link rel="canonical" href="http://www.iosprogrammer.tech/swiftui/environment-vs-environmentObject/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>environment和environmentObject的区别及适用场景 | iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-127387039-1');
+      }
+    </script>
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bd7459ebb71091a406c3493a12d04ecc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#EnvironmentObject"><span class="nav-number">1.</span> <span class="nav-text">@EnvironmentObject</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Environment"><span class="nav-number">2.</span> <span class="nav-text">@Environment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">施治昂</p>
+  <div class="site-description" itemprop="description">分享iOS开发知识，Objective-C、Swift、Xcode相关技巧</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:shizhiang@126.com" title="E-Mail → mailto:shizhiang@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7414691003/profile" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7414691003&#x2F;profile" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/swiftui/environment-vs-environmentObject/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          environment和environmentObject的区别及适用场景
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>SwiftUI中传递环境变量时会发现两个相似的方法：<code>environment&lt;V&gt;(_ keyPath:, _ value:)</code>和<code>environmentObject&lt;T&gt;(_ object:)</code>，这篇文章我们来看一下这两个方法的不同之处和分别的适用场景。</p>
+<a id="more"></a>
+
+<p><img src="../../images/first/swiftui-environmentobject-environment.png" alt="Swift环境变量对比"></p>
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。回复“博客”免费获取各大互联网公司面试题。</p>
+</div>
+
+<p>首先要明确的一点是，这两个方法都是用来设置环境变量的，而环境变量会影响到被设置变量的视图以及它的所有子视图，并且这个传递过程不需要明确指出。</p>
+<p>也就是说，假设有三个视图，view1、view2、view3，其中view2和view3是view1的子视图，要想在view2和view3中使用view1设置的环境变量的话，只需要直接在view中使用<code>@EnvironmentObject</code>或者<code>@Environment</code>而不需要在创建view2和view3的时候显式传参。</p>
+<h1 id="EnvironmentObject"><a href="#EnvironmentObject" class="headerlink" title="@EnvironmentObject"></a>@EnvironmentObject</h1><p>下面以<code>@EnvironmentObject</code>举例说明上面的这段话：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 公众号——iOS开发栈</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OfficalAccount</span>: <span class="title">ObservableObject</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Published</span> <span class="keyword">var</span> amount <span class="operator">=</span> <span class="number">3000</span> <span class="comment">// 订阅人数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">DetailView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="meta">@EnvironmentObject</span> <span class="keyword">var</span> account: <span class="type">OfficalAccount</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">VStack</span> &#123;</span><br><span class="line">            <span class="type">Button</span>(<span class="string">&quot;Increase Score in detailView&quot;</span>) &#123;</span><br><span class="line">                account.amount <span class="operator">+=</span> <span class="number">1</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="type">Text</span>(<span class="string">&quot;account: <span class="subst">\(account.amount)</span>&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">DetailView2</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="meta">@EnvironmentObject</span> <span class="keyword">var</span> account: <span class="type">OfficalAccount</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">Text</span>(<span class="string">&quot;Score: <span class="subst">\(account.amount)</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="meta">@StateObject</span> <span class="keyword">var</span> account <span class="operator">=</span> <span class="type">OfficalAccount</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">VStack</span> &#123;</span><br><span class="line">            <span class="type">Button</span>(<span class="string">&quot;Increase Score&quot;</span>) &#123;</span><br><span class="line">                account.amount <span class="operator">+=</span> <span class="number">1</span></span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="type">DetailView</span>()</span><br><span class="line">            <span class="type">DetailView2</span>()</span><br><span class="line">        &#125;</span><br><span class="line">        .environmentObject(account)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的例子是以我的公众号（”iOS开发栈“）的订阅人数做说明，可以看出<em>ContentView</em>创建<em>DetailView</em>和<em>DetailView2</em>时并没有直接传递变量<em>accout</em>，但是结果是这两个子视图中的数量显示会随着点击按钮而增加。</p>
+<p>对上面使用<code>environmentObject</code>进行环境变量传递有几点需要注意：</p>
+<ul>
+<li>使用<code>@Environment</code>、<code>@StateObject</code>、<code>@ObservedObject</code>包装的类必须遵守<code>ObservableObject</code>协议，并且只能是类不能是结构体，否则会报错 <mark class="label danger">Non-class type OfficalAccount cannot conform to class protocol ObservableObject</mark></li>
+<li><code>@Published</code>也只能在<em>class</em>中使用，如果放在了struct中，会报错<mark class="label danger">'wrappedValue' is unavailable: </mark></li>
+<li>使用<code>@EnvironmentObject</code>包装的变量是不需要初始化的，编译器会从环境变量中获取这个对象的值</li>
+<li>在子视图中可以修改了环境变量的值，并且这个改变会在当前的视图层级中传递</li>
+</ul>
+<h1 id="Environment"><a href="#Environment" class="headerlink" title="@Environment"></a>@Environment</h1><p>而对于<code>@Environment</code>来说，它主要是用来处理一些当前的系统设置的，比如说语言、时区、黑暗模式、CoreData的Context等。</p>
+<p>在使用过程中一个很大的不同是，<code>@Environment(_ keyPath:)</code>需要指定一个类型为<code>KeyPath</code>的参数，而这个参数大多数情况下我们都是使用的<code>EnvironmentValues</code>中已经定义好的，比如<code>managedObjectContext</code>/<code>locale</code>等。</p>
+<p>下面以使用<em>CoreData</em>为例说明使用方法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// App.swift</span></span><br><span class="line"><span class="operator">...</span></span><br><span class="line"><span class="keyword">let</span> persistenceController <span class="operator">=</span> <span class="type">PersistenceController</span>.shared</span><br><span class="line"><span class="operator">...</span></span><br><span class="line"><span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">Scene</span> &#123;</span><br><span class="line">    <span class="type">WindowGroup</span> &#123;</span><br><span class="line">        <span class="type">ContentView</span>()</span><br><span class="line">            .environment(\.managedObjectContext, persistenceController.container.viewContext)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="operator">...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ContentView.swift</span></span><br><span class="line"><span class="operator">...</span></span><br><span class="line"><span class="meta">@Environment</span>(\.managedObjectContext) <span class="keyword">private</span> <span class="keyword">var</span> viewContext</span><br><span class="line"><span class="operator">...</span></span><br><span class="line"><span class="keyword">let</span> newItem <span class="operator">=</span> <span class="type">Item</span>(context: viewContext)</span><br><span class="line">newItem.platform <span class="operator">=</span> <span class="number">1</span></span><br><span class="line"><span class="operator">...</span></span><br></pre></td></tr></table></figure>
+<p>在这个例子中，我们在<em>App.swift</em>中创建了<code>persistenceController</code>并通过调用<code>.environment</code>把值传递给了<em>ContentView</em>。<em>ContentView</em>中使用<code>@Environment(\.managedObjectContext) private var viewContext</code>获取到了这个环境变量。</p>
+<p>除了需要一个KeyPath和上面提到的主要用来处理系统自带的环境变量外，<code>@Environment</code>和<code>@EnvironmentObject</code>在用法上相差不大。</p>
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。回复“博客”免费获取各大互联网公司面试题。</p>
+</div>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>通过灵活使用环境变量，可以让开发过程更加简单，页面之间可以写更少的值传递（正向、反相）相关代码。通过本文对<code>Environment</code>和<code>EnvironmentObject</code>的对比，我们更深入的了解了SwiftUI中环境变量的一些使用细节。</p>
+<p>如果本文对你有帮助请帮忙分享到朋友圈或者微博。</p>
+<p>如果有任何问题也可以到公众号联系我。</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/swiftui/SwiftUI-Color-Hex/" rel="bookmark">SwiftUI给Color添加扩展支持十六进制字符串</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/swiftui/swiftui-concept-essential/" rel="bookmark">学习SwiftUI，必须掌握的3个知识点</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/swiftui/swiftui-data-flow/" rel="bookmark">详解SwiftUI数据流是怎么在View间传递的</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">公众号【iOS开发栈】</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/SwiftUI/" rel="tag"># SwiftUI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/swiftui/swiftui-uisegmentcontrol/" rel="prev" title="在SwiftUI中实现UISegmentControl">
+                  <i class="fa fa-chevron-left"></i> 在SwiftUI中实现UISegmentControl
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">施治昂</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+    <div class="pjax">
+
+  
+
+
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

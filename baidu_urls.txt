@@ -1,2 +1,2 @@
+http://www.iosprogrammer.tech/swiftui/environment-vs-environmentObject/
 http://www.iosprogrammer.tech/swiftui/swiftui-uisegmentcontrol/
-http://www.iosprogrammer.tech/swiftui/swiftui-textfield/
