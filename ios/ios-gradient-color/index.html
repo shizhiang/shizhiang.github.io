@@ -23,23 +23,23 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":false,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="在WWDC2019中，iOS引入了一个全新的UI框架——SwiftUI。它的目的是通过全新的设计思想来解决iPhone、iPad、Mac的界面统一，以便开发者可以通过一次学习多处使用（Learn Once, Use anywhere）。从iOS13开始我们就可以使用这个全新的框架了，iOS开发者应该尽快掌握它。">
+<meta name="description" content="本文将从4行代码出发给一个view设置渐变色，分别会谈到几个重要的渐变色相关属性，在使用过程中有几个需要特别关注的点。 给一个view的border设置渐变色是比较高阶的用法，希望本文可以在这个方面帮助到你。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习SwiftUI，必须掌握的3个知识点">
-<meta property="og:url" content="http://www.iosprogrammer.tech/swiftui/swiftui-concept-essential/index.html">
+<meta property="og:title" content="iOS设置渐变色，给border设置渐变色">
+<meta property="og:url" content="http://www.iosprogrammer.tech/ios/ios-gradient-color/index.html">
 <meta property="og:site_name" content="iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
-<meta property="og:description" content="在WWDC2019中，iOS引入了一个全新的UI框架——SwiftUI。它的目的是通过全新的设计思想来解决iPhone、iPad、Mac的界面统一，以便开发者可以通过一次学习多处使用（Learn Once, Use anywhere）。从iOS13开始我们就可以使用这个全新的框架了，iOS开发者应该尽快掌握它。">
+<meta property="og:description" content="本文将从4行代码出发给一个view设置渐变色，分别会谈到几个重要的渐变色相关属性，在使用过程中有几个需要特别关注的点。 给一个view的border设置渐变色是比较高阶的用法，希望本文可以在这个方面帮助到你。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.iosprogrammer.tech/swiftui/images/swiftui-concept/1.png">
-<meta property="article:published_time" content="2021-01-23T14:36:39.000Z">
-<meta property="article:modified_time" content="2021-02-25T06:53:41.437Z">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/first/ios-gradient-color-border.png">
+<meta property="article:published_time" content="2021-03-07T12:50:56.000Z">
+<meta property="article:modified_time" content="2021-03-08T01:50:12.123Z">
 <meta property="article:author" content="施治昂">
-<meta property="article:tag" content="SwiftUI">
+<meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.iosprogrammer.tech/swiftui/images/swiftui-concept/1.png">
+<meta name="twitter:image" content="http://www.iosprogrammer.tech/images/first/ios-gradient-color-border.png">
 
 
-<link rel="canonical" href="http://www.iosprogrammer.tech/swiftui/swiftui-concept-essential/">
+<link rel="canonical" href="http://www.iosprogrammer.tech/ios/ios-gradient-color/">
 
 
 <script data-pjax class="page-configurations">
@@ -51,7 +51,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>学习SwiftUI，必须掌握的3个知识点 | iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源</title>
+<title>iOS设置渐变色，给border设置渐变色 | iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
     <script data-pjax>
@@ -181,7 +181,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#View"><span class="nav-number">1.</span> <span class="nav-text">View</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modifer"><span class="nav-number">2.</span> <span class="nav-text">Modifer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#State%E5%92%8C-%E2%80%94%E2%80%94-Binding-Value"><span class="nav-number">3.</span> <span class="nav-text">@State和$ —— Binding Value</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.1.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%99view%E8%AE%BE%E7%BD%AE%E6%B8%90%E5%8F%98%E8%89%B2"><span class="nav-number">1.</span> <span class="nav-text">给view设置渐变色</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%99view%E7%9A%84border%E8%AE%BE%E7%BD%AE%E6%B8%90%E5%8F%98%E8%89%B2"><span class="nav-number">2.</span> <span class="nav-text">给view的border设置渐变色</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -250,7 +250,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/swiftui/swiftui-concept-essential/">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/ios/ios-gradient-color/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -263,7 +263,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          学习SwiftUI，必须掌握的3个知识点
+          iOS设置渐变色，给border设置渐变色
         </h1>
 
         <div class="post-meta-container">
@@ -279,34 +279,40 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>在WWDC2019中，iOS引入了一个全新的UI框架——SwiftUI。它的目的是通过全新的设计思想来解决iPhone、iPad、Mac的界面统一，以便开发者可以通过一次学习多处使用（Learn Once, Use anywhere）。从iOS13开始我们就可以使用这个全新的框架了，iOS开发者应该尽快掌握它。</p>
+        <p>本文将从4行代码出发给一个view设置渐变色，分别会谈到几个重要的渐变色相关属性，在使用过程中有几个需要特别关注的点。</p>
+<p>给一个view的border设置渐变色是比较高阶的用法，希望本文可以在这个方面帮助到你。</p>
 <a id="more"></a>
 
-<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。回复“博客”免费获取各大互联网公司面试题。</p>
+<p><img src="../../images/first/ios-gradient-color-border.png" alt="ios渐变色"></p>
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
 </div>
 
-<h2 id="View"><a href="#View" class="headerlink" title="View"></a>View</h2><p>SwiftUI中一切皆View，不论是我们熟悉的<code>Button</code>还是<code>backgroundColor</code>，甚至<code>Color.red</code>，它们都是<code>View</code>。</p>
-<p>与UIKit中的<code>UIView</code>不同的是，在SwiftUI中<code>View</code>不再是一个类而是一个协议。`</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">protocol</span> <span class="title">View</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The type of view representing the body of this view.</span></span><br><span class="line">    <span class="comment">///</span></span><br><span class="line">    <span class="comment">/// When you create a custom view, Swift infers this type from your</span></span><br><span class="line">    <span class="comment">/// implementation of the required `body` property.</span></span><br><span class="line">    <span class="keyword">associatedtype</span> <span class="type">Body</span> : <span class="type">View</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The content and behavior of the view.</span></span><br><span class="line">    <span class="meta">@ViewBuilder</span> <span class="keyword">var</span> body: <span class="keyword">Self</span>.<span class="type">Body</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>SwiftUI中的View是不能直接使用的，否则会报错 <mark class="label danger">'View' cannot be constructed because it has no accessible initializers</mark>，当你遇到这个问题的时候请仔细思考一下你是不是真的要这么用，或许可以用一个其他的代替。</p>
-<p>常用到的<code>View</code>有：<code>Text</code>/<code>Button</code>/<code>Toggle</code>/<code>Picker</code>/<code>V(Z)(H)Stack</code>/<code>Color</code>/<code>Spacer</code>/<code>Image</code>/<code>Shape</code>/<code>Divider</code>以及它们的<code>modifier</code>等。</p>
-<p><code>@ViewBuilder</code>标记的<code>body</code>变量表示它是一个容器，里面可以包含任意多个其他的<code>View</code>。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Button</span>(action: btnClick) &#123;</span><br><span class="line">    <span class="type">VStack</span> &#123;</span><br><span class="line">        <span class="type">Image</span>(systemName: <span class="string">&quot;star&quot;</span>)</span><br><span class="line">        <span class="type">Text</span>(<span class="string">&quot;Placeholder&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Modifer"><a href="#Modifer" class="headerlink" title="Modifer"></a>Modifer</h2><p>我们分别看一下在UIKit和SwiftUI中修改一个Label的文字颜色</p>
-<div class="tabs" id="modify-label-text-color"><ul class="nav-tabs"><li class="tab active"><a href="#modify-label-text-color-1">UIKit</a></li><li class="tab"><a href="#modify-label-text-color-2">SwiftUI</a></li></ul><div class="tab-content"><div class="tab-pane active" id="modify-label-text-color-1"><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> label <span class="operator">=</span> <span class="type">UILabel</span>()</span><br><span class="line">label.text <span class="operator">=</span> <span class="string">&quot;UIKit&quot;</span></span><br><span class="line">label.textColor <span class="operator">=</span> <span class="type">UIColor</span>.red</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="modify-label-text-color-2"><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Text</span>(<span class="string">&quot;SwiftUI&quot;</span>).foregroundColor(.red)</span><br></pre></td></tr></table></figure></div></div></div>
-
-<p>SwiftUI中的<code>.foregroundColor</code>和<code>textColor</code>有本质的不同，它是一种<strong>modifier</strong>，它返回的是令一个View。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@inlinable</span> <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">foregroundColor</span><span class="params">(<span class="keyword">_</span> color: Color?)</span></span> -&gt; <span class="keyword">some</span> <span class="type">View</span></span><br></pre></td></tr></table></figure>
-<p>当我们调用了<code>.foregroundColor</code>其实是创造了一个新的View，这也正是SwiftUI中万物皆View的例子。</p>
-<h2 id="State和-——-Binding-Value"><a href="#State和-——-Binding-Value" class="headerlink" title="@State和$ —— Binding Value"></a>@State和$ —— Binding Value</h2><div class="tabs" id="toggle"><ul class="nav-tabs"><li class="tab active"><a href="#toggle-1">代码</a></li><li class="tab"><a href="#toggle-2">效果图</a></li></ul><div class="tab-content"><div class="tab-pane active" id="toggle-1"><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ContentView</span>: <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="meta">@State</span> <span class="keyword">var</span> isOn: <span class="type">Bool</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">Toggle</span>(isOn: <span class="variable">$isOn</span>) &#123;</span><br><span class="line">            <span class="type">Text</span>(<span class="string">&quot;Toggle&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="toggle-2"><p><img src="../images/swiftui-concept/1.png" alt="SwiftUI Toggle Binding"></p></div></div></div>
-<blockquote>
-<p>这是一个双向绑定</p>
-</blockquote>
-<p>绑定建立以后，不论是<code>isOn</code>的修改触发了Toggle状态的改变，还是用户点击了Toggle引起<code>isOn</code>变量值的改变我们都不需要关心，SwiftUI会帮我们完成。</p>
-<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。回复“博客”免费获取各大互联网公司面试题。</p>
+<h1 id="给view设置渐变色"><a href="#给view设置渐变色" class="headerlink" title="给view设置渐变色"></a>给view设置渐变色</h1><p>通过4行代码就可以给一个view设置渐变色：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> view <span class="operator">=</span> <span class="type">UIView</span>(frame: <span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">100</span>, width: <span class="number">100</span>, height: <span class="number">100</span>))</span><br><span class="line"><span class="keyword">let</span> gradientLayer <span class="operator">=</span> <span class="type">CAGradientLayer</span>()</span><br><span class="line">gradientLayer.frame <span class="operator">=</span> view.bounds</span><br><span class="line"><span class="comment">// @[(__bridge id)[UIColor redColor].CGColor, (__bridge id)[UIColor yellowColor].CGColor]</span></span><br><span class="line">gradientLayer.colors <span class="operator">=</span> [<span class="type">UIColor</span>.red.cgColor, <span class="type">UIColor</span>.yellow.cgColor]</span><br><span class="line">view.layer.addSublayer(gradientLayer)</span><br></pre></td></tr></table></figure>
+<p>在创建<code>CAGradientLayer</code>以后需要设置<code>frame</code>才能展示出来，否则它的大小会使用默认的0。</p>
+<p>渐变色会根据<code>colors</code>数组来展示，这个数组的类型是<code>CGColorRef</code>，所以需要用<code>.cgColor</code>强制转换；如果使用的OC语法，必须加上<code>(__bridge id)</code>，否则渐变色会显示不出来。</p>
+<p>默认情况下渐变会从上至下，可是通过设置<code>startPoint</code>和<code>endPoint</code>来改变这个顺序：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gradientLayer.startPoint <span class="operator">=</span> <span class="type">CGPoint</span>(x: <span class="number">0</span>, y: <span class="number">0</span>)</span><br><span class="line">gradientLayer.endPoint <span class="operator">=</span> <span class="type">CGPoint</span>(x: <span class="number">1</span>, y: <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>这两个点的范围是从0到1，也就是说最左边和最上边是0，最下和最右是1。这个例子中渐变会变成从左上角到右下角。</p>
+<p>渐变色还有一个重要的属性是<code>locations</code>，这个属性是用来指定<code>colors</code>中设置的每个颜色的终点的。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradientLayer.locations <span class="operator">=</span> [<span class="number">0.2</span>, <span class="number">0.8</span>]</span><br></pre></td></tr></table></figure>
+<p>locations中元素的范围是从0到1。在这里，数组中的第一个元素<em>0.2</em>指定了colors数组中第一个元素<em>红色</em>的终点是0.2，也就是说把整个渐变色范围分成10份，从开始到<em>2/10</em>处都是纯红色，从<em>2/10</em>到<em>8/10</em>处是纯红色到纯黄色的渐变，而从<em>8/10</em>到<em>10/10</em>是纯黄色。</p>
+<h1 id="给view的border设置渐变色"><a href="#给view的border设置渐变色" class="headerlink" title="给view的border设置渐变色"></a>给view的border设置渐变色</h1><p>使用<code>UIBezierPath</code>来创建一个带圆角的<code>CAShapeLayer</code>，并且把它的圆角设置成view的圆角，就可以把一个view的border设置为渐变色。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">...</span> <span class="comment">// 同上给view设置gradientLayer</span></span><br><span class="line">        </span><br><span class="line"><span class="keyword">let</span> shapeLayer <span class="operator">=</span> <span class="type">CAShapeLayer</span>()</span><br><span class="line">shapeLayer.borderWidth <span class="operator">=</span> <span class="number">1</span></span><br><span class="line">shapeLayer.path <span class="operator">=</span> <span class="type">UIBezierPath</span>(roundedRect: gradientLayer.bounds, cornerRadius: <span class="number">10</span>).cgPath</span><br><span class="line">shapeLayer.fillColor <span class="operator">=</span> <span class="type">UIColor</span>.clear.cgColor <span class="comment">// 必须要设置成clearColor或者nil，默认是黑色</span></span><br><span class="line">shapeLayer.strokeColor <span class="operator">=</span> <span class="type">UIColor</span>.white.cgColor <span class="comment">// 随便设置一个非clearColor的颜色</span></span><br><span class="line">        </span><br><span class="line">gradientLayer.mask <span class="operator">=</span> shapeLayer</span><br><span class="line"></span><br><span class="line">view.layer.addSublayer(gradientLayer)</span><br></pre></td></tr></table></figure>
+<ol>
+<li><em>borderWidth</em> shapeLayer的border宽度和view的相同，可以根据设计图来设置。</li>
+<li><em>cornerRadius</em> UIBezierPath的圆角和view的圆角相同；<em>roundedRect</em>和<em>CAGradientLayer</em>的大小相同。</li>
+<li><em>fillColor</em> 是shapeLayer的填充色，默认是黑色，建议设置成nil或者是透明色<code>clearColor</code></li>
+<li><em>strokeColor</em> 是border的描边色，如果设置成clearColor的话就不会绘制出来border了，这里随便一个颜色就是让其能够绘制出来，实际使用的是渐变色</li>
+<li><em>mask</em> 用shapeLayer作为gradientLayer的mask，可以让gradientLayer内部挖空，只保留边缘border的渐变颜色</li>
+<li>最终把渐变色layer添加到view.layer上，shapeLayer只是用来修饰gradientlayer的，目的是把gradientlayer的内部挖空，并且把border和圆角做出来。</li>
+</ol>
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
 </div>
 
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这篇文章聊了SwiftUI中最基础最重要的3个概念，如果你有任何的问题、建议都可以通过<a target="_blank" rel="noopener" href="https://weibo.com/7414691003/profile">微博</a>或<a href="mailto:shizhiang@126.com">邮件</a>联系到我本人。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>通过这篇文章我们了解了怎么给一个view设置渐变色，并详细阐述了渐变色的几个重要属性。关于给border设置渐变色是一个进阶的知识点。</p>
+<p>希望本篇文章能够帮助到你，也欢迎你把文章分享到朋友圈或微博。</p>
+<p>有任何问题都可以到公众号给我发信息。</p>
 
     </div>
 
@@ -317,13 +323,13 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/swiftui/SwiftUI-Color-Hex/" rel="bookmark">SwiftUI给Color添加扩展支持十六进制字符串</a></div>
+      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/swiftui/environment-vs-environmentObject/" rel="bookmark">environment和environmentObject的区别及适用场景</a></div>
+      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/swiftui/swiftui-data-flow/" rel="bookmark">详解SwiftUI数据流是怎么在View间传递的</a></div>
+      <div class="popular-posts-title"><a href="/Get-To-Know-LLDB/" rel="bookmark">LLDB调试iOS（一）—— 初识LLDB</a></div>
     </li>
   </ul>
 
@@ -347,21 +353,18 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/SwiftUI/" rel="tag"># SwiftUI</a>
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/how-to-make-view-get-intrinsic-content-size/" rel="prev" title="最佳实践：iOS开发在xib/storyboard中自定义view">
-                  <i class="fa fa-chevron-left"></i> 最佳实践：iOS开发在xib/storyboard中自定义view
+                <a href="/swiftui/environment-vs-environmentObject/" rel="prev" title="environment和environmentObject的区别及适用场景">
+                  <i class="fa fa-chevron-left"></i> environment和environmentObject的区别及适用场景
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/swiftui/what-is-the-different-between-foreach-and-list/" rel="next" title="在SwiftUI中使用ForEach和List模仿UITableView、UICollectionView">
-                  在SwiftUI中使用ForEach和List模仿UITableView、UICollectionView <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
