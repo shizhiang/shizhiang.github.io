@@ -23,32 +23,23 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":false,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="Xcode持续集成简介">
+<meta name="description" content="SwiftUI没有提供UISearchBar，虽然我们可以通过使用TextField来自己实现SeachBar的效果，不过要想实现一个和UISearchBar同样的控件并不容易，尤其是清除按钮和搜索图标。 这里推荐直接使用UISearchBar和UIViewRepresentable协议来一个SearchBar。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Xcode持续集成简介">
-<meta property="og:url" content="http://www.iosprogrammer.tech/XCode-Server-CI/index.html">
+<meta property="og:title" content="SwiftUI怎么实现UISearchBar">
+<meta property="og:url" content="http://www.iosprogrammer.tech/swiftui/swiftui-searchbar/index.html">
 <meta property="og:site_name" content="iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
-<meta property="og:description" content="Xcode持续集成简介">
+<meta property="og:description" content="SwiftUI没有提供UISearchBar，虽然我们可以通过使用TextField来自己实现SeachBar的效果，不过要想实现一个和UISearchBar同样的控件并不容易，尤其是清除按钮和搜索图标。 这里推荐直接使用UISearchBar和UIViewRepresentable协议来一个SearchBar。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Xcode-CI-Intro.png">
-<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Create-a-new-bot.png">
-<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Configure-source-control-for-this-bot.png">
-<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Configrure-souce-code-2.png">
-<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Configure-build-configuration.png">
-<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Schedule-bot-integrations.png">
-<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/create-ci-success.png">
-<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/pre-script.jpg">
-<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/set.jpg">
-<meta property="og:image" content="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/post_integration_scripy.jpg">
-<meta property="article:published_time" content="2018-03-06T08:28:14.000Z">
-<meta property="article:modified_time" content="2021-01-26T03:44:35.912Z">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/first/swiftui-uisearchbar.png">
+<meta property="article:published_time" content="2021-03-13T13:33:16.000Z">
+<meta property="article:modified_time" content="2021-03-13T14:08:04.238Z">
 <meta property="article:author" content="施治昂">
-<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="SwiftUI">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Xcode-CI-Intro.png">
+<meta name="twitter:image" content="http://www.iosprogrammer.tech/images/first/swiftui-uisearchbar.png">
 
 
-<link rel="canonical" href="http://www.iosprogrammer.tech/XCode-Server-CI/">
+<link rel="canonical" href="http://www.iosprogrammer.tech/swiftui/swiftui-searchbar/">
 
 
 <script data-pjax class="page-configurations">
@@ -60,7 +51,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>Xcode持续集成简介 | iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源</title>
+<title>SwiftUI怎么实现UISearchBar | iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
     <script data-pjax>
@@ -177,7 +168,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -190,7 +181,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E6%96%87%E7%9A%84%E7%9B%AE%E7%9A%84"><span class="nav-number">2.</span> <span class="nav-text">本文的目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode-CI%E5%92%8CXcode-Server"><span class="nav-number">3.</span> <span class="nav-text">Xcode CI和Xcode Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E6%88%90"><span class="nav-number">4.</span> <span class="nav-text">集成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">5.</span> <span class="nav-text">可能遇到的问题和解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E4%B8%8A%E4%BC%A0%E5%88%B0%E8%92%B2%E5%85%AC%E8%8B%B1"><span class="nav-number">6.</span> <span class="nav-text">脚本上传到蒲公英</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -259,7 +249,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/XCode-Server-CI/">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/swiftui/swiftui-searchbar/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -272,7 +262,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Xcode持续集成简介
+          SwiftUI怎么实现UISearchBar
         </h1>
 
         <div class="post-meta-container">
@@ -288,73 +278,21 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Xcode持续集成简介</p>
+        <p>SwiftUI没有提供UISearchBar，虽然我们可以通过使用TextField来自己实现SeachBar的效果，不过要想实现一个和UISearchBar同样的控件并不容易，尤其是清除按钮和搜索图标。</p>
+<p>这里推荐直接使用UISearchBar和UIViewRepresentable协议来一个SearchBar。</p>
 <a id="more"></a>
-<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><ul>
-<li>Xcode 9.2</li>
-<li>macOS High Sierra 10.13.2</li>
-</ul>
-<h3 id="本文的目的"><a href="#本文的目的" class="headerlink" title="本文的目的"></a>本文的目的</h3><ul>
-<li>介绍Xcode CI和Xcode Server</li>
-<li>手把手教你从头开始创建一个Xcode Server来进行自动集成</li>
-</ul>
-<h3 id="Xcode-CI和Xcode-Server"><a href="#Xcode-CI和Xcode-Server" class="headerlink" title="Xcode CI和Xcode Server"></a>Xcode CI和Xcode Server</h3><p>正如<a target="_blank" rel="noopener" href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/xcode_guide-continuous_integration/index.html#//apple_ref/doc/uid/TP40013292-CH1-SW1">苹果开发者网站</a>所描述的</p>
-<blockquote>
-<p>In Xcode, continuous integration is the process of automating and streamlining the building, analyzing, testing, and archiving of your Mac and iOS apps, in order to ensure that they are always in a releasable state.</p>
-</blockquote>
-<p>Xcode CI是一种为了确保你的APP始终处于可发布状态而存在的自动的、流式的过程，整个过程包括了编译、解析、测试和打包。<br>Xcode Server是用来远程进行这个过程的服务器。</p>
-<p>整个过程类似下图<br><img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Xcode-CI-Intro.png"></p>
-<ul>
-<li>使用这个过程的目的就是为了集成开发APP的整个过程，让这个过程完全自动化进行。通过Xcode CI可以在每次提交代码后自动进行编译到打包的过程，并且可以查看代码的测试覆盖率。因为它可以自动执行单元测试，可以更方便的查看测试报告。</li>
-</ul>
-<h3 id="集成"><a href="#集成" class="headerlink" title="集成"></a>集成</h3><ol>
-<li><p>打开Xcode Server</p>
-<ol>
-<li>点击Xcode菜单栏中的Xcode选项卡的Xcode Server…</li>
-<li>将右上角的开关调到On</li>
-</ol>
-</li>
-<li><p>配置Xcode Server</p>
-<ol>
-<li><p>点击Product选项卡中的Create Bot…</p>
-</li>
-<li><p>配置bot的Name。Server一般不需要<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Create-a-new-bot.png"></p>
-</li>
-<li><p>配置代码库<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Configure-source-control-for-this-bot.png"><br><img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Configrure-souce-code-2.png"></p>
-<blockquote>
-<p>这里选择的是使用.ssh的公钥来配置，当然也可以使用UserName And Password或者Bot Specific SSh Keys。</p>
-</blockquote>
-</li>
-<li><p>选择分支</p>
-</li>
-<li><p>配置Bot的环境<br><img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Configure-build-configuration.png"></p>
-<blockquote>
-<p>这里可以选择在集成的时候是否进行静态分析、测试和打包</p>
-</blockquote>
-</li>
-<li><p>配置集成周期<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/Schedule-bot-integrations.png"></p>
-<blockquote>
-<p>其中，Ingegrate选项中Periodically表示按周期集成，包括小时、天、周；Clean选项表示对项目进行Clean的周期，包括Always/Once a day/Once a week/Never。</p>
-</blockquote>
-</li>
-<li><p>选择集成的目标设备。可以设置模拟器和真机、所有的模拟器、所有的真机、指定的模拟器和指定的真机。</p>
-</li>
-<li><p>配置项目证书</p>
-</li>
-<li><p>集成完成<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/create-ci-success.png"></p>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="可能遇到的问题和解决方案"><a href="#可能遇到的问题和解决方案" class="headerlink" title="可能遇到的问题和解决方案"></a>可能遇到的问题和解决方案</h3><ol>
-<li>The sandbox is not in sync with the Podfile.lock.Run ‘pod install’ or update your CocoaPods installation.</li>
-<li>Invalid byte sequence in US_ASCII(Argument Error)</li>
-</ol>
-<blockquote>
-<p>其中第一个问题需要在每次integrate之前执行<code>pod install</code>；第二个问题是由于Ruby的编码问题导致的，这两个问题的统一解决方案是给Bot添加一个prebuild script，步骤如下： 1. Edit Bot…  2. Triggers 3. Click ‘+’, select ‘Pre-Integraation Script’<br>具体的脚本内容为：<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/pre-script.jpg"><br>下面对这个脚本做一个解释说明:<br>(1). 第2行是用来查看脚本（也就是Server）当前的环境<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/set.jpg"><br>(2). 第4行是切换到项目所在目录，目录地址可以从环境的PWD变量获得<br>(3). 6-8行是用来解决第2个问题的<br>(4). 第10行来执行<code>pod install</code></p>
-</blockquote>
-<h3 id="脚本上传到蒲公英"><a href="#脚本上传到蒲公英" class="headerlink" title="脚本上传到蒲公英"></a>脚本上传到蒲公英</h3><p>   增加一个Post-Integration Scripts<img src="http://image.iosprogrammer.hongbility.com/XCode-Server-CI/post_integration_scripy.jpg" alt="post_integration_script"></p>
 
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
+</div>
+
+<p><img src="../../images/first/swiftui-uisearchbar.png"></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SearchBar</span>: <span class="title">UIViewRepresentable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Binding</span> <span class="keyword">var</span> text: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> placeholder: <span class="type">String</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> onCommit: ((<span class="keyword">_</span> text: <span class="type">String</span>) -&gt; <span class="type">Void</span>)<span class="operator">?</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeUIView</span><span class="params">(context: UIViewRepresentableContext&lt;SearchBar&gt;)</span></span> -&gt; <span class="type">UISearchBar</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> searchBar <span class="operator">=</span> <span class="type">UISearchBar</span>(frame: .zero)</span><br><span class="line">        searchBar.delegate <span class="operator">=</span> context.coordinator</span><br><span class="line"></span><br><span class="line">        searchBar.placeholder <span class="operator">=</span> placeholder</span><br><span class="line">        searchBar.autocapitalizationType <span class="operator">=</span> .none</span><br><span class="line">        searchBar.searchBarStyle <span class="operator">=</span> .minimal</span><br><span class="line">        <span class="keyword">return</span> searchBar</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">updateUIView</span><span class="params">(<span class="keyword">_</span> uiView: UISearchBar, context: UIViewRepresentableContext&lt;SearchBar&gt;)</span></span> &#123;</span><br><span class="line">        uiView.text <span class="operator">=</span> text</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeCoordinator</span><span class="params">()</span></span> -&gt; <span class="type">SearchBar</span>.<span class="type">Coordinator</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Coordinator</span>(text: <span class="variable">$text</span>, onCommit: <span class="keyword">self</span>.onCommit)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Coordinator</span>: <span class="title">NSObject</span>, <span class="title">UISearchBarDelegate</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Binding</span> <span class="keyword">var</span> text: <span class="type">String</span></span><br><span class="line">        <span class="keyword">var</span> onCommit: ((<span class="keyword">_</span> text: <span class="type">String</span>) -&gt; <span class="type">Void</span>)<span class="operator">?</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">init</span>(text: <span class="type">Binding</span>&lt;<span class="type">String</span>&gt;, onCommit: ((<span class="keyword">_</span> text: <span class="type">String</span>) -&gt; <span class="type">Void</span>)<span class="operator">?</span>) &#123;</span><br><span class="line">            _text <span class="operator">=</span> text</span><br><span class="line">            <span class="keyword">self</span>.onCommit <span class="operator">=</span> onCommit</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">func</span> <span class="title">searchBar</span><span class="params">(<span class="keyword">_</span> searchBar: UISearchBar, textDidChange searchText: String)</span></span> &#123;</span><br><span class="line">            text <span class="operator">=</span> searchText</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">func</span> <span class="title">searchBarSearchButtonClicked</span><span class="params">(<span class="keyword">_</span> searchBar: UISearchBar)</span></span> &#123;</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">let</span> onCommit <span class="operator">=</span> <span class="keyword">self</span>.onCommit &#123;</span><br><span class="line">                onCommit(searchBar.text <span class="operator">??</span> <span class="string">&quot;&quot;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>UIViewRepresentable</code>是SwiftUI框架中提供的用于将UIView转换成SwiftUI中View的协议。</p>
+<p><code>func makeUIView(context: Self.Context) -&gt; Self.UIViewType</code>用来创建View的方法，遵守UIViewRepresentable协议的类必须要实现这个方法。它的返回值是一个UIView类的实例。这个方法只会在创建View时调用一次，当View需要更新时会调用下面的这个方法。</p>
+<p><code>func updateUIView(_ uiView: Self.UIViewType, context: Self.Context)</code>当UIView发生任何需要更新状态的事件时，这个方法就会被调用来更新View的状态。</p>
+<p><code>func makeCoordinator() -&gt; Self.Coordinator</code>需要一个<code>Coordinator</code>的实例作为返回值。它通常用来处理一些事件（点击、时间、delegate、通知）引起了UIView的状态变化后，能够将新的状态反映到View上。</p>
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
+</div>
     </div>
 
     
@@ -364,13 +302,13 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
+      <div class="popular-posts-title"><a href="/swiftui/SwiftUI-Color-Hex/" rel="bookmark">SwiftUI给Color添加扩展支持十六进制字符串</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
+      <div class="popular-posts-title"><a href="/swiftui/environment-vs-environmentObject/" rel="bookmark">environment和environmentObject的区别及适用场景</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Get-To-Know-LLDB/" rel="bookmark">LLDB调试iOS（一）—— 初识LLDB</a></div>
+      <div class="popular-posts-title"><a href="/swiftui/swiftui-concept-essential/" rel="bookmark">学习SwiftUI，必须掌握的3个知识点</a></div>
     </li>
   </ul>
 
@@ -394,21 +332,18 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/tags/SwiftUI/" rel="tag"># SwiftUI</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/Using-Instruments-To-Oprimize-CPU-Performance/" rel="prev" title="使用Instruments工具测试CPU与常见对CPU占用过高的操作">
-                  <i class="fa fa-chevron-left"></i> 使用Instruments工具测试CPU与常见对CPU占用过高的操作
+                <a href="/ios/ios-gradient-color/" rel="prev" title="iOS设置渐变色，给border设置渐变色">
+                  <i class="fa fa-chevron-left"></i> iOS设置渐变色，给border设置渐变色
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/Get-To-Know-LLDB/" rel="next" title="LLDB调试iOS（一）—— 初识LLDB">
-                  LLDB调试iOS（一）—— 初识LLDB <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
