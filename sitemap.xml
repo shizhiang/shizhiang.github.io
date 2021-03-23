@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/</loc>
+    
+    <lastmod>2021-03-23</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.iosprogrammer.tech/ios/retain-cycle-problems/</loc>
     
     <lastmod>2021-03-19</lastmod>
@@ -59,13 +66,6 @@
   
   <url>
     <loc>http://www.iosprogrammer.tech/Using-Instruments-To-Oprimize-CPU-Performance/</loc>
-    
-    <lastmod>2021-02-25</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/</loc>
     
     <lastmod>2021-02-25</lastmod>
     
@@ -242,7 +242,7 @@
 
   <url>
     <loc>http://www.iosprogrammer.tech/</loc>
-    <lastmod>2021-03-19</lastmod>
+    <lastmod>2021-03-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -250,21 +250,21 @@
   
   <url>
     <loc>http://www.iosprogrammer.tech/tags/iOS/</loc>
-    <lastmod>2021-03-19</lastmod>
+    <lastmod>2021-03-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://www.iosprogrammer.tech/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</loc>
-    <lastmod>2021-03-19</lastmod>
+    <lastmod>2021-03-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://www.iosprogrammer.tech/tags/SwiftUI/</loc>
-    <lastmod>2021-03-19</lastmod>
+    <lastmod>2021-03-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
