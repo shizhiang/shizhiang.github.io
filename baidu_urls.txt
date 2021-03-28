@@ -1,3 +1,4 @@
+http://www.iosprogrammer.tech/xcode/language-internalization-ib/
 http://www.iosprogrammer.tech/ios/retain-cycle-problems/
 http://www.iosprogrammer.tech/swiftui/swiftui-searchbar/
 http://www.iosprogrammer.tech/ios/ios-gradient-color/
@@ -17,4 +18,3 @@ http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/
 http://www.iosprogrammer.tech/xib-color-different-with-hard-code/
 http://www.iosprogrammer.tech/Programming-With-ObjC/
 http://www.iosprogrammer.tech/KVC-KVO/
-http://www.iosprogrammer.tech/iOS-Memory-Management/

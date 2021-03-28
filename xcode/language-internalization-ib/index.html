@@ -23,18 +23,24 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":false,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-<meta name="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
-<meta property="og:type" content="website">
-<meta property="og:title" content="iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
-<meta property="og:url" content="http://www.iosprogrammer.tech/archives/2020/12/index.html">
+<meta name="description" content="利用Xib或者Storyboard来做iOS的国际化是一种特别方便且高效的方式。通过简单的设置后就可以在不同的文件中把内容翻译为不同的语种，这篇文章我们来了解一下利用IB来做国际化要注意的一些问题，希望能够对你有所帮助。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS App国际化必看！使用Xib使App完成国际化功能">
+<meta property="og:url" content="http://www.iosprogrammer.tech/xcode/language-internalization-ib/index.html">
 <meta property="og:site_name" content="iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
-<meta property="og:description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+<meta property="og:description" content="利用Xib或者Storyboard来做iOS的国际化是一种特别方便且高效的方式。通过简单的设置后就可以在不同的文件中把内容翻译为不同的语种，这篇文章我们来了解一下利用IB来做国际化要注意的一些问题，希望能够对你有所帮助。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/xcode-internaiton-ib/cover.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/xcode-internaiton-ib/overview.png">
+<meta property="article:published_time" content="2021-03-28T13:50:56.000Z">
+<meta property="article:modified_time" content="2021-03-28T14:27:11.164Z">
 <meta property="article:author" content="施治昂">
+<meta property="article:tag" content="Xcode">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.iosprogrammer.tech/images/xcode-internaiton-ib/cover.png">
 
 
-<link rel="canonical" href="http://www.iosprogrammer.tech/archives/2020/12/">
+<link rel="canonical" href="http://www.iosprogrammer.tech/xcode/language-internalization-ib/">
 
 
 <script data-pjax class="page-configurations">
@@ -42,11 +48,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
-<title>归档 | iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源</title>
+<title>iOS App国际化必看！使用Xib使App完成国际化功能 | iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
     <script data-pjax>
@@ -163,7 +169,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -176,6 +182,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E4%BA%86%E8%A7%A3%E5%9B%BD%E9%99%85%E5%8C%96%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.</span> <span class="nav-text">完整了解国际化步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%BF%87%E8%AF%AD%E8%A8%80%E5%90%8E%E5%8F%88%E8%A6%81%E5%A2%9E%E5%8A%A0UILabel%E7%AD%89%E6%8E%A7%E4%BB%B6%E5%9B%BD%E9%99%85%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">添加过语言后又要增加UILabel等控件国际化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">一些总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -233,50 +240,121 @@
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        
-        <span class="collection-header">还行! 目前共计 32 篇日志。 继续努力。</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/xcode/language-internalization-ib/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="分享iOS开发知识，Objective-C、Swift、Xcode相关技巧">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈 | 高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          iOS App国际化必看！使用Xib使App完成国际化功能
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>利用Xib或者Storyboard来做iOS的国际化是一种特别方便且高效的方式。通过简单的设置后就可以在不同的文件中把内容翻译为不同的语种，这篇文章我们来了解一下利用IB来做国际化要注意的一些问题，希望能够对你有所帮助。</p>
+<a id="more"></a>
+
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
+</div>
+
+<p><img src="../../images/xcode-internaiton-ib/cover.png"></p>
+<h1 id="完整了解国际化步骤"><a href="#完整了解国际化步骤" class="headerlink" title="完整了解国际化步骤"></a>完整了解国际化步骤</h1><p><img src="../../images/xcode-internaiton-ib/overview.png"></p>
+<ol>
+<li>增加国际化语言。在xcode左侧的项目目录树中点击<strong>项目名称-&gt;点击“PROJECT”中的项目名称-&gt;Info-&gt;Locatlizations</strong>，之后点击+号就可以增加自己需要的语言了。</li>
+<li>在选择要增加的语言之后会弹出设置弹窗，把需要国际化的IB（Xib、Storyboard）文件勾选上，并且在File Types选项中选择<em>Localizable Strings</em>。</li>
+<li>项目目录树中对应的IB文件就会成为文件夹的形式，可以看到刚刚添加的语言文件（*.strings(xxx)）。</li>
+</ol>
+<h1 id="添加过语言后又要增加UILabel等控件国际化"><a href="#添加过语言后又要增加UILabel等控件国际化" class="headerlink" title="添加过语言后又要增加UILabel等控件国际化"></a>添加过语言后又要增加UILabel等控件国际化</h1><p>随着版本的升级或者需求的改变，我们的IB文件很可能会发生变化，由于我们使用了IB文件进行国际化，又不能每次改版重新做一遍国际化的工作，这就要求我们可以定位到新增的控件并设置语言。</p>
+<p>在xxx.storyboad(Base)文件中选中增加的控件，打开右侧帮助栏，找到第四个选项卡(Show the Identity Inspector)，其中有一个<strong>Object ID</strong>。</p>
+<p>把这个ID复制到其他语言的.strings文件中，就可以设置对应的语言翻译了。其中UILabel、UIButton和UITextFiled的placehoder的设置方法如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* Class &#x3D; &quot;UITextField&quot;; placeholder &#x3D; &quot;ios&quot;; ObjectID &#x3D; &quot;RCg-HC-Mcn&quot;; *&#x2F;</span><br><span class="line">&quot;RCg-HC-Mcn.placeholder&quot; &#x3D; &quot;ios&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;* Class &#x3D; &quot;UIButton&quot;; normalTitle &#x3D; &quot;Button&quot;; ObjectID &#x3D; &quot;isH-qk-FQm&quot;; *&#x2F;</span><br><span class="line">&quot;isH-qk-FQm.normalTitle&quot; &#x3D; &quot;Button&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;* Class &#x3D; &quot;UILabel&quot;; text &#x3D; &quot;iosprogrammer.tech&quot;; ObjectID &#x3D; &quot;pLC-qp-tdZ&quot;; *&#x2F;</span><br><span class="line">&quot;pLC-qp-tdZ.text&quot; &#x3D; &quot;iosprogrammer.tech&quot;;</span><br></pre></td></tr></table></figure>
+<h1 id="一些总结"><a href="#一些总结" class="headerlink" title="一些总结"></a>一些总结</h1><ol>
+<li>如果一个用户的设备系统语言是没有进行适配的，他下载了应用后，将会使用Base语言。比如一个葡萄言语的用于下载了一个适配了日文和韩文的app，并且这个app的Base语言是日文，那么这个用户将会看到日文。</li>
+<li>从一个已经适配的语言切换到一个没有适配的语言，仍然会使用切换前的语言。比如从适配了的中文简体切换到了没有适配的日文，那用户看到的仍然会是中文简体。</li>
+</ol>
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
+</div>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>通过这篇文章我们学习了几个在使用IB来做iOS国际化的过程中需要注意的地方，如果想要充分了解到这方面的知识建议通篇阅读一下<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/Introduction/Introduction.html#//apple_ref/doc/uid/10000171i-CH1-SW1">官方文档</a>。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-12-18T11:40:37+08:00"
-              content="2020-12-18">
-          12-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/xib-color-different-with-hard-code/" itemprop="url">
-            <span itemprop="name">iOS开发xib和代码设置颜色不同的解决方法及其原理（深度好文）</span>
-          </a>
-      </div>
-
+    
+    
+    
       
-    </header>
-  </article>
 
 
-    </div>
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">公众号【iOS开发栈】</span>
+        </a>
+      </div>
   </div>
-  
-  
-  
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Xcode/" rel="tag"># Xcode</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ios/retain-cycle-problems/" rel="prev" title="告诉你3个容易被忽略的可能造成循环引用的情况和2种不会造成循环引用的情况">
+                  <i class="fa fa-chevron-left"></i> 告诉你3个容易被忽略的可能造成循环引用的情况和2种不会造成循环引用的情况
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
 
 
 <script>
