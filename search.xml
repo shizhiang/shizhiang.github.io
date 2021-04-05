@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>苹果官方的iOS App国际化工作流</title>
+      <link href="xcode/international-user-facing-text/"/>
+      <url>xcode/international-user-facing-text/</url>
+      
+        <content type="html"><![CDATA[<p>国际化是出海应用非常重要的一个基础步骤，其中多语言的适配是重中之重。Xcode自带了帮助开发者进行App本地化的功能，其中包括多语言文件的导入和导出，使用这些功能可以很丝滑的完成多语言的工作。</p><a id="more"></a><p><img src="../../images/first/international-user-facing-text.png" alt="iOS国际化"></p><div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p></div><p>App中有一些固定内容的控件是可以直接利用IB文件来做多语言的，具体方法可以查看一下之前的<a href="https://www.iosprogrammer.tech/xcode/language-internalization-ib/">这篇文章</a>，文章中也讲了怎么添加多语言的操作。</p><p>除了一些固定内容的控件之外还会有一些其他内容需要开发者通过代码的形式来本地化，比如可变内容的控件、错误提示信息、富文本、App名称等。通过下面几个步骤可以给这些内容添加多语言。</p><h1 id="标记需要本地化的文本"><a href="#标记需要本地化的文本" class="headerlink" title="标记需要本地化的文本"></a>标记需要本地化的文本</h1><p>Foundation框架中使用<code>NSLocalizedString(_:tableName:bundle:value:comment:)</code>来标记需要本地化的文本，通常tableName/bundle和value直接使用默认值就可以了。</p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">NSLocalizedString</span>(<span class="string">&quot;Label1&quot;</span>, comment: <span class="string">&quot;This is the first label&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上面的代码最终的样子</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* This is the first label */</span></span><br><span class="line"><span class="string">&quot;Label1&quot;</span> <span class="operator">=</span> <span class="string">&quot;First Label 111&quot;</span>;</span><br></pre></td></tr></table></figure><p>翻译文件是key-value的格式，其中key是<code>NSLocalizedString</code>函数中的第一个参数，在这里就是<em>Label1</em>。默认的value也是<em>Label1</em>。</p><p><code>comment</code>参数是这对key-value的注释，主要是在进行人工翻译的时候提供一个说明作用，尤其是当有多个相似的文本时这个注释就有作用了。</p><h1 id="使用Xcode导出本地化多语言文件"><a href="#使用Xcode导出本地化多语言文件" class="headerlink" title="使用Xcode导出本地化多语言文件"></a>使用Xcode导出本地化多语言文件</h1><p>当还没有进行翻译的时候，使用<code>NSLocalizedString</code>的地方就会显示<em>key</em>文本，Xcode会在导出多语言文件的时候在项目中搜寻这个函数。</p><p>导出多语言文件的步骤如下：</p><ol><li>使用Xcode打开项目</li><li>在左侧的目录导航栏中点击项目名打开.xcodeproj</li><li>在PROJECT中选择项目名，并在Info选项卡的Locations中添加上其他语言</li><li>点击Xcode菜单栏中Editor选项的Export for Localization</li><li>选择导出的文件夹并命名后点击导出</li></ol><h1 id="修改本地化多语言文件"><a href="#修改本地化多语言文件" class="headerlink" title="修改本地化多语言文件"></a>修改本地化多语言文件</h1><p>导出的文件中包含多个.xcloc子文件夹，每一个xloc文件夹中的Localized Contents下的.xliff文件就是要填写翻译内容的文件。</p><p>打开xliff文件并在其中搜索“<source>”，搜索到的文本就是需要翻译的内容。每个<source>对应一个<target>，把译文放到<target>和</target>中间。就像这样：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;source&gt;First Label 111&lt;&#x2F;source&gt;</span><br><span class="line">&lt;target&gt;第一个文本&lt;&#x2F;target&gt;</span><br></pre></td></tr></table></figure><p>source是Development Language的语言文本，target是译文。上面这个例子的Development Language是英文，target是中文。</p><p>source不是<code>NSLocalizedString</code>第一个参数指定的key，而是Development Language下key对应的value，所以如果开发语言的译文变了，这里的source也会变。</p><h1 id="使用Xcode导入本地化多语言文件"><a href="#使用Xcode导入本地化多语言文件" class="headerlink" title="使用Xcode导入本地化多语言文件"></a>使用Xcode导入本地化多语言文件</h1><p>把所有需要翻译的内容翻译完成后，使用Xcode打开项目，并打开.xcodeproj后选择Editor-&gt;Import Localizations，打开翻译文件所在的目录把.xcloc挨个导入就可以了。</p><p>这里建议先翻译并导入Development Language的.xcloc文件夹，再执行一次导出操作后再翻译其他语言并导入。因为第一次导出时source是NSLocalizedString的第一个参数，而这个参数可能并不是主语言的最终翻译，如果其他语言都把第一个参数作为source来翻译就会造成找不到对应翻译的问题。</p><div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p></div><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>iOS和MacOS系统以及它们自带的App在本地化方面做的非常出色，所以我们在没有特殊要求的情况下尽量依赖Xcode提供的功能来实现本地化的需求。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Xcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>必看！2个关于iOS开发多语言的知识点</title>
+      <link href="xcode/iphone-selected-language/"/>
+      <url>xcode/iphone-selected-language/</url>
+      
+        <content type="html"><![CDATA[<p>在把App进行国际化的过程中会遇到很多问题，这篇文章来看一下Development Language是什么以及怎么修改它，并且看一下系统是怎么来选择使用哪个语言的。</p><a id="more"></a><div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p></div><h1 id="什么是Development-Language和怎么修改它"><a href="#什么是Development-Language和怎么修改它" class="headerlink" title="什么是Development Language和怎么修改它"></a>什么是Development Language和怎么修改它</h1><p>在进行国际化的过程中需要把App中的文字翻译成多个语言，其中有一种语言是Development Language，当没有任何一种语言满足当前设备的时候系统会使用Development Language。</p><p>可以通过修改<em>project.pbxproj</em>文件来修改Development Language。</p><ol><li>打开项目所在文件夹</li><li>右击.xcodeproj文件并选择*Show package Content(显示包内容)*（应该是第三个选项）</li><li>双击<em>project.phxproj</em>打开文件</li><li>搜索<em>developmentRegion</em>，并将内容修改为想要的语言。这个地方的语言是在我们添加多语言时的缩写，比如English=en、Chinese, Simpilied=zh-Hans等等。</li></ol><h1 id="iPhone是怎么选择当前使用的语言的"><a href="#iPhone是怎么选择当前使用的语言的" class="headerlink" title="iPhone是怎么选择当前使用的语言的"></a>iPhone是怎么选择当前使用的语言的</h1><ol><li>在iPhone手机的设置中“语言与地区”选择的“iPhone语言”是最高优先级，如果App的多语言包含这里设置的语言会直接使用。</li><li>如果App的多语言不包含“iPhone语言”，那么会查找“首选语言顺序”中是否有包含在多语言中的语言，按照从上到下的顺序找到一个语言后会直接使用这个语言。</li><li>如果“首选语言顺序”中也没有符合要求的，那么会使用Development Language作为App的语言。</li></ol><div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p></div>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Xcode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>iOS App国际化必看！使用Xib使App完成国际化功能</title>
       <link href="xcode/language-internalization-ib/"/>
       <url>xcode/language-internalization-ib/</url>
