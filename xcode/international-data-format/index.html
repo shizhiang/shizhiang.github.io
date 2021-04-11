@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/wechatlogo32*32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/wechatlogo16*16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Gemini","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":false,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="不同的国家、地区对一些诸如日期、时间、数字、货币等方面有不同的表述方式，为了更好的满足当地人的使用习惯和习俗，App必须做好这些方面的国际化工作。这是一项重要且复杂的工作，希望通过这篇可以让你对这些内容有一个全面的了解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS本地化日期、时间、货币数字（超全）">
+<meta property="og:url" content="http://www.iosprogrammer.tech/xcode/international-data-format/index.html">
+<meta property="og:site_name" content="iOS开发栈 | 专注于分享iOS开发相关知识">
+<meta property="og:description" content="不同的国家、地区对一些诸如日期、时间、数字、货币等方面有不同的表述方式，为了更好的满足当地人的使用习惯和习俗，App必须做好这些方面的国际化工作。这是一项重要且复杂的工作，希望通过这篇可以让你对这些内容有一个全面的了解。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/international-data-format/cover.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/international-data-format/mac-region-pannel.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/international-data-format/arabic_percent.svg">
+<meta property="article:published_time" content="2021-04-11T02:44:40.000Z">
+<meta property="article:modified_time" content="2021-04-11T15:00:15.870Z">
+<meta property="article:author" content="施治昂">
+<meta property="article:tag" content="Xcode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.iosprogrammer.tech/images/international-data-format/cover.png">
+
+
+<link rel="canonical" href="http://www.iosprogrammer.tech/xcode/international-data-format/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>iOS本地化日期、时间、货币数字（超全） | iOS开发栈 | 专注于分享iOS开发相关知识</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-127387039-1');
+      }
+    </script>
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bd7459ebb71091a406c3493a12d04ecc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="iOS开发栈 | 专注于分享iOS开发相关知识" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">iOS开发栈 | 专注于分享iOS开发相关知识</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%8C%96%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">获取当前系统的本地化信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4"><span class="nav-number">2.</span> <span class="nav-text">格式化日期时间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">数字格式化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%97%A5%E5%8E%86%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">关于日历的本地化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Locale%E5%92%8C%E6%97%B6%E5%8C%BA%E7%9B%B8%E5%85%B3%E7%9A%84%E9%80%9A%E7%9F%A5"><span class="nav-number">5.</span> <span class="nav-text">Locale和时区相关的通知</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">施治昂</p>
+  <div class="site-description" itemprop="description">高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:shizhiang@126.com" title="E-Mail → mailto:shizhiang@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7414691003/profile" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7414691003&#x2F;profile" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/xcode/international-data-format/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈 | 专注于分享iOS开发相关知识">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          iOS本地化日期、时间、货币数字（超全）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>不同的国家、地区对一些诸如日期、时间、数字、货币等方面有不同的表述方式，为了更好的满足当地人的使用习惯和习俗，App必须做好这些方面的国际化工作。这是一项重要且复杂的工作，希望通过这篇可以让你对这些内容有一个全面的了解。</p>
+<a id="more"></a>
+
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
+</div>
+
+<p><img src="../../images/international-data-format/cover.png" alt="iOS app 日期和数字的本地化"></p>
+<p>之前两篇关于iOS国际化的文章讨论了关于<a href="https://www.iosprogrammer.tech/xcode/language-internalization-ib/">使用IB将固定UI国际化</a>和<a href="https://www.iosprogrammer.tech/xcode/international-user-facing-text/">使用NSLocalizeString宏将可变文本国际化</a>，这篇文章将集中于处理一些日常表述方面的国际化问题，比如日期、时间、数字、货币等。</p>
+<p>首先要明确一点，这里的本地化并不是完全依赖于语言的，也就是说同样的语言在本地化方面也会有不同的表现形式。比如说意大利和美国都是英语国家但是在美国数字使用的“,”分割，而意大利使用的是“.”，又对于货币符号就更多了。</p>
+<p>在iPhone和Mac上都有地区的选择，在对应页面的下方就是一些示例。</p>
+<p><img src="../../images/international-data-format/mac-region-pannel.png" alt="Mac地区选择示例"></p>
+<p>在开发过程中还有一个快速修改所在区域的小技巧，在Edit Scheme -&gt; Options中修改App Region然后重新运行项目就可以修改所在区域了，这样就不需要每次到系统设置中去修改区域。</p>
+<h1 id="获取当前系统的本地化信息"><a href="#获取当前系统的本地化信息" class="headerlink" title="获取当前系统的本地化信息"></a>获取当前系统的本地化信息</h1><ol>
+<li>获取Locale对象</li>
+</ol>
+<p>可以通过两种方法获取到用户的本地化对象<code>Locale.current</code>和<code>Locale.autoupdatingCurrent</code>，官方文档说autoupdatingCurrent会随着系统设置的更改而改变，current是固定的。</p>
+<p>但是我并没有发现这两者的区别，当用户修改系统语言或者所在地区以后所有app都会重启，不管使用那种方式都会重新获取最新的系统设置，而如果只是修改日历的话app不会重启但是<code>autoupdatingCurrent</code>方法获取到的locale也不会改变。</p>
+<p>我不知道这是由于官方文档没有及时更新还是由于我没有找到这两个方法之间的区别，如果你知道他们的区别麻烦告诉我。</p>
+<ol start="2">
+<li>获取Locale对象包含的本地化信息</li>
+</ol>
+<p>本地化信息会随着语言、地域、文化的不同而不同，总共包含了大概十几个条目，下面列举几个比较常用的条目并且以大陆地区为例来给出结果。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以中国大陆地区为例</span></span><br><span class="line"><span class="keyword">let</span> currentLocale <span class="operator">=</span> <span class="type">Locale</span>.autoupdatingCurrent</span><br><span class="line">currentLocale.identifier <span class="comment">// zh_CN</span></span><br><span class="line">currentLocale.languageCode <span class="operator">??</span> <span class="string">&quot;&quot;</span> <span class="comment">// zh</span></span><br><span class="line">currentLocale.regionCode <span class="operator">??</span> <span class="string">&quot;&quot;</span> <span class="comment">// CN</span></span><br><span class="line">currentLocale.scriptCode <span class="operator">??</span> <span class="string">&quot;&quot;</span> <span class="comment">// &quot;&quot;</span></span><br><span class="line">currentLocale.variantCode <span class="operator">??</span> <span class="string">&quot;&quot;</span> <span class="comment">// &quot;&quot;</span></span><br><span class="line">currentLocale.calendar <span class="comment">// gregorian (current)</span></span><br><span class="line">currentLocale.usesMetricSystem <span class="comment">// true</span></span><br><span class="line">currentLocale.currencySymbol <span class="operator">??</span> <span class="string">&quot;&quot;</span> <span class="comment">// ¥</span></span><br><span class="line">currentLocale.currencyCode <span class="operator">??</span> <span class="string">&quot;&quot;</span> <span class="comment">// CNY</span></span><br><span class="line">currentLocale.quotationBeginDelimiter <span class="operator">??</span> <span class="string">&quot;&quot;</span> <span class="comment">// “ 前引号</span></span><br><span class="line">currentLocale.quotationEndDelimiter <span class="operator">??</span> <span class="string">&quot;&quot;</span> <span class="comment">// ” 后引号</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>获取当前语言和方言</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> languageId <span class="operator">=</span> <span class="type">Bundle</span>.main.preferredLocalizations.first<span class="operator">!</span> <span class="comment">// zh-Hans</span></span><br><span class="line"><span class="keyword">let</span> locale <span class="operator">=</span> <span class="type">Locale</span>.current</span><br><span class="line"><span class="keyword">let</span> languageName <span class="operator">=</span> locale.localizedString(forLanguageCode: languageId)<span class="operator">!</span> <span class="comment">// 中文</span></span><br></pre></td></tr></table></figure>
+<p>这里的languageId是开发者需要的而不应该让用户看到，languageName是展示给用户的。</p>
+<h1 id="格式化日期时间"><a href="#格式化日期时间" class="headerlink" title="格式化日期时间"></a>格式化日期时间</h1><ol>
+<li>使用预设的格式</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date <span class="operator">=</span> <span class="type">DateFormatter</span>.localizedString(from: <span class="type">Date</span>(), dateStyle: .short, timeStyle: .short) <span class="comment">// 2021/4/11 下午9:15:16</span></span><br></pre></td></tr></table></figure>
+<p>根据当前所在的Locale，将当前时间格式化，其中日期使用“短格式”、时间使用“中格式。下面是官方文档上面的一个对不同格式的示例：</p>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th>Date</th>
+<th>Time</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Short</td>
+<td>6/10/13</td>
+<td>11:03 AM</td>
+<td>只有数字</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>Jun 10, 2013</td>
+<td>11:03:15 AM</td>
+<td>简短文本</td>
+</tr>
+<tr>
+<td>Long</td>
+<td>June 10, 2013</td>
+<td>11:03:15 AM PDT</td>
+<td>完整文本</td>
+</tr>
+<tr>
+<td>Full</td>
+<td>Friday, June 10, 2013</td>
+<td>11:03:15 AM Pacific Daylight Time</td>
+<td>更多细节</td>
+</tr>
+</tbody></table>
+<p>下面是在不同的语言和地区中中长和短文本的时间格式：</p>
+<table>
+<thead>
+<tr>
+<th>Language (Region)</th>
+<th>Medium style</th>
+<th>Short style</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>English (United States)</td>
+<td>Jun 6, 2013</td>
+<td>10:14 AM</td>
+</tr>
+<tr>
+<td>French (France)</td>
+<td>6 Jun 2013</td>
+<td>10:14</td>
+</tr>
+<tr>
+<td>Chinese (China)</td>
+<td>2013年6月6日</td>
+<td>上午10:14</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>使用自定义的日期和时间格式</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dateFormatter <span class="operator">=</span> <span class="type">DateFormatter</span>()</span><br><span class="line"><span class="keyword">let</span> formatterString <span class="operator">=</span> <span class="type">DateFormatter</span>.dateFormat(fromTemplate: <span class="string">&quot;MMM d&quot;</span>, options: <span class="number">0</span>, locale: dateFormatter.locale)<span class="operator">!</span>  <span class="comment">// 4月11日</span></span><br><span class="line"><span class="comment">//        let formaterString = &quot;MMM d&quot; // 4月 11</span></span><br><span class="line">dateFormatter.dateFormat <span class="operator">=</span> formatterString </span><br><span class="line"><span class="keyword">let</span> date2 <span class="operator">=</span> dateFormatter.string(from: <span class="type">Date</span>()) </span><br></pre></td></tr></table></figure>
+<p>分两种方式创建formatterString，当使用<code>fromTemplate:options:locale</code>时得到的dateString是4月11日；直接使用普通文本时得到的dateString是4月11。</p>
+<p>下面是几个不同语言和地区分别在使用和不使用地区格式化下的日期：</p>
+<table>
+<thead>
+<tr>
+<th>Language (Region)</th>
+<th>Date using format string “MMM d”</th>
+<th>Date using templat “dMMM”</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>English (United States)</td>
+<td>Nov 13</td>
+<td>Nov 13</td>
+</tr>
+<tr>
+<td>French (France)</td>
+<td>nov. 13</td>
+<td>13 nov.</td>
+</tr>
+<tr>
+<td>Chinese (China)</td>
+<td>11月13</td>
+<td>11月13日｜</td>
+</tr>
+</tbody></table>
+<h1 id="数字格式化"><a href="#数字格式化" class="headerlink" title="数字格式化"></a>数字格式化</h1><ol>
+<li>使用预设样式格式化数字</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myNumber: <span class="type">NSNumber</span> <span class="operator">=</span> <span class="number">234231.231</span></span><br><span class="line"><span class="keyword">let</span> numberString <span class="operator">=</span> <span class="type">NumberFormatter</span>.localizedString(from: myNumber, number: .decimal)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;numberString = <span class="subst">\(numberString)</span>&quot;</span>) <span class="comment">// numberString = 234,231.231</span></span><br></pre></td></tr></table></figure>
+<p>使用预设格式进行格式化数字时，在不同的语言和地区下的例子：</p>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th>Formatted string, <br> English (United States)</th>
+<th>Formatted string,<br> Language (Region)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Decimal（小数）</td>
+<td>1,234.56</td>
+<td>1.234,56 <br>Italian (Italy)</td>
+</tr>
+<tr>
+<td>Currency（货币）</td>
+<td>$1,234.56</td>
+<td>¥1,234.56<br>Chinese (China)</td>
+</tr>
+<tr>
+<td>Percent（百分数）</td>
+<td>123,456%</td>
+<td><img src="../../images/international-data-format/arabic_percent.svg" width="72.548" height="13.019"><br>Arabic (Egypt)</td>
+</tr>
+<tr>
+<td>Scientific（科学计数法）</td>
+<td>1.23456E+03</td>
+<td>1,23456E3<br>Italian (Italy)</td>
+</tr>
+<tr>
+<td>Spell Out（读）</td>
+<td>one thousand two hundred thirty-four point five six</td>
+<td>一千二百三十四点五六<br>Chinese (China)</td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>获取用户输入的数字</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> formatter <span class="operator">=</span> <span class="type">NumberFormatter</span>()</span><br><span class="line">formatter.numberStyle <span class="operator">=</span> .decimal</span><br><span class="line">formatter.isLenient <span class="operator">=</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">let</span> number <span class="operator">=</span> formatter.number(from: <span class="string">&quot;1,234,123.23&quot;</span>)<span class="operator">!</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;number = <span class="subst">\(number)</span>&quot;</span>) <span class="comment">// number = 1234123.23</span></span><br></pre></td></tr></table></figure>
+<p>使用系统当前的语言和地区把用户输入的带有当地特色的数字字符串转化成<code>Number</code>格式。其中<code>isLenient</code>表示是否允许格式不完全按照标准格式，例如如果这里使用<code>formatter.isLenient = false</code>，当输入字符串只要不是标准的<em>1,234,123.23</em>而是<em>1,23,4123.23</em>或者1,234123.23就会返回nil。</p>
+<h1 id="关于日历的本地化"><a href="#关于日历的本地化" class="headerlink" title="关于日历的本地化"></a>关于日历的本地化</h1><p>不同地区之间的纪年方法有很大的差别，日本的年代变化很快（他们还在用天皇纪年，就像咱们中国的封建社会）而公历或者农历的年代变化就相对较慢，而有的地区一年有13个月，不同的日历对每周的第一天定义也不同（周六、周日、周一都有）。要处理这么复杂多变的日历相关问题就一定要用到<code>Calender</code>类。</p>
+<p>获取用户当前使用的日历使用<code>Calendar.current</code>。</p>
+<p>获取一个日期的组成部分：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> calendar <span class="operator">=</span> <span class="type">Calendar</span>.current</span><br><span class="line"><span class="keyword">let</span> components <span class="operator">=</span> calendar.dateComponents([.era, .year, .month, .weekday, .day, .hour, .minute, .second], from: <span class="type">Date</span>())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;当前时间组件：<span class="subst">\(String(describing: components.era<span class="operator">!</span>))</span>, <span class="subst">\(String(describing: components.year<span class="operator">!</span>))</span>, <span class="subst">\(String(describing: components.month<span class="operator">!</span>))</span>, <span class="subst">\(String(describing: components.weekday<span class="operator">!</span>))</span>, <span class="subst">\(String(describing: components.day<span class="operator">!</span>))</span>, <span class="subst">\(String(describing: components.hour<span class="operator">!</span>))</span>, <span class="subst">\(String(describing: components.minute<span class="operator">!</span>))</span>, <span class="subst">\(String(describing: components.second<span class="operator">!</span>))</span>&quot;</span>) <span class="comment">// 当前时间组件：1, 2021, 4, 1, 11, 22, 32, 4</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当使用日本历或者佛教日历的时候，每次获取或者设置年份一定要同时获取或者设置年代。</p>
+</blockquote>
+<p>更多关于日历的内容可以参考一下<a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DatesAndTimes/DatesAndTimes.html#//apple_ref/doc/uid/10000039i">官方文档</a></p>
+<h1 id="Locale和时区相关的通知"><a href="#Locale和时区相关的通知" class="headerlink" title="Locale和时区相关的通知"></a>Locale和时区相关的通知</h1><p>要及时的获取Locale或者时区变化的通知可以监听<code>NSCurrentLocaleDidChangeNotification</code>和<code>NSSystemTimeZoneDidChangeNotification</code>通知。</p>
+<p>获取通知在用户进行跨国长途旅行的时候非常有用，当用户时区改变后app能够及时变化可以给用户一个非常棒的体验。</p>
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
+</div>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>想要很完善的本地化一个App是不容易的，不仅要把文字本地化还要把日期、时间、日历、数字等内容本地化，这些内容在一个app中是无处不在的，这就要求我们要随时记着自己是在做一个国际化的App。为了能给全世界各地的用户一个更好的使用体验，尽力做好这项工作吧。</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/xcode/international-user-facing-text/" rel="bookmark">苹果官方的iOS App国际化工作流</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/xcode/iphone-selected-language/" rel="bookmark">必看！2个关于iOS开发多语言的知识点</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/xcode/language-internalization-ib/" rel="bookmark">iOS App国际化必看！使用Xib使App完成国际化功能</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">公众号【iOS开发栈】</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Xcode/" rel="tag"># Xcode</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/xcode/international-user-facing-text/" rel="prev" title="苹果官方的iOS App国际化工作流">
+                  <i class="fa fa-chevron-left"></i> 苹果官方的iOS App国际化工作流
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">施治昂</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+    <div class="pjax">
+
+  
+
+
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
