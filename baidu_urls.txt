@@ -1,5 +1,5 @@
+http://www.iosprogrammer.tech/swiftui/swiftui-custom-modifier/
 http://www.iosprogrammer.tech/xcode/international-data-format/
 http://www.iosprogrammer.tech/xcode/international-user-facing-text/
 http://www.iosprogrammer.tech/xcode/iphone-selected-language/
 http://www.iosprogrammer.tech/xcode/language-internalization-ib/
-http://www.iosprogrammer.tech/ios/retain-cycle-problems/
