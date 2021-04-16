@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>SwiftUI中Image自适应大小AspectFill、AspectFit</title>
+      <link href="swiftui/swiftui-image-fill-fit-mode/"/>
+      <url>swiftui/swiftui-image-fill-fit-mode/</url>
+      
+        <content type="html"><![CDATA[<p>SwiftUI中想要让Image能够实现类似于UIViewContentModeAspectFit或者ApectFill的效果需要把两个<a href="https://www.iosprogrammer.tech/swiftui/swiftui-concept-essential/">修改器(modifier)</a>结合起来使用。</p><a id="more"></a><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Image</span>(<span class="string">&quot;xxx&quot;</span>)</span><br><span class="line">    .resizable(resizingMode: .stretch)</span><br><span class="line">    .aspectRatio(contentMode: .fit)</span><br></pre></td></tr></table></figure><p><code>func resizable(capInsets:, resizingMode:)</code>对应的是UIImage的<code>resizableImageWithCapInsets:resizingMode:</code>。<code>capInsets</code>确定了不被拉伸影响的上下左右四边距，四边距以外的部分会被<code>resizingMode</code>影响。<code>Image.ResizingMode.stretch</code>铺满整个空间，会发生形变,<code>Image.ResizingMode.stretch</code>平铺，也就是说如果图片的大小不足以占满空间就把图片复制多份，如果图片比空间大只会展示出来和空间一样大的部分并且图片的左上角和容器的左上角对齐，其他部分会被裁掉。</p><p><code>aspectRatio(_ aspectRatio:,contentMode:)</code>修改器设置长宽比和填充方式，<code>aspectRatio</code>参数是视图的<em>长:宽</em>，<code>contentMode</code>是填充方式其中Fill表示填满空间，长边会超出容器，Fit会保证长边填满空间短边会留出空白。</p><p><strong>据我观察，单独对Image使用aspectRatio修改器没有效果，需要结合<code>resizable</code>修改器才行。</strong></p><div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p></div>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> SwiftUI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SwiftUI自定义Modifier</title>
       <link href="swiftui/swiftui-custom-modifier/"/>
       <url>swiftui/swiftui-custom-modifier/</url>

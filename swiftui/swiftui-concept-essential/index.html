@@ -21,13 +21,13 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Mist","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":false,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Mist","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"Muse | Mist":320,"Pisces | Gemini":240},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":false,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 <meta name="description" content="在WWDC2019中，iOS引入了一个全新的UI框架——SwiftUI。它的目的是通过全新的设计思想来解决iPhone、iPad、Mac的界面统一，以便开发者可以通过一次学习多处使用（Learn Once, Use anywhere）。从iOS13开始我们就可以使用这个全新的框架了，iOS开发者应该尽快掌握它。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习SwiftUI，必须掌握的3个知识点">
 <meta property="og:url" content="http://www.iosprogrammer.tech/swiftui/swiftui-concept-essential/index.html">
-<meta property="og:site_name" content="iOS开发栈 | 专注于分享iOS开发相关知识">
+<meta property="og:site_name" content="iOS开发栈 - 专注于分享iOS开发相关知识">
 <meta property="og:description" content="在WWDC2019中，iOS引入了一个全新的UI框架——SwiftUI。它的目的是通过全新的设计思想来解决iPhone、iPad、Mac的界面统一，以便开发者可以通过一次学习多处使用（Learn Once, Use anywhere）。从iOS13开始我们就可以使用这个全新的框架了，iOS开发者应该尽快掌握它。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://www.iosprogrammer.tech/swiftui/images/swiftui-concept/1.png">
@@ -51,7 +51,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>学习SwiftUI，必须掌握的3个知识点 | iOS开发栈 | 专注于分享iOS开发相关知识</title>
+<title>学习SwiftUI，必须掌握的3个知识点 | iOS开发栈 - 专注于分享iOS开发相关知识</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
     <script data-pjax>
@@ -112,7 +112,7 @@
 
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="iOS开发栈 | 专注于分享iOS开发相关知识" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="iOS开发栈 - 专注于分享iOS开发相关知识" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -133,13 +133,15 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">iOS开发栈 | 专注于分享iOS开发相关知识</h1>
+      <h1 class="site-title">iOS开发栈 - 专注于分享iOS开发相关知识</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">关注公众号【iOS开发栈】及时免费获取更多iOS开发知识</p>
   </div>
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -151,11 +153,37 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -195,7 +223,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -259,7 +287,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="iOS开发栈 | 专注于分享iOS开发相关知识">
+      <meta itemprop="name" content="iOS开发栈 - 专注于分享iOS开发相关知识">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -329,23 +357,6 @@
 
 
     <footer class="post-footer">
-          <div class="followme">
-  <span>欢迎关注我的其它发布渠道</span>
-
-  <div class="social-list">
-
-      <div class="social-item">
-        <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
-          <span class="icon">
-            <i class="fab fa-weixin"></i>
-          </span>
-
-          <span class="label">公众号【iOS开发栈】</span>
-        </a>
-      </div>
-  </div>
-</div>
-
           <div class="post-tags">
               <a href="/tags/SwiftUI/" rel="tag"># SwiftUI</a>
           </div>
@@ -457,6 +468,7 @@ document.addEventListener('pjax:success', () => {
 
 
   
+<script src="/js/local-search.js"></script>
 
 
 

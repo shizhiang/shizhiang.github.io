@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>iOS开发栈 | 专注于分享iOS开发相关知识</title>
+  <title>iOS开发栈 - 专注于分享iOS开发相关知识</title>
   
-  
+  <subtitle>关注公众号【iOS开发栈】及时免费获取更多iOS开发知识</subtitle>
   <link href="http://www.iosprogrammer.tech/atom.xml" rel="self"/>
   
   <link href="http://www.iosprogrammer.tech/"/>
-  <updated>2021-04-14T01:16:39.832Z</updated>
+  <updated>2021-04-16T03:40:50.576Z</updated>
   <id>http://www.iosprogrammer.tech/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SwiftUI中Image自适应大小AspectFill、AspectFit</title>
+    <link href="http://www.iosprogrammer.tech/swiftui/swiftui-image-fill-fit-mode/"/>
+    <id>http://www.iosprogrammer.tech/swiftui/swiftui-image-fill-fit-mode/</id>
+    <published>2021-04-16T01:30:16.000Z</published>
+    <updated>2021-04-16T03:40:50.576Z</updated>
+    
+    <content type="html"><![CDATA[<p>SwiftUI中想要让Image能够实现类似于UIViewContentModeAspectFit或者ApectFill的效果需要把两个<a href="https://www.iosprogrammer.tech/swiftui/swiftui-concept-essential/">修改器(modifier)</a>结合起来使用。</p><a id="more"></a><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Image</span>(<span class="string">&quot;xxx&quot;</span>)</span><br><span class="line">    .resizable(resizingMode: .stretch)</span><br><span class="line">    .aspectRatio(contentMode: .fit)</span><br></pre></td></tr></table></figure><p><code>func resizable(capInsets:, resizingMode:)</code>对应的是UIImage的<code>resizableImageWithCapInsets:resizingMode:</code>。<code>capInsets</code>确定了不被拉伸影响的上下左右四边距，四边距以外的部分会被<code>resizingMode</code>影响。<code>Image.ResizingMode.stretch</code>铺满整个空间，会发生形变,<code>Image.ResizingMode.stretch</code>平铺，也就是说如果图片的大小不足以占满空间就把图片复制多份，如果图片比空间大只会展示出来和空间一样大的部分并且图片的左上角和容器的左上角对齐，其他部分会被裁掉。</p><p><code>aspectRatio(_ aspectRatio:,contentMode:)</code>修改器设置长宽比和填充方式，<code>aspectRatio</code>参数是视图的<em>长:宽</em>，<code>contentMode</code>是填充方式其中Fill表示填满空间，长边会超出容器，Fit会保证长边填满空间短边会留出空白。</p><p><strong>据我观察，单独对Image使用aspectRatio修改器没有效果，需要结合<code>resizable</code>修改器才行。</strong></p><div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p></div>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;SwiftUI中想要让Image能够实现类似于UIViewContentModeAspectFit或者ApectFill的效果需要把两个&lt;a href=&quot;https://www.iosprogrammer.tech/swiftui/swiftui-concept-essential/&quot;&gt;修改器(modifier)&lt;/a&gt;结合起来使用。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="SwiftUI" scheme="http://www.iosprogrammer.tech/tags/SwiftUI/"/>
+    
+  </entry>
   
   <entry>
     <title>SwiftUI自定义Modifier</title>
@@ -376,25 +395,6 @@
     
     <summary type="html">&lt;p&gt;在xib或者storyboard嵌套另一个用xib布局的view是一个经常用到的技术点，要完全掌握好这个知识点不是那么容易，用常规的xib创建view的方法通常并不能满足我们的需求。&lt;/p&gt;
 &lt;p&gt;当我们使用Autolayout自动布局时，在xib中嵌套一个自定义的view可能就更麻烦了。通过这篇文章你将学习到嵌套xib布局的方法和怎么在xib中使用autolayout的一些高级用法来使view向label一样具有contrisic content size。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="iOS" scheme="http://www.iosprogrammer.tech/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>什么是Content Hugging Priorities/Content Compression Resistance Priorities</title>
-    <link href="http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/"/>
-    <id>http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/</id>
-    <published>2021-01-06T07:00:19.000Z</published>
-    <updated>2021-01-26T03:43:17.417Z</updated>
-    
-    <content type="html"><![CDATA[<p>这两个优先级属性都是用在iOS开发时Auto Layout布局中的。</p><a id="more"></a><h3 id="Content-Hugging-Priorities"><a href="#Content-Hugging-Priorities" class="headerlink" title="Content Hugging Priorities"></a>Content Hugging Priorities</h3><p><strong>Content Hugging Priorities：在Auto Layout中，当子视图不足以填充满空间时，优先满足此属性值较大的子视图的内容展示，而拉伸属性值较低的子视图。</strong></p><p>假设有这样一种情况，两个水平排列的UILabel中分别显示“斜杠程序员”和“<a href="http://www.iosprogrammer.tech“,给它们加上5个约束,其中2、3、5是水平约束,假设这3个水平约束的值都是10/">www.iosprogrammer.tech“，给它们加上5个约束，其中2、3、5是水平约束，假设这3个水平约束的值都是10</a>.</p><p>现在两个UILabel里面文字内容所占大小加上3个水平约束的值仍然小于（&lt;）父视图的宽度。此时会发现storyboard中有报错，但是我们仍然可以正常运行项目并看到展示结果。<br><img src="../images/hugging-prority-1.png"><br><img src="../images/hugging-prority-2.png"><br><img src="../images/hugging-prority-3.png"></p><p>我们可以看到“<a href="http://www.iosprogrammer.tech“所在label所占的空间变大了.此时设置这个label的content/">www.iosprogrammer.tech“所在label所占的空间变大了。此时设置这个label的Content</a> Hugging Priorities为750。</p><p><img src="../images/hugging-prority-4.png"><br><img src="../images/hugging-prority-5.png"></p><p>“<a href="http://www.iosprogrammer.tech“所在label刚好满足展示内容,而“斜杠程序员”所在label所占空间变大了./">www.iosprogrammer.tech“所在label刚好满足展示内容，而“斜杠程序员”所在label所占空间变大了。</a></p><p>这也就是Content Hugging Priorities的作用，控制当内容不足以填充满空间时，优先满足此属性值较大的子view的内容展示，而拉伸属性值较低的子view。</p><h3 id="Content-Compression-Resistance-Priorities"><a href="#Content-Compression-Resistance-Priorities" class="headerlink" title="Content Compression Resistance Priorities"></a>Content Compression Resistance Priorities</h3><p><strong>Content Compression Resistance Priorities：在Auto Layout中，当子视图所需的内容超出父视图的空间时，优先展示此值较大的子视图，而省略压缩此值较小的子视图。</strong></p><p>假设有这样一种情况，两个水平排列的UILabel中分别显示“斜杠程序员专注于提高编程能力”和“斜杠程序员的官方网站是<a href="http://www.iosprogrammer.tech“,给它们加上5个约束,其中2、3、5是水平约束,假设这3个水平约束的值都是10/">www.iosprogrammer.tech“，给它们加上5个约束，其中2、3、5是水平约束，假设这3个水平约束的值都是10</a>.</p><p>现在两个UILabel里面文字内容所占大小超过了父视图的宽度。此时会发现storyboard中有报错，但是我们仍然可以正常运行项目并看到展示结果。<br><img src="../images/hugging-prority-6.png"><br><img src="../images/hugging-prority-7.png"><br><img src="../images/hugging-prority-8.png"></p><p>第一个Label被压缩了，里面的文字被省略了；第二个label正常展示了出来。此时我们把第一个label的Content Compression Resistance Priorities设置到大于第二个label。</p><p><img src="../images/hugging-prority-9.png"><br><img src="../images/hugging-prority-10.png"></p><p>可以看到第二个label被压缩了，第一个label正常展示了出来。</p><p><strong>Content Compression Resistance Priorities：在Auto Layout中，当子视图所需的内容超出父视图的空间时，优先展示此值较大的子视图，而省略压缩此值较小的子视图。</strong></p><p><a href="https://medium.com/@dineshk1389/content-hugging-and-compression-resistance-in-ios-35a0e8f19118">参考文章</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;这两个优先级属性都是用在iOS开发时Auto Layout布局中的。&lt;/p&gt;</summary>
     
     
     
