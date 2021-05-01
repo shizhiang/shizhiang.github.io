@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>推荐！iOS应用使用Assets.xcassets进行图片国际化的2种方法</title>
+      <link href="xcode/localize-images/"/>
+      <url>xcode/localize-images/</url>
+      
+        <content type="html"><![CDATA[<p>iOS应用的国际化除了文字以外还需要对一些本地使用的资源进行国际化，这篇文章将分享一些关于Image图片国际化的方案。</p><p>主要包括iOS应用图片国际化有两种方法：</p><ol><li>Assets.xcassets中同一个ImageSet包含不同的本地化图片</li><li>使用名称不同的ImageSet</li></ol><a id="more"></a><div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p></div><p><img src="../../images/image-localize/first.png"></p><h1 id="同一个ImageSet包含不同的本地化图片"><a href="#同一个ImageSet包含不同的本地化图片" class="headerlink" title="同一个ImageSet包含不同的本地化图片"></a>同一个ImageSet包含不同的本地化图片</h1><p><img src="../../images/image-localize/1.png" alt="iOS图片本地化设置"></p><p>按照正常流程把一张png图片添加到Assets.xcassets中以后，选中其中任意一张图片然后就可以在Inspector的第四栏Attribute Inspector中看到<strong>Localization</strong>选项，点击后会出现项目中已经国际化的语言。<em>（添加语言的方法可以查看<a href="https://www.iosprogrammer.tech/xcode/language-internalization-ib/#%E5%AE%8C%E6%95%B4%E4%BA%86%E8%A7%A3%E5%9B%BD%E9%99%85%E5%8C%96%E6%AD%A5%E9%AA%A4">完整了解国际化步骤</a>）</em></p><p>在<em>Localization</em>中选中的语言就是要单独设置图片的语言，如果单独设置的语言图片是空的就会自动选择用第一个（Universal）的图片。</p><p>我的这个项目里有简体中文和英文两种语言，并且对avatar这个图片的中文设置了单独图片。当我在设置中切换简体中文和英文时图片就会被切换了。</p><h1 id="使用名称不同的ImageSet"><a href="#使用名称不同的ImageSet" class="headerlink" title="使用名称不同的ImageSet"></a>使用名称不同的ImageSet</h1><p>在Assets.xcassets中分别创建两个ImageSet，然后在ImageNamed中使用NSLocalizedString来设置图片名字。</p><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">avatarImageView.image <span class="operator">=</span> <span class="type">UIImage</span>(named: <span class="type">NSLocalizedString</span>(<span class="string">&quot;avatarImageName&quot;</span>, comment: <span class="string">&quot;This is the avatar image&#x27;s name&quot;</span>))</span><br></pre></td></tr></table></figure><p><code>NSLocalizedString()</code>宏中的第一个参数是多语言的key，而comment是用来生成多语言注释的，更深入的了解可以查看<a href="https://www.iosprogrammer.tech/xcode/international-user-facing-text/#%E6%A0%87%E8%AE%B0%E9%9C%80%E8%A6%81%E6%9C%AC%E5%9C%B0%E5%8C%96%E7%9A%84%E6%96%87%E6%9C%AC">标记需要本地化的文本</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Localization.strings(English)</span><br><span class="line">&quot;avatarImageName&quot; &#x3D; &quot;avatar-en&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Localization.strings((Chinese, Simplified))</span><br><span class="line">&quot;avatarImageName&quot; &#x3D; &quot;avatar-ch&quot;;</span><br></pre></td></tr></table></figure><p>分别在中文简体和英文的Localization.strings的多语言文件中添加对应的图片文件名。</p><p>之后分别在不同的语言环境下运行项目就可以看到不同的图片了。</p><div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p></div><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>通过上面的2种方法可以将图片进行本地化处理，其中第二种方法也可以用于<code>UIImage(contentsOfFile:)</code>方法。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Xcode </tag>
+            
+            <tag> 国际化 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>你应该知道的！关于SwiftUI中导航栏的4点知识</title>
       <link href="swiftui/swiftui-navigate-get-start-tutorial/"/>
       <url>swiftui/swiftui-navigate-get-start-tutorial/</url>
@@ -73,6 +94,8 @@
             
             <tag> Xcode </tag>
             
+            <tag> 国际化 </tag>
+            
         </tags>
       
     </entry>
@@ -91,6 +114,8 @@
         <tags>
             
             <tag> Xcode </tag>
+            
+            <tag> 国际化 </tag>
             
         </tags>
       
@@ -111,6 +136,8 @@
             
             <tag> Xcode </tag>
             
+            <tag> 国际化 </tag>
+            
         </tags>
       
     </entry>
@@ -129,6 +156,8 @@
         <tags>
             
             <tag> Xcode </tag>
+            
+            <tag> 国际化 </tag>
             
         </tags>
       

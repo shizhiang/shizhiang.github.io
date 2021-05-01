@@ -23,18 +23,25 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Mist","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"Muse | Mist":320,"Pisces | Gemini":240},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":false,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
-<meta property="og:type" content="website">
-<meta property="og:title" content="iOS开发栈 - 专注于分享iOS开发相关知识">
-<meta property="og:url" content="http://www.iosprogrammer.tech/archives/2021/01/index.html">
+<meta name="description" content="iOS应用的国际化除了文字以外还需要对一些本地使用的资源进行国际化，这篇文章将分享一些关于Image图片国际化的方案。 主要包括iOS应用图片国际化有两种方法：  Assets.xcassets中同一个ImageSet包含不同的本地化图片 使用名称不同的ImageSet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐！iOS应用使用Assets.xcassets进行图片国际化的2种方法">
+<meta property="og:url" content="http://www.iosprogrammer.tech/xcode/localize-images/index.html">
 <meta property="og:site_name" content="iOS开发栈 - 专注于分享iOS开发相关知识">
-<meta property="og:description" content="高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
+<meta property="og:description" content="iOS应用的国际化除了文字以外还需要对一些本地使用的资源进行国际化，这篇文章将分享一些关于Image图片国际化的方案。 主要包括iOS应用图片国际化有两种方法：  Assets.xcassets中同一个ImageSet包含不同的本地化图片 使用名称不同的ImageSet">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/image-localize/first.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/image-localize/1.png">
+<meta property="article:published_time" content="2021-05-01T06:38:38.000Z">
+<meta property="article:modified_time" content="2021-05-01T09:52:27.955Z">
 <meta property="article:author" content="施治昂">
+<meta property="article:tag" content="Xcode">
+<meta property="article:tag" content="国际化">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.iosprogrammer.tech/images/image-localize/first.png">
 
 
-<link rel="canonical" href="http://www.iosprogrammer.tech/archives/2021/01/">
+<link rel="canonical" href="http://www.iosprogrammer.tech/xcode/localize-images/">
 
 
 <script data-pjax class="page-configurations">
@@ -42,11 +49,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
-<title>归档 | iOS开发栈 - 专注于分享iOS开发相关知识</title>
+<title>推荐！iOS应用使用Assets.xcassets进行图片国际化的2种方法 | iOS开发栈 - 专注于分享iOS开发相关知识</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
     <script data-pjax>
@@ -191,7 +198,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -204,6 +211,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8C%E4%B8%80%E4%B8%AAImageSet%E5%8C%85%E5%90%AB%E4%B8%8D%E5%90%8C%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%8C%96%E5%9B%BE%E7%89%87"><span class="nav-number">1.</span> <span class="nav-text">同一个ImageSet包含不同的本地化图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%90%8D%E7%A7%B0%E4%B8%8D%E5%90%8C%E7%9A%84ImageSet"><span class="nav-number">2.</span> <span class="nav-text">使用名称不同的ImageSet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -261,150 +269,118 @@
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/xcode/localize-images/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈 - 专注于分享iOS开发相关知识">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          推荐！iOS应用使用Assets.xcassets进行图片国际化的2种方法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>iOS应用的国际化除了文字以外还需要对一些本地使用的资源进行国际化，这篇文章将分享一些关于Image图片国际化的方案。</p>
+<p>主要包括iOS应用图片国际化有两种方法：</p>
+<ol>
+<li>Assets.xcassets中同一个ImageSet包含不同的本地化图片</li>
+<li>使用名称不同的ImageSet</li>
+</ol>
+<a id="more"></a>
+
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
+</div>
+
+<p><img src="../../images/image-localize/first.png"></p>
+<h1 id="同一个ImageSet包含不同的本地化图片"><a href="#同一个ImageSet包含不同的本地化图片" class="headerlink" title="同一个ImageSet包含不同的本地化图片"></a>同一个ImageSet包含不同的本地化图片</h1><p><img src="../../images/image-localize/1.png" alt="iOS图片本地化设置"></p>
+<p>按照正常流程把一张png图片添加到Assets.xcassets中以后，选中其中任意一张图片然后就可以在Inspector的第四栏Attribute Inspector中看到<strong>Localization</strong>选项，点击后会出现项目中已经国际化的语言。<em>（添加语言的方法可以查看<a href="https://www.iosprogrammer.tech/xcode/language-internalization-ib/#%E5%AE%8C%E6%95%B4%E4%BA%86%E8%A7%A3%E5%9B%BD%E9%99%85%E5%8C%96%E6%AD%A5%E9%AA%A4">完整了解国际化步骤</a>）</em></p>
+<p>在<em>Localization</em>中选中的语言就是要单独设置图片的语言，如果单独设置的语言图片是空的就会自动选择用第一个（Universal）的图片。</p>
+<p>我的这个项目里有简体中文和英文两种语言，并且对avatar这个图片的中文设置了单独图片。当我在设置中切换简体中文和英文时图片就会被切换了。</p>
+<h1 id="使用名称不同的ImageSet"><a href="#使用名称不同的ImageSet" class="headerlink" title="使用名称不同的ImageSet"></a>使用名称不同的ImageSet</h1><p>在Assets.xcassets中分别创建两个ImageSet，然后在ImageNamed中使用NSLocalizedString来设置图片名字。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">avatarImageView.image <span class="operator">=</span> <span class="type">UIImage</span>(named: <span class="type">NSLocalizedString</span>(<span class="string">&quot;avatarImageName&quot;</span>, comment: <span class="string">&quot;This is the avatar image&#x27;s name&quot;</span>))</span><br></pre></td></tr></table></figure>
+<p><code>NSLocalizedString()</code>宏中的第一个参数是多语言的key，而comment是用来生成多语言注释的，更深入的了解可以查看<a href="https://www.iosprogrammer.tech/xcode/international-user-facing-text/#%E6%A0%87%E8%AE%B0%E9%9C%80%E8%A6%81%E6%9C%AC%E5%9C%B0%E5%8C%96%E7%9A%84%E6%96%87%E6%9C%AC">标记需要本地化的文本</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Localization.strings(English)</span><br><span class="line">&quot;avatarImageName&quot; &#x3D; &quot;avatar-en&quot;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Localization.strings((Chinese, Simplified))</span><br><span class="line">&quot;avatarImageName&quot; &#x3D; &quot;avatar-ch&quot;;</span><br></pre></td></tr></table></figure>
+<p>分别在中文简体和英文的Localization.strings的多语言文件中添加对应的图片文件名。</p>
+<p>之后分别在不同的语言环境下运行项目就可以看到不同的图片了。</p>
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
+</div>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>通过上面的2种方法可以将图片进行本地化处理，其中第二种方法也可以用于<code>UIImage(contentsOfFile:)</code>方法。</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/xcode/international-data-format/" rel="bookmark">iOS本地化日期、时间、货币数字（超全）</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/xcode/international-user-facing-text/" rel="bookmark">苹果官方的iOS App国际化工作流</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/xcode/iphone-selected-language/" rel="bookmark">必看！2个关于iOS开发多语言的知识点</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Xcode/" rel="tag"># Xcode</a>
+              <a href="/tags/%E5%9B%BD%E9%99%85%E5%8C%96/" rel="tag"># 国际化</a>
+          </div>
+
         
-        <span class="collection-header">还行! 目前共计 39 篇日志。 继续努力。</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-01-30T10:58:39+08:00"
-              content="2021-01-30">
-          01-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/UIScrollView-Keyboard/" itemprop="url">
-            <span itemprop="name">一文解决UIKeyboard的疑难杂症</span>
-          </a>
-      </div>
-
-      
-    </header>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/swiftui/swiftui-navigate-get-start-tutorial/" rel="prev" title="你应该知道的！关于SwiftUI中导航栏的4点知识">
+                  <i class="fa fa-chevron-left"></i> 你应该知道的！关于SwiftUI中导航栏的4点知识
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-01-26T13:54:47+08:00"
-              content="2021-01-26">
-          01-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/swiftui/what-is-the-different-between-foreach-and-list/" itemprop="url">
-            <span itemprop="name">在SwiftUI中使用ForEach和List模仿UITableView、UICollectionView</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-01-23T22:36:39+08:00"
-              content="2021-01-23">
-          01-23
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/swiftui/swiftui-concept-essential/" itemprop="url">
-            <span itemprop="name">学习SwiftUI，必须掌握的3个知识点</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-01-14T14:21:41+08:00"
-              content="2021-01-14">
-          01-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/how-to-make-view-get-intrinsic-content-size/" itemprop="url">
-            <span itemprop="name">最佳实践：iOS开发在xib/storyboard中自定义view</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-01-06T15:00:19+08:00"
-              content="2021-01-06">
-          01-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/" itemprop="url">
-            <span itemprop="name">什么是Content Hugging Priorities/Content Compression Resistance Priorities</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-01-01T16:28:23+08:00"
-              content="2021-01-01">
-          01-01
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/UIStackView-Advanced-Knowledge/" itemprop="url">
-            <span itemprop="name">UIStackView的正确使用姿势（最新最全、配视频教程）</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
 
 
 <script>

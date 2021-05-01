@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.iosprogrammer.tech/xcode/localize-images/</loc>
+    <lastmod>2021-05-01</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/xcode/international-user-facing-text/</loc>
+    <lastmod>2021-05-01</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/xcode/language-internalization-ib/</loc>
+    <lastmod>2021-05-01</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/xcode/iphone-selected-language/</loc>
+    <lastmod>2021-05-01</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/xcode/international-data-format/</loc>
+    <lastmod>2021-05-01</lastmod>
+  </url>
+  <url>
     <loc>http://www.iosprogrammer.tech/swiftui/swiftui-navigate-get-start-tutorial/</loc>
     <lastmod>2021-04-23</lastmod>
   </url>
@@ -19,22 +39,6 @@
   <url>
     <loc>http://www.iosprogrammer.tech/swiftui/swiftui-concept-essential/</loc>
     <lastmod>2021-04-14</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/xcode/international-data-format/</loc>
-    <lastmod>2021-04-11</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/xcode/international-user-facing-text/</loc>
-    <lastmod>2021-04-05</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/xcode/iphone-selected-language/</loc>
-    <lastmod>2021-04-05</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/xcode/language-internalization-ib/</loc>
-    <lastmod>2021-03-28</lastmod>
   </url>
   <url>
     <loc>http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/</loc>

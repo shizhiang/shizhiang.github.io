@@ -1,5 +1,5 @@
+http://www.iosprogrammer.tech/xcode/localize-images/
 http://www.iosprogrammer.tech/swiftui/swiftui-navigate-get-start-tutorial/
 http://www.iosprogrammer.tech/swiftui/swiftui-image-fill-fit-mode/
 http://www.iosprogrammer.tech/swiftui/swiftui-custom-modifier/
 http://www.iosprogrammer.tech/xcode/international-data-format/
-http://www.iosprogrammer.tech/xcode/international-user-facing-text/
