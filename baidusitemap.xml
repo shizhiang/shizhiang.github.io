@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.iosprogrammer.tech/ios/application-entry-point-changes/</loc>
+    <lastmod>2021-05-10</lastmod>
+  </url>
+  <url>
     <loc>http://www.iosprogrammer.tech/xcode/localize-images/</loc>
     <lastmod>2021-05-01</lastmod>
   </url>
@@ -85,15 +89,11 @@
     <lastmod>2021-02-25</lastmod>
   </url>
   <url>
-    <loc>http://www.iosprogrammer.tech/UIScrollView-Keyboard/</loc>
-    <lastmod>2021-02-25</lastmod>
-  </url>
-  <url>
     <loc>http://www.iosprogrammer.tech/iOS-SocketRocket/</loc>
     <lastmod>2021-02-25</lastmod>
   </url>
   <url>
-    <loc>http://www.iosprogrammer.tech/ios/ios-integrate-admob/</loc>
+    <loc>http://www.iosprogrammer.tech/UIScrollView-Keyboard/</loc>
     <lastmod>2021-02-25</lastmod>
   </url>
   <url>
@@ -102,6 +102,10 @@
   </url>
   <url>
     <loc>http://www.iosprogrammer.tech/swiftui/swiftui-divide-spacer/</loc>
+    <lastmod>2021-02-25</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/ios/ios-integrate-admob/</loc>
     <lastmod>2021-02-25</lastmod>
   </url>
   <url>
