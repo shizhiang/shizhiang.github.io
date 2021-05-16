@@ -1,5 +1,5 @@
+http://www.iosprogrammer.tech/xcode/localized-noun-plural/
 http://www.iosprogrammer.tech/ios/application-entry-point-changes/
 http://www.iosprogrammer.tech/xcode/localize-images/
 http://www.iosprogrammer.tech/swiftui/swiftui-navigate-get-start-tutorial/
 http://www.iosprogrammer.tech/swiftui/swiftui-image-fill-fit-mode/
-http://www.iosprogrammer.tech/swiftui/swiftui-custom-modifier/

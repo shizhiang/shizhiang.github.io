@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.iosprogrammer.tech/xcode/localized-noun-plural/</loc>
+    
+    <lastmod>2021-05-16</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.iosprogrammer.tech/ios/application-entry-point-changes/</loc>
     
     <lastmod>2021-05-10</lastmod>
@@ -156,6 +163,13 @@
   </url>
   
   <url>
+    <loc>http://www.iosprogrammer.tech/UIScrollView-Keyboard/</loc>
+    
+    <lastmod>2021-02-25</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.iosprogrammer.tech/iOS-SocketRocket/</loc>
     
     <lastmod>2021-02-25</lastmod>
@@ -163,7 +177,7 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/UIScrollView-Keyboard/</loc>
+    <loc>http://www.iosprogrammer.tech/ios/ios-integrate-admob/</loc>
     
     <lastmod>2021-02-25</lastmod>
     
@@ -178,13 +192,6 @@
   
   <url>
     <loc>http://www.iosprogrammer.tech/swiftui/swiftui-divide-spacer/</loc>
-    
-    <lastmod>2021-02-25</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iosprogrammer.tech/ios/ios-integrate-admob/</loc>
     
     <lastmod>2021-02-25</lastmod>
     
@@ -305,7 +312,7 @@
 
   <url>
     <loc>http://www.iosprogrammer.tech/</loc>
-    <lastmod>2021-05-10</lastmod>
+    <lastmod>2021-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -313,35 +320,35 @@
   
   <url>
     <loc>http://www.iosprogrammer.tech/tags/iOS/</loc>
-    <lastmod>2021-05-10</lastmod>
+    <lastmod>2021-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://www.iosprogrammer.tech/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</loc>
-    <lastmod>2021-05-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.iosprogrammer.tech/tags/Xcode/</loc>
-    <lastmod>2021-05-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.iosprogrammer.tech/tags/%E5%9B%BD%E9%99%85%E5%8C%96/</loc>
-    <lastmod>2021-05-10</lastmod>
+    <lastmod>2021-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://www.iosprogrammer.tech/tags/SwiftUI/</loc>
-    <lastmod>2021-05-10</lastmod>
+    <lastmod>2021-05-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.iosprogrammer.tech/tags/Xcode/</loc>
+    <lastmod>2021-05-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.iosprogrammer.tech/tags/%E5%9B%BD%E9%99%85%E5%8C%96/</loc>
+    <lastmod>2021-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

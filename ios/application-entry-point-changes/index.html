@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://www.iosprogrammer.tech/images/scene-delegate/sample-image.png">
 <meta property="og:image" content="http://www.iosprogrammer.tech/images/scene-delegate/appdelegate-scenedelegate.png">
 <meta property="article:published_time" content="2021-05-05T13:47:33.000Z">
-<meta property="article:modified_time" content="2021-05-10T05:38:54.142Z">
+<meta property="article:modified_time" content="2021-05-10T05:42:05.788Z">
 <meta property="article:author" content="施治昂">
 <meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
@@ -226,7 +226,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -349,8 +349,8 @@
 <p><img src="../../images/scene-delegate/appdelegate-scenedelegate.png" alt="AppDelegate和SceneDelegate的关系"></p>
 <p>App的启动和杀死的回调仍然在AppDelegate中，除此之外在创建iOS项目的模版中，AppDelegate中增加了对SceneDelegate管理的两个方法：</p>
 <ul>
-<li><code>application:configurationForConnectingSceneSession:options:</code> 当窗口建立是会被调用</li>
-<li><code>application:didDiscardSceneSessions:sceneSessions</code>。 当窗口被永久销毁是被调用</li>
+<li><code>application:configurationForConnectingSceneSession:options:</code> 当窗口建立时会被调用。</li>
+<li><code>application:didDiscardSceneSessions:sceneSessions</code>。 当窗口被永久销毁时被调用</li>
 </ul>
 <p>SceneDelegate中对App的某个窗口的动作进行管理：</p>
 <table>
@@ -395,10 +395,10 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
+      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
+      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="/Get-To-Know-LLDB/" rel="bookmark">LLDB调试iOS（一）—— 初识LLDB</a></div>
@@ -420,6 +420,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/xcode/localized-noun-plural/" rel="next" title="iOS项目国际化对【名词复数】的处理方法">
+                  iOS项目国际化对【名词复数】的处理方法 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
