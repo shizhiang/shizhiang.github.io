@@ -23,23 +23,26 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Mist","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"Muse | Mist":320,"Pisces | Gemini":240},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":false,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="本文将从4行代码出发给一个view设置渐变色，分别会谈到几个重要的渐变色相关属性，在使用过程中有几个需要特别关注的点。 给一个view的border设置渐变色是比较高阶的用法，希望本文可以在这个方面帮助到你。">
+<meta name="description" content="一个iOS应用中必然会有很多的弹窗，UIKit中的弹窗主要是UIMenuController、UIAlertView和UIActionController，到了SwiftUI框架中也有对应的弹窗，它们分别是contextMenu、alert和actionSheet三个ViewModifier(视图修改器)。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS设置渐变色，给border设置渐变色">
-<meta property="og:url" content="http://www.iosprogrammer.tech/ios/ios-gradient-color/index.html">
+<meta property="og:title" content="SwiftUI弹窗大全：Menu&#x2F;Alert&#x2F;ActionSheet">
+<meta property="og:url" content="http://www.iosprogrammer.tech/swiftui/swiftui-alertview/index.html">
 <meta property="og:site_name" content="iOS开发栈 - 专注于分享iOS开发相关知识">
-<meta property="og:description" content="本文将从4行代码出发给一个view设置渐变色，分别会谈到几个重要的渐变色相关属性，在使用过程中有几个需要特别关注的点。 给一个view的border设置渐变色是比较高阶的用法，希望本文可以在这个方面帮助到你。">
+<meta property="og:description" content="一个iOS应用中必然会有很多的弹窗，UIKit中的弹窗主要是UIMenuController、UIAlertView和UIActionController，到了SwiftUI框架中也有对应的弹窗，它们分别是contextMenu、alert和actionSheet三个ViewModifier(视图修改器)。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.iosprogrammer.tech/images/first/ios-gradient-color-border.png">
-<meta property="article:published_time" content="2021-03-07T12:50:56.000Z">
-<meta property="article:modified_time" content="2021-03-08T01:50:12.123Z">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/swiftui-popupview/first.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/swiftui-popupview/menuview.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/swiftui-popupview/alert.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/swiftui-popupview/actionSheet.png">
+<meta property="article:published_time" content="2021-06-12T10:31:50.000Z">
+<meta property="article:modified_time" content="2021-06-12T13:08:46.358Z">
 <meta property="article:author" content="施治昂">
-<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="SwiftUI">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.iosprogrammer.tech/images/first/ios-gradient-color-border.png">
+<meta name="twitter:image" content="http://www.iosprogrammer.tech/images/swiftui-popupview/first.png">
 
 
-<link rel="canonical" href="http://www.iosprogrammer.tech/ios/ios-gradient-color/">
+<link rel="canonical" href="http://www.iosprogrammer.tech/swiftui/swiftui-alertview/">
 
 
 <script data-pjax class="page-configurations">
@@ -51,7 +54,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>iOS设置渐变色，给border设置渐变色 | iOS开发栈 - 专注于分享iOS开发相关知识</title>
+<title>SwiftUI弹窗大全：Menu/Alert/ActionSheet | iOS开发栈 - 专注于分享iOS开发相关知识</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
     <script data-pjax>
@@ -209,7 +212,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%99view%E8%AE%BE%E7%BD%AE%E6%B8%90%E5%8F%98%E8%89%B2"><span class="nav-number">1.</span> <span class="nav-text">给view设置渐变色</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%99view%E7%9A%84border%E8%AE%BE%E7%BD%AE%E6%B8%90%E5%8F%98%E8%89%B2"><span class="nav-number">2.</span> <span class="nav-text">给view的border设置渐变色</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#contextMenu"><span class="nav-number">1.</span> <span class="nav-text">contextMenu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#alert"><span class="nav-number">2.</span> <span class="nav-text">alert</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#actionSheet"><span class="nav-number">3.</span> <span class="nav-text">actionSheet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -278,7 +281,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/ios/ios-gradient-color/">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/swiftui/swiftui-alertview/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -291,7 +294,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          iOS设置渐变色，给border设置渐变色
+          SwiftUI弹窗大全：Menu/Alert/ActionSheet
         </h1>
 
         <div class="post-meta-container">
@@ -307,40 +310,32 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>本文将从4行代码出发给一个view设置渐变色，分别会谈到几个重要的渐变色相关属性，在使用过程中有几个需要特别关注的点。</p>
-<p>给一个view的border设置渐变色是比较高阶的用法，希望本文可以在这个方面帮助到你。</p>
+        <p>一个iOS应用中必然会有很多的弹窗，UIKit中的弹窗主要是<code>UIMenuController</code>、<code>UIAlertView</code>和<code>UIActionController</code>，到了SwiftUI框架中也有对应的弹窗，它们分别是<code>contextMenu</code>、<code>alert</code>和<code>actionSheet</code>三个<a href="https://www.iosprogrammer.tech/swiftui/swiftui-concept-essential/#Modifer">ViewModifier(视图修改器)</a>。</p>
 <a id="more"></a>
 
-<p><img src="../../images/first/ios-gradient-color-border.png" alt="ios渐变色"></p>
+<p><img src="../../images/swiftui-popupview/first.png"></p>
 <div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
 </div>
 
-<h1 id="给view设置渐变色"><a href="#给view设置渐变色" class="headerlink" title="给view设置渐变色"></a>给view设置渐变色</h1><p>通过4行代码就可以给一个view设置渐变色：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> view <span class="operator">=</span> <span class="type">UIView</span>(frame: <span class="type">CGRect</span>(x: <span class="number">100</span>, y: <span class="number">100</span>, width: <span class="number">100</span>, height: <span class="number">100</span>))</span><br><span class="line"><span class="keyword">let</span> gradientLayer <span class="operator">=</span> <span class="type">CAGradientLayer</span>()</span><br><span class="line">gradientLayer.frame <span class="operator">=</span> view.bounds</span><br><span class="line"><span class="comment">// @[(__bridge id)[UIColor redColor].CGColor, (__bridge id)[UIColor yellowColor].CGColor]</span></span><br><span class="line">gradientLayer.colors <span class="operator">=</span> [<span class="type">UIColor</span>.red.cgColor, <span class="type">UIColor</span>.yellow.cgColor]</span><br><span class="line">view.layer.addSublayer(gradientLayer)</span><br></pre></td></tr></table></figure>
-<p>在创建<code>CAGradientLayer</code>以后需要设置<code>frame</code>才能展示出来，否则它的大小会使用默认的0。</p>
-<p>渐变色会根据<code>colors</code>数组来展示，这个数组的类型是<code>CGColorRef</code>，所以需要用<code>.cgColor</code>强制转换；如果使用的OC语法，必须加上<code>(__bridge id)</code>，否则渐变色会显示不出来。</p>
-<p>默认情况下渐变会从上至下，可是通过设置<code>startPoint</code>和<code>endPoint</code>来改变这个顺序：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gradientLayer.startPoint <span class="operator">=</span> <span class="type">CGPoint</span>(x: <span class="number">0</span>, y: <span class="number">0</span>)</span><br><span class="line">gradientLayer.endPoint <span class="operator">=</span> <span class="type">CGPoint</span>(x: <span class="number">1</span>, y: <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<p>这两个点的范围是从0到1，也就是说最左边和最上边是0，最下和最右是1。这个例子中渐变会变成从左上角到右下角。</p>
-<p>渐变色还有一个重要的属性是<code>locations</code>，这个属性是用来指定<code>colors</code>中设置的每个颜色的终点的。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradientLayer.locations <span class="operator">=</span> [<span class="number">0.2</span>, <span class="number">0.8</span>]</span><br></pre></td></tr></table></figure>
-<p>locations中元素的范围是从0到1。在这里，数组中的第一个元素<em>0.2</em>指定了colors数组中第一个元素<em>红色</em>的终点是0.2，也就是说把整个渐变色范围分成10份，从开始到<em>2/10</em>处都是纯红色，从<em>2/10</em>到<em>8/10</em>处是纯红色到纯黄色的渐变，而从<em>8/10</em>到<em>10/10</em>是纯黄色。</p>
-<h1 id="给view的border设置渐变色"><a href="#给view的border设置渐变色" class="headerlink" title="给view的border设置渐变色"></a>给view的border设置渐变色</h1><p>使用<code>UIBezierPath</code>来创建一个带圆角的<code>CAShapeLayer</code>，并且把它的圆角设置成view的圆角，就可以把一个view的border设置为渐变色。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">...</span> <span class="comment">// 同上给view设置gradientLayer</span></span><br><span class="line">        </span><br><span class="line"><span class="keyword">let</span> shapeLayer <span class="operator">=</span> <span class="type">CAShapeLayer</span>()</span><br><span class="line">shapeLayer.borderWidth <span class="operator">=</span> <span class="number">1</span></span><br><span class="line">shapeLayer.path <span class="operator">=</span> <span class="type">UIBezierPath</span>(roundedRect: gradientLayer.bounds, cornerRadius: <span class="number">10</span>).cgPath</span><br><span class="line">shapeLayer.fillColor <span class="operator">=</span> <span class="type">UIColor</span>.clear.cgColor <span class="comment">// 必须要设置成clearColor或者nil，默认是黑色</span></span><br><span class="line">shapeLayer.strokeColor <span class="operator">=</span> <span class="type">UIColor</span>.white.cgColor <span class="comment">// 随便设置一个非clearColor的颜色</span></span><br><span class="line">        </span><br><span class="line">gradientLayer.mask <span class="operator">=</span> shapeLayer</span><br><span class="line"></span><br><span class="line">view.layer.addSublayer(gradientLayer)</span><br></pre></td></tr></table></figure>
-<ol>
-<li><em>borderWidth</em> shapeLayer的border宽度和view的相同，可以根据设计图来设置。</li>
-<li><em>cornerRadius</em> UIBezierPath的圆角和view的圆角相同；<em>roundedRect</em>和<em>CAGradientLayer</em>的大小相同。</li>
-<li><em>fillColor</em> 是shapeLayer的填充色，默认是黑色，建议设置成nil或者是透明色<code>clearColor</code></li>
-<li><em>strokeColor</em> 是border的描边色，如果设置成clearColor的话就不会绘制出来border了，这里随便一个颜色就是让其能够绘制出来，实际使用的是渐变色</li>
-<li><em>mask</em> 用shapeLayer作为gradientLayer的mask，可以让gradientLayer内部挖空，只保留边缘border的渐变颜色</li>
-<li>最终把渐变色layer添加到view.layer上，shapeLayer只是用来修饰gradientlayer的，目的是把gradientlayer的内部挖空，并且把border和圆角做出来。</li>
-</ol>
+<h1 id="contextMenu"><a href="#contextMenu" class="headerlink" title="contextMenu"></a>contextMenu</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 下面两种方式是等价的 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一种方式</span></span><br><span class="line"><span class="keyword">let</span> menu <span class="operator">=</span> <span class="type">ContextMenu</span> &#123; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">Button</span>(<span class="string">&quot;1&quot;</span>, action: &#123;&#125;)</span><br><span class="line">    .contextMenu(menu)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种方式</span></span><br><span class="line"><span class="type">Image</span>(systemName: <span class="string">&quot;square.and.arrow.up&quot;</span>)</span><br><span class="line">    .contextMenu &#123;</span><br><span class="line">        <span class="type">Button</span>(<span class="string">&quot;1&quot;</span>, action: &#123;&#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><code>contextMenu</code>两种初始化方式对应上面例子中的两种方式，第一种<code>public func contextMenu&lt;MenuItems&gt;(_ contextMenu: ContextMenu&lt;MenuItems&gt;?) -&gt; some View where MenuItems : View</code>是用一个<code>ContextMenu</code>实例作为参数；第二种<code>public func contextMenu&lt;MenuItems&gt;(@ViewBuilder menuItems: () -&gt; MenuItems) -&gt; some View where MenuItems : View</code>的参数是一个使用<code>@ViewBuilder</code>修饰的闭包。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">struct</span> <span class="title">ContextMenu</span>&lt;<span class="title">MenuItems</span>&gt; <span class="title">where</span> <span class="title">MenuItems</span> : <span class="title">View</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">init</span>(<span class="meta">@ViewBuilder</span> menuItems: () -&gt; <span class="type">MenuItems</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由<code>ContextMenu</code>的初始化方法可以看出，要初始化这个类也是需要一个用<code>@ViewBuilder</code>修饰的闭包，所以上面的两种<code>menuContext</code>使用方式并没有本质区别。或者说第二种是第一种的简便方法，类似于这样的用法在SwiftUI中有很多。</p>
+<p>下面是一个完整的例子：</p>
+<p><img src="../../images/swiftui-popupview/menuview.png"></p>
+<p>长按”Context Menu”文本后会弹出一个Menu菜单，其中每个选项都是一个按钮，因为这是一个示例程序所以按钮的事件没有写，在你的项目中可以加上对应的事件。</p>
+<h1 id="alert"><a href="#alert" class="headerlink" title="alert"></a>alert</h1><p><img src="../../images/swiftui-popupview/alert.png"></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@State</span> <span class="keyword">var</span> presentAlert: <span class="type">Bool</span> <span class="operator">=</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="type">Button</span> &#123;</span><br><span class="line">    presentAlert <span class="operator">=</span> <span class="literal">true</span></span><br><span class="line">&#125; label: &#123;</span><br><span class="line">    <span class="type">Text</span>(<span class="string">&quot;Show Alert&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">        </span><br><span class="line">.alert(isPresented: <span class="variable">$presentAlert</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> alert <span class="operator">=</span> <span class="type">Alert</span>(title: <span class="type">Text</span>(<span class="string">&quot;Alert Test&quot;</span>), message: <span class="type">Text</span>(<span class="string">&quot;This is a test case&quot;</span>), primaryButton: .default(<span class="type">Text</span>(<span class="string">&quot;Sure&quot;</span>)), secondaryButton: .destructive(<span class="type">Text</span>(<span class="string">&quot;Cancel&quot;</span>)))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> alert</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>alert</code>这个视图修改器接受两个参数，第一个是<code>Binding&lt;Bool&gt;</code>类型，我们可以通过在一个被<code>@State</code>属性包装器包装的属性前加<code>$</code>来作为这个参数，详情可以参考<a href="https://www.iosprogrammer.tech/swiftui/swiftui-concept-essential/#State%E5%92%8C-%E2%80%94%E2%80%94-Binding-Value">属性包装器和@State</a></p>
+<p>第二个参数是一个返回值是<code>Alert</code>类型的闭包，因此我们这里需要创建一个Alert的示例作为返回值。</p>
+<h1 id="actionSheet"><a href="#actionSheet" class="headerlink" title="actionSheet"></a>actionSheet</h1><p><img src="../../images/swiftui-popupview/actionSheet.png"></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@State</span> <span class="keyword">var</span> presentAlert: <span class="type">Bool</span> <span class="operator">=</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="type">Button</span> &#123;</span><br><span class="line">    presentAlert <span class="operator">=</span> <span class="literal">true</span></span><br><span class="line">&#125; label: &#123;</span><br><span class="line">    <span class="type">Text</span>(<span class="string">&quot;Show Alert&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.actionSheet(isPresented: <span class="variable">$presentAlert</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> actionSheet <span class="operator">=</span> <span class="type">ActionSheet</span>(title: <span class="type">Text</span>(<span class="string">&quot;Test ActionSheet&quot;</span>), message: <span class="type">Text</span>(<span class="string">&quot;This is a test&quot;</span>), buttons: [.default(<span class="type">Text</span>(<span class="string">&quot;Sure Item&quot;</span>)), .default(<span class="type">Text</span>(<span class="string">&quot;Sure Item2&quot;</span>)), .destructive(<span class="type">Text</span>(<span class="string">&quot;Cancel&quot;</span>))])</span><br><span class="line">    <span class="keyword">return</span> actionSheet</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>actionSheet</code>和上面的<code>alert</code>用法非常相似，第一个参数是一个<code>Binding&lt;Bool&gt;</code>类型的变量，<code>presentAlert</code>是一个被<code>@State</code>属性包装器包装的Bool类型变量，在这个变量前面加<code>$</code>可以生成一个Binding类型的变量。</p>
+<p>第一个参数是一个返回值是<code>ActionSheet</code>类型的闭包，因此需要创建这个类型的实例并将它作为返回值。<code>buttons</code>参数是一个<code>ActionSheet.Button</code>类型的数组，因为这是一个实例程序，Button并没有添加任何的事件，如果需要可以自行添加。</p>
 <div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
 </div>
 
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>通过这篇文章我们了解了怎么给一个view设置渐变色，并详细阐述了渐变色的几个重要属性。关于给border设置渐变色是一个进阶的知识点。</p>
-<p>希望本篇文章能够帮助到你，也欢迎你把文章分享到朋友圈或微博。</p>
-<p>有任何问题都可以到公众号给我发信息。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这篇文章对SwiftUI框架中的<code>contextMenu</code>、<code>alert</code>和<code>actionSheet</code>做了全面的说明，你现在对这3种弹窗肯定有了全面的认识，那就在项目中用起来吧。👍</p>
 
     </div>
 
@@ -351,34 +346,31 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
+      <div class="popular-posts-title"><a href="/swiftui/SwiftUI-Color-Hex/" rel="bookmark">SwiftUI给Color添加扩展支持十六进制字符串</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Get-To-Know-LLDB/" rel="bookmark">LLDB调试iOS（一）—— 初识LLDB</a></div>
+      <div class="popular-posts-title"><a href="/swiftui/environment-vs-environmentObject/" rel="bookmark">environment和environmentObject的区别及适用场景</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
+      <div class="popular-posts-title"><a href="/swiftui/swiftui-concept-essential/" rel="bookmark">学习SwiftUI，必须掌握的3个知识点</a></div>
     </li>
   </ul>
 
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/tags/SwiftUI/" rel="tag"># SwiftUI</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/swiftui/environment-vs-environmentObject/" rel="prev" title="environment和environmentObject的区别及适用场景">
-                  <i class="fa fa-chevron-left"></i> environment和environmentObject的区别及适用场景
+                <a href="/swiftui/swiftui-tabview/" rel="prev" title="全面掌握！SwiftUI2.0中TabView的知识和用法">
+                  <i class="fa fa-chevron-left"></i> 全面掌握！SwiftUI2.0中TabView的知识和用法
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/swiftui/swiftui-searchbar/" rel="next" title="SwiftUI怎么实现UISearchBar">
-                  SwiftUI怎么实现UISearchBar <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
