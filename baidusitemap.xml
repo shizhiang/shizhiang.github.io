@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.iosprogrammer.tech/notes/read-becoming-steve-jobs/</loc>
+    <lastmod>2021-06-27</lastmod>
+  </url>
+  <url>
     <loc>http://www.iosprogrammer.tech/swiftui/swiftui-alertview/</loc>
     <lastmod>2021-06-12</lastmod>
   </url>
@@ -113,11 +117,11 @@
     <lastmod>2021-02-25</lastmod>
   </url>
   <url>
-    <loc>http://www.iosprogrammer.tech/swiftui/swiftui-divide-spacer/</loc>
+    <loc>http://www.iosprogrammer.tech/swiftui/swiftui-data-flow/</loc>
     <lastmod>2021-02-25</lastmod>
   </url>
   <url>
-    <loc>http://www.iosprogrammer.tech/swiftui/swiftui-data-flow/</loc>
+    <loc>http://www.iosprogrammer.tech/swiftui/swiftui-divide-spacer/</loc>
     <lastmod>2021-02-25</lastmod>
   </url>
   <url>

@@ -1,5 +1,5 @@
+http://www.iosprogrammer.tech/notes/read-becoming-steve-jobs/
 http://www.iosprogrammer.tech/swiftui/swiftui-alertview/
 http://www.iosprogrammer.tech/swiftui/swiftui-tabview/
 http://www.iosprogrammer.tech/xcode/localized-noun-plural/
 http://www.iosprogrammer.tech/ios/application-entry-point-changes/
-http://www.iosprogrammer.tech/xcode/localize-images/
