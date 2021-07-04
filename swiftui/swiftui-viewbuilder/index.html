@@ -23,23 +23,23 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Mist","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"Muse | Mist":320,"Pisces | Gemini":240},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":false,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="SwiftUI没有提供UISearchBar，虽然我们可以通过使用TextField来自己实现SeachBar的效果，不过要想实现一个和UISearchBar同样的控件并不容易，尤其是清除按钮和搜索图标。 这里推荐直接使用UISearchBar和UIViewRepresentable协议来一个SearchBar。">
+<meta name="description" content="在SwiftUI框架中使用很多的注解，虽然使语法看上去非常简洁，但是增加了初学者的理解难度，这篇文章我们来看一下@ViewBuilder的相关知识。主要包括以下内容：  resultBuilder&#x2F;functionBuilder是什么以及用法 ViewBuilder结构体 @ViewBuilder修饰符的用法 使用@ViewBuilder完成一个自定义视图">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SwiftUI怎么实现UISearchBar">
-<meta property="og:url" content="http://www.iosprogrammer.tech/swiftui/swiftui-searchbar/index.html">
+<meta property="og:title" content="解密SwiftUI中@ViewBuilder的黑暗魔法">
+<meta property="og:url" content="http://www.iosprogrammer.tech/swiftui/swiftui-viewbuilder/index.html">
 <meta property="og:site_name" content="iOS开发栈 - 专注于分享iOS开发相关知识">
-<meta property="og:description" content="SwiftUI没有提供UISearchBar，虽然我们可以通过使用TextField来自己实现SeachBar的效果，不过要想实现一个和UISearchBar同样的控件并不容易，尤其是清除按钮和搜索图标。 这里推荐直接使用UISearchBar和UIViewRepresentable协议来一个SearchBar。">
+<meta property="og:description" content="在SwiftUI框架中使用很多的注解，虽然使语法看上去非常简洁，但是增加了初学者的理解难度，这篇文章我们来看一下@ViewBuilder的相关知识。主要包括以下内容：  resultBuilder&#x2F;functionBuilder是什么以及用法 ViewBuilder结构体 @ViewBuilder修饰符的用法 使用@ViewBuilder完成一个自定义视图">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.iosprogrammer.tech/images/first/swiftui-uisearchbar.png">
-<meta property="article:published_time" content="2021-03-13T13:33:16.000Z">
-<meta property="article:modified_time" content="2021-03-13T14:08:04.238Z">
+<meta property="og:image" content="http://www.iosprogrammer.tech/images/viewbuilder/containerview.png">
+<meta property="article:published_time" content="2021-07-03T09:02:04.000Z">
+<meta property="article:modified_time" content="2021-07-04T02:52:57.679Z">
 <meta property="article:author" content="施治昂">
 <meta property="article:tag" content="SwiftUI">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.iosprogrammer.tech/images/first/swiftui-uisearchbar.png">
+<meta name="twitter:image" content="http://www.iosprogrammer.tech/images/viewbuilder/containerview.png">
 
 
-<link rel="canonical" href="http://www.iosprogrammer.tech/swiftui/swiftui-searchbar/">
+<link rel="canonical" href="http://www.iosprogrammer.tech/swiftui/swiftui-viewbuilder/">
 
 
 <script data-pjax class="page-configurations">
@@ -51,7 +51,7 @@
     lang   : 'zh-CN'
   };
 </script>
-<title>SwiftUI怎么实现UISearchBar | iOS开发栈 - 专注于分享iOS开发相关知识</title>
+<title>解密SwiftUI中@ViewBuilder的黑暗魔法 | iOS开发栈 - 专注于分享iOS开发相关知识</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
     <script data-pjax>
@@ -196,7 +196,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -209,6 +209,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#resultBuilder%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text">@resultBuilder注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ViewBuilder%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text">@ViewBuilder定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ViewBuilder%E7%9A%84%E7%94%A8%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">@ViewBuilder的用法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5"><span class="nav-number">4.</span> <span class="nav-text">实践</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -277,7 +278,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/swiftui/swiftui-searchbar/">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/swiftui/swiftui-viewbuilder/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -290,7 +291,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          SwiftUI怎么实现UISearchBar
+          解密SwiftUI中@ViewBuilder的黑暗魔法
         </h1>
 
         <div class="post-meta-container">
@@ -306,21 +307,49 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>SwiftUI没有提供UISearchBar，虽然我们可以通过使用TextField来自己实现SeachBar的效果，不过要想实现一个和UISearchBar同样的控件并不容易，尤其是清除按钮和搜索图标。</p>
-<p>这里推荐直接使用UISearchBar和UIViewRepresentable协议来一个SearchBar。</p>
+        <p>在SwiftUI框架中使用很多的注解，虽然使语法看上去非常简洁，但是增加了初学者的理解难度，这篇文章我们来看一下<code>@ViewBuilder</code>的相关知识。主要包括以下内容：</p>
+<ol>
+<li><code>resultBuilder</code>/<code>functionBuilder</code>是什么以及用法</li>
+<li><code>ViewBuilder</code>结构体</li>
+<li><code>@ViewBuilder</code>修饰符的用法</li>
+<li>使用<code>@ViewBuilder</code>完成一个自定义视图</li>
+</ol>
 <a id="more"></a>
 
 <div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
 </div>
 
-<p><img src="../../images/first/swiftui-uisearchbar.png"></p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SearchBar</span>: <span class="title">UIViewRepresentable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Binding</span> <span class="keyword">var</span> text: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> placeholder: <span class="type">String</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> onCommit: ((<span class="keyword">_</span> text: <span class="type">String</span>) -&gt; <span class="type">Void</span>)<span class="operator">?</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeUIView</span><span class="params">(context: UIViewRepresentableContext&lt;SearchBar&gt;)</span></span> -&gt; <span class="type">UISearchBar</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> searchBar <span class="operator">=</span> <span class="type">UISearchBar</span>(frame: .zero)</span><br><span class="line">        searchBar.delegate <span class="operator">=</span> context.coordinator</span><br><span class="line"></span><br><span class="line">        searchBar.placeholder <span class="operator">=</span> placeholder</span><br><span class="line">        searchBar.autocapitalizationType <span class="operator">=</span> .none</span><br><span class="line">        searchBar.searchBarStyle <span class="operator">=</span> .minimal</span><br><span class="line">        <span class="keyword">return</span> searchBar</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">updateUIView</span><span class="params">(<span class="keyword">_</span> uiView: UISearchBar, context: UIViewRepresentableContext&lt;SearchBar&gt;)</span></span> &#123;</span><br><span class="line">        uiView.text <span class="operator">=</span> text</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">makeCoordinator</span><span class="params">()</span></span> -&gt; <span class="type">SearchBar</span>.<span class="type">Coordinator</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Coordinator</span>(text: <span class="variable">$text</span>, onCommit: <span class="keyword">self</span>.onCommit)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Coordinator</span>: <span class="title">NSObject</span>, <span class="title">UISearchBarDelegate</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Binding</span> <span class="keyword">var</span> text: <span class="type">String</span></span><br><span class="line">        <span class="keyword">var</span> onCommit: ((<span class="keyword">_</span> text: <span class="type">String</span>) -&gt; <span class="type">Void</span>)<span class="operator">?</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">init</span>(text: <span class="type">Binding</span>&lt;<span class="type">String</span>&gt;, onCommit: ((<span class="keyword">_</span> text: <span class="type">String</span>) -&gt; <span class="type">Void</span>)<span class="operator">?</span>) &#123;</span><br><span class="line">            _text <span class="operator">=</span> text</span><br><span class="line">            <span class="keyword">self</span>.onCommit <span class="operator">=</span> onCommit</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">func</span> <span class="title">searchBar</span><span class="params">(<span class="keyword">_</span> searchBar: UISearchBar, textDidChange searchText: String)</span></span> &#123;</span><br><span class="line">            text <span class="operator">=</span> searchText</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">func</span> <span class="title">searchBarSearchButtonClicked</span><span class="params">(<span class="keyword">_</span> searchBar: UISearchBar)</span></span> &#123;</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">let</span> onCommit <span class="operator">=</span> <span class="keyword">self</span>.onCommit &#123;</span><br><span class="line">                onCommit(searchBar.text <span class="operator">??</span> <span class="string">&quot;&quot;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>UIViewRepresentable</code>是SwiftUI框架中提供的用于将UIView转换成SwiftUI中View的协议。</p>
-<p><code>func makeUIView(context: Self.Context) -&gt; Self.UIViewType</code>用来创建View的方法，遵守UIViewRepresentable协议的类必须要实现这个方法。它的返回值是一个UIView类的实例。这个方法只会在创建View时调用一次，当View需要更新时会调用下面的这个方法。</p>
-<p><code>func updateUIView(_ uiView: Self.UIViewType, context: Self.Context)</code>当UIView发生任何需要更新状态的事件时，这个方法就会被调用来更新View的状态。</p>
-<p><code>func makeCoordinator() -&gt; Self.Coordinator</code>需要一个<code>Coordinator</code>的实例作为返回值。它通常用来处理一些事件（点击、时间、delegate、通知）引起了UIView的状态变化后，能够将新的状态反映到View上。</p>
+<h1 id="resultBuilder注解"><a href="#resultBuilder注解" class="headerlink" title="@resultBuilder注解"></a><code>@resultBuilder</code>注解</h1><p><code>@resultBuilder</code>是在Swift5.4添加的，之前是叫<code>@_functionBuilder</code>，在这里我们可以简单了解一下它的作用。</p>
+<p>一个类、结构体添加<code>@resultBuilder</code>注解时必须包含至少一个<code>buildBlock</code>方法，并且这个方法是<code>static</code>静态的。这个方法可以接收0个或多个参数，在函数内部确定了参数的组成形式。</p>
+<p>比如下面这个例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@resultBuilder</span> <span class="class"><span class="keyword">struct</span> <span class="title">StringBuilder</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">buildBlock</span><span class="params">(<span class="keyword">_</span> string1: String, <span class="keyword">_</span> string2: String, <span class="keyword">_</span> string3: String)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">        string1 <span class="operator">+</span> <span class="string">&quot; - &quot;</span> <span class="operator">+</span> string2 <span class="operator">+</span> <span class="string">&quot; - &quot;</span> <span class="operator">+</span> string3</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">test</span><span class="params">(@StringBuilder strings: <span class="params">()</span></span></span> -&gt; <span class="type">String</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(strings())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test &#123;</span><br><span class="line">    <span class="string">&quot;1&quot;</span></span><br><span class="line">    <span class="string">&quot;2&quot;</span></span><br><span class="line">    <span class="string">&quot;3&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>StringBuilder</code>是一个字符串构建者结构体，里面的<code>buildBlock</code>方法接收3个参数，并且在3个参数中间插入” - “作为函数的返回值。</p>
+<p><code>test</code>函数接收一个使用<code>@StringBuilder</code>修饰的名为<code>strings</code>的闭包作为参数，函数体是调用这个闭包并打印到控制台。</p>
+<p>最后使用3个字符串作为参数调用<code>test</code>函数，执行这段代码后会得到”1 - 2 - 3”的输出结果</p>
+<h1 id="ViewBuilder定义"><a href="#ViewBuilder定义" class="headerlink" title="@ViewBuilder定义"></a><code>@ViewBuilder</code>定义</h1><p>先来看<code>ViewBuilder</code>的定义：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@resultBuilder</span> <span class="class"><span class="keyword">struct</span> <span class="title">ViewBuilder</span></span></span><br></pre></td></tr></table></figure>
+<p><code>ViewBuilder</code>本质上是一个结构体，并且被<code>@resultBuilder</code>注解，也就是说<code>ViewBuilder</code>是一个reult builder（结果建造者）类型了。</p>
+<p><code>ViewBuilder</code>结构体有11个名为<code>buildBlock</code>的函数，分别接收从0到10个<code>View</code>类型的参数，因此在SwiftUI中一个接收<code>@ViewBuilder</code>类型参数的视图容器最多能接收10个子视图，如果不能满足需求可以通过拆分来增加子视图的个数。</p>
+<h1 id="ViewBuilder的用法"><a href="#ViewBuilder的用法" class="headerlink" title="@ViewBuilder的用法"></a><code>@ViewBuilder</code>的用法</h1><p>使用<code>@resultBuilder</code>注解<code>ViewBuilder</code>结构体后，就可以用<code>@ViewBuilder</code>修饰闭包，这个闭包可以接收多个指定类型的对象，而这些对象会按照<code>buildBlock</code>函数的实现进行组织。</p>
+<blockquote>
+<p>A custom parameter attribute that constructs views from closures.</p>
+</blockquote>
+<p>这是Apple的官方文档对ViewBuilder的定义，简单来说ViewBuilder就是一个包含多个视图的闭包。</p>
+<p>在SwiftUI框架中，所有的容器视图都是使用<code>@ViewBuilder</code>来修饰最后一个参数，因此这些容器视图可以接受多个子视图作为参数。比如<code>HStack</code>/<code>VStack</code>/<code>ScrollView</code>等。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// HStack</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">struct</span> <span class="title">HStack</span>&lt;<span class="title">Content</span>&gt; : <span class="title">View</span> <span class="title">where</span> <span class="title">Content</span> : <span class="title">View</span> </span>&#123;</span><br><span class="line">    <span class="operator">...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">@inlinable</span> <span class="keyword">public</span> <span class="keyword">init</span>(alignment: <span class="type">VerticalAlignment</span> <span class="operator">=</span> .center, spacing: <span class="type">CGFloat</span>? <span class="operator">=</span> <span class="literal">nil</span>, <span class="meta">@ViewBuilder</span> content: () -&gt; <span class="type">Content</span>)</span><br><span class="line"></span><br><span class="line">    <span class="operator">...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是<code>HStack</code>的初始化方法，其中前面的几个参数都是可选项，它们不在本篇文章的讨论范围内。</p>
+<p>它的最后一个参数<code>content</code>的类型是一个返回值为Content的闭包，单看<code>()-&gt;Content</code>是一个没有参数的闭包，但是前面使用了<code>@ViewBuilder</code>修饰，这就是一个可以接收多个视图的闭包了，最终看起来像是这样的：<code>(view1: Content, view2: Content....) -&gt; Content</code>。</p>
+<p>下面我们通过自定义一个视图来看<code>@ViewBuilder</code>的用法。</p>
+<h1 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h1><p>下面通过实现一个自定义的容器视图来展示<code>@ViewBuilder</code>的用法：</p>
+<p><img src="../../images/viewbuilder/containerview.png" alt="@ViewBuilder示例"></p>
+<p>自定义一个继承自<code>View</code>名为<code>CustomContainerView</code>的视图，它仅有一个接收<code>@ViewBuilder</code>类型参数的初始化方法，并使用常量<code>content</code>接收这个参数。</p>
+<p>在<code>body</code>中构建当前视图：<code>@ViewBuilder</code>中可能包含多个子视图，因此使用<code>VStack</code>把这些子视图纵向排列，之后使用多个<a href="https://www.iosprogrammer.tech/swiftui/swiftui-concept-essential/#Modifer">视图修改器</a>自定义子视图的外观。</p>
+<p>在源文件的第29行，<code>ContentView</code>中创建了<code>CustomContainerView</code>并给它传递了3个<code>Text</code>子视图。通过Xcode右侧的即时预览可以看到这三个子视图正是以我们在<code>CustomContainerView</code>中要求的方式展现出来——纵向排列、绿色的背景色、红色的文字颜色等。</p>
 <div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
 </div>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>至此，关于<code>@ViewBuilder</code>的相关知识基本都涉及到了，相信通过本篇文章的学习你一定也对它有了一个非常全面的掌握，那么赶快到实战项目中用起来吧👍。</p>
+
     </div>
 
     
@@ -350,14 +379,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/ios/ios-gradient-color/" rel="prev" title="iOS设置渐变色，给border设置渐变色">
-                  <i class="fa fa-chevron-left"></i> iOS设置渐变色，给border设置渐变色
+                <a href="/notes/read-becoming-steve-jobs/" rel="prev" title="程序员读《成为乔布斯》">
+                  <i class="fa fa-chevron-left"></i> 程序员读《成为乔布斯》
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/ios/retain-cycle-problems/" rel="next" title="告诉你3个容易被忽略的可能造成循环引用的情况和2种不会造成循环引用的情况">
-                  告诉你3个容易被忽略的可能造成循环引用的情况和2种不会造成循环引用的情况 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
