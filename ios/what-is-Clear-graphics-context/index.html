@@ -23,18 +23,24 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Mist","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"Muse | Mist":320,"Pisces | Gemini":240},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":false,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
-<meta property="og:type" content="website">
-<meta property="og:title" content="iOS开发栈 - 专注于分享iOS开发相关知识">
-<meta property="og:url" content="http://www.iosprogrammer.tech/archives/2021/03/index.html">
+<meta name="description" content="这篇文章深入探究一个iOS开发过程中经常会看到的一个属性，这也是我自己在开发过程中碰到的一个用了我几个小时才解决的问题。 主要涉及到Opaque和Clears Graphics Context（clearsContextBeforeDrawing）两个View属性：  opaque view和non-opaque view Clears Graphics Context是什么和它的作用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发细节！Opaque View和Clear Graphics Context">
+<meta property="og:url" content="http://www.iosprogrammer.tech/ios/what-is-Clear-graphics-context/index.html">
 <meta property="og:site_name" content="iOS开发栈 - 专注于分享iOS开发相关知识">
-<meta property="og:description" content="高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
+<meta property="og:description" content="这篇文章深入探究一个iOS开发过程中经常会看到的一个属性，这也是我自己在开发过程中碰到的一个用了我几个小时才解决的问题。 主要涉及到Opaque和Clears Graphics Context（clearsContextBeforeDrawing）两个View属性：  opaque view和non-opaque view Clears Graphics Context是什么和它的作用">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/clears-graphics-context/phenomenon.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/clears-graphics-context/xib.png">
+<meta property="article:published_time" content="2021-07-17T03:18:46.000Z">
+<meta property="article:modified_time" content="2021-07-17T11:48:34.039Z">
 <meta property="article:author" content="施治昂">
+<meta property="article:tag" content="iOS">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.iosprogrammer.tech/ios/images/clears-graphics-context/phenomenon.png">
 
 
-<link rel="canonical" href="http://www.iosprogrammer.tech/archives/2021/03/">
+<link rel="canonical" href="http://www.iosprogrammer.tech/ios/what-is-Clear-graphics-context/">
 
 
 <script data-pjax class="page-configurations">
@@ -42,11 +48,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
-<title>归档 | iOS开发栈 - 专注于分享iOS开发相关知识</title>
+<title>iOS开发细节！Opaque View和Clear Graphics Context | iOS开发栈 - 专注于分享iOS开发相关知识</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
     <script data-pjax>
@@ -191,7 +197,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -204,6 +210,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Opaque%E5%B1%9E%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">Opaque属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Clears-Graphics-Context"><span class="nav-number">2.</span> <span class="nav-text">Clears Graphics Context</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -261,150 +268,123 @@
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/ios/what-is-Clear-graphics-context/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈 - 专注于分享iOS开发相关知识">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          iOS开发细节！Opaque View和Clear Graphics Context
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>这篇文章深入探究一个iOS开发过程中经常会看到的一个属性，这也是我自己在开发过程中碰到的一个用了我几个小时才解决的问题。</p>
+<p>主要涉及到Opaque和Clears Graphics Context（clearsContextBeforeDrawing）两个View属性：</p>
+<ol>
+<li>opaque view和non-opaque view</li>
+<li>Clears Graphics Context是什么和它的作用</li>
+</ol>
+<a id="more"></a>
+
+<div class="note info"><p>到公众号【iOS开发栈】学习更多SwiftUI、iOS开发相关内容。</p>
+</div>
+
+<h1 id="Opaque属性"><a href="#Opaque属性" class="headerlink" title="Opaque属性"></a>Opaque属性</h1><blockquote>
+<p>A Boolean value that determines whether the view is opaque.</p>
+</blockquote>
+<p><code>Opaque</code>属性表示视图是不是透明的，YES表示不透明，NO表示透明。</p>
+<p>iOS的界面绘制系统会根据这个属性的值来决定怎样绘制界面。</p>
+<p>YES的话绘制系统会认为这个View完全不透明，也就是说对于用户来说在这个视图的范围内，只有这个视图会被看到，此时绘制系统就会进行一些优化——在这个视图范围内只绘制这个视图，进而减少绘制工作来优化性能。</p>
+<p><code>opaque</code>是NO表示视图是透明，也就是说用户会看到它后面的视图，显然这样的话会加大绘制的层级，从而影响到App的性能。</p>
+<p><em><code>opaque</code>属性对性能的影响在静止的界面中微乎其微，主要用在对滚动界面（UIScrollView/UITableView/UICollectionView）的优化中。</em></p>
+<p>设置<code>opaque</code>为YES表示<code>alpha</code>等于1，如果设置了opaque是YES，但是alpha小于1的话，opaque属性会失效。</p>
+<h1 id="Clears-Graphics-Context"><a href="#Clears-Graphics-Context" class="headerlink" title="Clears Graphics Context"></a>Clears Graphics Context</h1><p>在Interface Builder的Show the attributes inspector分栏中，可以找到Clears Graphics Context复选框，我在过去几年的iOS开发生涯中无数次的使用过IB文件，却一直忽略了这个选项，直到前几天发现了一个奇怪的现象。</p>
+<p><img src="../images/clears-graphics-context/phenomenon.png"></p>
+<p>这不是把两个label重叠在一起了，而是先后给同一个label设置了“777”和“999”两个字符串——<code>label.text = @&quot;&quot;</code>。那么问题是为什么会这个现象呢？</p>
+<p>其实想要出现这个现象也并不容易，首先要把这个label的背景色设置成<code>default</code>（其他任何颜色都不行），其次要把<code>Clears Graphics Context</code>的复选框设置为不选中的状态，只满足这两个条件你会发现也不会出现这个问题，经过我的反复试验总结发现，只有当当前label不在屏幕内时——比如push到（或者present出）另一个页面时设置text才会出现这个现象。</p>
+<p><img src="../images/clears-graphics-context/xib.png"></p>
+<p>在IB中设置<code>Clears Graphics Context</code>和代码设置<code>clearsContextBeforeDrawing</code>是一样的。</p>
+<blockquote>
+<p>A Boolean value that determines whether the view’s bounds should be automatically cleared before drawing.</p>
+</blockquote>
+<p><em>这个属性表示是否要在绘制界面前把当前视图的内容清除。</em>也就是说，如果把这个属性设置成NO，那么当下次更改视图内容时，上一次的内容会保留，就会出现两个内容同时存在，也就是我遇到的label同时出现了“777”和“999”两个字符串。</p>
+<p>了解了这一点以后，解决这个问题就很简单了，只需要把<code>Clears Graphics Context</code>勾选上就可以了。</p>
+<div class="note info"><p>到公众号【iOS开发栈】学习更多Swift、SwiftUI、iOS开发相关内容。</p>
+</div>
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/Array-addObject-ViewController-cause-viewcontroller-not-release/" rel="bookmark">Array().addObject(ViewController())造成控制器不释放</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/Create-Cocoapods-Repo/" rel="bookmark">从零开始到提交一个开源项目到Cocopods</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/Get-To-Know-LLDB/" rel="bookmark">LLDB调试iOS（一）—— 初识LLDB</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+          </div>
+
         
-        <span class="collection-header">还行! 目前共计 47 篇日志。 继续努力。</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-03-28T21:50:56+08:00"
-              content="2021-03-28">
-          03-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/xcode/language-internalization-ib/" itemprop="url">
-            <span itemprop="name">iOS App国际化必看！使用Xib使App完成国际化功能</span>
-          </a>
-      </div>
-
-      
-    </header>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/swift/swift-keypaths/" rel="prev" title="掌握KeyPaths的用法（从理论到实践），极大提高Swift开发效率">
+                  <i class="fa fa-chevron-left"></i> 掌握KeyPaths的用法（从理论到实践），极大提高Swift开发效率
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-03-19T13:16:18+08:00"
-              content="2021-03-19">
-          03-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/ios/retain-cycle-problems/" itemprop="url">
-            <span itemprop="name">告诉你3个容易被忽略的可能造成循环引用的情况和2种不会造成循环引用的情况</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-03-13T21:33:16+08:00"
-              content="2021-03-13">
-          03-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/swiftui/swiftui-searchbar/" itemprop="url">
-            <span itemprop="name">SwiftUI怎么实现UISearchBar</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-03-07T20:50:56+08:00"
-              content="2021-03-07">
-          03-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/ios/ios-gradient-color/" itemprop="url">
-            <span itemprop="name">iOS设置渐变色，给border设置渐变色</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-03-05T11:25:18+08:00"
-              content="2021-03-05">
-          03-05
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/swiftui/environment-vs-environmentObject/" itemprop="url">
-            <span itemprop="name">environment和environmentObject的区别及适用场景</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2021-03-04T11:09:44+08:00"
-              content="2021-03-04">
-          03-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/swiftui/swiftui-uisegmentcontrol/" itemprop="url">
-            <span itemprop="name">在SwiftUI中实现UISegmentControl</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
 
 
 <script>

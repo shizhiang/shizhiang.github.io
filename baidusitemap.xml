@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.iosprogrammer.tech/ios/what-is-Clear-graphics-context/</loc>
+    <lastmod>2021-07-17</lastmod>
+  </url>
+  <url>
     <loc>http://www.iosprogrammer.tech/swift/swift-keypaths/</loc>
     <lastmod>2021-07-11</lastmod>
   </url>
@@ -121,15 +125,15 @@
     <lastmod>2021-02-25</lastmod>
   </url>
   <url>
-    <loc>http://www.iosprogrammer.tech/ios/ios-integrate-admob/</loc>
-    <lastmod>2021-02-25</lastmod>
-  </url>
-  <url>
     <loc>http://www.iosprogrammer.tech/swiftui/swiftui-data-flow/</loc>
     <lastmod>2021-02-25</lastmod>
   </url>
   <url>
     <loc>http://www.iosprogrammer.tech/swiftui/swiftui-divide-spacer/</loc>
+    <lastmod>2021-02-25</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/ios/ios-integrate-admob/</loc>
     <lastmod>2021-02-25</lastmod>
   </url>
   <url>
