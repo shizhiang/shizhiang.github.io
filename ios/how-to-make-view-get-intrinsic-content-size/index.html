@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/wechatlogo32*32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/wechatlogo16*16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Mist","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"Muse | Mist":320,"Pisces | Gemini":240},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":false,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="在xib或者storyboard嵌套另一个用xib布局的view是一个经常用到的技术点，要完全掌握好这个知识点不是那么容易，用常规的xib创建view的方法通常并不能满足我们的需求。 当我们使用Autolayout自动布局时，在xib中嵌套一个自定义的view可能就更麻烦了。通过这篇文章你将学习到嵌套xib布局的方法和怎么在xib中使用autolayout的一些高级用法来使view向label一样">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最佳实践：iOS开发在xib&#x2F;storyboard中自定义view">
+<meta property="og:url" content="http://www.iosprogrammer.tech/ios/how-to-make-view-get-intrinsic-content-size/index.html">
+<meta property="og:site_name" content="iOS开发栈 - 专注于分享iOS开发相关知识">
+<meta property="og:description" content="在xib或者storyboard嵌套另一个用xib布局的view是一个经常用到的技术点，要完全掌握好这个知识点不是那么容易，用常规的xib创建view的方法通常并不能满足我们的需求。 当我们使用Autolayout自动布局时，在xib中嵌套一个自定义的view可能就更麻烦了。通过这篇文章你将学习到嵌套xib布局的方法和怎么在xib中使用autolayout的一些高级用法来使view向label一样">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/xib-view/xib-1.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/xib-view/xib-4.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/xib-view/xib-2.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/xib-view/xib-3.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/xib-view/xib-6.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/xib-view/xib-7.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/xib-view/xib-5.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/xib-view/xib-8.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/xib-view/xib-15.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/xib-view/xib-13.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/xib-view/xib-9.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/xib-view/xib-10.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/xib-view/xib-11.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/xib-view/xib-12.png">
+<meta property="og:image" content="http://www.iosprogrammer.tech/ios/images/xib-view/xib-16.png">
+<meta property="article:published_time" content="2021-01-14T06:21:41.000Z">
+<meta property="article:modified_time" content="2021-07-21T06:46:56.669Z">
+<meta property="article:author" content="施治昂">
+<meta property="article:tag" content="iOS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.iosprogrammer.tech/ios/images/xib-view/xib-1.png">
+
+
+<link rel="canonical" href="http://www.iosprogrammer.tech/ios/how-to-make-view-get-intrinsic-content-size/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>最佳实践：iOS开发在xib/storyboard中自定义view | iOS开发栈 - 专注于分享iOS开发相关知识</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-127387039-1');
+      }
+    </script>
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bd7459ebb71091a406c3493a12d04ecc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="iOS开发栈 - 专注于分享iOS开发相关知识" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">iOS开发栈 - 专注于分享iOS开发相关知识</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">关注公众号【iOS开发栈】及时免费获取更多iOS开发知识</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8Exib%E5%8A%A0%E8%BD%BD%E8%87%AA%E5%AE%9A%E4%B9%89view%E8%A7%86%E5%9B%BE"><span class="nav-number">1.</span> <span class="nav-text">从xib加载自定义view视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xib%E6%96%87%E4%BB%B6%E4%B8%AD%E6%B7%BB%E5%8A%A0view%E5%B9%B6%E8%AE%BE%E7%BD%AE%E7%BA%A6%E6%9D%9F"><span class="nav-number">2.</span> <span class="nav-text">xib文件中添加view并设置约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xib%E5%92%8C-m%E5%BB%BA%E7%AB%8B%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">.xib和.m建立链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%86%99initWithCoder-%E6%96%B9%E6%B3%95%E6%8A%8Axib%E4%B8%AD%E7%9A%84view%E6%B7%BB%E5%8A%A0%E8%BF%9B%E6%9D%A5"><span class="nav-number">4.</span> <span class="nav-text">重写initWithCoder:方法把xib中的view添加进来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8Main-storyboard%E4%B8%AD%E6%B7%BB%E5%8A%A0CustomView%EF%BC%8C%E5%B9%B6%E8%AE%BE%E7%BD%AE%E7%BA%A6%E6%9D%9F"><span class="nav-number">5.</span> <span class="nav-text">在Main.storyboard中添加CustomView，并设置约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A9UIView%E5%83%8FUILabel%E4%B8%80%E6%A0%B7%E6%8B%A5%E6%9C%89IntrinsicContentSize"><span class="nav-number">6.</span> <span class="nav-text">让UIView像UILabel一样拥有IntrinsicContentSize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">施治昂</p>
+  <div class="site-description" itemprop="description">高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:shizhiang@126.com" title="E-Mail → mailto:shizhiang@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7414691003/profile" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7414691003&#x2F;profile" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/ios/how-to-make-view-get-intrinsic-content-size/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈 - 专注于分享iOS开发相关知识">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          最佳实践：iOS开发在xib/storyboard中自定义view
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在xib或者storyboard嵌套另一个用xib布局的view是一个经常用到的技术点，要完全掌握好这个知识点不是那么容易，用常规的xib创建view的方法通常并不能满足我们的需求。</p>
+<p>当我们使用Autolayout自动布局时，在xib中嵌套一个自定义的view可能就更麻烦了。通过这篇文章你将学习到嵌套xib布局的方法和怎么在xib中使用autolayout的一些高级用法来使view向label一样具有contrisic content size。</p>
+<a id="more"></a>
+
+<h3 id="从xib加载自定义view视图"><a href="#从xib加载自定义view视图" class="headerlink" title="从xib加载自定义view视图"></a>从xib加载自定义view视图</h3><p>新建项目:<br><img src="../images/xib-view/xib-1.png"></p>
+<p>添加view和xib到项目中：</p>
+<p><img src="../images/xib-view/xib-4.png"><br><img src="../images/xib-view/xib-2.png"><br><img src="../images/xib-view/xib-3.png"></p>
+<p>设置xib的大小为freedom，并设置xib的大小为 200x100</p>
+<p><img src="../images/xib-view/xib-6.png"><br><img src="../images/xib-view/xib-7.png"></p>
+<p><strong>设置xib的 Fils’s Owner 为CustomView，不要设置view的class</strong></p>
+<p><img src="../images/xib-view/xib-5.png"></p>
+<h3 id="xib文件中添加view并设置约束"><a href="#xib文件中添加view并设置约束" class="headerlink" title="xib文件中添加view并设置约束"></a>xib文件中添加view并设置约束</h3><p><img src="../images/xib-view/xib-8.png"></p>
+<p>设置约束后的xib是这样：</p>
+<p><img src="../images/xib-view/xib-15.png"></p>
+<h3 id="xib和-m建立链接"><a href="#xib和-m建立链接" class="headerlink" title=".xib和.m建立链接"></a>.xib和.m建立链接</h3><p><img src="../images/xib-view/xib-13.png"></p>
+<h3 id="重写initWithCoder-方法把xib中的view添加进来"><a href="#重写initWithCoder-方法把xib中的view添加进来" class="headerlink" title="重写initWithCoder:方法把xib中的view添加进来"></a>重写<code>initWithCoder:</code>方法把xib中的view添加进来</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (instancetype)initWithCoder:(NSCoder *)coder</span><br><span class="line">&#123;</span><br><span class="line">    self &#x3D; [super initWithCoder:coder];</span><br><span class="line">    if (self) &#123;</span><br><span class="line">        &#x2F;&#x2F; 加载xib，注意owner: self</span><br><span class="line">        [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];</span><br><span class="line">        self.contentView.frame &#x3D; self.bounds;</span><br><span class="line">        [self addSubview:self.contentView];</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="在Main-storyboard中添加CustomView，并设置约束"><a href="#在Main-storyboard中添加CustomView，并设置约束" class="headerlink" title="在Main.storyboard中添加CustomView，并设置约束"></a>在Main.storyboard中添加CustomView，并设置约束</h3><img src="../images/xib-view/xib-9.png"/>
+<img src="../images/xib-view/xib-10.png"  style="height:300px"/>
+
+<p>这时候会报错，因为view的约束不足。</p>
+<p><img src="../images/xib-view/xib-11.png"></p>
+<h3 id="让UIView像UILabel一样拥有IntrinsicContentSize"><a href="#让UIView像UILabel一样拥有IntrinsicContentSize" class="headerlink" title="让UIView像UILabel一样拥有IntrinsicContentSize"></a>让UIView像UILabel一样拥有IntrinsicContentSize</h3><p>在UIKit中有一些视图具有intrinsicContentSize，比如UILabel、UIButotn、UIImageView等。这类视图可以根据自身的内容确定大小，在设置约束时只需要确定位置（x/y）就可以了。</p>
+<p>但是UIView本身是不具备这个特性的，不过我们可以通过在xib或者storyboard中<strong>设置intrinsicSize来告诉编译器当前的视图是可以确定自身大小的</strong>。</p>
+<p><img src="../images/xib-view/xib-12.png"></p>
+<p>这样设置以后约束不足的警告就没有了。</p>
+<p><img src="../images/xib-view/xib-16.png"></p>
+<p>最终，view controller中customView的展示就是.xib中的样子了。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>通过这篇文章我们可以学到：</p>
+<ul>
+<li>xib自定义view的方法</li>
+<li>让UIView像UILabel一样拥有IntrinsicContentSize的方法</li>
+<li>xib嵌套使用的方法</li>
+</ul>
+<p><strong>想了解更多内容关注公众号【iOS开发栈】。</strong></p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/xcode/LLDB-Advanced-Usage/" rel="bookmark">LLDB调试iOS程序（二）—— 高级用法</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/xcode/Using-Instruments-To-Oprimize-CPU-Performance/" rel="bookmark">使用Instruments工具测试CPU与常见对CPU占用过高的操作</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/xcode/XCode-Server-CI/" rel="bookmark">Xcode持续集成简介</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/iOS/" rel="tag"># iOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ios/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/" rel="prev" title="什么是Content Hugging Priorities/Content Compression Resistance Priorities">
+                  <i class="fa fa-chevron-left"></i> 什么是Content Hugging Priorities/Content Compression Resistance Priorities
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/swiftui/swiftui-concept-essential/" rel="next" title="学习SwiftUI，必须掌握的3个知识点">
+                  学习SwiftUI，必须掌握的3个知识点 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">工作笔记 </a>
+      <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=17055052" rel="noopener" target="_blank">京ICP备17055052号-3 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">施治昂</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+    <div class="pjax">
+
+  
+
+
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

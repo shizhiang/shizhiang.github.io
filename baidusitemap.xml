@@ -1,6 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.iosprogrammer.tech/ios/xib-color-different-with-hard-code/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/xcode/XCode-Server-CI/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/ios/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/ios/WebSocket-And-SocketRocket-Source-Analysis/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/xcode/Using-Instruments-To-Oprimize-CPU-Performance/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/ios/UIStackView-Advanced-Knowledge/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/ios/UIScrollView-Keyboard/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/ios/Programming-With-ObjC/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/ios/Objective-C-Message-Forward/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/xcode/LLDB-Advanced-Usage/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/ios/KVC-KVO/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/ios/iOS-SocketRocket/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/ios/iOS-Scheme-Theory-And-Practice/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/ios/iOS-Pull-Live-Stream/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/ios/iOS-Memory-Management/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/ios/how-to-make-view-get-intrinsic-content-size/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/ios/Get-To-Know-LLDB/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
+    <loc>http://www.iosprogrammer.tech/ios/Create-Cocoapods-Repo/</loc>
+    <lastmod>2021-07-21</lastmod>
+  </url>
+  <url>
     <loc>http://www.iosprogrammer.tech/ios/Array-addObject-ViewController-cause-viewcontroller-not-release/</loc>
     <lastmod>2021-07-21</lastmod>
   </url>
@@ -77,15 +149,7 @@
     <lastmod>2021-04-14</lastmod>
   </url>
   <url>
-    <loc>http://www.iosprogrammer.tech/how-to-make-view-get-intrinsic-content-size/</loc>
-    <lastmod>2021-03-23</lastmod>
-  </url>
-  <url>
     <loc>http://www.iosprogrammer.tech/swiftui/swiftui-searchbar/</loc>
-    <lastmod>2021-03-13</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/UIStackView-Advanced-Knowledge/</loc>
     <lastmod>2021-03-13</lastmod>
   </url>
   <url>
@@ -109,23 +173,11 @@
     <lastmod>2021-02-26</lastmod>
   </url>
   <url>
-    <loc>http://www.iosprogrammer.tech/Using-Instruments-To-Oprimize-CPU-Performance/</loc>
-    <lastmod>2021-02-25</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/xib-color-different-with-hard-code/</loc>
-    <lastmod>2021-02-25</lastmod>
-  </url>
-  <url>
     <loc>http://www.iosprogrammer.tech/swiftui/what-is-the-different-between-foreach-and-list/</loc>
     <lastmod>2021-02-25</lastmod>
   </url>
   <url>
-    <loc>http://www.iosprogrammer.tech/UIScrollView-Keyboard/</loc>
-    <lastmod>2021-02-25</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/iOS-SocketRocket/</loc>
+    <loc>http://www.iosprogrammer.tech/ios/ios-integrate-admob/</loc>
     <lastmod>2021-02-25</lastmod>
   </url>
   <url>
@@ -135,57 +187,5 @@
   <url>
     <loc>http://www.iosprogrammer.tech/swiftui/swiftui-divide-spacer/</loc>
     <lastmod>2021-02-25</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/ios/ios-integrate-admob/</loc>
-    <lastmod>2021-02-25</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/XCode-Server-CI/</loc>
-    <lastmod>2021-01-26</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/Programming-With-ObjC/</loc>
-    <lastmod>2021-01-26</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/What-is-Content-Hugging-Priorities-Content-Compression-Resistance-Priorities/</loc>
-    <lastmod>2021-01-26</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/WebSocket-And-SocketRocket-Source-Analysis/</loc>
-    <lastmod>2021-01-26</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/Objective-C-Message-Forward/</loc>
-    <lastmod>2021-01-26</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/LLDB-Advanced-Usage/</loc>
-    <lastmod>2021-01-26</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/KVC-KVO/</loc>
-    <lastmod>2021-01-26</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/iOS-Scheme-Theory-And-Practice/</loc>
-    <lastmod>2021-01-26</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/iOS-Pull-Live-Stream/</loc>
-    <lastmod>2021-01-26</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/iOS-Memory-Management/</loc>
-    <lastmod>2021-01-26</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/Get-To-Know-LLDB/</loc>
-    <lastmod>2021-01-26</lastmod>
-  </url>
-  <url>
-    <loc>http://www.iosprogrammer.tech/Create-Cocoapods-Repo/</loc>
-    <lastmod>2021-01-26</lastmod>
   </url>
 </urlset> 

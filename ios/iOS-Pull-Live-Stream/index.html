@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/wechatlogo32*32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/wechatlogo16*16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=sans:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.iosprogrammer.tech","root":"/","images":"/images","scheme":"Mist","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"Muse | Mist":320,"Pisces | Gemini":240},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":false,"post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="编译iOS平台使用的ijkPlayer并用它来进行直播推流和拉流。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS直播APP的开发——拉流">
+<meta property="og:url" content="http://www.iosprogrammer.tech/ios/iOS-Pull-Live-Stream/index.html">
+<meta property="og:site_name" content="iOS开发栈 - 专注于分享iOS开发相关知识">
+<meta property="og:description" content="编译iOS平台使用的ijkPlayer并用它来进行直播推流和拉流。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-05-07T08:55:06.000Z">
+<meta property="article:modified_time" content="2021-07-21T06:47:01.598Z">
+<meta property="article:author" content="施治昂">
+<meta property="article:tag" content="音视频">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.iosprogrammer.tech/ios/iOS-Pull-Live-Stream/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>iOS直播APP的开发——拉流 | iOS开发栈 - 专注于分享iOS开发相关知识</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127387039-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-127387039-1');
+      }
+    </script>
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bd7459ebb71091a406c3493a12d04ecc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="iOS开发栈 - 专注于分享iOS开发相关知识" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">iOS开发栈 - 专注于分享iOS开发相关知识</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">关注公众号【iOS开发栈】及时免费获取更多iOS开发知识</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%92%AD%E6%94%BE%E5%99%A8%EF%BC%9AIJKPlayer"><span class="nav-number">1.</span> <span class="nav-text">播放器：IJKPlayer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96-framework"><span class="nav-number">2.</span> <span class="nav-text">获取.framework</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96rtmp%E7%9B%B4%E6%92%AD%E6%B5%81"><span class="nav-number">3.</span> <span class="nav-text">获取rtmp直播流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AAOC-Demo%E9%A1%B9%E7%9B%AE"><span class="nav-number">4.</span> <span class="nav-text">新建一个OC Demo项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E9%A1%B9%E7%9B%AE"><span class="nav-number">5.</span> <span class="nav-text">运行项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">施治昂</p>
+  <div class="site-description" itemprop="description">高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="mailto:shizhiang@126.com" title="E-Mail → mailto:shizhiang@126.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7414691003/profile" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7414691003&#x2F;profile" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.iosprogrammer.tech/ios/iOS-Pull-Live-Stream/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="施治昂">
+      <meta itemprop="description" content="高质量的iOS开发学习平台，Objective-C、Swift、SwiftUI、Xcode、Core Data等资源">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS开发栈 - 专注于分享iOS开发相关知识">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          iOS直播APP的开发——拉流
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>编译iOS平台使用的ijkPlayer并用它来进行直播推流和拉流。</p>
+<a id="more"></a>
+
+<h3 id="播放器：IJKPlayer"><a href="#播放器：IJKPlayer" class="headerlink" title="播放器：IJKPlayer"></a>播放器：IJKPlayer</h3><ul>
+<li>github地址：<a target="_blank" rel="noopener" href="https://github.com/Bilibili/ijkplayer">https://github.com/Bilibili/ijkplayer</a></li>
+<li>下载、编译过程<ul>
+<li> git clone <a target="_blank" rel="noopener" href="https://github.com/Bilibili/ijkplayer.git">https://github.com/Bilibili/ijkplayer.git</a> ijkplayer-ios</li>
+<li>cd ijkplayer-ios</li>
+<li>git checkout -B latest k0.8.8</li>
+<li>./init-ios.sh</li>
+<li>cd ios</li>
+<li>./compile-ffmpeg.sh clean</li>
+<li>./compile-ffmpeg.sh all</li>
+</ul>
+</li>
+<li>编译过程中遇到的问题：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;libavutil&#x2F;arm&#x2F;asm.S:50:9: error: unknown directive</span><br><span class="line">        .arch armv7-a</span><br><span class="line">        ^</span><br><span class="line">make: *** [libavcodec&#x2F;arm&#x2F;aacpsdsp_neon.o] Error 1</span><br></pre></td></tr></table></figure></li>
+<li>解决：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">最新的 Xcode 已经弱化了对 32 位的支持, 解决方法: 在 compile-ffmpeg.sh 中删除 armv7 , 修改:FF_ALL_ARCHS_IOS8_SDK&#x3D;&quot;arm64 i386 x86_64&quot; 再重新执行出现错误的命令: .&#x2F;compile-ffmpeg.sh all</span><br></pre></td></tr></table></figure>
+<h3 id="获取-framework"><a href="#获取-framework" class="headerlink" title="获取.framework"></a>获取.framework</h3></li>
+</ul>
+<ol>
+<li>打开<code>IJKMediaPlayer.xcodeproj</code></li>
+<li>选择真机</li>
+<li>切换到Release模式</li>
+<li>cmd+B 编译项目</li>
+<li>获取/Product目录下的<code>IJKMediaFramework.framework</code>，并拷贝</li>
+</ol>
+<h3 id="获取rtmp直播流"><a href="#获取rtmp直播流" class="headerlink" title="获取rtmp直播流"></a>获取rtmp直播流</h3><p>我使用charles抓包到《鱼水直播》的推荐列表链接：<a target="_blank" rel="noopener" href="http://api.chujianapp.com/live/get_hot_list?app_version=6.3.0&amp;bundle_id=fish.livezb.wte&amp;device=ios&amp;device_id=7ED19CAE-E21F-44BF-98DC-F5346E64E502&amp;device_idfa=51C0FC66-54C0-4F69-91E4-4C168698D1F5&amp;device_model=iPhone%206s&amp;device_version=iOS11.3.1&amp;pkg_channel=ys19&amp;secure_key=bd54628575ff36bd7695519218f6934f&amp;server_upgrade=1&amp;time_stamp=1525858044919&amp;token=18231046%7C227842b7058bc5dad052bc6d8834e68f%7C1525858019&amp;uid=18231046">http://api.chujianapp.com/live/get_hot_list?app_version=6.3.0&amp;bundle_id=fish.livezb.wte&amp;device=ios&amp;device_id=7ED19CAE-E21F-44BF-98DC-F5346E64E502&amp;device_idfa=51C0FC66-54C0-4F69-91E4-4C168698D1F5&amp;device_model=iPhone%206s&amp;device_version=iOS11.3.1&amp;pkg_channel=ys19&amp;secure_key=bd54628575ff36bd7695519218f6934f&amp;server_upgrade=1&amp;time_stamp=1525858044919&amp;token=18231046%7C227842b7058bc5dad052bc6d8834e68f%7C1525858019&amp;uid=18231046</a><br>从这个链接中可以得到rtmp流</p>
+<h3 id="新建一个OC-Demo项目"><a href="#新建一个OC-Demo项目" class="headerlink" title="新建一个OC Demo项目"></a>新建一个OC Demo项目</h3><p>1. 把<code>IJKMediaFramework.framework</code>拷贝到项目目录中<br>2. 在<code>ViewController.m</code>中<code>#import &lt;IJKMediaFramework/IJKFFMoviePlayerController.h&gt;</code>，并且在<code>viewDidLoad</code>中添加如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NSURL *playerURL &#x3D; [NSURL URLWithString:@&quot;rtmp:\&#x2F;\&#x2F;pili-live-rtmp.chujianapp.com\&#x2F;ragingfire\&#x2F;1663091115258475730&quot;];</span><br><span class="line">    IJKFFMoviePlayerController *playerVC &#x3D; [[IJKFFMoviePlayerController alloc] initWithContentURL:playerURL withOptions:nil];</span><br><span class="line">    [playerVC prepareToPlay];</span><br><span class="line">    playerVC.view.frame &#x3D; CGRectMake(30, 20, [UIScreen mainScreen].bounds.size.width * 2 &#x2F; 3, [UIScreen mainScreen].bounds.size.height * 2 &#x2F; 3);</span><br><span class="line">    playerVC.view.backgroundColor &#x3D; [UIColor grayColor];</span><br><span class="line">    [self.view insertSubview:playerVC.view atIndex:1];</span><br></pre></td></tr></table></figure>
+<h3 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h3><p>(o゜▽゜)o☆[BINGO!]</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9743a68c2939">https://www.jianshu.com/p/9743a68c2939</a></p>
+<p>👍👍👍</p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/" rel="tag"># 音视频</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ios/Create-Cocoapods-Repo/" rel="prev" title="从零开始到提交一个开源项目到Cocopods">
+                  <i class="fa fa-chevron-left"></i> 从零开始到提交一个开源项目到Cocopods
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/ios/WebSocket-And-SocketRocket-Source-Analysis/" rel="next" title="WebSocket简介和SocketRocket源码分析">
+                  WebSocket简介和SocketRocket源码分析 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">工作笔记 </a>
+      <img src="/images/gongan.png" style="display: inline-block;"><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=17055052" rel="noopener" target="_blank">京ICP备17055052号-3 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">施治昂</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+    <div class="pjax">
+
+  
+
+
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
