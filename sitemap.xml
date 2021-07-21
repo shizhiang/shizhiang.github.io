@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.iosprogrammer.tech/ios/Array-addObject-ViewController-cause-viewcontroller-not-release/</loc>
+    
+    <lastmod>2021-07-21</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.iosprogrammer.tech/ios/what-is-Clear-graphics-context/</loc>
     
     <lastmod>2021-07-17</lastmod>
@@ -324,13 +331,6 @@
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/Array-addObject-ViewController-cause-viewcontroller-not-release/</loc>
-    
-    <lastmod>2021-01-21</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.iosprogrammer.tech/about/index.html</loc>
     
     <lastmod>2020-12-08</lastmod>
@@ -354,57 +354,57 @@
 
   <url>
     <loc>http://www.iosprogrammer.tech/</loc>
-    <lastmod>2021-07-17</lastmod>
+    <lastmod>2021-07-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>http://www.iosprogrammer.tech/tags/Swift/</loc>
-    <lastmod>2021-07-17</lastmod>
+    <loc>http://www.iosprogrammer.tech/tags/iOS/</loc>
+    <lastmod>2021-07-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://www.iosprogrammer.tech/tags/iOS/</loc>
-    <lastmod>2021-07-17</lastmod>
+    <loc>http://www.iosprogrammer.tech/tags/Swift/</loc>
+    <lastmod>2021-07-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://www.iosprogrammer.tech/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/</loc>
-    <lastmod>2021-07-17</lastmod>
+    <lastmod>2021-07-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://www.iosprogrammer.tech/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2021-07-17</lastmod>
+    <lastmod>2021-07-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://www.iosprogrammer.tech/tags/SwiftUI/</loc>
-    <lastmod>2021-07-17</lastmod>
+    <lastmod>2021-07-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://www.iosprogrammer.tech/tags/Xcode/</loc>
-    <lastmod>2021-07-17</lastmod>
+    <lastmod>2021-07-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://www.iosprogrammer.tech/tags/%E5%9B%BD%E9%99%85%E5%8C%96/</loc>
-    <lastmod>2021-07-17</lastmod>
+    <lastmod>2021-07-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
